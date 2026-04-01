@@ -1,4 +1,4 @@
-name: 🚀 Deploy Site & Update README
+name:  Deploy Site & Update README
 
 on:
   push:
@@ -23,21 +23,37 @@ jobs:
 
       - name: 🌐 Deploy to GitVerse Pages (gh-pages)
         run: |
-          mkdir -p /tmp/gh-pages-deploy
-          cp -r . /tmp/gh-pages-deploy/
-          rm -rf /tmp/gh-pages-deploy/.git
+          # Копируем файлы сайта во временную папку
+          mkdir -p /tmp/site
+          cp -r . /tmp/site/
+          rm -rf /tmp/site/.git
 
-          git fetch origin gh-pages 2>/dev/null || true
-          git checkout gh-pages 2>/dev/null || git checkout --orphan gh-pages
+          # Клонируем репо заново только для gh-pages в отдельную папку
+          git clone --depth=1 --branch gh-pages \
+            https://x-access-token:${{ secrets.GITVERSE_TOKEN }}@gitverse.ru/${{ github.repository }}.git \
+            /tmp/gh-pages 2>/dev/null \
+          || git clone --depth=1 \
+            https://x-access-token:${{ secrets.GITVERSE_TOKEN }}@gitverse.ru/${{ github.repository }}.git \
+            /tmp/gh-pages
 
-          git rm -rf . --quiet 2>/dev/null || true
-          cp -r /tmp/gh-pages-deploy/. .
+          cd /tmp/gh-pages
+
+          # Если ветка gh-pages не существовала — создаём orphan
+          git checkout gh-pages 2>/dev/null || {
+            git checkout --orphan gh-pages
+            git rm -rf . --quiet 2>/dev/null || true
+          }
+
+          # Обновляем содержимое
+          rm -rf ./* 2>/dev/null || true
+          cp -r /tmp/site/. .
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git add -A
           git diff --cached --quiet || git commit -m "deploy: обновление сайта [skip ci]"
           git push origin gh-pages --force
-
-          git checkout main
 
       - name: 📝 Обновить README с ссылкой на сайт
         run: |
