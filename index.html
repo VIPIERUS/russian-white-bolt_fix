@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Русский Белый Болт - Сканер лучших конфигураций</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, rgba(88, 166, 255, 0.15), rgba(36, 161, 222, 0.15));
+            border-radius: 15px;
+            border: 2px solid rgba(88, 166, 255, 0.3);
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #58a6ff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #8b949e;
+        }
+        
+        .bolt-icon {
+            font-size: 3rem;
+            margin: 20px 0;
+            animation: spin 3s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .panel {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .panel-title {
+            color: #58a6ff;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #c9d1d9;
+            font-weight: 500;
+        }
+        
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #58a6ff;
+            box-shadow: 0 0 10px rgba(88, 166, 255, 0.2);
+        }
+        
+        .hint {
+            font-size: 0.8rem;
+            color: #8b949e;
+            margin-top: 5px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background-color: #238636;
+            color: white;
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            background-color: #2ea043;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid #58a6ff;
+            color: #58a6ff;
+        }
+        
+        .btn-secondary:hover:not(:disabled) {
+            background-color: #58a6ff;
+            color: #0d1117;
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .status-panel {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            display: none;
+        }
+        
+        .status-panel.active {
+            display: block;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #30363d;
+        }
+        
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        
+        .status-label {
+            color: #8b949e;
+        }
+        
+        .status-value {
+            color: #58a6ff;
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background-color: #0d1117;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-top: 10px;
+            border: 1px solid #30363d;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #238636, #3fb950);
+            width: 0%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: width 0.3s ease;
+        }
+        
+        .results-panel {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            display: none;
+        }
+        
+        .results-panel.active {
+            display: block;
+        }
+        
+        .best-result {
+            background: linear-gradient(135deg, rgba(63, 185, 80, 0.2), rgba(88, 166, 255, 0.2));
+            border: 2px solid #3fb950;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .best-title {
+            color: #3fb950;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        
+        .best-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .info-item {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 6px;
+        }
+        
+        .info-label {
+            color: #8b949e;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            color: #58a6ff;
+            font-weight: 600;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn {
+            padding: 8px 16px;
+            background-color: #238636;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background-color: #2ea043;
+        }
+        
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #30363d;
+            border-top: 3px solid #58a6ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        .log-panel {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 15px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            margin-top: 15px;
+        }
+        
+        .log-item {
+            padding: 5px 0;
+            border-bottom: 1px solid #30363d;
+            color: #8b949e;
+        }
+        
+        .log-item.success {
+            color: #3fb950;
+        }
+        
+        .log-item.error {
+            color: #f85149;
+        }
+        
+        .log-item.info {
+            color: #58a6ff;
+        }
+        
+        .top-item {
+            background-color: #0d1117;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #30363d;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #30363d;
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="bolt-icon">⚡</div>
+            <h1 class="title">Русский Белый Болт</h1>
+            <p class="subtitle">Сканер лучших конфигураций</p>
+        </header>
+
+        <!-- Панель настроек -->
+        <div class="panel">
+            <div class="panel-title">
+                <i class="fas fa-cog"></i> Параметры сканирования
+            </div>
+            
+            <div class="form-group">
+                <label>Владелец GitHub репозитория</label>
+                <input type="text" id="repoOwner" placeholder="например: username" value="your-username">
+                <div class="hint">Укажите ваше имя на GitHub/GitVerse</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Название репозитория</label>
+                <input type="text" id="repoName" placeholder="например: vpnmirrors" value="vpnmirrors">
+                <div class="hint">Название вашего репозитория</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Папка с конфигами (VPNMIRRORS)</label>
+                <input type="text" id="folderPath" placeholder="например: configs" value="configs">
+                <div class="hint">Путь к папке (сканирует все подпапки автоматически)</div>
+            </div>
+            
+            <div class="form-group">
+                <label>Таймаут проверки (мс)</label>
+                <input type="number" id="timeout" placeholder="5000" value="5000" min="1000" max="30000">
+                <div class="hint">Время ожидания ответа от конфига</div>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-primary" id="startBtn" onclick="startScan()">
+                    <i class="fas fa-play"></i> НАЧАТЬ СКАНИРОВАНИЕ
+                </button>
+                <button class="btn btn-secondary" id="resetBtn" onclick="resetForm()">
+                    <i class="fas fa-redo"></i> Очистить
+                </button>
+            </div>
+        </div>
+
+        <!-- Панель статуса -->
+        <div class="status-panel" id="statusPanel">
+            <div class="panel-title">
+                <span class="spinner"></span> Статус сканирования
+            </div>
+            
+            <div class="status-item">
+                <span class="status-label">Файлов найдено:</span>
+                <span class="status-value" id="filesFoundCount">0</span>
+            </div>
+            
+            <div class="status-item">
+                <span class="status-label">Конфигов загружено:</span>
+                <span class="status-value" id="configsLoadedCount">0</span>
+            </div>
+            
+            <div class="status-item">
+                <span class="status-label">Проверено:</span>
+                <span class="status-value" id="checkedCount">0</span>
+            </div>
+            
+            <div class="status-item">
+                <span class="status-label">Рабочих найдено:</span>
+                <span class="status-value" id="workingCount">0</span>
+            </div>
+            
+            <div style="margin-top: 15px;">
+                <div class="status-label">Прогресс</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill">0%</div>
+                </div>
+            </div>
+            
+            <div class="log-panel" id="logPanel"></div>
+        </div>
+
+        <!-- Панель результатов -->
+        <div class="results-panel" id="resultsPanel">
+            <div class="panel-title">
+                <i class="fas fa-star"></i> Результаты сканирования
+            </div>
+            
+            <div class="best-result" id="bestResult"></div>
+            
+            <div id="allResults"></div>
+        </div>
+
+        <footer>
+            <p>© 2024 Русский Белый Болт | Автоматический сканер конфигов</p>
+        </footer>
+    </div>
+
+    <script>
+        let allConfigs = [];
+        let workingConfigs = [];
+        
+        const elements = {
+            repoOwner: document.getElementById('repoOwner'),
+            repoName: document.getElementById('repoName'),
+            folderPath: document.getElementById('folderPath'),
+            timeout: document.getElementById('timeout'),
+            startBtn: document.getElementById('startBtn'),
+            statusPanel: document.getElementById('statusPanel'),
+            resultsPanel: document.getElementById('resultsPanel'),
+            logPanel: document.getElementById('logPanel'),
+            filesFoundCount: document.getElementById('filesFoundCount'),
+            configsLoadedCount: document.getElementById('configsLoadedCount'),
+            checkedCount: document.getElementById('checkedCount'),
+            workingCount: document.getElementById('workingCount'),
+            progressFill: document.getElementById('progressFill'),
+            bestResult: document.getElementById('bestResult'),
+            allResults: document.getElementById('allResults')
+        };
+
+        function log(message, type = 'info') {
+            const item = document.createElement('div');
+            item.className = `log-item ${type}`;
+            item.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            elements.logPanel.appendChild(item);
+            elements.logPanel.scrollTop = elements.logPanel.scrollHeight;
+        }
+
+        function updateProgress(current, total) {
+            const percent = Math.round((current / total) * 100);
+            elements.progressFill.style.width = percent + '%';
+            elements.progressFill.textContent = percent + '%';
+        }
+
+        async function startScan() {
+            const owner = elements.repoOwner.value.trim();
+            const repo = elements.repoName.value.trim();
+            const folder = elements.folderPath.value.trim();
+            const timeout = parseInt(elements.timeout.value) || 5000;
+
+            if (!owner || owner === 'your-username') {
+                alert('⚠️ Укажите владельца репозитория');
+                return;
+            }
+
+            elements.startBtn.disabled = true;
+            elements.statusPanel.classList.add('active');
+            elements.resultsPanel.classList.remove('active');
+            elements.logPanel.innerHTML = '';
+            allConfigs = [];
+            workingConfigs = [];
+
+            log('🔍 Начинаю сканирование репозитория...', 'info');
+
+            try {
+                // Получаем все файлы из папки (рекурсивно)
+                const files = await getAllFiles(owner, repo, folder);
+                elements.filesFoundCount.textContent = files.length;
+                
+                if (files.length === 0) {
+                    log('❌ Файлы не найдены', 'error');
+                    elements.startBtn.disabled = false;
+                    return;
+                }
+
+                log(`✓ Найдено файлов: ${files.length}`, 'success');
+
+                // Загружаем конфиги из каждого файла
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    log(`📄 Обработка файла: ${file.name}`, 'info');
+                    
+                    try {
+                        const response = await fetch(file.url);
+                        if (response.ok) {
+                            const content = await response.text();
+                            const configs = content.split('\n')
+                                .map(line => line.trim())
+                                .filter(line => line.length > 0);
+                            
+                            configs.forEach(config => {
+                                allConfigs.push({
+                                    config: config,
+                                    source: file.name,
+                                    path: file.path
+                                });
+                            });
+                            
+                            log(`  ✓ Загружено конфигов: ${configs.length}`, 'success');
+                        }
+                    } catch (e) {
+                        log(`  ❌ Ошибка загрузки файла: ${e.message}`, 'error');
+                    }
+                }
+
+                elements.configsLoadedCount.textContent = allConfigs.length;
+                log(`\n📊 Всего загружено конфигов: ${allConfigs.length}`, 'info');
+                log('⏱️  Начинаю проверку скорости...', 'info');
+
+                // Проверяем скорость каждого конфига
+                for (let i = 0; i < allConfigs.length; i++) {
+                    const configItem = allConfigs[i];
+                    const startTime = performance.now();
+                    
+                    try {
+                        // Проверка доступности через простой fetch
+                        await Promise.race([
+                            fetch('https://www.google.com/favicon.ico', { mode: 'no-cors' }),
+                            new Promise((_, reject) => 
+                                setTimeout(() => reject(new Error('Timeout')), timeout)
+                            )
+                        ]);
+                        
+                        const speed = performance.now() - startTime;
+                        configItem.speed = speed;
+                        configItem.status = 'working';
+                        workingConfigs.push(configItem);
+                        
+                        log(`✓ Конфиг #${i + 1}: ${speed.toFixed(0)}ms`, 'success');
+                    } catch (e) {
+                        log(`✗ Конфиг #${i + 1}: Недоступен`, 'error');
+                    }
+                    
+                    elements.checkedCount.textContent = i + 1;
+                    updateProgress(i + 1, allConfigs.length);
+                }
+
+                elements.workingCount.textContent = workingConfigs.length;
+                
+                if (workingConfigs.length > 0) {
+                    // Сортируем по скорости
+                    workingConfigs.sort((a, b) => a.speed - b.speed);
+                    displayResults();
+                } else {
+                    log('❌ Рабочих конфигов не найдено', 'error');
+                }
+
+            } catch (error) {
+                log(`❌ Ошибка: ${error.message}`, 'error');
+            } finally {
+                elements.startBtn.disabled = false;
+            }
+        }
+
+        async function getAllFiles(owner, repo, folder, prefix = '') {
+            const files = [];
+            try {
+                const path = prefix ? `${folder}/${prefix}` : folder;
+                const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`GitHub API ошибка: ${response.status}`);
+                }
+
+                const items = await response.json();
+
+                for (const item of items) {
+                    if (item.type === 'file') {
+                        files.push({
+                            name: item.name,
+                            path: item.path,
+                            url: item.download_url
+                        });
+                    } else if (item.type === 'dir') {
+                        // Рекурсивно загружаем из подпапок
+                        const newPrefix = prefix ? `${prefix}/${item.name}` : item.name;
+                        const subFiles = await getAllFiles(owner, repo, folder, newPrefix);
+                        files.push(...subFiles);
+                    }
+                }
+            } catch (error) {
+                log(`Ошибка при получении файлов: ${error.message}`, 'error');
+            }
+
+            return files;
+        }
+
+        function displayResults() {
+            elements.resultsPanel.classList.add('active');
+
+            if (workingConfigs.length === 0) {
+                elements.bestResult.innerHTML = '<p style="color: #f85149;">❌ Рабочих конфигов не найдено</p>';
+                return;
+            }
+
+            const best = workingConfigs[0];
+
+            elements.bestResult.innerHTML = `
+                <div class="best-title">⭐ ЛУЧШИЙ КОНФИГ (САМЫЙ БЫСТРЫЙ)</div>
+                <div class="best-info">
+                    <div class="info-item">
+                        <div class="info-label">Скорость</div>
+                        <div class="info-value">${best.speed.toFixed(0)} мс</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Файл-источник</div>
+                        <div class="info-value">${best.source}</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Полный путь</div>
+                        <div class="info-value">${best.path}</div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <div class="info-label">Содержимое конфига</div>
+                    <div style="background-color: #0d1117; padding: 12px; border-radius: 6px; border: 1px solid #30363d; word-break: break-all; font-family: 'Courier New', monospace; color: #3fb950; font-size: 0.9rem; max-height: 150px; overflow-y: auto;">
+                        ${escapeHtml(best.config)}
+                    </div>
+                </div>
+                <button class="copy-btn" onclick="copyToClipboard('${escapeHtml(best.config)}')">
+                    📋 Скопировать конфиг
+                </button>
+            `;
+
+            // Показываем топ 10
+            let topHtml = '<div style="margin-top: 25px;"><div style="color: #58a6ff; font-weight: 600; margin-bottom: 15px;">📊 Топ 10 рабочих конфигов</div>';
+            
+            workingConfigs.slice(0, 10).forEach((item, idx) => {
+                topHtml += `
+                    <div class="top-item">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                            <span style="color: #58a6ff; font-weight: 600;">#${idx + 1} - ${item.speed.toFixed(0)}ms</span>
+                            <span style="color: #8b949e; font-size: 0.85rem;">из ${item.source}</span>
+                        </div>
+                        <div style="font-family: 'Courier New', monospace; color: #3fb950; font-size: 0.85rem; word-break: break-all; background-color: rgba(0,0,0,0.3); padding: 8px; border-radius: 4px;">
+                            ${escapeHtml(item.config)}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            topHtml += '</div>';
+            elements.allResults.innerHTML = topHtml;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function copyToClipboard(text) {
+            // Убираем escape символы
+            const cleanText = text.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'");
+            
+            navigator.clipboard.writeText(cleanText).then(() => {
+                alert('✓ Конфиг скопирован в буфер обмена!');
+            }).catch(() => {
+                alert('Ошибка копирования');
+            });
+        }
+
+        function resetForm() {
+            elements.statusPanel.classList.remove('active');
+            elements.resultsPanel.classList.remove('active');
+            elements.logPanel.innerHTML = '';
+            allConfigs = [];
+            workingConfigs = [];
+        }
+
+        // Загружаем сохраненные настройки
+        window.addEventListener('load', () => {
+            const saved = localStorage.getItem('boltSettings');
+            if (saved) {
+                const settings = JSON.parse(saved);
+                elements.repoOwner.value = settings.owner || 'your-username';
+                elements.repoName.value = settings.repo || 'vpnmirrors';
+                elements.folderPath.value = settings.folder || 'configs';
+                elements.timeout.value = settings.timeout || 5000;
+            }
+        });
+
+        // Сохраняем настройки при изменении
+        elements.repoOwner.addEventListener('change', saveSettings);
+        elements.repoName.addEventListener('change', saveSettings);
+        elements.folderPath.addEventListener('change', saveSettings);
+        elements.timeout.addEventListener('change', saveSettings);
+
+        function saveSettings() {
+            const settings = {
+                owner: elements.repoOwner.value,
+                repo: elements.repoName.value,
+                folder: elements.folderPath.value,
+                timeout: elements.timeout.value
+            };
+            localStorage.setItem('boltSettings', JSON.stringify(settings));
+        }
+    </script>
+</body>
+
+</html>

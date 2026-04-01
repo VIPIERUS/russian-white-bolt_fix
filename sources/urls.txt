@@ -1,0 +1,60 @@
+# === VPN Config Sources ===
+# Format: URL|CATEGORY|NAME
+
+https://etoneya.a9fm.site/2|nekobox|EtoNeYa Main
+https://alley.serv00.net/1|nekobox|Alley Config 1
+https://alley.serv00.net/2|nekobox|Alley Config 2
+https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/1|nekobox|EtoNeYa Raw 1
+https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt|v2ray|BLACK VLESS RUS
+https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_SS+All_RUS.txt|v2ray|BLACK SS All
+https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/TOR-BRIDGES/TOR_BRIDGES_TOP100.txt|happ|TOR Bridges TOP100
+https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/TOR-BRIDGES/TOR_BRIDGES_ALL.txt|happ|TOR Bridges ALL
+https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt|v2ray|VLESS Reality White
+https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt|nekobox|WHITE CIDR RU All
+https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt|nekobox|WHITE CIDR RU Checked
+https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt|nekobox|WHITE SNI RU All
+https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/2|nekobox|EtoNeYa Raw 2
+https://cdn.jsdelivr.net/gh/EtoNeYaProject/EtoNeYaProject.github.io@refs/heads/main/1|nekobox|EtoNeYa CDN 1
+https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/general.txt|nekobox|EtoNeYa General
+https://vlesstrojan.alexanderyurievich88.workers.dev?token=sub|v2ray|AlexanderY Sub All
+https://vlesstrojan.alexanderyurievich88.workers.dev?token=sub&filter=vless|v2ray|AlexanderY VLESS
+https://vlesstrojan.alexanderyurievich88.workers.dev?token=sub&filter=vless&warp=on|v2ray|AlexanderY VLESS Warp
+https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vless.txt|v2ray|Kort VLESS Clean
+https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/ru-sni/vless_ru.txt|v2ray|Kort VLESS RU SNI
+https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vmess.txt|v2ray|Kort VMess Clean
+https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/trojan.txt|v2ray|Kort Trojan Clean
+https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/ss.txt|v2ray|Kort SS Clean
+https://gitverse.ru/api/repos/cid-uskoritel/cid-white/raw/branch/master/whitelist.txt|nekobox|CID White List
+https://nowmeow.pw/8ybBd3fdCAQ6Ew5H0d66Y1hMbh63GpKUtEXQClIu/whitelist|nekobox|NowMeow Whitelist
+https://wlrus.lol/confs/blackl.txt|v2ray|WLRUS Black List
+https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/selected.txt|nekobox|ByWarm Selected
+https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/wl.txt|nekobox|ByWarm WL
+https://s3c3.001.gpucloud.ru/wlr/merged.txt|nekobox|GPU Cloud Merged
+https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/merged.txt|nekobox|ByWarm Merged
+https://whiteprime.github.io/xraycheck/configs/white-list_available|v2ray|WhitePrime Available WL
+https://whiteprime.github.io/xraycheck/configs/available|v2ray|WhitePrime Available
+https://whiteprime.github.io/xraycheck/configs/available_st|v2ray|WhitePrime Available ST
+https://whiteprime.github.io/xraycheck/configs/white-list_available_st|v2ray|WhitePrime WL ST
+https://raw.githubusercontent.com/ByeWhiteLists/ByeWhiteLists2/refs/heads/main/ByeWhiteLists2.txt|nekobox|ByeWhiteLists 2
+https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/Whitelist.txt|nekobox|SilentGhost Whitelist 1
+https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/Whitelist%20%E2%84%962.txt|nekobox|SilentGhost Whitelist 2
+https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/BlackList.txt|v2ray|SilentGhost Blacklist
+https://vlesstrojan.alexanderyurievich88.workers.dev?token=sub&name=edikru|v2ray|AlexanderY EdikRU
+https://github.com/sakha1370/OpenRay/raw/refs/heads/main/output/all_valid_proxies.txt|v2ray|OpenRay All Proxies
+https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt|v2ray|Sevcator VLESS
+https://raw.githubusercontent.com/yitong2333/proxy-minging/refs/heads/main/v2ray.txt|v2ray|Yitong V2Ray
+https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_RAW.txt|v2ray|Roosterkid V2Ray
+https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt|nekobox|CID VPN General
+https://raw.githubusercontent.com/MahsaNetConfigTopic/config/refs/heads/main/xray_final.txt|v2ray|MahsaNet Xray Final
+https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub|v2ray|Pawdroid Free Servers
+https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri|v2ray|Xray Mix URI
+https://github.com/Mr-Meshky/vify/raw/refs/heads/main/configs/vless.txt|v2ray|Vify VLESS
+https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt|v2ray|Goida Config 26
+https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt|v2ray|V2RayRoot VLESS
+https://raw.githubusercontent.com/whoahaow/rjsxrd/refs/heads/main/githubmirror/bypass/bypass-7.txt|v2ray|Bypass Config 7
+https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt|v2ray|Goida Config 1
+https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/3.txt|v2ray|Goida Config 3
+https://subrostunnel.vercel.app/wl.txt|nekobox|Subros Tunnel WL
+https://raw.githubusercontent.com/SER38Off/happ-subscription/refs/heads/main/sub1-white-lists.txt|happ|SER38 Happ Sub1
+https://obwlsub.vercel.app/wwh|nekobox|OBWL Sub
+https://github.com/KiryaScript/white-lists/raw/refs/heads/main/githubmirror/25.txt|nekobox|Kirya White Lists 25

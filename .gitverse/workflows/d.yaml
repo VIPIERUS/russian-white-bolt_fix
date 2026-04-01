@@ -1,0 +1,62 @@
+name: "🔄 Авто-обновление VPN"
+
+on:
+  schedule:
+      - cron: "0 */3 * * *"
+        workflow_dispatch:
+
+        permissions:
+          contents: write
+
+          jobs:
+            update-configs:
+                runs-on: ubuntu-latest
+                    timeout-minutes: 30
+
+                        steps:
+                              - name: "📦 Клонирование репозитория"
+                                      uses: actions/checkout@v4
+                                              with:
+                                                        token: ${{ secrets.GITVERSE_TOKEN }}
+                                                                  fetch-depth: 0
+
+                                                                        - name: "🐍 Установка Python"
+                                                                                uses: actions/setup-python@v5
+                                                                                        with:
+                                                                                                  python-version: "3.11"
+                                                                                                            cache: "pip"
+
+                                                                                                                  - name: "📥 Установка зависимостей"
+                                                                                                                          run: |
+                                                                                                                                    pip install -r requirements.txt || echo "requests" > requirements.txt && pip install requests
+
+                                                                                                                                          - name: "🔄 Загрузка и парсинг конфигураций"
+                                                                                                                                                  run: python scripts/fetch_configs.py
+                                                                                                                                                          env:
+                                                                                                                                                                    PYTHONUTF8: "1"
+                                                                                                                                                                              TZ: "Europe/Moscow"
+
+                                                                                                                                                                                    - name: "🎨 Генерация README"
+                                                                                                                                                                                            run: python scripts/generate_readme.py
+                                                                                                                                                                                                    env:
+                                                                                                                                                                                                              TZ: "Europe/Moscow"
+
+                                                                                                                                                                                                                    - name: "💾 Коммит и пуш"
+                                                                                                                                                                                                                            run: |
+                                                                                                                                                                                                                                      git config --global user.name "gitverse-bot"
+                                                                                                                                                                                                                                                git config --global user.email "bot@gitverse.ru"
+                                                                                                                                                                                                                                                          if git diff --quiet; then
+                                                                                                                                                                                                                                                                      echo "Изменений нет, пропускаем коммит"
+                                                                                                                                                                                                                                                                                else
+                                                                                                                                                                                                                                                                                            git add configs/ README.md sources/
+                                                                                                                                                                                                                                                                                                        git commit -m "🤖 Авто-обновление: $(date +'%Y-%m-%d %H:%M MSK')"
+                                                                                                                                                                                                                                                                                                                    git push origin HEAD
+                                                                                                                                                                                                                                                                                                                                echo "Изменения успешно отправлены"
+                                                                                                                                                                                                                                                                                                                                          fi
+
+                                                                                                                                                                                                                                                                                                                                                - name: "📊 Отчёт о выполнении"
+                                                                                                                                                                                                                                                                                                                                                        if: always()
+                                                                                                                                                                                                                                                                                                                                                                run: |
+                                                                                                                                                                                                                                                                                                                                                                          echo "## 📋 Отчёт о выполнении" >> $GITHUB_STEP_SUMMARY
+                                                                                                                                                                                                                                                                                                                                                                                    echo "- Статус: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+                                                                                                                                                                                                                                                                                                                                                                                              echo "- Время: $(date +'%Y-%m-%d %H:%M:%S MSK')" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,61 @@
+name: "Auto-update VPN"
+
+on:
+  schedule:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-configs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: "Checkout repository"
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITVERSE_TOKEN }}
+          fetch-depth: 0
+
+      - name: "Setup Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: "Install dependencies"
+        run: |
+          pip install -r requirements.txt || echo "requests" > requirements.txt && pip install requests
+
+      - name: "Fetch and parse configs"
+        run: python scripts/fetch_configs.py
+        env:
+          PYTHONUTF8: "1"
+          TZ: "Europe/Moscow"
+
+      - name: "Generate README"
+        run: python scripts/generate_readme.py
+        env:
+          TZ: "Europe/Moscow"
+
+      - name: "Commit and push"
+        run: |
+          git config --global user.name "gitverse-bot"
+          git config --global user.email "bot@gitverse.ru"
+          if git diff --quiet; then
+            echo "No changes, skipping commit"
+          else
+            git add configs/ README.md sources/
+            git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M MSK')"
+            git push origin HEAD
+            echo "Changes pushed successfully"
+          fi
+
+      - name: "Execution report"
+        if: always()
+        run: |
+          echo "## Execution Report" >> $GITHUB_STEP_SUMMARY
+          echo "- Status: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Time: $(date +'%Y-%m-%d %H:%M:%S MSK')" >> $GITHUB_STEP_SUMMARY

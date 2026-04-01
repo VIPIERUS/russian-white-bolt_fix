@@ -1,0 +1,64 @@
+name: 🚀 Deploy Site & Update README
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy-and-update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🌐 Deploy to GitVerse Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          force_orphan: true
+
+      - name: 📝 Обновить README с ссылкой на сайт
+        run: |
+          OWNER="${{ github.repository_owner }}"
+          REPO="${{ github.event.repository.name }}"
+          SITE_URL="https://${OWNER}.gitverse.ru/${REPO}/"
+
+          if grep -q "<!-- SITE_BADGE -->" README.md 2>/dev/null; then
+            sed -i "s|<!-- SITE_BADGE -->.*<!-- /SITE_BADGE -->|<!-- SITE_BADGE --> [![🌐 Открыть сайт](https://img.shields.io/badge/Site-GitVerse-blue)](${SITE_URL}) <!-- /SITE_BADGE -->|g" README.md
+          else
+            { echo "<!-- SITE_BADGE --> [![🌐 Открыть сайт](https://img.shields.io/badge/Site-GitVerse-blue)](${SITE_URL}) <!-- /SITE_BADGE -->"; echo ""; cat README.md; } > README.tmp
+            mv README.tmp README.md
+          fi
+
+          echo "Site URL: ${SITE_URL}"
+
+      - name: 🔧 Обновить ссылку в readme_generate.py
+        run: |
+          OWNER="${{ github.repository_owner }}"
+          REPO="${{ github.event.repository.name }}"
+          SITE_URL="https://${OWNER}.gitverse.ru/${REPO}/"
+
+          if [ -f readme_generate.py ]; then
+            if grep -q "^SITE_URL" readme_generate.py; then
+              sed -i "s|^SITE_URL.*|SITE_URL = \"${SITE_URL}\"  # auto-updated by CI|" readme_generate.py
+            else
+              { echo "SITE_URL = \"${SITE_URL}\"  # auto-updated by CI"; echo ""; cat readme_generate.py; } > readme_generate.tmp
+              mv readme_generate.tmp readme_generate.py
+            fi
+          fi
+
+      - name: 💾 Commit изменений
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add README.md readme_generate.py 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "ci: обновлена ссылка на сайт GitVerse Pages [skip ci]"
+          git push
