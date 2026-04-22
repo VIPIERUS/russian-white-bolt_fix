@@ -1,21 +1,22 @@
 # WHITE SNI RU All
 # Source: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
 # Category: Nekoray / Nekobox
-# Updated: 2026-04-22 15:03:07 UTC
-# Total configs: 7
-# Protocols: VLESS=2, VMess=0, Trojan=0, SS=0, Other=5
+# Updated: 2026-04-22 18:03:23 UTC
+# Total configs: 8
+# Protocols: VLESS=3, VMess=0, Trojan=0, SS=0, Other=5
 # ================================================================
 
 # profile-title: 🏳️ БЕЛЫЕ СПИСКИ 🏳️ WHITE LISTS | SNI-RU
 # profile-update-interval: 5
-# Date/Time: 2026-04-22 / 17:30 (Moscow)
-# Количество: 7
+# Date/Time: 2026-04-22 / 20:40 (Moscow)
+# Количество: 8
 # For more info and VPN-configs - visit: www.github.com/igareck/vpn-configs-for-russia
 
-vless://bf263367-bb63-4663-b4a1-34946107a72e@tr-1.illusion-vpn.ru:52000?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=4Fs4rORU_bK5Nwy9qvmVw3dAxS91bIG5cQYOmXl7zDA&sid=3d67b0666a5e09a0&sni=ozon.ru&spx=/#%F0%9F%87%B8%F0%9F%87%AA%20Sweden%20%5BSNI-RU%5D%20ozon.ru
-vless://5661ac2b-f332-4aa5-8a4f-088efbf792e4@ru-4.maxg.ch:443?security=reality&type=tcp&headerType=&path=&host=&flow=xtls-rprx-vision&sni=ads.x5.ru&fp=&pbk=QlQDX8jxqNJE1qtZmaZCDxE7gZqcLlOKdWd5YKNv0Gg&sid=555b9b33d083d3f1&spx=%2Fcdn-cgi%2Ftrace#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%5BSNI-RU%5D%20ads.x5.ru
+vless://b58a4390-6aba-451a-8010-61916ebe6bb3@111.88.146.74:25462?type=tcp&security=reality&encryption=none&fp=chrome&pbk=PKfGbpZj-i7I76rfgEDgJIsXZ_TqE0B2ntNN6g3qTXI&sid=9a694cfa8ebd15&sni=www.m.vk.ru#%F0%9F%87%B5%F0%9F%87%B0%20Pakistan%20%5BSNI-RU%5D%20www.m.vk.ru
+vless://ed41b22b-2bbe-4bf7-a7f5-7c91c0974aa7@ru-2.maxg.ch:443?security=reality&type=tcp&headerType=&path=&host=&flow=xtls-rprx-vision&sni=ads.x5.ru&fp=&pbk=QlQDX8jxqNJE1qtZmaZCDxE7gZqcLlOKdWd5YKNv0Gg&sid=555b9b33d083d3f1&spx=%2Fcdn-cgi%2Ftrace#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%5BSNI-RU%5D%20ads.x5.ru
+vless://ed41b22b-2bbe-4bf7-a7f5-7c91c0974aa7@ru-7.maxg.ch:443?security=reality&type=tcp&headerType=&path=&host=&flow=xtls-rprx-vision&sni=ads.x5.ru&fp=&pbk=QlQDX8jxqNJE1qtZmaZCDxE7gZqcLlOKdWd5YKNv0Gg&sid=555b9b33d083d3f1&spx=%2Fcdn-cgi%2Ftrace#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%5BSNI-RU%5D%20ads.x5.ru
 hysteria2://123456789StrongPass@144.31.224.14:443?encryption=none&sni=eh.vk.com&insecure=1#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%5BSNI-RU%5D%20eh.vk.com
-hysteria2://123456789StrongPass@144.31.224.14:443?insecure=1&sni=eh.vk.com&type=tcp&allowInsecure=1&upmbps=10&downmbps=50#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%5BSNI-RU%5D%20eh.vk.com
+hysteria2://123456789StrongPass@144.31.224.14:443?insecure=1&sni=eh.vk.com#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%5BSNI-RU%5D%20eh.vk.com
 hysteria2://123456789StrongPass@144.31.224.14:443?insecure=1&sni=eh.vk.com&type=tcp&upmbps=10&downmbps=50#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%5BSNI-RU%5D%20eh.vk.com
 hysteria2://123456789StrongPass@144.31.224.14:443?security=tls&insecure=1&sni=eh.vk.com#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%5BSNI-RU%5D%20eh.vk.com
 hysteria2://123456789StrongPass@144.31.224.14:443?sni=eh.vk.com&insecure=1&allowInsecure=1#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%5BSNI-RU%5D%20eh.vk.com
