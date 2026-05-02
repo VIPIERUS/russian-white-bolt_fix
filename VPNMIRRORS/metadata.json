@@ -1,12 +1,12 @@
 {
-  "updated": "2026-05-02T03:04:45.177547+00:00",
-  "updated_formatted": "2026-05-02 03:04:45 UTC",
-  "updated_msk": "2026-05-02 06:04 MSK",
+  "updated": "2026-05-02T06:04:36.138353+00:00",
+  "updated_formatted": "2026-05-02 06:04:36 UTC",
+  "updated_msk": "2026-05-02 09:04 MSK",
   "total_sources": 57,
   "success": 46,
   "failed": 7,
   "skipped": 4,
-  "total_configs": 123994,
+  "total_configs": 123198,
   "configs": [
     {
       "name": "Alley Config 1",
@@ -35,8 +35,8 @@
       ],
       "size_kb": 425.55,
       "hash": "fe5e52d335956638",
-      "updated": "2026-05-02 03:01 UTC",
-      "updated_msk": "2026-05-02 06:01 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Alley Config 2",
@@ -65,8 +65,8 @@
       ],
       "size_kb": 425.55,
       "hash": "fe5e52d335956638",
-      "updated": "2026-05-02 03:01 UTC",
-      "updated_msk": "2026-05-02 06:01 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "EtoNeYa Raw 1",
@@ -95,8 +95,8 @@
       ],
       "size_kb": 425.55,
       "hash": "fe5e52d335956638",
-      "updated": "2026-05-02 03:02 UTC",
-      "updated_msk": "2026-05-02 06:02 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "BLACK VLESS RUS",
@@ -104,7 +104,7 @@
       "filename": "BLACK_VLESS_RUS_11add6.txt",
       "filepath": "VPNMIRRORS/v2ray/BLACK_VLESS_RUS_11add6.txt",
       "counts": {
-        "vless": 490,
+        "vless": 737,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -113,7 +113,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 490
+        "total": 737
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -124,10 +124,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 139.01,
-      "hash": "20d8899c94a5dc7d",
-      "updated": "2026-05-02 03:02 UTC",
-      "updated_msk": "2026-05-02 06:02 MSK"
+      "size_kb": 221.88,
+      "hash": "e8eafcfb34a3b4e0",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "BLACK SS All",
@@ -136,15 +136,15 @@
       "filepath": "VPNMIRRORS/v2ray/BLACK_SS_All_316a8b.txt",
       "counts": {
         "vless": 0,
-        "vmess": 10,
-        "trojan": 16,
+        "vmess": 14,
+        "trojan": 19,
         "ss": 0,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 10,
-        "total": 36
+        "total": 43
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_SS+All_RUS.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -155,10 +155,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 16.89,
-      "hash": "f299f4f4776c1f8a",
-      "updated": "2026-05-02 03:02 UTC",
-      "updated_msk": "2026-05-02 06:02 MSK"
+      "size_kb": 19.91,
+      "hash": "29ff7f8e0ead346b",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "TOR Bridges TOP100",
@@ -173,9 +173,9 @@
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
-        "tor": 63,
+        "tor": 76,
         "other": 0,
-        "total": 63
+        "total": 76
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/TOR-BRIDGES/TOR_BRIDGES_TOP100.txt",
       "app_name": "Happ VPN",
@@ -185,10 +185,10 @@
         "Android",
         "iOS"
       ],
-      "size_kb": 12.7,
-      "hash": "7f1a2fbb9f7ee337",
-      "updated": "2026-05-02 03:02 UTC",
-      "updated_msk": "2026-05-02 06:02 MSK"
+      "size_kb": 14.21,
+      "hash": "cc5f4d428a623156",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "TOR Bridges ALL",
@@ -215,10 +215,10 @@
         "Android",
         "iOS"
       ],
-      "size_kb": 40.71,
-      "hash": "2df28cdc0a0fdd25",
-      "updated": "2026-05-02 03:02 UTC",
-      "updated_msk": "2026-05-02 06:02 MSK"
+      "size_kb": 40.52,
+      "hash": "2e8e22cacaa068ef",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "VLESS Reality White",
@@ -246,10 +246,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 41.44,
-      "hash": "7851b6c466b51422",
-      "updated": "2026-05-02 03:02 UTC",
-      "updated_msk": "2026-05-02 06:02 MSK"
+      "size_kb": 40.46,
+      "hash": "86e5865a4b93bc01",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "WHITE CIDR RU All",
@@ -257,7 +257,7 @@
       "filename": "WHITE_CIDR_RU_All_611028.txt",
       "filepath": "VPNMIRRORS/nekobox/WHITE_CIDR_RU_All_611028.txt",
       "counts": {
-        "vless": 646,
+        "vless": 583,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -266,7 +266,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 646
+        "total": 583
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt",
       "app_name": "Nekoray / Nekobox",
@@ -276,10 +276,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 194.25,
-      "hash": "dfc3645758fc8ca1",
-      "updated": "2026-05-02 03:02 UTC",
-      "updated_msk": "2026-05-02 06:02 MSK"
+      "size_kb": 169.48,
+      "hash": "b685c5529e29f04c",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "WHITE CIDR RU Checked",
@@ -287,7 +287,7 @@
       "filename": "WHITE_CIDR_RU_Checked_d94b99.txt",
       "filepath": "VPNMIRRORS/nekobox/WHITE_CIDR_RU_Checked_d94b99.txt",
       "counts": {
-        "vless": 138,
+        "vless": 113,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -296,7 +296,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 138
+        "total": 113
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt",
       "app_name": "Nekoray / Nekobox",
@@ -306,10 +306,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 40.64,
-      "hash": "2b3f5dc31cca8600",
-      "updated": "2026-05-02 03:02 UTC",
-      "updated_msk": "2026-05-02 06:02 MSK"
+      "size_kb": 32.64,
+      "hash": "8b277fc6da6348fe",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "WHITE SNI RU All",
@@ -317,7 +317,7 @@
       "filename": "WHITE_SNI_RU_All_dd9b8c.txt",
       "filepath": "VPNMIRRORS/nekobox/WHITE_SNI_RU_All_dd9b8c.txt",
       "counts": {
-        "vless": 135,
+        "vless": 128,
         "vmess": 1,
         "trojan": 0,
         "ss": 0,
@@ -326,7 +326,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 6,
-        "total": 142
+        "total": 135
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt",
       "app_name": "Nekoray / Nekobox",
@@ -336,10 +336,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 42.32,
-      "hash": "65bdb7eaf8d14d4b",
-      "updated": "2026-05-02 03:02 UTC",
-      "updated_msk": "2026-05-02 06:02 MSK"
+      "size_kb": 40.21,
+      "hash": "229da95a5a239a14",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "EtoNeYa Raw 2",
@@ -368,8 +368,8 @@
       ],
       "size_kb": 425.55,
       "hash": "fe5e52d335956638",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "EtoNeYa CDN 1",
@@ -396,10 +396,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 237.07,
-      "hash": "7acf0da53c432df1",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "size_kb": 100.66,
+      "hash": "c59c782d4c87cfd0",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Kort VLESS Clean",
@@ -407,7 +407,7 @@
       "filename": "Kort_VLESS_Clean_fa7d47.txt",
       "filepath": "VPNMIRRORS/v2ray/Kort_VLESS_Clean_fa7d47.txt",
       "counts": {
-        "vless": 11458,
+        "vless": 11234,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -416,7 +416,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 11458
+        "total": 11234
       },
       "url": "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vless.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -427,10 +427,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 3021.56,
-      "hash": "190e96b7b2d311c8",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "size_kb": 2950.38,
+      "hash": "d9162f1e0d2cd51b",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Kort VMess Clean",
@@ -439,7 +439,7 @@
       "filepath": "VPNMIRRORS/v2ray/Kort_VMess_Clean_94367a.txt",
       "counts": {
         "vless": 0,
-        "vmess": 2558,
+        "vmess": 2555,
         "trojan": 0,
         "ss": 0,
         "ssr": 0,
@@ -447,7 +447,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 2558
+        "total": 2555
       },
       "url": "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vmess.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -458,10 +458,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 1105.54,
-      "hash": "6be1ad2a8d26dc48",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "size_kb": 1102.89,
+      "hash": "6a6d7fe6b241093a",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Kort Trojan Clean",
@@ -471,14 +471,14 @@
       "counts": {
         "vless": 0,
         "vmess": 0,
-        "trojan": 6771,
+        "trojan": 6478,
         "ss": 0,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 6771
+        "total": 6478
       },
       "url": "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/trojan.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -489,10 +489,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 1273.7,
-      "hash": "c976dcc4dad21ee7",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "size_kb": 1205.34,
+      "hash": "24cd79579f32bb12",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Kort SS Clean",
@@ -503,13 +503,13 @@
         "vless": 0,
         "vmess": 0,
         "trojan": 0,
-        "ss": 4978,
+        "ss": 4861,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 4978
+        "total": 4861
       },
       "url": "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/ss.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -520,10 +520,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 986.94,
-      "hash": "ed3ae47c0c3b5c0f",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "size_kb": 970.12,
+      "hash": "b41f23c13722ece0",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "CID White List",
@@ -552,8 +552,8 @@
       ],
       "size_kb": 34.66,
       "hash": "3400bb5c164902ee",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "NowMeow Whitelist",
@@ -580,10 +580,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 8.24,
-      "hash": "6f94a24795306653",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "size_kb": 8.26,
+      "hash": "745abab92c8bc840",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "WLRUS Black List",
@@ -613,8 +613,8 @@
       ],
       "size_kb": 19.27,
       "hash": "38bfd1dbaed12fff",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "ByWarm Selected",
@@ -643,8 +643,8 @@
       ],
       "size_kb": 64.2,
       "hash": "0b39bedeea9a04b1",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "ByWarm WL",
@@ -652,7 +652,7 @@
       "filename": "ByWarm_WL_db4c3f.txt",
       "filepath": "VPNMIRRORS/nekobox/ByWarm_WL_db4c3f.txt",
       "counts": {
-        "vless": 1864,
+        "vless": 1791,
         "vmess": 1,
         "trojan": 2,
         "ss": 22,
@@ -661,7 +661,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 1889
+        "total": 1816
       },
       "url": "https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/wl.txt",
       "app_name": "Nekoray / Nekobox",
@@ -671,10 +671,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 646.14,
-      "hash": "fd6644869be02ba7",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "size_kb": 626.4,
+      "hash": "8bb89a9775106bad",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "GPU Cloud Merged",
@@ -682,16 +682,16 @@
       "filename": "GPU_Cloud_Merged_bbadbd.txt",
       "filepath": "VPNMIRRORS/nekobox/GPU_Cloud_Merged_bbadbd.txt",
       "counts": {
-        "vless": 7490,
-        "vmess": 173,
-        "trojan": 229,
-        "ss": 445,
+        "vless": 7336,
+        "vmess": 174,
+        "trojan": 225,
+        "ss": 437,
         "ssr": 1,
         "hysteria": 1,
         "tuic": 1,
         "tor": 0,
-        "other": 8,
-        "total": 8348
+        "other": 7,
+        "total": 8182
       },
       "url": "https://s3c3.001.gpucloud.ru/wlr/merged.txt",
       "app_name": "Nekoray / Nekobox",
@@ -701,10 +701,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 2520.55,
-      "hash": "01de6020dbe84b86",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "size_kb": 2475.67,
+      "hash": "2b69022c4ee57fc5",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "ByWarm Merged",
@@ -712,16 +712,16 @@
       "filename": "ByWarm_Merged_b37672.txt",
       "filepath": "VPNMIRRORS/nekobox/ByWarm_Merged_b37672.txt",
       "counts": {
-        "vless": 7490,
-        "vmess": 173,
-        "trojan": 229,
-        "ss": 445,
+        "vless": 7336,
+        "vmess": 174,
+        "trojan": 225,
+        "ss": 437,
         "ssr": 1,
         "hysteria": 1,
         "tuic": 1,
         "tor": 0,
-        "other": 8,
-        "total": 8348
+        "other": 7,
+        "total": 8182
       },
       "url": "https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/merged.txt",
       "app_name": "Nekoray / Nekobox",
@@ -731,10 +731,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 2510.95,
-      "hash": "cb6c72f4c5f3d739",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "size_kb": 2464.36,
+      "hash": "2057add9c654c97e",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "ByeWhiteLists 2",
@@ -763,8 +763,8 @@
       ],
       "size_kb": 306.78,
       "hash": "9e6288d876514c07",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "SilentGhost Whitelist 1",
@@ -793,8 +793,8 @@
       ],
       "size_kb": 44.21,
       "hash": "a54ce5f5c4f0d26b",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "SilentGhost Whitelist 2",
@@ -823,8 +823,8 @@
       ],
       "size_kb": 36.46,
       "hash": "d5bf04429039421c",
-      "updated": "2026-05-02 03:03 UTC",
-      "updated_msk": "2026-05-02 06:03 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "SilentGhost Blacklist",
@@ -854,8 +854,8 @@
       ],
       "size_kb": 2.42,
       "hash": "0acd9ff199de8451",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "OpenRay All Proxies",
@@ -863,8 +863,8 @@
       "filename": "OpenRay_All_Proxies_39ce9f.txt",
       "filepath": "VPNMIRRORS/v2ray/OpenRay_All_Proxies_39ce9f.txt",
       "counts": {
-        "vless": 3106,
-        "vmess": 448,
+        "vless": 3124,
+        "vmess": 446,
         "trojan": 5777,
         "ss": 378,
         "ssr": 0,
@@ -872,7 +872,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 9709
+        "total": 9725
       },
       "url": "https://github.com/sakha1370/OpenRay/raw/refs/heads/main/output/all_valid_proxies.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -883,10 +883,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 2264.57,
-      "hash": "e2c2f0f69b1401d4",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 2268.28,
+      "hash": "6e89f2db9c09f78f",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Sevcator VLESS",
@@ -894,7 +894,7 @@
       "filename": "Sevcator_VLESS_ffd7b3.txt",
       "filepath": "VPNMIRRORS/v2ray/Sevcator_VLESS_ffd7b3.txt",
       "counts": {
-        "vless": 26598,
+        "vless": 26371,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -903,7 +903,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 26598
+        "total": 26371
       },
       "url": "https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -914,10 +914,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 5554.93,
-      "hash": "912d260ce13c727d",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 5505.04,
+      "hash": "0efc779752569411",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Yitong V2Ray",
@@ -925,16 +925,16 @@
       "filename": "Yitong_V2Ray_11218f.txt",
       "filepath": "VPNMIRRORS/v2ray/Yitong_V2Ray_11218f.txt",
       "counts": {
-        "vless": 6579,
-        "vmess": 1035,
-        "trojan": 515,
-        "ss": 1187,
+        "vless": 6566,
+        "vmess": 1040,
+        "trojan": 511,
+        "ss": 1190,
         "ssr": 13,
         "hysteria": 64,
         "tuic": 0,
         "tor": 0,
         "other": 46,
-        "total": 9439
+        "total": 9430
       },
       "url": "https://raw.githubusercontent.com/yitong2333/proxy-minging/refs/heads/main/v2ray.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -945,10 +945,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 2080.41,
-      "hash": "31f523eb09f11518",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 2077.22,
+      "hash": "923cb976af517ecc",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Roosterkid V2Ray",
@@ -956,10 +956,10 @@
       "filename": "Roosterkid_V2Ray_2e2cfa.txt",
       "filepath": "VPNMIRRORS/v2ray/Roosterkid_V2Ray_2e2cfa.txt",
       "counts": {
-        "vless": 61,
-        "vmess": 29,
-        "trojan": 13,
-        "ss": 47,
+        "vless": 67,
+        "vmess": 25,
+        "trojan": 17,
+        "ss": 41,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
@@ -976,10 +976,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 32.54,
-      "hash": "bbd96a9e7246c1d3",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 32.79,
+      "hash": "acfe1c326245ceb6",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "CID VPN General",
@@ -1008,8 +1008,8 @@
       ],
       "size_kb": 79.19,
       "hash": "5e8cee5e958182b0",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "MahsaNet Xray Final",
@@ -1039,8 +1039,8 @@
       ],
       "size_kb": 5.1,
       "hash": "7f556d2891945393",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Pawdroid Free Servers",
@@ -1049,7 +1049,7 @@
       "filepath": "VPNMIRRORS/v2ray/Pawdroid_Free_Servers_6d71e8.txt",
       "counts": {
         "vless": 0,
-        "vmess": 14,
+        "vmess": 13,
         "trojan": 0,
         "ss": 4,
         "ssr": 0,
@@ -1057,7 +1057,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 18
+        "total": 17
       },
       "url": "https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub",
       "app_name": "V2RayNG / V2RayN",
@@ -1068,10 +1068,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 4.89,
-      "hash": "316ff4538b1da2be",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 4.64,
+      "hash": "806a67f02ddcd742",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Xray Mix URI",
@@ -1079,16 +1079,16 @@
       "filename": "Xray_Mix_URI_c4598b.txt",
       "filepath": "VPNMIRRORS/v2ray/Xray_Mix_URI_c4598b.txt",
       "counts": {
-        "vless": 122,
-        "vmess": 42,
-        "trojan": 8,
+        "vless": 168,
+        "vmess": 39,
+        "trojan": 9,
         "ss": 0,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 172
+        "total": 216
       },
       "url": "https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri",
       "app_name": "V2RayNG / V2RayN",
@@ -1099,10 +1099,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 42.13,
-      "hash": "77eede01e044abd7",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 51.58,
+      "hash": "fc54594d65b7fd55",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Vify VLESS",
@@ -1110,7 +1110,7 @@
       "filename": "Vify_VLESS_7f9765.txt",
       "filepath": "VPNMIRRORS/v2ray/Vify_VLESS_7f9765.txt",
       "counts": {
-        "vless": 1848,
+        "vless": 1856,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -1119,7 +1119,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 1848
+        "total": 1856
       },
       "url": "https://github.com/Mr-Meshky/vify/raw/refs/heads/main/configs/vless.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1130,10 +1130,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 451.14,
-      "hash": "841c2d2b4ee843b9",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 453.14,
+      "hash": "35ebc7993a262978",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "Goida Config 26",
@@ -1141,7 +1141,7 @@
       "filename": "Goida_Config_26_9d0474.txt",
       "filepath": "VPNMIRRORS/v2ray/Goida_Config_26_9d0474.txt",
       "counts": {
-        "vless": 1613,
+        "vless": 1851,
         "vmess": 2,
         "trojan": 18,
         "ss": 122,
@@ -1150,7 +1150,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 1,
-        "total": 1756
+        "total": 1994
       },
       "url": "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1161,10 +1161,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 801.73,
-      "hash": "bdaba7941f654d41",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 882.62,
+      "hash": "88101c530f05edaa",
+      "updated": "2026-05-02 06:03 UTC",
+      "updated_msk": "2026-05-02 09:03 MSK"
     },
     {
       "name": "V2RayRoot VLESS",
@@ -1172,7 +1172,7 @@
       "filename": "V2RayRoot_VLESS_feed6f.txt",
       "filepath": "VPNMIRRORS/v2ray/V2RayRoot_VLESS_feed6f.txt",
       "counts": {
-        "vless": 179,
+        "vless": 190,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -1181,7 +1181,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 179
+        "total": 190
       },
       "url": "https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1192,10 +1192,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 34.16,
-      "hash": "a14aefef58f9759c",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 36.42,
+      "hash": "b15de1425807abee",
+      "updated": "2026-05-02 06:04 UTC",
+      "updated_msk": "2026-05-02 09:04 MSK"
     },
     {
       "name": "Bypass Config 7",
@@ -1225,8 +1225,8 @@
       ],
       "size_kb": 87.43,
       "hash": "181c28559977e8c3",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "updated": "2026-05-02 06:04 UTC",
+      "updated_msk": "2026-05-02 09:04 MSK"
     },
     {
       "name": "Goida Config 1",
@@ -1235,15 +1235,15 @@
       "filepath": "VPNMIRRORS/v2ray/Goida_Config_1_f7c635.txt",
       "counts": {
         "vless": 2715,
-        "vmess": 447,
+        "vmess": 448,
         "trojan": 5642,
-        "ss": 373,
+        "ss": 378,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 9177
+        "total": 9183
       },
       "url": "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1254,10 +1254,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 2120.68,
-      "hash": "61a31740886bd4a2",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 2121.25,
+      "hash": "156f496530c49dec",
+      "updated": "2026-05-02 06:04 UTC",
+      "updated_msk": "2026-05-02 09:04 MSK"
     },
     {
       "name": "Goida Config 3",
@@ -1265,16 +1265,16 @@
       "filename": "Goida_Config_3_b4689a.txt",
       "filepath": "VPNMIRRORS/v2ray/Goida_Config_3_b4689a.txt",
       "counts": {
-        "vless": 6161,
-        "vmess": 1034,
+        "vless": 6154,
+        "vmess": 1035,
         "trojan": 368,
-        "ss": 1193,
+        "ss": 1187,
         "ssr": 13,
         "hysteria": 4,
         "tuic": 0,
         "tor": 0,
         "other": 7,
-        "total": 8780
+        "total": 8768
       },
       "url": "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/3.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1285,10 +1285,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 1936.12,
-      "hash": "0b810010899914ff",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "size_kb": 1934.74,
+      "hash": "e6e7c872615ac006",
+      "updated": "2026-05-02 06:04 UTC",
+      "updated_msk": "2026-05-02 09:04 MSK"
     },
     {
       "name": "Subros Tunnel WL",
@@ -1317,8 +1317,8 @@
       ],
       "size_kb": 83.51,
       "hash": "c74030b656cad951",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "updated": "2026-05-02 06:04 UTC",
+      "updated_msk": "2026-05-02 09:04 MSK"
     },
     {
       "name": "SER38 Happ Sub1",
@@ -1347,8 +1347,8 @@
       ],
       "size_kb": 81.43,
       "hash": "d83fef0176c5df38",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "updated": "2026-05-02 06:04 UTC",
+      "updated_msk": "2026-05-02 09:04 MSK"
     },
     {
       "name": "OBWL Sub",
@@ -1377,8 +1377,8 @@
       ],
       "size_kb": 0.67,
       "hash": "60897c050e86530c",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "updated": "2026-05-02 06:04 UTC",
+      "updated_msk": "2026-05-02 09:04 MSK"
     },
     {
       "name": "Kirya White Lists 25",
@@ -1407,8 +1407,8 @@
       ],
       "size_kb": 27.88,
       "hash": "986addd69dcfd0dd",
-      "updated": "2026-05-02 03:04 UTC",
-      "updated_msk": "2026-05-02 06:04 MSK"
+      "updated": "2026-05-02 06:04 UTC",
+      "updated_msk": "2026-05-02 09:04 MSK"
     }
   ],
   "errors": [
