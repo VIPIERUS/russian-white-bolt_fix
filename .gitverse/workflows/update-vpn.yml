@@ -120,6 +120,36 @@ jobs:
         env:
           TZ: "Europe/Moscow"
       
+      # ===== GENERATE SITE (index.html) =====
+      - name: "🌐 Generate index.html"
+        id: site
+        run: |
+          echo "=========================================="
+          echo "🌐 Generating index.html"
+          echo "=========================================="
+          
+          # Проверяем наличие site.py
+          if [ ! -f "scripts/site.py" ]; then
+            echo "❌ Error: scripts/site.py not found!"
+            exit 1
+          fi
+          
+          # Запускаем генератор сайта
+          python scripts/site.py
+          
+          # Проверяем результат
+          if [ -f "index.html" ]; then
+            echo ""
+            echo "✅ index.html generated!"
+            echo "📄 Size: $(wc -c < index.html) bytes"
+            echo "📄 Lines: $(wc -l < index.html) lines"
+          else
+            echo "❌ Error: index.html not created!"
+            exit 1
+          fi
+        env:
+          TZ: "Europe/Moscow"
+      
       # ===== COUNT FILES =====
       - name: "📊 Count files and configs"
         id: count
@@ -184,6 +214,7 @@ jobs:
           - Total Configs: ${{ steps.count.outputs.total_configs }}
           - Folder Size: ${{ steps.count.outputs.vpn_size }}
           
+          🌐 Site: index.html updated
           ⏰ Next update in 3 hours"
             
             # Пушим изменения
@@ -209,6 +240,7 @@ jobs:
           echo "| 📁 **VPN Files** | ${{ steps.count.outputs.vpn_files || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| 🔢 **Total Configs** | ${{ steps.count.outputs.total_configs || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| 📦 **Folder Size** | ${{ steps.count.outputs.vpn_size || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| 🌐 **index.html** | ${{ steps.site.outcome == 'success' && '✅ Generated' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| 💾 **Changes** | ${{ steps.commit.outputs.has_changes == 'true' && '✅ Pushed' || '⏭️ Skipped' }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           
