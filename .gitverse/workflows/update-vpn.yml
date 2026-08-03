@@ -65,31 +65,3 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "🔄 Auto-update: $(date)"
           git push origin HEAD
-      
-      - name: "📤 Upload to Beget via FTP (Python)"
-        run: |
-          python -c "
-import ftplib
-import os
-
-FTP_HOST = '${{ secrets.FTP_SERVER }}'
-FTP_USER = '${{ secrets.FTP_USERNAME }}'
-FTP_PASS = '${{ secrets.FTP_PASSWORD }}'
-
-try:
-    ftp = ftplib.FTP(FTP_HOST)
-    ftp.login(FTP_USER, FTP_PASS)
-    ftp.cwd('/public_html')
-    
-    for file in ['index.html', 'README.md']:
-        if os.path.exists(file):
-            with open(file, 'rb') as f:
-                ftp.storbinary(f'STOR {file}', f)
-                print(f'✅ Uploaded: {file}')
-    
-    ftp.quit()
-    print('✅ FTP upload completed!')
-except Exception as e:
-    print(f'❌ FTP error: {e}')
-    exit(1)
-"
