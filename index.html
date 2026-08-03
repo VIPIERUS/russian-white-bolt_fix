@@ -7,9 +7,8 @@
     <meta name="description" content="Автоматически обновляемые белые списки для обхода блокировок в России. 0 конфигураций, 58 файлов.">
     <meta property="og:title" content="VPN White-Lists для России">
     <meta property="og:description" content="Автоматически обновляемые белые списки. 0 конфигураций.">
-    <meta property="og:url" content="https://RUVIPIEN.russian-white-bolt_fix.gitverse.ru">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="https://RUVIPIEN.russian-white-bolt_fix.gitverse.ru">
+    <link rel="canonical" href="https://gitverse.ru/RUVIPIEN/russian-white-bolt_fix">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
     
 <style>
@@ -30,6 +29,32 @@
         border: 1px solid #1a1a2e;
         box-shadow: 0 0 60px rgba(0, 212, 255, 0.05);
     }
+    /* ===== МЕНЮ ===== */
+    .top-menu {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding: 12px 0;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #1a1a2e;
+    }
+    .top-menu a {
+        color: #888;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s;
+        padding: 4px 10px;
+        border-radius: 6px;
+    }
+    .top-menu a:hover {
+        color: #00d4ff;
+        background: #1a1a2e;
+    }
+    .top-menu a.active {
+        color: #00d4ff;
+        background: #1a1a2e;
+    }
+    /* ===== ОСТАЛЬНЫЕ СТИЛИ ===== */
     h1 { color: #00d4ff; font-size: 2.4em; border-bottom: 2px solid #00d4ff; padding-bottom: 15px; margin-bottom: 25px; text-shadow: 0 0 30px rgba(0,212,255,0.2); }
     h2 { color: #00d4ff; margin-top: 40px; font-size: 1.8em; border-left: 4px solid #00d4ff; padding-left: 15px; }
     h3 { color: #44ff88; margin-top: 30px; font-size: 1.3em; }
@@ -154,35 +179,6 @@
         border-left: 2px solid #1a1a2e;
         margin-left: 10px;
     }
-    .footer {
-        text-align: center;
-        margin-top: 50px;
-        padding-top: 25px;
-        border-top: 1px solid #1a1a2e;
-        color: #555;
-        font-size: 14px;
-    }
-    .footer a { color: #666; }
-    .footer a:hover { color: #00d4ff; }
-    .icon { font-size: 1.2em; }
-    .text-center { text-align: center; }
-    .text-muted { color: #888; }
-    .site-link {
-        display: inline-block;
-        background: linear-gradient(135deg, #00d4ff, #44ff88);
-        color: #000 !important;
-        padding: 8px 18px;
-        border-radius: 8px;
-        font-weight: bold;
-        font-size: 14px;
-        transition: all 0.3s;
-        border: none;
-    }
-    .site-link:hover {
-        transform: scale(1.05);
-        text-decoration: none !important;
-        box-shadow: 0 0 30px rgba(0,212,255,0.3);
-    }
     .repo-link {
         display: inline-block;
         background: #1a1a2e;
@@ -198,6 +194,37 @@
         color: #000 !important;
         text-decoration: none;
     }
+    /* ===== ФУТЕР С ЛИЦЕНЗИЕЙ ===== */
+    .footer {
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 25px;
+        border-top: 1px solid #1a1a2e;
+        color: #555;
+        font-size: 14px;
+    }
+    .footer a { color: #666; }
+    .footer a:hover { color: #00d4ff; }
+    .footer-license {
+        font-size: 12px;
+        color: #444;
+        margin-top: 10px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+    }
+    .footer-license strong { color: #666; }
+    .update-badge {
+        display: inline-block;
+        background: #1a1a2e;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        border: 1px solid #44ff88;
+        color: #44ff88;
+        margin-left: 10px;
+    }
     @media (max-width: 768px) {
         .container { padding: 15px; }
         table { font-size: 12px; }
@@ -205,34 +232,42 @@
         .stats-grid { grid-template-columns: repeat(2, 1fr); }
         h1 { font-size: 1.8em; }
         h2 { font-size: 1.4em; }
-        .header-buttons { flex-direction: column; align-items: stretch; gap: 8px; }
+        .top-menu { gap: 10px; }
+        .top-menu a { font-size: 12px; padding: 4px 8px; }
     }
     .glow-text { color: #00d4ff; text-shadow: 0 0 20px rgba(0,212,255,0.3); }
 </style>
 
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="top">
         <!-- Шапка -->
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
             <div>
                 <h1 style="border:none; padding:0; margin:0;">🔒 VPN White-Lists</h1>
                 <p style="color:#888; margin-top:4px;">Автоматически обновляемые белые списки для обхода блокировок</p>
             </div>
-            <div class="header-buttons" style="display:flex; gap:10px; flex-wrap:wrap;">
-                <a href="https://RUVIPIEN.russian-white-bolt_fix.gitverse.ru" class="site-link" target="_blank">🌐 Открыть сайт</a>
+            <div style="text-align:right;">
+                <span class="badge">🔄 Обновлено: 13:40 MSK</span>
+                <br>
                 <a href="https://gitverse.ru/RUVIPIEN/russian-white-bolt_fix" class="repo-link" target="_blank">📂 Репозиторий</a>
             </div>
         </div>
         
-        <!-- Информация о сайте -->
-        <div style="background: #1a1a2e; padding: 12px 18px; border-radius: 8px; margin-bottom: 20px; border-left: 3px solid #44ff88;">
-            <p style="margin: 0; font-size: 14px; color: #888;">
-                🌐 Сайт доступен по адресу: <a href="https://RUVIPIEN.russian-white-bolt_fix.gitverse.ru" style="font-weight: bold;">https://RUVIPIEN.russian-white-bolt_fix.gitverse.ru</a>
-                <span style="color: #444; margin: 0 10px;">|</span>
-                🔄 Обновлено: 10:10 MSK
-            </p>
-        </div>
+        <!-- Меню -->
+        <div class="top-menu">
+<a href="#top" class="active">🏠 Главная</a>
+<a href="#">📊 Информация</a>
+<a href="#vpn">📱 VPN Приложения</a>
+<a href="#">🚀 Быстрый старт</a>
+<a href="#">📂 Конфигурации по категориям</a>
+<a href="#nekoraynekoboxhttpsgitverserua">📦 Nekoray / Nekobox [👁️](https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/foto/Nekoray.png)<br>💾 **Скачать:**<br>[💻 Windows](https://cloud.mail.ru/public/4S6V/b7MpS2Mq2)</a>
+<a href="#v2rayngv2raynhttpsgitverseruap">🚀 V2RayNG / V2RayN [👁️](https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/foto/V2RayNG.png)<br>💾 **Скачать:**<br>[💻 Windows](https://cloud.mail.ru/public/sgNP/F46KfPDQb) • [📱 Android](https://cloud.mail.ru/public/Qt13/dcrEunZXz) • [🍎 macOS](https://cloud.mail.ru/public/FHHR/3cEDNRdBQ)</a>
+<a href="#happvpnhttpsgitverseruapirepos">🔒 Happ VPN [👁️](https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/foto/Happ.png)<br>💾 **Скачать:**<br>[📱 Android](https://cloud.mail.ru/public/oNx1/p9ABSSc35)</a>
+<a href="#">📋 Все файлы (быстрый доступ)</a>
+<a href="#license">📄 Лицензия</a>
+</div>
+
         
         <!-- Статистика -->
         <div class="stats-grid">
@@ -248,7 +283,7 @@
 <p><div align="center"></p>
 
 <p><img src="https://img.shields.io/badge/Auto%20Update-Every%203%20Hours-brightgreen?style=for-the-badge" alt="Auto Update" loading="lazy"></p>
-<p><img src="https://img.shields.io/badge/Configs-58277-blue?style=for-the-badge" alt="Configs" loading="lazy"></p>
+<p><img src="https://img.shields.io/badge/Configs-57383-blue?style=for-the-badge" alt="Configs" loading="lazy"></p>
 <p><img src="https://img.shields.io/badge/Sources-22%2F39-orange?style=for-the-badge" alt="Sources" loading="lazy"></p>
 
 <p></div></p>
@@ -263,7 +298,7 @@
 <p>|----------|----------|</p>
 <table><thead><tr>
 <th>🕐 <strong>Последнее обновление</strong></th>
-<th><code>2026-08-03 10:10 MSK</code></th>
+<th><code>2026-08-03 13:40 MSK</code></th>
 </tr></thead><tbody>
 <tr>
 <td>📁 <strong>Всего файлов</strong></td>
@@ -271,7 +306,7 @@
 </tr>
 <tr>
 <td>🔗 <strong>Всего конфигураций</strong></td>
-<td><code>58 277</code></td>
+<td><code>57 383</code></td>
 </tr>
 <tr>
 <td>✅ <strong>Рабочих источников</strong></td>
@@ -378,7 +413,7 @@
 <th><strong>Alley Config 1</strong><br><code>vless: 5537</code> <code>vmess: 805</code> <code>trojan: 215</code> <code>ss: 241</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 25</code> <code>total: 6823</code></th>
 <th><code>6 823</code></th>
 <th><code>1.60 MB</code></th>
-<th><code>2026-08-03 10:10 UTC</code></th>
+<th><code>2026-08-03 13:40 UTC</code></th>
 <th><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/Alley_Config_1_d0212d.txt" target="_blank">⬇️ Скачать</a></th>
 </tr></thead><tbody>
 <tr>
@@ -386,7 +421,7 @@
 <td><strong>Alley Config 2</strong><br><code>vless: 5537</code> <code>vmess: 805</code> <code>trojan: 215</code> <code>ss: 241</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 25</code> <code>total: 6823</code></td>
 <td><code>6 823</code></td>
 <td><code>1.60 MB</code></td>
-<td><code>2026-08-03 10:10 UTC</code></td>
+<td><code>2026-08-03 13:40 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/Alley_Config_2_862576.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -394,7 +429,7 @@
 <td><strong>Bywarm Merged</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>2.95 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/ByWarm_Merged_b37672.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -402,7 +437,7 @@
 <td><strong>Bywarm Selected</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>51.11 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/ByWarm_Selected_6ac883.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -410,7 +445,7 @@
 <td><strong>Bywarm Wl</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>892.14 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/ByWarm_WL_db4c3f.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -418,7 +453,7 @@
 <td><strong>Byewhitelists 2</strong><br><code>vless: 1031</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 1031</code></td>
 <td><code>1 031</code></td>
 <td><code>307.11 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:40 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/ByeWhiteLists_2_fda813.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -426,7 +461,7 @@
 <td><strong>Cid Vpn General</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>79.50 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/CID_VPN_General_5d53c1.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -434,7 +469,7 @@
 <td><strong>Cid White List</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>34.97 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/CID_White_List_d3eab4.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -442,7 +477,7 @@
 <td><strong>Etoneya Cdn 1</strong><br><code>vless: 0</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 0</code></td>
 <td><code>0</code></td>
 <td><code>315.38 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/EtoNeYa_CDN_1_67cece.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -450,7 +485,7 @@
 <td><strong>Etoneya Raw 1</strong><br><code>vless: 5537</code> <code>vmess: 805</code> <code>trojan: 215</code> <code>ss: 241</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 25</code> <code>total: 6823</code></td>
 <td><code>6 823</code></td>
 <td><code>1.60 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/EtoNeYa_Raw_1_57f5f4.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -458,15 +493,15 @@
 <td><strong>Etoneya Raw 2</strong><br><code>vless: 5537</code> <code>vmess: 805</code> <code>trojan: 215</code> <code>ss: 241</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 25</code> <code>total: 6823</code></td>
 <td><code>6 823</code></td>
 <td><code>1.60 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/EtoNeYa_Raw_2_67857e.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>12</td>
-<td><strong>Gpu Cloud Merged</strong><br><code>vless: 8827</code> <code>vmess: 261</code> <code>trojan: 337</code> <code>ss: 691</code> <code>ssr: 0</code> <code>hysteria: 8</code> <code>tuic: 1</code> <code>tor: 0</code> <code>other: 39</code> <code>total: 10164</code></td>
-<td><code>10 164</code></td>
-<td><code>3.13 MB</code></td>
-<td><code>2026-08-03 10:10 UTC</code></td>
+<td><strong>Gpu Cloud Merged</strong><br><code>vless: 8304</code> <code>vmess: 256</code> <code>trojan: 338</code> <code>ss: 709</code> <code>ssr: 0</code> <code>hysteria: 8</code> <code>tuic: 1</code> <code>tor: 0</code> <code>other: 38</code> <code>total: 9654</code></td>
+<td><code>9 654</code></td>
+<td><code>2.92 MB</code></td>
+<td><code>2026-08-03 13:40 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/GPU_Cloud_Merged_bbadbd.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -474,15 +509,15 @@
 <td><strong>Kirya White Lists 25</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>22.28 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/Kirya_White_Lists_25_7c3d65.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>14</td>
 <td><strong>Nowmeow Whitelist</strong><br><code>vless: 30</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 30</code></td>
 <td><code>30</code></td>
-<td><code>9.60 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>9.63 KB</code></td>
+<td><code>2026-08-03 13:40 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/NowMeow_Whitelist_4a7181.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -490,7 +525,7 @@
 <td><strong>Obwl Sub</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>941 B</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/OBWL_Sub_157838.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -498,7 +533,7 @@
 <td><strong>Silentghost Whitelist 1</strong><br><code>vless: 156</code> <code>vmess: 0</code> <code>trojan: 4</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 2</code> <code>total: 162</code></td>
 <td><code>162</code></td>
 <td><code>44.54 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:40 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/SilentGhost_Whitelist_1_cd7096.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -506,7 +541,7 @@
 <td><strong>Silentghost Whitelist 2</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>36.80 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/SilentGhost_Whitelist_2_3f826f.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -514,7 +549,7 @@
 <td><strong>Silentghost Whitelist 2</strong><br><code>vless: 135</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 135</code></td>
 <td><code>135</code></td>
 <td><code>36.80 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:40 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/SilentGhost_Whitelist_2_f93aeb.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -522,7 +557,7 @@
 <td><strong>Subros Tunnel Wl</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>83.78 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/Subros_Tunnel_WL_8186d5.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -530,7 +565,7 @@
 <td><strong>White Cidr Ru All</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>94.07 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/WHITE_CIDR_RU_All_611028.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -538,15 +573,15 @@
 <td><strong>White Cidr Ru Checked</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>22.45 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/WHITE_CIDR_RU_Checked_d94b99.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>22</td>
-<td><strong>White Sni Ru All  Igareck </strong><br><code>vless: 6</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 6</code></td>
-<td><code>6</code></td>
-<td><code>2.30 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><strong>White Sni Ru All  Igareck </strong><br><code>vless: 5</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 5</code></td>
+<td><code>5</code></td>
+<td><code>2.10 KB</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/WHITE_SNI_RU_All__igareck__dd9b8c.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -554,7 +589,7 @@
 <td><strong>White Sni Ru All</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>44.38 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/WHITE_SNI_RU_All_dd9b8c.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 </tbody></table>
@@ -582,15 +617,15 @@
 <th><strong>Black Ss All</strong><br><code>Configs: 0</code></th>
 <th><code>0</code></th>
 <th><code>11.88 KB</code></th>
-<th><code>2026-08-03 10:09 UTC</code></th>
+<th><code>2026-08-03 13:39 UTC</code></th>
 <th><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/BLACK_SS_All_316a8b.txt" target="_blank">⬇️ Скачать</a></th>
 </tr></thead><tbody>
 <tr>
 <td>2</td>
-<td><strong>Black Ss All Rus  Igareck </strong><br><code>vless: 0</code> <code>vmess: 11</code> <code>trojan: 33</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 1</code> <code>total: 45</code></td>
-<td><code>45</code></td>
-<td><code>24.70 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><strong>Black Ss All Rus  Igareck </strong><br><code>vless: 0</code> <code>vmess: 14</code> <code>trojan: 33</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 1</code> <code>total: 48</code></td>
+<td><code>48</code></td>
+<td><code>24.09 KB</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/BLACK_SS_All_RUS__igareck__316a8b.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -598,23 +633,23 @@
 <td><strong>Black Vless Rus</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>26.53 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/BLACK_VLESS_RUS_11add6.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>4</td>
-<td><strong>Black Vless Rus Mobile  Igareck </strong><br><code>vless: 138</code> <code>vmess: 0</code> <code>trojan: 1</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 139</code></td>
-<td><code>139</code></td>
-<td><code>44.12 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><strong>Black Vless Rus Mobile  Igareck </strong><br><code>vless: 135</code> <code>vmess: 2</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 137</code></td>
+<td><code>137</code></td>
+<td><code>42.60 KB</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/BLACK_VLESS_RUS_Mobile__igareck__a83536.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>5</td>
-<td><strong>Black Vless Rus  Igareck </strong><br><code>vless: 423</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 423</code></td>
-<td><code>423</code></td>
-<td><code>121.48 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><strong>Black Vless Rus  Igareck </strong><br><code>vless: 320</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 320</code></td>
+<td><code>320</code></td>
+<td><code>88.13 KB</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/BLACK_VLESS_RUS__igareck__11add6.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -622,15 +657,15 @@
 <td><strong>Bypass Config 7</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>86.04 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Bypass_Config_7_d33b54.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>7</td>
-<td><strong>Goida 10  Avencores </strong><br><code>vless: 8580</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 8580</code></td>
-<td><code>8 580</code></td>
-<td><code>1.86 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><strong>Goida 10  Avencores </strong><br><code>vless: 8432</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 8432</code></td>
+<td><code>8 432</code></td>
+<td><code>1.83 MB</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/GOIDA_10__AvenCores__57f405.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -638,7 +673,7 @@
 <td><strong>Goida Vless 1  Avencores </strong><br><code>vless: 7813</code> <code>vmess: 1051</code> <code>trojan: 664</code> <code>ss: 209</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 9737</code></td>
 <td><code>9 737</code></td>
 <td><code>2.55 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/GOIDA_VLESS_1__AvenCores__32fadf.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -646,7 +681,7 @@
 <td><strong>Goida Config 1</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>2.08 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Goida_Config_1_f7c635.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -654,7 +689,7 @@
 <td><strong>Goida Config 26</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>891.95 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Goida_Config_26_9d0474.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -662,7 +697,7 @@
 <td><strong>Goida Config 3</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>1.80 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Goida_Config_3_b4689a.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -670,7 +705,7 @@
 <td><strong>Kort Ss Clean</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>976.72 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Kort_SS_Clean_2a8980.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -678,7 +713,7 @@
 <td><strong>Kort Trojan Clean</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>1.17 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Kort_Trojan_Clean_f30cdf.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -686,7 +721,7 @@
 <td><strong>Kort Vless Clean</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>2.96 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Kort_VLESS_Clean_fa7d47.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -694,7 +729,7 @@
 <td><strong>Kort Vmess Clean</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>1.12 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Kort_VMess_Clean_94367a.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -702,7 +737,7 @@
 <td><strong>Mahsanet Xray Final</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>536 B</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/MahsaNet_Xray_Final_1f5ce9.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -710,7 +745,7 @@
 <td><strong>Openray All Proxies</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>2.17 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/OpenRay_All_Proxies_39ce9f.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -718,7 +753,7 @@
 <td><strong>Pawdroid Free Servers</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>2.87 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Pawdroid_Free_Servers_6d71e8.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -726,7 +761,7 @@
 <td><strong>Roosterkid V2Ray</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>34.38 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Roosterkid_V2Ray_2e2cfa.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -734,7 +769,7 @@
 <td><strong>Sevcator Vless</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>5.31 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Sevcator_VLESS_ffd7b3.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -742,7 +777,7 @@
 <td><strong>Silentghost Blacklist</strong><br><code>vless: 7</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 7</code></td>
 <td><code>7</code></td>
 <td><code>2.75 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:40 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/SilentGhost_Blacklist_676750.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -750,7 +785,7 @@
 <td><strong>V2Rayroot Vless</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>24.76 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/V2RayRoot_VLESS_feed6f.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -758,15 +793,15 @@
 <td><strong>Vless Reality White</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>39.16 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/VLESS_Reality_White_3eac2d.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>24</td>
-<td><strong>Vless Reality White Lists Ru Mobile  Iga</strong><br><code>vless: 131</code> <code>vmess: 0</code> <code>trojan: 7</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 138</code></td>
-<td><code>138</code></td>
-<td><code>36.89 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><strong>Vless Reality White Lists Ru Mobile  Iga</strong><br><code>vless: 68</code> <code>vmess: 0</code> <code>trojan: 6</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 74</code></td>
+<td><code>74</code></td>
+<td><code>20.42 KB</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/VLESS_Reality_White_Lists_RU_Mobile__iga_3eac2d.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -774,23 +809,23 @@
 <td><strong>Vify Vless</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>522.56 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Vify_VLESS_7f9765.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>26</td>
-<td><strong>White Cidr Ru All  Igareck </strong><br><code>vless: 131</code> <code>vmess: 0</code> <code>trojan: 11</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 142</code></td>
-<td><code>142</code></td>
-<td><code>38.10 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><strong>White Cidr Ru All  Igareck </strong><br><code>vless: 68</code> <code>vmess: 0</code> <code>trojan: 10</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 78</code></td>
+<td><code>78</code></td>
+<td><code>21.64 KB</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/WHITE_CIDR_RU_All__igareck__611028.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>27</td>
-<td><strong>White Cidr Ru Checked  Igareck </strong><br><code>vless: 14</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 14</code></td>
-<td><code>14</code></td>
-<td><code>4.83 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><strong>White Cidr Ru Checked  Igareck </strong><br><code>vless: 9</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 0</code> <code>other: 0</code> <code>total: 9</code></td>
+<td><code>9</code></td>
+<td><code>3.51 KB</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/WHITE_CIDR_RU_Checked__igareck__d94b99.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -798,7 +833,7 @@
 <td><strong>Wlrus Black List</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>26.22 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/WLRUS_Black_List_4617cb.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -806,7 +841,7 @@
 <td><strong>Xray Mix Uri</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>54.35 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Xray_Mix_URI_c4598b.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -814,7 +849,7 @@
 <td><strong>Yitong V2Ray</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>1.92 MB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/v2ray/Yitong_V2Ray_11218f.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 </tbody></table>
@@ -842,7 +877,7 @@
 <th><strong>Ser38 Happ Sub1</strong><br><code>Configs: 0</code></th>
 <th><code>0</code></th>
 <th><code>81.75 KB</code></th>
-<th><code>2026-08-03 10:09 UTC</code></th>
+<th><code>2026-08-03 13:39 UTC</code></th>
 <th><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/happ/SER38_Happ_Sub1_ddd131.txt" target="_blank">⬇️ Скачать</a></th>
 </tr></thead><tbody>
 <tr>
@@ -850,15 +885,15 @@
 <td><strong>Tor Bridges All</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>39.74 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/happ/TOR_Bridges_ALL_48ac7d.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>3</td>
-<td><strong>Tor Bridges All  Igareck </strong><br><code>vless: 0</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 170</code> <code>other: 0</code> <code>total: 170</code></td>
-<td><code>170</code></td>
-<td><code>36.17 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><strong>Tor Bridges All  Igareck </strong><br><code>vless: 0</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 167</code> <code>other: 0</code> <code>total: 167</code></td>
+<td><code>167</code></td>
+<td><code>35.61 KB</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/happ/TOR_Bridges_ALL__igareck__48ac7d.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
@@ -866,15 +901,15 @@
 <td><strong>Tor Bridges Top100</strong><br><code>Configs: 0</code></td>
 <td><code>0</code></td>
 <td><code>13.40 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/happ/TOR_Bridges_TOP100_14fe1f.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 <tr>
 <td>5</td>
-<td><strong>Tor Bridges Top100  Igareck </strong><br><code>vless: 0</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 62</code> <code>other: 0</code> <code>total: 62</code></td>
-<td><code>62</code></td>
-<td><code>13.20 KB</code></td>
-<td><code>2026-08-03 10:09 UTC</code></td>
+<td><strong>Tor Bridges Top100  Igareck </strong><br><code>vless: 0</code> <code>vmess: 0</code> <code>trojan: 0</code> <code>ss: 0</code> <code>ssr: 0</code> <code>hysteria: 0</code> <code>tuic: 0</code> <code>tor: 65</code> <code>other: 0</code> <code>total: 65</code></td>
+<td><code>65</code></td>
+<td><code>13.47 KB</code></td>
+<td><code>2026-08-03 13:39 UTC</code></td>
 <td><a href="https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/happ/TOR_Bridges_TOP100__igareck__14fe1f.txt" target="_blank">⬇️ Скачать</a></td>
 </tr>
 </tbody></table>
@@ -886,7 +921,7 @@
 <details>
 <summary>🔽 Нажмите чтобы развернуть список всех файлов</summary>
 
-<pre><code>
+<pre><code class="language-">
 
 📁 Happ VPN/
   ├── SER38_Happ_Sub1_ddd131.txt
@@ -950,7 +985,7 @@
 <p>  │   └── https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/WHITE_SNI_RU_All__igareck__dd9b8c.txt</p>
 <p>  ├── WHITE_SNI_RU_All_dd9b8c.txt</p>
 <p>  │   └── https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt/raw/branch/master/VPNMIRRORS/nekobox/WHITE_SNI_RU_All_dd9b8c.txt</p>
-<pre><code>
+<pre><code class="language-">
 </details>
 
 
@@ -1078,7 +1113,7 @@
 </ol>
 
 <p><strong>Пример:</strong></p>
-<pre><code>
+<pre><code class="language-">
 https://example.com/config.txt|v2ray|My Config
 </code></pre>
 
@@ -1088,23 +1123,47 @@ https://example.com/config.txt|v2ray|My Config
 
 <p><strong>🤖 Автоматизировано с любовью для свободного интернета</strong></p>
 
-<p><em>Последнее обновление: 2026-08-03 10:10:31 MSK</em></p>
+<p><em>Последнее обновление: 2026-08-03 13:40:49 MSK</em></p>
 
 <p></div></p>
+        
+        <!-- Лицензия -->
+        
+    <div id="license" style="margin-top: 30px; padding: 20px; background: #1a1a2e; border-radius: 8px; border-left: 3px solid #ffaa44;">
+        <h3 style="color: #ffaa44; margin-top: 0;">📄 Лицензия и отказ от ответственности</h3>
+        <p style="color: #888; font-size: 14px; line-height: 1.8;">
+            <strong style="color: #aaa;">Источники:</strong> Все конфигурации собраны из открытых интернет-источников.
+            Мы не являемся авторами этих конфигураций и не несём ответственности за их содержимое.
+        </p>
+        <p style="color: #888; font-size: 14px; line-height: 1.8;">
+            <strong style="color: #aaa;">Отказ от ответственности:</strong> Данный сайт и репозиторий созданы исключительно 
+            в <strong style="color: #aaa;">информационных и образовательных целях</strong>. Мы не пропагандируем и не поощряем 
+            использование VPN в обход законодательства. Все материалы предоставлены "как есть" без каких-либо гарантий.
+        </p>
+        <p style="color: #888; font-size: 14px; line-height: 1.8;">
+            <strong style="color: #aaa;">Авторские права:</strong> Все права на контент принадлежат их законным владельцам. 
+            Если вы являетесь правообладателем и считаете, что ваш материал используется неправомерно, 
+            свяжитесь с нами для его удаления.
+        </p>
+        <p style="color: #666; font-size: 13px; margin-top: 10px;">
+            🔄 Последнее обновление: <span style="color: #44ff88;">2026-08-03 13:40:49 MSK</span>
+        </p>
+    </div>
+    
         
         <!-- Футер -->
         <div class="footer">
             <p>🤖 Автоматизировано с любовью для свободного интернета</p>
             <p style="font-size:12px; color:#444;">
                 <a href="https://gitverse.ru/RUVIPIEN/russian-white-bolt_fix">📂 Исходный код</a> &bull; 
-                <a href="https://RUVIPIEN.russian-white-bolt_fix.gitverse.ru">🌐 Сайт</a> &bull;
                 <a href="https://gitverse.ru/RUVIPIEN/russian-white-bolt_fix/blob/master/README.md">📄 README</a> &bull;
                 Обновляется каждые 3 часа &bull; 
                 <a href="#top">⬆ Наверх</a>
             </p>
-            <p style="font-size:11px; color:#333; margin-top:5px;">
-                📅 2026-08-03 10:10:31 MSK
-            </p>
+            <div class="footer-license">
+                <strong>⚠️ Важно:</strong> Все материалы предоставлены "как есть" для информационных целей.
+                Использование VPN может регулироваться законодательством вашей страны.
+            </div>
         </div>
     </div>
 </body>
