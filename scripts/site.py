@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Генератор сайта для GitVerse Pages
-Автоматически создаёт index.html из README.md
+Анализирует структуру README.md и создаёт красивый index.html
 """
 
 import os
@@ -17,7 +17,7 @@ INDEX_PATH = Path("index.html")
 PAGES_CONFIG_PATH = Path(".gitverse/pages.yml")
 VPNMIRRORS_PATH = Path("VPNMIRRORS")
 REPO_NAME = "RUVIPIEN/russian-white-bolt_fix"
-SITE_URL = f"https://{REPO_NAME.replace('/', '.')}.gitverse.ru"
+REPO_URL = f"https://gitverse.ru/{REPO_NAME}"
 
 # ==================== СТИЛИ ====================
 CSS_STYLES = """
@@ -39,6 +39,32 @@ CSS_STYLES = """
         border: 1px solid #1a1a2e;
         box-shadow: 0 0 60px rgba(0, 212, 255, 0.05);
     }
+    /* ===== МЕНЮ ===== */
+    .top-menu {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        padding: 12px 0;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #1a1a2e;
+    }
+    .top-menu a {
+        color: #888;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s;
+        padding: 4px 10px;
+        border-radius: 6px;
+    }
+    .top-menu a:hover {
+        color: #00d4ff;
+        background: #1a1a2e;
+    }
+    .top-menu a.active {
+        color: #00d4ff;
+        background: #1a1a2e;
+    }
+    /* ===== ОСТАЛЬНЫЕ СТИЛИ ===== */
     h1 { color: #00d4ff; font-size: 2.4em; border-bottom: 2px solid #00d4ff; padding-bottom: 15px; margin-bottom: 25px; text-shadow: 0 0 30px rgba(0,212,255,0.2); }
     h2 { color: #00d4ff; margin-top: 40px; font-size: 1.8em; border-left: 4px solid #00d4ff; padding-left: 15px; }
     h3 { color: #44ff88; margin-top: 30px; font-size: 1.3em; }
@@ -163,35 +189,6 @@ CSS_STYLES = """
         border-left: 2px solid #1a1a2e;
         margin-left: 10px;
     }
-    .footer {
-        text-align: center;
-        margin-top: 50px;
-        padding-top: 25px;
-        border-top: 1px solid #1a1a2e;
-        color: #555;
-        font-size: 14px;
-    }
-    .footer a { color: #666; }
-    .footer a:hover { color: #00d4ff; }
-    .icon { font-size: 1.2em; }
-    .text-center { text-align: center; }
-    .text-muted { color: #888; }
-    .site-link {
-        display: inline-block;
-        background: linear-gradient(135deg, #00d4ff, #44ff88);
-        color: #000 !important;
-        padding: 8px 18px;
-        border-radius: 8px;
-        font-weight: bold;
-        font-size: 14px;
-        transition: all 0.3s;
-        border: none;
-    }
-    .site-link:hover {
-        transform: scale(1.05);
-        text-decoration: none !important;
-        box-shadow: 0 0 30px rgba(0,212,255,0.3);
-    }
     .repo-link {
         display: inline-block;
         background: #1a1a2e;
@@ -207,6 +204,37 @@ CSS_STYLES = """
         color: #000 !important;
         text-decoration: none;
     }
+    /* ===== ФУТЕР С ЛИЦЕНЗИЕЙ ===== */
+    .footer {
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 25px;
+        border-top: 1px solid #1a1a2e;
+        color: #555;
+        font-size: 14px;
+    }
+    .footer a { color: #666; }
+    .footer a:hover { color: #00d4ff; }
+    .footer-license {
+        font-size: 12px;
+        color: #444;
+        margin-top: 10px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.6;
+    }
+    .footer-license strong { color: #666; }
+    .update-badge {
+        display: inline-block;
+        background: #1a1a2e;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        border: 1px solid #44ff88;
+        color: #44ff88;
+        margin-left: 10px;
+    }
     @media (max-width: 768px) {
         .container { padding: 15px; }
         table { font-size: 12px; }
@@ -214,16 +242,17 @@ CSS_STYLES = """
         .stats-grid { grid-template-columns: repeat(2, 1fr); }
         h1 { font-size: 1.8em; }
         h2 { font-size: 1.4em; }
-        .header-buttons { flex-direction: column; align-items: stretch; gap: 8px; }
+        .top-menu { gap: 10px; }
+        .top-menu a { font-size: 12px; padding: 4px 8px; }
     }
     .glow-text { color: #00d4ff; text-shadow: 0 0 20px rgba(0,212,255,0.3); }
 </style>
 """
 
-# ==================== ПАРСЕР MARKDOWN ====================
+# ==================== АНАЛИЗ СТРУКТУРЫ README ====================
 
 def parse_inline(text: str) -> str:
-    """Обрабатывает inline-элементы"""
+    """Обрабатывает inline-элементы: ссылки, изображения, код, жирный, курсив"""
     text = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', lambda m: f'<img src="{m.group(2)}" alt="{m.group(1)}" loading="lazy">', text)
     text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', lambda m: f'<a href="{m.group(2)}" target="_blank">{m.group(1)}</a>', text)
     text = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', text)
@@ -232,22 +261,26 @@ def parse_inline(text: str) -> str:
     return text
 
 def parse_markdown_to_html(content: str) -> str:
-    """Превращает Markdown в HTML"""
+    """Анализирует структуру README и превращает в красивый HTML"""
     lines = content.split('\n')
     html_parts = []
     in_code_block = False
     in_table = False
     in_list = False
     list_type = None
+    in_details = False
+    details_stack = []
     
     i = 0
     while i < len(lines):
         line = lines[i]
         
+        # ===== КОДОВЫЕ БЛОКИ =====
         if line.startswith('```'):
             in_code_block = not in_code_block
             if in_code_block:
-                html_parts.append(f'<pre><code>')
+                lang = line[3:].strip()
+                html_parts.append(f'<pre><code class="language-{lang}">')
             else:
                 html_parts.append('</code></pre>')
             i += 1
@@ -258,6 +291,7 @@ def parse_markdown_to_html(content: str) -> str:
             i += 1
             continue
         
+        # ===== ПУСТЫЕ СТРОКИ =====
         if not line.strip():
             if in_table:
                 in_table = False
@@ -269,12 +303,30 @@ def parse_markdown_to_html(content: str) -> str:
             i += 1
             continue
         
-        if line.strip().startswith('<details') or line.strip().startswith('</details>') or \
-           line.strip().startswith('<summary') or line.strip().startswith('</summary>'):
+        # ===== СПОЙЛЕРЫ (details/summary) =====
+        if line.strip().startswith('<details'):
+            in_details = True
+            details_stack.append('details')
+            html_parts.append(line)
+            i += 1
+            continue
+        if line.strip().startswith('</details>'):
+            in_details = False
+            if details_stack:
+                details_stack.pop()
+            html_parts.append(line)
+            i += 1
+            continue
+        if line.strip().startswith('<summary'):
+            html_parts.append(line)
+            i += 1
+            continue
+        if line.strip().startswith('</summary>'):
             html_parts.append(line)
             i += 1
             continue
         
+        # ===== ЗАГОЛОВКИ =====
         header_match = re.match(r'^(#{1,6})\s+(.+)$', line)
         if header_match:
             level = len(header_match.group(1))
@@ -283,6 +335,7 @@ def parse_markdown_to_html(content: str) -> str:
             i += 1
             continue
         
+        # ===== ТАБЛИЦЫ =====
         if '|' in line and not line.startswith('|---'):
             if not in_table:
                 in_table = True
@@ -307,6 +360,7 @@ def parse_markdown_to_html(content: str) -> str:
             html_parts.append('</tbody></table>')
             continue
         
+        # ===== СПИСКИ =====
         ul_match = re.match(r'^[\-\*]\s+(.+)$', line)
         ol_match = re.match(r'^\d+\.\s+(.+)$', line)
         
@@ -324,14 +378,17 @@ def parse_markdown_to_html(content: str) -> str:
             html_parts.append('</ul>' if list_type == 'ul' else '</ol>')
             continue
         
+        # ===== ГОРИЗОНТАЛЬНАЯ ЛИНИЯ =====
         if re.match(r'^[\-\*_]{3,}$', line.strip()):
             html_parts.append('<hr>')
             i += 1
             continue
         
+        # ===== ОБЫЧНЫЙ АБЗАЦ =====
         html_parts.append(f'<p>{parse_inline(line)}</p>')
         i += 1
     
+    # Закрываем незакрытые элементы
     if in_table:
         html_parts.append('</tbody></table>')
     if in_list:
@@ -356,8 +413,8 @@ output: ./
     return False
 
 def generate_html():
-    """Генерирует index.html из README.md"""
-    print("🌐 Генерация сайта для GitVerse Pages...")
+    """Генерирует index.html из README.md с анализом структуры"""
+    print("🌐 Генерация сайта с анализом структуры README...")
     
     # Создаём конфиг Pages
     ensure_pages_config()
@@ -369,7 +426,10 @@ def generate_html():
     with open(README_PATH, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Статистика
+    # ===== АНАЛИЗИРУЕМ СТРУКТУРУ =====
+    print("📊 Анализ структуры README.md...")
+    
+    # Собираем статистику
     stats = {'files': 0, 'configs': 0, 'sources': 0}
     
     if VPNMIRRORS_PATH.exists():
@@ -383,8 +443,53 @@ def generate_html():
             stats['sources'] = meta.get('stats', {}).get('success', 0)
             stats['configs'] = meta.get('stats', {}).get('total_keys', 0)
     
+    # Находим все заголовки для меню
+    headers = []
+    for line in content.split('\n'):
+        match = re.match(r'^(#{2,3})\s+(.+)$', line)
+        if match:
+            level = len(match.group(1))
+            title = match.group(2).strip()
+            # Убираем эмодзи и спецсимволы для ID
+            anchor = re.sub(r'[^a-zA-Z0-9]', '', title.lower())[:30]
+            headers.append({'level': level, 'title': title, 'anchor': anchor})
+    
+    # Парсим содержимое
     parsed_content = parse_markdown_to_html(content)
     
+    # ===== СОЗДАЁМ МЕНЮ =====
+    menu_html = '<div class="top-menu">\n'
+    menu_html += f'<a href="#top" class="active">🏠 Главная</a>\n'
+    for h in headers[:8]:  # Ограничиваем меню 8 пунктами
+        menu_html += f'<a href="#{h["anchor"]}">{h["title"]}</a>\n'
+    menu_html += f'<a href="#license">📄 Лицензия</a>\n'
+    menu_html += '</div>\n'
+    
+    # ===== ЛИЦЕНЗИЯ =====
+    license_text = """
+    <div id="license" style="margin-top: 30px; padding: 20px; background: #1a1a2e; border-radius: 8px; border-left: 3px solid #ffaa44;">
+        <h3 style="color: #ffaa44; margin-top: 0;">📄 Лицензия и отказ от ответственности</h3>
+        <p style="color: #888; font-size: 14px; line-height: 1.8;">
+            <strong style="color: #aaa;">Источники:</strong> Все конфигурации собраны из открытых интернет-источников.
+            Мы не являемся авторами этих конфигураций и не несём ответственности за их содержимое.
+        </p>
+        <p style="color: #888; font-size: 14px; line-height: 1.8;">
+            <strong style="color: #aaa;">Отказ от ответственности:</strong> Данный сайт и репозиторий созданы исключительно 
+            в <strong style="color: #aaa;">информационных и образовательных целях</strong>. Мы не пропагандируем и не поощряем 
+            использование VPN в обход законодательства. Все материалы предоставлены "как есть" без каких-либо гарантий.
+        </p>
+        <p style="color: #888; font-size: 14px; line-height: 1.8;">
+            <strong style="color: #aaa;">Авторские права:</strong> Все права на контент принадлежат их законным владельцам. 
+            Если вы являетесь правообладателем и считаете, что ваш материал используется неправомерно, 
+            свяжитесь с нами для его удаления.
+        </p>
+        <p style="color: #666; font-size: 13px; margin-top: 10px;">
+            🔄 Последнее обновление: <span style="color: #44ff88;">{}</span>
+        </p>
+    </div>
+    """.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S MSK'))
+    
+    # ===== ФОРМИРУЕМ HTML =====
     html_content = f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -394,34 +499,28 @@ def generate_html():
     <meta name="description" content="Автоматически обновляемые белые списки для обхода блокировок в России. {stats['configs']} конфигураций, {stats['files']} файлов.">
     <meta property="og:title" content="VPN White-Lists для России">
     <meta property="og:description" content="Автоматически обновляемые белые списки. {stats['configs']} конфигураций.">
-    <meta property="og:url" content="{SITE_URL}">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="{SITE_URL}">
+    <link rel="canonical" href="{REPO_URL}">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
     {CSS_STYLES}
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="top">
         <!-- Шапка -->
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
             <div>
                 <h1 style="border:none; padding:0; margin:0;">🔒 VPN White-Lists</h1>
                 <p style="color:#888; margin-top:4px;">Автоматически обновляемые белые списки для обхода блокировок</p>
             </div>
-            <div class="header-buttons" style="display:flex; gap:10px; flex-wrap:wrap;">
-                <a href="{SITE_URL}" class="site-link" target="_blank">🌐 Открыть сайт</a>
-                <a href="https://gitverse.ru/{REPO_NAME}" class="repo-link" target="_blank">📂 Репозиторий</a>
+            <div style="text-align:right;">
+                <span class="badge">🔄 Обновлено: {datetime.now().strftime('%H:%M MSK')}</span>
+                <br>
+                <a href="{REPO_URL}" class="repo-link" target="_blank">📂 Репозиторий</a>
             </div>
         </div>
         
-        <!-- Информация о сайте -->
-        <div style="background: #1a1a2e; padding: 12px 18px; border-radius: 8px; margin-bottom: 20px; border-left: 3px solid #44ff88;">
-            <p style="margin: 0; font-size: 14px; color: #888;">
-                🌐 Сайт доступен по адресу: <a href="{SITE_URL}" style="font-weight: bold;">{SITE_URL}</a>
-                <span style="color: #444; margin: 0 10px;">|</span>
-                🔄 Обновлено: {datetime.now().strftime('%H:%M MSK')}
-            </p>
-        </div>
+        <!-- Меню -->
+        {menu_html}
         
         <!-- Статистика -->
         <div class="stats-grid">
@@ -434,19 +533,22 @@ def generate_html():
         <!-- Содержимое README -->
         {parsed_content}
         
+        <!-- Лицензия -->
+        {license_text}
+        
         <!-- Футер -->
         <div class="footer">
             <p>🤖 Автоматизировано с любовью для свободного интернета</p>
             <p style="font-size:12px; color:#444;">
-                <a href="https://gitverse.ru/{REPO_NAME}">📂 Исходный код</a> &bull; 
-                <a href="{SITE_URL}">🌐 Сайт</a> &bull;
-                <a href="https://gitverse.ru/{REPO_NAME}/blob/master/README.md">📄 README</a> &bull;
+                <a href="{REPO_URL}">📂 Исходный код</a> &bull; 
+                <a href="{REPO_URL}/blob/master/README.md">📄 README</a> &bull;
                 Обновляется каждые 3 часа &bull; 
                 <a href="#top">⬆ Наверх</a>
             </p>
-            <p style="font-size:11px; color:#333; margin-top:5px;">
-                📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S MSK')}
-            </p>
+            <div class="footer-license">
+                <strong>⚠️ Важно:</strong> Все материалы предоставлены "как есть" для информационных целей.
+                Использование VPN может регулироваться законодательством вашей страны.
+            </div>
         </div>
     </div>
 </body>
@@ -458,8 +560,8 @@ def generate_html():
     
     print(f"✅ index.html создан! Размер: {len(html_content):,} символов")
     print(f"📁 Статистика: {stats['files']} файлов, {stats['configs']} конфигов")
-    print(f"🌐 Сайт будет доступен по адресу: {SITE_URL}")
-    print(f"📂 Репозиторий: https://gitverse.ru/{REPO_NAME}")
+    print(f"📊 Найдено заголовков для меню: {len(headers)}")
+    print(f"📂 Репозиторий: {REPO_URL}")
     return True
 
 if __name__ == "__main__":
