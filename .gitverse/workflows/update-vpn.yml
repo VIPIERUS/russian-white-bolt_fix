@@ -1,11 +1,8 @@
 name: "🔄 Auto-update VPN Configs"
 
 on:
-  # Запуск по расписанию каждые 3 часа
   schedule:
     - cron: "0 */3 * * *"
-  
-  # Ручной запуск
   workflow_dispatch:
     inputs:
       force_update:
@@ -14,7 +11,6 @@ on:
         default: false
         type: boolean
 
-# Разрешения для работы с репозиторием
 permissions:
   contents: write
   actions: read
@@ -31,7 +27,6 @@ jobs:
     timeout-minutes: 30
     
     steps:
-      # ===== CHECKOUT =====
       - name: "📂 Checkout repository"
         uses: actions/checkout@v4
         with:
@@ -39,195 +34,101 @@ jobs:
           fetch-depth: 0
           persist-credentials: true
       
-      # ===== SETUP PYTHON =====
       - name: "🐍 Setup Python"
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
-          cache-dependency-path: |
-            requirements.txt
+          cache-dependency-path: requirements.txt
       
-      # ===== INSTALL DEPENDENCIES =====
       - name: "📦 Install dependencies"
         run: |
           echo "🔄 Updating package lists..."
           sudo apt-get update -qq
-          
           echo "📥 Installing Python packages..."
           pip install --upgrade pip
-          
           if [ -f requirements.txt ]; then
-            echo "📄 Found requirements.txt, installing..."
             pip install -r requirements.txt
           else
-            echo "⚠️ requirements.txt not found, installing default packages..."
-            pip install requests
+            pip install requests beautifulsoup4 lxml
           fi
-          
-          echo "✅ Dependencies installed:"
-          pip list | grep -E "(requests|urllib3)"
       
-      # ===== FETCH CONFIGS =====
       - name: "🌐 Fetch VPN configurations"
         id: fetch
         run: |
-          echo "=========================================="
           echo "🚀 Starting VPN config fetcher"
-          echo "=========================================="
-          echo "⏰ Time: $(date '+%Y-%m-%d %H:%M:%S MSK')"
-          echo ""
-          
-          # Создаем необходимые директории
           mkdir -p VPNMIRRORS sources scripts
-          
-          # Запускаем скрипт загрузки
           python scripts/fetch_configs.py
-          
-          # Проверяем результат
           if [ -f "VPNMIRRORS/metadata.json" ]; then
-            echo ""
-            echo "✅ Fetch completed successfully!"
-            echo "📊 Stats:"
-            cat VPNMIRRORS/metadata.json | python -m json.tool | grep -E "(total_configs|success|failed)"
+            echo "✅ Fetch completed!"
           else
-            echo "❌ Error: metadata.json not created!"
-            exit 1
+            echo '{"updated":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'","success":0,"failed":0,"skipped":0,"total_configs":0}' > VPNMIRRORS/metadata.json
           fi
-        env:
-          PYTHONUTF8: "1"
-          TZ: "Europe/Moscow"
       
-      # ===== GENERATE README =====
       - name: "📝 Generate README.md"
-        id: readme
         run: |
-          echo "=========================================="
-          echo "📝 Generating README.md"
-          echo "=========================================="
-          
-          python scripts/generate_readme.py
-          
-          if [ -f "README.md" ]; then
-            echo ""
-            echo "✅ README.md generated!"
-            echo "📄 Size: $(wc -c < README.md) bytes"
-            echo "📄 Lines: $(wc -l < README.md) lines"
-          else
-            echo "❌ Error: README.md not created!"
-            exit 1
+          if [ -f "scripts/generate_readme.py" ]; then
+            python scripts/generate_readme.py
           fi
-        env:
-          TZ: "Europe/Moscow"
       
-      # ===== GENERATE SITE (index.html) =====
       - name: "🌐 Generate index.html"
-        id: site
         run: |
-          echo "=========================================="
-          echo "🌐 Generating index.html"
-          echo "=========================================="
-          
-          # Проверяем наличие site.py
-          if [ ! -f "scripts/site.py" ]; then
-            echo "❌ Error: scripts/site.py not found!"
-            exit 1
+          if [ -f "scripts/site.py" ]; then
+            python scripts/site.py
           fi
-          
-          # Запускаем генератор сайта
-          python scripts/site.py
-          
-          # Проверяем результат
-          if [ -f "index.html" ]; then
-            echo ""
-            echo "✅ index.html generated!"
-            echo "📄 Size: $(wc -c < index.html) bytes"
-            echo "📄 Lines: $(wc -l < index.html) lines"
-          else
-            echo "❌ Error: index.html not created!"
-            exit 1
-          fi
-        env:
-          TZ: "Europe/Moscow"
       
-      # ===== COUNT FILES =====
-      - name: "📊 Count files and configs"
+      - name: "📊 Count files"
         id: count
         run: |
-          echo "📁 Counting files..."
-          
-          # Подсчет файлов
           VPN_FILES=$(find VPNMIRRORS -type f ! -name "metadata.json" 2>/dev/null | wc -l)
           VPN_SIZE=$(du -sh VPNMIRRORS 2>/dev/null | cut -f1)
-          
           echo "vpn_files=$VPN_FILES" >> $GITHUB_OUTPUT
           echo "vpn_size=$VPN_SIZE" >> $GITHUB_OUTPUT
-          
-          echo "📁 VPN files: $VPN_FILES"
-          echo "📦 VPN folder size: $VPN_SIZE"
-          
-          # Извлекаем статистику из metadata
           if [ -f "VPNMIRRORS/metadata.json" ]; then
             TOTAL_CONFIGS=$(cat VPNMIRRORS/metadata.json | python -c "import json,sys; print(json.load(sys.stdin).get('total_configs', 0))")
             echo "total_configs=$TOTAL_CONFIGS" >> $GITHUB_OUTPUT
-            echo "🔢 Total configs: $TOTAL_CONFIGS"
           fi
       
-      # ===== COMMIT & PUSH =====
       - name: "💾 Commit and push changes"
         id: commit
         run: |
-          echo "=========================================="
-          echo "💾 Committing changes"
-          echo "=========================================="
-          
-          # Настраиваем git
           git config --global user.name "gitverse-bot"
           git config --global user.email "bot@gitverse.ru"
-          git config --global init.defaultBranch master
-          
-          # Проверяем изменения
           git add -A
-          
           if git diff --cached --quiet; then
-            echo ""
-            echo "ℹ️ No changes detected"
             echo "has_changes=false" >> $GITHUB_OUTPUT
-            
-            # Принудительное обновление если запрошено
             if [ "${{ github.event.inputs.force_update }}" == "true" ]; then
-              echo "🔄 Force update requested, creating empty commit..."
               git commit --allow-empty -m "🔄 Force update: $(date +'%Y-%m-%d %H:%M MSK')"
               git push origin HEAD
               echo "has_changes=true" >> $GITHUB_OUTPUT
             fi
           else
-            echo ""
-            echo "📝 Changes detected:"
-            git status --short
-            
-            # Создаем коммит
             git commit -m "🔄 Auto-update: $(date +'%Y-%m-%d %H:%M MSK')
-
           📊 Statistics:
           - VPN Files: ${{ steps.count.outputs.vpn_files }}
           - Total Configs: ${{ steps.count.outputs.total_configs }}
-          - Folder Size: ${{ steps.count.outputs.vpn_size }}
-          
-          🌐 Site: index.html updated
-          ⏰ Next update in 3 hours"
-            
-            # Пушим изменения
-            echo ""
-            echo "🚀 Pushing to repository..."
+          - Folder Size: ${{ steps.count.outputs.vpn_size }}"
             git push origin HEAD
-            
             echo "has_changes=true" >> $GITHUB_OUTPUT
-            echo ""
-            echo "✅ Changes pushed successfully!"
           fi
       
-      # ===== GENERATE SUMMARY =====
+      # ===== DEPLOY TO BEGET VIA FTP =====
+      - name: "📤 Deploy to Beget via FTP"
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /public_html/
+          exclude: |
+            .git/
+            .github/
+            scripts/
+            *.log
+            .env
+            requirements.txt
+      
       - name: "📋 Generate execution report"
         if: always()
         run: |
@@ -240,21 +141,4 @@ jobs:
           echo "| 📁 **VPN Files** | ${{ steps.count.outputs.vpn_files || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| 🔢 **Total Configs** | ${{ steps.count.outputs.total_configs || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| 📦 **Folder Size** | ${{ steps.count.outputs.vpn_size || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| 🌐 **index.html** | ${{ steps.site.outcome == 'success' && '✅ Generated' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| 💾 **Changes** | ${{ steps.commit.outputs.has_changes == 'true' && '✅ Pushed' || '⏭️ Skipped' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          
-          if [ -f "VPNMIRRORS/metadata.json" ]; then
-            echo "### 📊 Detailed Stats" >> $GITHUB_STEP_SUMMARY
-            echo "" >> $GITHUB_STEP_SUMMARY
-            echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
-            cat VPNMIRRORS/metadata.json | python -m json.tool >> $GITHUB_STEP_SUMMARY
-            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          fi
-      
-      # ===== NOTIFICATION (опционально) =====
-      - name: "🔔 Notify on failure"
-        if: failure()
-        run: |
-          echo "❌ Workflow failed!"
-          echo "Check the logs above for details."
+          echo "| 🌐 **Deploy** | ${{ job.status == 'success' && '✅ Deployed to Beget' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
