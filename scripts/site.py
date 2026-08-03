@@ -4,7 +4,7 @@
 Генератор сайта для GitVerse Pages
 Генерирует index.html с:
 - Главной страницей (README)
-- Чекером (Config Generator V1.1)
+- Чекером (Config Generator V1.1) через iframe
 - sbcv (визуальный конструктор sing-box) через iframe
 - Страницей "Об авторе"
 - Лицензией и отказом от ответственности
@@ -45,7 +45,6 @@ CSS_STYLES = """
         border: 1px solid #1a1a2e;
         box-shadow: 0 0 60px rgba(0, 212, 255, 0.05);
     }
-    /* Меню */
     .top-menu {
         display: flex;
         gap: 10px;
@@ -119,7 +118,6 @@ CSS_STYLES = """
     .page { display: none; }
     .page.active { display: block; }
     
-    /* Карточки статистики */
     .stats-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -136,7 +134,6 @@ CSS_STYLES = """
     .stat-number { font-size: 28px; font-weight: bold; color: #00d4ff; }
     .stat-label { color: #888; font-size: 13px; margin-top: 4px; }
     
-    /* Лицензия */
     .license-box {
         margin-top: 30px;
         padding: 25px;
@@ -149,7 +146,6 @@ CSS_STYLES = """
     .license-box strong { color: #ccc; }
     .license-box .highlight { color: #44ff88; }
     
-    /* Об авторе */
     .about-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -190,45 +186,19 @@ CSS_STYLES = """
     }
     .about-card .repo-link:hover { color: #44ff88; text-decoration: underline; }
     
-    /* sbcv iframe */
-    .sbcv-wrapper {
+    .iframe-wrapper {
         background: #0d1116;
         border-radius: 12px;
         overflow: hidden;
         border: 1px solid #1a1a2e;
     }
-    .sbcv-iframe {
+    .iframe-wrapper iframe {
         width: 100%;
         min-height: 900px;
         border: none;
         background: #0d1116;
     }
-    .sbcv-notice {
-        background: #1a1a2e;
-        padding: 40px;
-        border-radius: 12px;
-        text-align: center;
-        border: 1px solid #2a2a3e;
-    }
-    .sbcv-notice h3 { color: #c7ff00; margin-bottom: 15px; font-size: 1.5em; }
-    .sbcv-notice p { color: #888; margin: 10px 0; }
-    .sbcv-notice .btn-primary {
-        display: inline-block;
-        padding: 12px 30px;
-        background: #c7ff00;
-        color: #000;
-        border-radius: 12px;
-        text-decoration: none;
-        font-weight: 700;
-        margin-top: 15px;
-        transition: all 0.3s;
-    }
-    .sbcv-notice .btn-primary:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 40px rgba(199, 255, 0, 0.3);
-    }
     
-    /* Футер */
     .footer {
         text-align: center;
         margin-top: 50px;
@@ -249,7 +219,7 @@ CSS_STYLES = """
             font-size: 12px;
         }
         .about-grid { grid-template-columns: 1fr; }
-        .sbcv-iframe { min-height: 600px; }
+        .iframe-wrapper iframe { min-height: 600px; }
     }
 </style>
 """
@@ -458,9 +428,8 @@ def get_about_html():
     </div>
     '''
 
-# ==================== SBCV (через iframe) ====================
+# ==================== SBCV (iframe) ====================
 def get_sbcv_html():
-    """Возвращает HTML для вкладки sbcv с iframe"""
     return '''
     <div style="margin-bottom:20px;">
         <h2 style="color:#c7ff00; border-left:4px solid #c7ff00; padding-left:15px; margin-bottom:10px;">🎨 sbcv — визуальный конструктор sing-box</h2>
@@ -473,10 +442,9 @@ def get_sbcv_html():
             🔗 Онлайн-версия: <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">sbcv.app</a>
         </p>
     </div>
-    <div class="sbcv-wrapper">
+    <div class="iframe-wrapper">
         <iframe 
             src="https://sbcv.app" 
-            class="sbcv-iframe" 
             allow="clipboard-read; clipboard-write"
             loading="lazy"
             title="sbcv — sing-box configuration visualizer"
@@ -601,7 +569,7 @@ def generate_html():
     </div>
     
     <script>
-    function showPage(page) {
+    function showPage(page) {{
         document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
         const target = document.getElementById('page-' + page);
         if (target) target.classList.add('active');
@@ -609,25 +577,18 @@ def generate_html():
         document.querySelectorAll('.top-menu a').forEach(el => el.classList.remove('active'));
         const links = document.querySelectorAll('.top-menu a');
         const map = {{'home': 0, 'checker': 1, 'sbcv': 2, 'about': 3}};
-        if (map[page] !== undefined && links[map[page]]) {
+        if (map[page] !== undefined && links[map[page]]) {{
             links[map[page]].classList.add('active');
-        }
+        }}
         localStorage.setItem('currentPage', page);
-    }
+    }}
     
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {{
         const saved = localStorage.getItem('currentPage');
-        if (saved && ['home','checker','sbcv','about'].includes(saved)) {
+        if (saved && ['home','checker','sbcv','about'].includes(saved)) {{
             showPage(saved);
-        }
-        // Для iframe sbcv — передаём тему
-        const sbcvFrame = document.querySelector('.sbcv-iframe');
-        if (sbcvFrame) {
-            sbcvFrame.addEventListener('load', function() {{
-                // sbcv сам подхватит тему из системы
-            }});
-        }
-    });
+        }}
+    }});
     </script>
 </body>
 </html>'''
