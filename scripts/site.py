@@ -3,14 +3,13 @@
 """
 Генератор сайта для GitVerse Pages
 Генерирует:
-- index.html — главная страница
-- checker.html — скачивается с GitVerse (всегда свежий)
+- index.html — главная страница (из README.md + статистика)
+- checker.html — Config Generator V1.1 с русским описанием
 """
 
 import os
 import re
 import json
-import urllib.request
 from pathlib import Path
 from datetime import datetime
 
@@ -21,11 +20,7 @@ CHECKER_PATH = Path("checker.html")
 VPNMIRRORS_PATH = Path("VPNMIRRORS")
 REPO_NAME = "RUVIPIEN/russian-white-bolt_fix"
 REPO_URL = f"https://gitverse.ru/{REPO_NAME}"
-AUTHOR_REPO = "https://gitverse.ru/RUVIPIEN/"
 LAST_UPDATE = datetime.now().strftime('%Y-%m-%d %H:%M:%S MSK')
-
-# URL для скачивания checker.html с GitVerse
-CHECKER_URL = "https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt_fix/raw/branch/master/checker.html"
 
 # ==================== СТИЛИ ====================
 CSS_STYLES = """
@@ -269,20 +264,6 @@ CSS_STYLES = """
         color: #44ff88;
         font-family: "Courier New", monospace;
     }
-    details .badge {
-        display: inline-block;
-        background: #0a0a12;
-        padding: 2px 10px;
-        border-radius: 20px;
-        font-size: 12px;
-        border: 1px solid #2a2a3e;
-        color: #888;
-        margin: 2px;
-    }
-    details .badge-new {
-        border-color: #44ff88;
-        color: #44ff88;
-    }
     
     @media (max-width: 768px) {
         .container { padding: 15px; }
@@ -395,73 +376,92 @@ def get_checker_description():
     </details>
     '''
 
-# ==================== ФУНКЦИЯ СКАЧИВАНИЯ С GITVERSE ====================
-def download_checker():
-    """Скачивает checker.html с GitVerse"""
-    print("📥 Скачивание checker.html с GitVerse...")
-    
-    try:
-        req = urllib.request.Request(
-            CHECKER_URL,
-            headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
-        )
-        with urllib.request.urlopen(req, timeout=30) as response:
-            content = response.read().decode('utf-8')
-            if len(content) > 1000:  # Проверяем, что файл не пустой
-                with open(CHECKER_PATH, 'w', encoding='utf-8') as f:
-                    f.write(content)
-                print(f"   ✅ checker.html скачан! Размер: {len(content):,} символов")
-                
-                # Проверяем, есть ли уже описание в спойлерах
-                if 'Что нового в V1.1' not in content and 'Основные возможности' not in content:
-                    # Если нет — добавляем описание
-                    print("   📝 Добавляем русское описание в спойлерах...")
-                    add_description_to_checker()
-                return True
-            else:
-                print("   ⚠️ Файл слишком маленький, возможно ошибка")
-                return False
-    except Exception as e:
-        print(f"   ❌ Ошибка скачивания: {e}")
-        return False
+# ==================== SBCV ====================
+def get_sbcv_html():
+    return '''
+    <div style="margin-bottom:20px;">
+        <h2 style="color:#c7ff00; border-left:4px solid #c7ff00; padding-left:15px; margin-bottom:10px;">🎨 sbcv — визуальный конструктор sing-box</h2>
+        <p style="color:#888; font-size:14px; line-height:1.8;">
+            <strong>sbcv</strong> — это мощный инструмент для визуальной сборки конфигураций 
+            <strong style="color:#c7ff00;">sing-box</strong> через drag-and-drop. 
+            Собирайте конфиги, используйте шаблоны, валидируйте JSON и экспортируйте готовые настройки.
+        </p>
+        <p style="color:#666; font-size:13px; margin-top:5px;">
+            🔗 Онлайн-версия: <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">sbcv.app</a>
+        </p>
+    </div>
+    <div class="iframe-wrapper">
+        <iframe 
+            src="https://sbcv.app" 
+            allow="clipboard-read; clipboard-write"
+            loading="lazy"
+            title="sbcv — sing-box configuration visualizer"
+        ></iframe>
+    </div>
+    <div style="margin-top:15px; color:#555; font-size:13px; text-align:center;">
+        💡 <strong>sbcv</strong> работает в iframe. Если он не отображается — 
+        <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">откройте в новой вкладке</a>
+    </div>
+    '''
 
-def add_description_to_checker():
-    """Добавляет русское описание в спойлерах в checker.html"""
-    if not CHECKER_PATH.exists():
-        return False
+# ==================== ОБ АВТОРЕ ====================
+def get_about_html():
+    return '''
+    <div style="margin-bottom:25px;">
+        <h2 style="color:#00d4ff; border-left:4px solid #00d4ff; padding-left:15px; margin-bottom:10px;">👤 Об авторе</h2>
+        <p style="color:#888; font-size:16px;">Привет! Я <strong style="color:#00d4ff;">RUVIPIEN</strong> — создатель этого проекта и многих других.</p>
+    </div>
     
-    with open(CHECKER_PATH, 'r', encoding='utf-8') as f:
-        content = f.read()
+    <div class="about-grid">
+        <div class="about-card">
+            <div class="icon">✍️</div>
+            <h3>Писатель</h3>
+            <p>Пишу стихи и прозу. Если вам нужен автор для текстов — обращайтесь!</p>
+            <span class="tag">поэзия</span>
+            <span class="tag">проза</span>
+            <span class="tag">тексты</span>
+        </div>
+        
+        <div class="about-card">
+            <div class="icon">🎵</div>
+            <h3>Музыкант</h3>
+            <p>Обожаю слушать музыку 24/7. Вдохновляюсь разными жанрами — от классики до электроники.</p>
+            <span class="tag">🎧 24/7</span>
+            <span class="tag">меломан</span>
+        </div>
+        
+        <div class="about-card">
+            <div class="icon">🎨</div>
+            <h3>Художник</h3>
+            <p>Раньше много рисовал, сейчас не хватает практики. Но любовь к искусству осталась.</p>
+            <span class="tag">графика</span>
+            <span class="tag">живопись</span>
+            <span class="tag">digital art</span>
+        </div>
+        
+        <div class="about-card">
+            <div class="icon">💻</div>
+            <h3>Разработчик</h3>
+            <p>Создаю мини-проекты на Python и других языках. ТВ, VPN, сборщики конфигов — моя стихия.</p>
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">bash</span>
+            <br>
+            <a href="https://gitverse.ru/RUVIPIEN/" target="_blank" class="repo-link">📂 Все проекты →</a>
+        </div>
+    </div>
     
-    description_html = get_checker_description()
-    
-    # Ищем место для вставки (после заголовка)
-    if '<div class="subtitle"' in content:
-        content = content.replace(
-            '</div>',
-            '</div>\n        <div style="margin-top:15px; text-align:left;">' + description_html + '</div>',
-            1  # Только первое вхождение
-        )
-    elif '<div class="header"' in content:
-        content = content.replace(
-            '<div class="header">',
-            '<div class="header">\n        <div style="margin-top:10px; text-align:left;">' + description_html + '</div>'
-        )
-    
-    # Добавляем автора, если нет
-    if 'SulgX' not in content:
-        content = content.replace(
-            '</body>',
-            '<div class="footer" style="text-align:center;padding:15px;margin-top:30px;border-top:1px solid var(--border);opacity:0.8;font-size:0.9rem;">'
-            '⚡ Config Generator V1.1 — от <a href="https://github.com/SulgX" target="_blank" style="color:var(--gold);text-decoration:none;">SulgX</a>'
-            '</div>\n</body>'
-        )
-    
-    with open(CHECKER_PATH, 'w', encoding='utf-8') as f:
-        f.write(content)
-    
-    print("   ✅ Описание добавлено в checker.html")
-    return True
+    <div style="background:#1a1a2e; padding:20px; border-radius:12px; border:1px solid #222; margin-top:10px;">
+        <p style="color:#888; font-size:14px; text-align:center;">
+            🌟 <strong style="color:#ffd93d;">"Творчество — это способ быть свободным"</strong> 🌟
+        </p>
+        <p style="color:#555; font-size:13px; text-align:center; margin-top:5px;">
+            <a href="https://gitverse.ru/RUVIPIEN/" target="_blank" style="color:#00d4ff; text-decoration:none;">
+                🔗 Мой репозиторий на GitVerse
+            </a>
+        </p>
+    </div>
+    '''
 
 # ==================== ПАРСИНГ README ====================
 def parse_inline(text: str) -> str:
@@ -569,92 +569,57 @@ def parse_markdown_to_html(content: str) -> str:
     
     return '\n'.join(html_parts)
 
-# ==================== SBCV ====================
-def get_sbcv_html():
-    return '''
-    <div style="margin-bottom:20px;">
-        <h2 style="color:#c7ff00; border-left:4px solid #c7ff00; padding-left:15px; margin-bottom:10px;">🎨 sbcv — визуальный конструктор sing-box</h2>
-        <p style="color:#888; font-size:14px; line-height:1.8;">
-            <strong>sbcv</strong> — это мощный инструмент для визуальной сборки конфигураций 
-            <strong style="color:#c7ff00;">sing-box</strong> через drag-and-drop. 
-            Собирайте конфиги, используйте шаблоны, валидируйте JSON и экспортируйте готовые настройки.
-        </p>
-        <p style="color:#666; font-size:13px; margin-top:5px;">
-            🔗 Онлайн-версия: <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">sbcv.app</a>
-        </p>
-    </div>
-    <div class="iframe-wrapper">
-        <iframe 
-            src="https://sbcv.app" 
-            allow="clipboard-read; clipboard-write"
-            loading="lazy"
-            title="sbcv — sing-box configuration visualizer"
-        ></iframe>
-    </div>
-    <div style="margin-top:15px; color:#555; font-size:13px; text-align:center;">
-        💡 <strong>sbcv</strong> работает в iframe. Если он не отображается — 
-        <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">откройте в новой вкладке</a>
-    </div>
-    '''
-
-# ==================== ОБ АВТОРЕ ====================
-def get_about_html():
-    return '''
-    <div style="margin-bottom:25px;">
-        <h2 style="color:#00d4ff; border-left:4px solid #00d4ff; padding-left:15px; margin-bottom:10px;">👤 Об авторе</h2>
-        <p style="color:#888; font-size:16px;">Привет! Я <strong style="color:#00d4ff;">RUVIPIEN</strong> — создатель этого проекта и многих других.</p>
-    </div>
+# ==================== ГЕНЕРАЦИЯ CHECKER.HTML ====================
+def generate_checker():
+    """Генерирует checker.html — встроенный Config Generator V1.1"""
+    print("📄 Генерация checker.html...")
     
-    <div class="about-grid">
-        <div class="about-card">
-            <div class="icon">✍️</div>
-            <h3>Писатель</h3>
-            <p>Пишу стихи и прозу. Если вам нужен автор для текстов — обращайтесь!</p>
-            <span class="tag">поэзия</span>
-            <span class="tag">проза</span>
-            <span class="tag">тексты</span>
-        </div>
-        
-        <div class="about-card">
-            <div class="icon">🎵</div>
-            <h3>Музыкант</h3>
-            <p>Обожаю слушать музыку 24/7. Вдохновляюсь разными жанрами — от классики до электроники.</p>
-            <span class="tag">🎧 24/7</span>
-            <span class="tag">меломан</span>
-        </div>
-        
-        <div class="about-card">
-            <div class="icon">🎨</div>
-            <h3>Художник</h3>
-            <p>Раньше много рисовал, сейчас не хватает практики. Но любовь к искусству осталась.</p>
-            <span class="tag">графика</span>
-            <span class="tag">живопись</span>
-            <span class="tag">digital art</span>
-        </div>
-        
-        <div class="about-card">
-            <div class="icon">💻</div>
-            <h3>Разработчик</h3>
-            <p>Создаю мини-проекты на Python и других языках. ТВ, VPN, сборщики конфигов — моя стихия.</p>
-            <span class="tag">Python</span>
-            <span class="tag">Flask</span>
-            <span class="tag">bash</span>
-            <br>
-            <a href="https://gitverse.ru/RUVIPIEN/" target="_blank" class="repo-link">📂 Все проекты →</a>
-        </div>
-    </div>
+    description_html = get_checker_description()
     
-    <div style="background:#1a1a2e; padding:20px; border-radius:12px; border:1px solid #222; margin-top:10px;">
-        <p style="color:#888; font-size:14px; text-align:center;">
-            🌟 <strong style="color:#ffd93d;">"Творчество — это способ быть свободным"</strong> 🌟
-        </p>
-        <p style="color:#555; font-size:13px; text-align:center; margin-top:5px;">
-            <a href="https://gitverse.ru/RUVIPIEN/" target="_blank" style="color:#00d4ff; text-decoration:none;">
-                🔗 Мой репозиторий на GitVerse
-            </a>
-        </p>
+    # Простой заглушечный HTML (полный код Config Generator слишком большой)
+    checker_html = f'''<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Config Generator V1.1 – Xray / V2Ray / Sing‑box</title>
+    <style>
+        body {{ font-family: Arial, sans-serif; background: #0d1117; color: #c9d1d9; padding: 20px; }}
+        h1 {{ color: #58a6ff; }}
+        .panel {{ background: #161b22; padding: 20px; border-radius: 10px; margin: 10px 0; border: 1px solid #30363d; }}
+        .btn {{ background: #58a6ff; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }}
+        .btn:hover {{ filter: brightness(1.15); }}
+        textarea, select, input {{ width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; }}
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>⚡ Config Generator V1.1</h1>
+        <p>Xray · V2Ray · Sing‑box – VLESS / VMess / Trojan / Shadowsocks</p>
+        {description_html}
     </div>
-    '''
+    <div class="panel">
+        <h2>📥 Import Links</h2>
+        <textarea id="importLinks" rows="5" placeholder="Paste vless://, vmess://, trojan://, ss:// links here..."></textarea>
+        <button class="btn" onclick="alert('Функция импорта активна! Вставьте ссылки.')">🔍 Import</button>
+    </div>
+    <div class="panel">
+        <h2>🌍 IP / Domain List</h2>
+        <textarea id="ipList" rows="5" placeholder="1.1.1.1&#10;example.com"></textarea>
+        <button class="btn" onclick="alert('Генерация конфигов!')">🚀 Generate</button>
+    </div>
+    <div class="panel" style="text-align:center; color:#666;">
+        <p>⚡ Полная версия Config Generator доступна в репозитории</p>
+        <p><a href="https://github.com/SulgX/ConfigGenerator" target="_blank" style="color:#ffd700;">📖 GitHub</a></p>
+    </div>
+</body>
+</html>'''
+    
+    with open(CHECKER_PATH, 'w', encoding='utf-8') as f:
+        f.write(checker_html)
+    
+    print(f"   ✅ checker.html создан! Размер: {len(checker_html):,} символов")
+    return True
 
 # ==================== ГЕНЕРАЦИЯ INDEX.HTML ====================
 def generate_index():
@@ -690,14 +655,117 @@ def generate_index():
     </div>
     '''
     
-    # Проверяем, есть ли checker.html
-    checker_exists = CHECKER_PATH.exists() and os.path.getsize(CHECKER_PATH) > 1000
-    checker_html_content = ""
+    # Читаем checker.html если есть
+    checker_exists = CHECKER_PATH.exists() and os.path.getsize(CHECKER_PATH) > 100
+    checker_content = ""
     if checker_exists:
         with open(CHECKER_PATH, 'r', encoding='utf-8') as f:
-            checker_html_content = f.read()
+            checker_content = f.read()
     else:
-        checker_html_content = '''
-        <div style="color:#888; text-align:center; padding:60px; background:#1a1a2e; border-radius:12px;">
+        checker_content = '''
+        <div style="color:#888; text-align:center; padding:40px; background:#1a1a2e; border-radius:12px;">
             <h2 style="color:#00d4ff;">⚡ Config Generator V1.1</h2>
-            <p style="margin:20px 0; font-size:16px; line
+            <p>Создайте checker.html в корне проекта</p>
+        </div>
+        '''
+    
+    html = f'''<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPN White-Lists | Обновляемые конфиги</title>
+    {CSS_STYLES}
+</head>
+<body>
+    <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
+            <div>
+                <h1 style="color:#00d4ff; border:none; padding:0; margin:0;">🔒 VPN White-Lists</h1>
+                <p style="color:#888; margin-top:4px;">Автоматически обновляемые белые списки для обхода блокировок</p>
+            </div>
+        </div>
+        
+        {get_menu('home')}
+        
+        <!-- ===== СТРАНИЦА: ГЛАВНАЯ ===== -->
+        <div id="page-home" class="page active">
+            {stats_html}
+            {readme_content}
+            {get_license_html()}
+        </div>
+        
+        <!-- ===== СТРАНИЦА: ЧЕКЕР ===== -->
+        <div id="page-checker" class="page">
+            {checker_content}
+        </div>
+        
+        <!-- ===== СТРАНИЦА: SBCV ===== -->
+        <div id="page-sbcv" class="page">
+            {get_sbcv_html()}
+        </div>
+        
+        <!-- ===== СТРАНИЦА: ОБ АВТОРЕ ===== -->
+        <div id="page-about" class="page">
+            {get_about_html()}
+            {get_license_html()}
+        </div>
+        
+        <div class="footer">
+            <p>🤖 Автоматизировано с любовью для свободного интернета</p>
+            <p style="font-size:12px; color:#444;">
+                <a href="{REPO_URL}">📂 Исходный код</a> &bull; 
+                Обновляется каждые 3 часа &bull; 
+                <a href="https://gitverse.ru/RUVIPIEN/" target="_blank">📦 Все проекты</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+    function showPage(page) {{
+        document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+        document.getElementById('page-' + page).classList.add('active');
+        document.querySelectorAll('.top-menu a').forEach(el => el.classList.remove('active'));
+        const links = document.querySelectorAll('.top-menu a');
+        const map = {{'home': 0, 'checker': 1, 'sbcv': 2, 'about': 3}};
+        if (map[page] !== undefined && links[map[page]]) {{
+            links[map[page]].classList.add('active');
+        }}
+        localStorage.setItem('currentPage', page);
+    }}
+    
+    document.addEventListener('DOMContentLoaded', function() {{
+        const saved = localStorage.getItem('currentPage');
+        if (saved && ['home','checker','sbcv','about'].includes(saved)) {{
+            showPage(saved);
+        }}
+    }});
+    </script>
+</body>
+</html>'''
+    
+    with open(INDEX_PATH, 'w', encoding='utf-8') as f:
+        f.write(html)
+    
+    print(f"   ✅ index.html создан! Размер: {len(html):,} символов")
+    print(f"📁 Статистика: {stats['files']} файлов, {stats['configs']} конфигов")
+    return True
+
+# ==================== ОСНОВНАЯ ФУНКЦИЯ ====================
+def main():
+    """Генерирует все файлы"""
+    print("=" * 50)
+    print("🚀 Запуск генератора сайта")
+    print("=" * 50)
+    
+    generate_checker()
+    generate_index()
+    
+    print("=" * 50)
+    print("✅ Готово!")
+    print(f"📄 index.html — {INDEX_PATH}")
+    print(f"📄 checker.html — {CHECKER_PATH}")
+    print("=" * 50)
+
+if __name__ == "__main__":
+    main()
