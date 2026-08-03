@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Генератор сайта для GitVerse Pages
-Анализирует структуру README.md и создаёт красивый index.html
+Генератор сайта для GitVerse Pages с интеграцией Config Generator V1.1
+Страницы:
+- / - главная (README)
+- /checker - Config Generator V1.1 (Xray / V2Ray / Sing‑box)
+- /about - информация об авторе
 """
 
 import os
@@ -10,17 +13,19 @@ import re
 import json
 from pathlib import Path
 from datetime import datetime
+from flask import Flask, render_template_string, request, jsonify
+
+app = Flask(__name__)
 
 # ==================== КОНФИГУРАЦИЯ ====================
 README_PATH = Path("README.md")
-INDEX_PATH = Path("index.html")
-PAGES_CONFIG_PATH = Path(".gitverse/pages.yml")
 VPNMIRRORS_PATH = Path("VPNMIRRORS")
 REPO_NAME = "RUVIPIEN/russian-white-bolt_fix"
 REPO_URL = f"https://gitverse.ru/{REPO_NAME}"
+AUTHOR_REPO = "https://gitverse.ru/RUVIPIEN/"
 
-# ==================== СТИЛИ ====================
-CSS_STYLES = """
+# ==================== СТИЛИ ОБЩИЕ ====================
+COMMON_CSS = """
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -31,7 +36,7 @@ CSS_STYLES = """
         padding: 20px;
     }
     .container {
-        max-width: 1200px;
+        max-width: 1400px;
         margin: 0 auto;
         background: #0f0f1a;
         padding: 30px;
@@ -42,19 +47,21 @@ CSS_STYLES = """
     /* ===== МЕНЮ ===== */
     .top-menu {
         display: flex;
-        gap: 20px;
+        gap: 10px;
         flex-wrap: wrap;
         padding: 12px 0;
         margin-bottom: 25px;
         border-bottom: 1px solid #1a1a2e;
+        align-items: center;
     }
     .top-menu a {
         color: #888;
         text-decoration: none;
         font-size: 14px;
         transition: all 0.3s;
-        padding: 4px 10px;
+        padding: 6px 14px;
         border-radius: 6px;
+        font-weight: 500;
     }
     .top-menu a:hover {
         color: #00d4ff;
@@ -64,147 +71,47 @@ CSS_STYLES = """
         color: #00d4ff;
         background: #1a1a2e;
     }
-    /* ===== ОСТАЛЬНЫЕ СТИЛИ ===== */
-    h1 { color: #00d4ff; font-size: 2.4em; border-bottom: 2px solid #00d4ff; padding-bottom: 15px; margin-bottom: 25px; text-shadow: 0 0 30px rgba(0,212,255,0.2); }
-    h2 { color: #00d4ff; margin-top: 40px; font-size: 1.8em; border-left: 4px solid #00d4ff; padding-left: 15px; }
-    h3 { color: #44ff88; margin-top: 30px; font-size: 1.3em; }
-    h4 { color: #ffaa44; margin-top: 20px; }
-    a { color: #00d4ff; text-decoration: none; transition: all 0.3s; }
-    a:hover { color: #44ff88; text-decoration: underline; }
-    p { margin: 12px 0; }
-    ul, ol { margin: 12px 0 12px 25px; }
-    li { margin: 6px 0; }
-    img { max-width: 100%; border-radius: 8px; border: 1px solid #1a1a2e; }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        font-size: 14px;
-        border-radius: 8px;
-        overflow: hidden;
-        display: block;
-        overflow-x: auto;
-    }
-    th {
-        background: linear-gradient(135deg, #1a1a2e, #16213e);
-        color: #00d4ff;
-        padding: 14px 12px;
-        text-align: left;
-        font-weight: 600;
-        border-bottom: 2px solid #00d4ff;
-        white-space: nowrap;
-    }
-    td {
-        padding: 12px;
-        border-bottom: 1px solid #1a1a2e;
-        vertical-align: middle;
-    }
-    tr:hover td { background: #1a1a2e; }
-    code {
-        background: #1a1a2e;
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-size: 13px;
-        color: #44ff88;
-        font-family: "Courier New", monospace;
-        word-break: break-all;
-    }
-    pre {
-        background: #0a0a12;
-        padding: 15px;
-        border-radius: 8px;
-        overflow-x: auto;
-        border: 1px solid #1a1a2e;
-        font-size: 13px;
-    }
-    pre code {
-        background: none;
-        padding: 0;
-        color: #e0e0e0;
-    }
-    .badge {
-        display: inline-block;
-        background: #1a1a2e;
-        padding: 4px 12px;
+    .top-menu a.checker-btn {
+        background: linear-gradient(135deg, #00d4ff, #44ff88);
+        color: #000 !important;
+        font-weight: 700;
+        padding: 6px 18px;
         border-radius: 20px;
-        font-size: 12px;
-        border: 1px solid #333;
-        margin: 2px;
     }
-    .download-btn {
-        background: #00d4ff;
-        color: #000 !important;
-        padding: 6px 14px;
-        border-radius: 6px;
-        font-weight: bold;
-        font-size: 13px;
-        display: inline-block;
-        transition: all 0.3s;
-    }
-    .download-btn:hover {
-        background: #44ff88;
-        text-decoration: none !important;
+    .top-menu a.checker-btn:hover {
         transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
     }
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
-        margin: 20px 0;
-    }
-    .stat-card {
-        background: #1a1a2e;
-        padding: 15px;
-        border-radius: 8px;
-        text-align: center;
-        border: 1px solid #222;
-    }
-    .stat-number {
-        font-size: 28px;
-        font-weight: bold;
-        color: #00d4ff;
-    }
-    .stat-label {
-        color: #888;
-        font-size: 13px;
-        margin-top: 4px;
-    }
-    details {
-        background: #111;
-        padding: 15px;
-        border-radius: 8px;
-        margin: 15px 0;
-        border: 1px solid #1a1a2e;
-    }
-    details > summary {
-        cursor: pointer;
-        color: #00d4ff;
-        font-weight: bold;
-        font-size: 16px;
-        padding: 5px 0;
-    }
-    details > summary:hover { color: #44ff88; }
-    details > *:not(summary) { 
-        padding: 10px 0 0 10px; 
-        border-left: 2px solid #1a1a2e;
-        margin-left: 10px;
-    }
-    .repo-link {
-        display: inline-block;
-        background: #1a1a2e;
-        padding: 8px 16px;
-        border-radius: 8px;
-        border: 1px solid #00d4ff;
-        color: #00d4ff;
-        font-size: 14px;
-        transition: all 0.3s;
-    }
-    .repo-link:hover {
-        background: #00d4ff;
+    .top-menu a.about-btn {
+        background: linear-gradient(135deg, #ff6b6b, #ffd93d);
         color: #000 !important;
-        text-decoration: none;
+        font-weight: 700;
+        padding: 6px 18px;
+        border-radius: 20px;
     }
-    /* ===== ФУТЕР С ЛИЦЕНЗИЕЙ ===== */
+    .top-menu a.about-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+    }
+    .top-menu .menu-spacer { flex: 1; }
+    .top-menu .repo-badge {
+        color: #555;
+        font-size: 12px;
+        padding: 4px 12px;
+        background: #1a1a2e;
+        border-radius: 20px;
+    }
+    .top-menu .repo-badge a { color: #00d4ff; padding: 0; }
+    .top-menu .repo-badge a:hover { background: none; color: #44ff88; }
+    
+    @media (max-width: 768px) {
+        .container { padding: 15px; }
+        .top-menu { gap: 6px; }
+        .top-menu a { font-size: 12px; padding: 4px 10px; }
+        .top-menu a.checker-btn, .top-menu a.about-btn { padding: 4px 14px; font-size: 12px; }
+    }
+    
+    /* ===== ФУТЕР ===== */
     .footer {
         text-align: center;
         margin-top: 50px;
@@ -215,44 +122,94 @@ CSS_STYLES = """
     }
     .footer a { color: #666; }
     .footer a:hover { color: #00d4ff; }
-    .footer-license {
-        font-size: 12px;
-        color: #444;
-        margin-top: 10px;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-        line-height: 1.6;
-    }
-    .footer-license strong { color: #666; }
-    .update-badge {
-        display: inline-block;
+    
+    /* ===== ЛИЦЕНЗИЯ ===== */
+    .license-box {
+        margin-top: 30px;
+        padding: 25px;
         background: #1a1a2e;
-        padding: 4px 12px;
+        border-radius: 12px;
+        border-left: 4px solid #ffaa44;
+    }
+    .license-box h3 { color: #ffaa44; margin-top: 0; font-size: 1.3em; }
+    .license-box p { color: #999; font-size: 14px; line-height: 1.8; }
+    .license-box strong { color: #ccc; }
+    .license-box .highlight { color: #44ff88; }
+    
+    /* ===== ОБ АВТОРЕ ===== */
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        margin: 25px 0;
+    }
+    .about-card {
+        background: #1a1a2e;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #222;
+        transition: all 0.3s;
+    }
+    .about-card:hover {
+        border-color: #00d4ff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 40px rgba(0, 212, 255, 0.05);
+    }
+    .about-card .icon { font-size: 2.5em; margin-bottom: 10px; }
+    .about-card h3 { color: #00d4ff; font-size: 1.2em; margin-bottom: 8px; }
+    .about-card p { color: #999; font-size: 14px; line-height: 1.6; }
+    .about-card .tag {
+        display: inline-block;
+        background: #0a0a12;
+        padding: 2px 12px;
         border-radius: 20px;
-        font-size: 11px;
-        border: 1px solid #44ff88;
+        font-size: 12px;
         color: #44ff88;
-        margin-left: 10px;
+        border: 1px solid #1a1a2e;
+        margin: 3px 3px 3px 0;
     }
+    .about-card .repo-link {
+        display: inline-block;
+        margin-top: 10px;
+        color: #00d4ff;
+        font-size: 13px;
+        text-decoration: none;
+    }
+    .about-card .repo-link:hover { color: #44ff88; text-decoration: underline; }
+    
     @media (max-width: 768px) {
-        .container { padding: 15px; }
-        table { font-size: 12px; }
-        td, th { padding: 8px 6px; }
-        .stats-grid { grid-template-columns: repeat(2, 1fr); }
-        h1 { font-size: 1.8em; }
-        h2 { font-size: 1.4em; }
-        .top-menu { gap: 10px; }
-        .top-menu a { font-size: 12px; padding: 4px 8px; }
+        .about-grid { grid-template-columns: 1fr; }
     }
-    .glow-text { color: #00d4ff; text-shadow: 0 0 20px rgba(0,212,255,0.3); }
 </style>
 """
 
-# ==================== АНАЛИЗ СТРУКТУРЫ README ====================
+# ==================== HTML КОНСТРУКТОРЫ ====================
+
+def get_menu(active_page='/'):
+    """Генерирует меню с подсветкой активной страницы"""
+    pages = {
+        '/': '🏠 Главная',
+        '/checker': '⚡ Чекер',
+        '/about': '👤 Об авторе'
+    }
+    
+    menu_html = '<div class="top-menu">\n'
+    for url, label in pages.items():
+        is_active = 'active' if url == active_page else ''
+        if url == '/checker':
+            is_active += ' checker-btn'
+        elif url == '/about':
+            is_active += ' about-btn'
+        menu_html += f'    <a href="{url}" class="{is_active}">{label}</a>\n'
+    
+    menu_html += f'    <span class="menu-spacer"></span>\n'
+    menu_html += f'    <span class="repo-badge">📂 <a href="{REPO_URL}" target="_blank">Репозиторий</a></span>\n'
+    menu_html += '</div>\n'
+    return menu_html
+
+# ==================== АНАЛИЗ README ====================
 
 def parse_inline(text: str) -> str:
-    """Обрабатывает inline-элементы: ссылки, изображения, код, жирный, курсив"""
     text = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', lambda m: f'<img src="{m.group(2)}" alt="{m.group(1)}" loading="lazy">', text)
     text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', lambda m: f'<a href="{m.group(2)}" target="_blank">{m.group(1)}</a>', text)
     text = re.sub(r'\*\*([^*]+)\*\*', r'<strong>\1</strong>', text)
@@ -261,21 +218,17 @@ def parse_inline(text: str) -> str:
     return text
 
 def parse_markdown_to_html(content: str) -> str:
-    """Анализирует структуру README и превращает в красивый HTML"""
     lines = content.split('\n')
     html_parts = []
     in_code_block = False
     in_table = False
     in_list = False
     list_type = None
-    in_details = False
-    details_stack = []
     
     i = 0
     while i < len(lines):
         line = lines[i]
         
-        # ===== КОДОВЫЕ БЛОКИ =====
         if line.startswith('```'):
             in_code_block = not in_code_block
             if in_code_block:
@@ -291,7 +244,6 @@ def parse_markdown_to_html(content: str) -> str:
             i += 1
             continue
         
-        # ===== ПУСТЫЕ СТРОКИ =====
         if not line.strip():
             if in_table:
                 in_table = False
@@ -303,30 +255,6 @@ def parse_markdown_to_html(content: str) -> str:
             i += 1
             continue
         
-        # ===== СПОЙЛЕРЫ (details/summary) =====
-        if line.strip().startswith('<details'):
-            in_details = True
-            details_stack.append('details')
-            html_parts.append(line)
-            i += 1
-            continue
-        if line.strip().startswith('</details>'):
-            in_details = False
-            if details_stack:
-                details_stack.pop()
-            html_parts.append(line)
-            i += 1
-            continue
-        if line.strip().startswith('<summary'):
-            html_parts.append(line)
-            i += 1
-            continue
-        if line.strip().startswith('</summary>'):
-            html_parts.append(line)
-            i += 1
-            continue
-        
-        # ===== ЗАГОЛОВКИ =====
         header_match = re.match(r'^(#{1,6})\s+(.+)$', line)
         if header_match:
             level = len(header_match.group(1))
@@ -335,7 +263,6 @@ def parse_markdown_to_html(content: str) -> str:
             i += 1
             continue
         
-        # ===== ТАБЛИЦЫ =====
         if '|' in line and not line.startswith('|---'):
             if not in_table:
                 in_table = True
@@ -360,7 +287,6 @@ def parse_markdown_to_html(content: str) -> str:
             html_parts.append('</tbody></table>')
             continue
         
-        # ===== СПИСКИ =====
         ul_match = re.match(r'^[\-\*]\s+(.+)$', line)
         ol_match = re.match(r'^\d+\.\s+(.+)$', line)
         
@@ -378,17 +304,9 @@ def parse_markdown_to_html(content: str) -> str:
             html_parts.append('</ul>' if list_type == 'ul' else '</ol>')
             continue
         
-        # ===== ГОРИЗОНТАЛЬНАЯ ЛИНИЯ =====
-        if re.match(r'^[\-\*_]{3,}$', line.strip()):
-            html_parts.append('<hr>')
-            i += 1
-            continue
-        
-        # ===== ОБЫЧНЫЙ АБЗАЦ =====
         html_parts.append(f'<p>{parse_inline(line)}</p>')
         i += 1
     
-    # Закрываем незакрытые элементы
     if in_table:
         html_parts.append('</tbody></table>')
     if in_list:
@@ -396,46 +314,111 @@ def parse_markdown_to_html(content: str) -> str:
     
     return '\n'.join(html_parts)
 
-# ==================== ОСНОВНАЯ ФУНКЦИЯ ====================
+# ==================== ЛИЦЕНЗИЯ ====================
 
-def ensure_pages_config():
-    """Создаёт конфиг для GitVerse Pages если его нет"""
-    PAGES_CONFIG_PATH.parent.mkdir(parents=True, exist_ok=True)
-    if not PAGES_CONFIG_PATH.exists():
-        with open(PAGES_CONFIG_PATH, 'w', encoding='utf-8') as f:
-            f.write("""# GitVerse Pages Configuration
-enabled: true
-source: ./
-output: ./
-""")
-        print("✅ Создан .gitverse/pages.yml")
-        return True
-    return False
+def get_license_html():
+    """Возвращает HTML-блок с лицензией и отказом от ответственности"""
+    return f"""
+    <div class="license-box">
+        <h3>📄 Лицензия и отказ от ответственности</h3>
+        <p>
+            <strong>Источники:</strong> Все конфигурации собраны из открытых интернет-источников.
+            Мы не являемся авторами этих конфигураций и не несём ответственности за их содержимое.
+        </p>
+        <p>
+            <strong>Отказ от ответственности:</strong> Данный сайт и репозиторий созданы исключительно 
+            в <strong>информационных и образовательных целях</strong>. Мы не пропагандируем и не поощряем 
+            использование VPN в обход законодательства. Все материалы предоставлены <strong>"как есть"</strong> 
+            без каких-либо гарантий.
+        </p>
+        <p>
+            <strong>Авторские права:</strong> Все права на контент принадлежат их законным владельцам. 
+            Если вы являетесь правообладателем и считаете, что ваш материал используется неправомерно, 
+            свяжитесь с нами для его удаления.
+        </p>
+        <p style="margin-top:10px; color:#666; font-size:13px;">
+            🔄 Последнее обновление: <span class="highlight">{datetime.now().strftime('%Y-%m-%d %H:%M:%S MSK')}</span>
+        </p>
+    </div>
+    """
 
-def generate_html():
-    """Генерирует index.html из README.md с анализом структуры"""
-    print("🌐 Генерация сайта с анализом структуры README...")
+# ==================== ОБ АВТОРЕ ====================
+
+def get_about_html():
+    """Возвращает HTML-блок с информацией об авторе"""
+    return """
+    <div style="margin-bottom:25px;">
+        <h2 style="color:#00d4ff; border-left:4px solid #00d4ff; padding-left:15px; margin-bottom:10px;">👤 Об авторе</h2>
+        <p style="color:#888; font-size:16px;">Привет! Я <strong style="color:#00d4ff;">RUVIPIEN</strong> — создатель этого проекта и многих других.</p>
+    </div>
     
-    # Создаём конфиг Pages
-    ensure_pages_config()
+    <div class="about-grid">
+        <div class="about-card">
+            <div class="icon">✍️</div>
+            <h3>Писатель</h3>
+            <p>Пишу стихи и прозу. Если вам нужен автор для текстов — обращайтесь!</p>
+            <span class="tag">поэзия</span>
+            <span class="tag">проза</span>
+            <span class="tag">тексты</span>
+        </div>
+        
+        <div class="about-card">
+            <div class="icon">🎵</div>
+            <h3>Музыкант</h3>
+            <p>Обожаю слушать музыку 24/7. Вдохновляюсь разными жанрами — от классики до электроники.</p>
+            <span class="tag">🎧 24/7</span>
+            <span class="tag">меломан</span>
+        </div>
+        
+        <div class="about-card">
+            <div class="icon">🎨</div>
+            <h3>Художник</h3>
+            <p>Раньше много рисовал, сейчас не хватает практики. Но любовь к искусству осталась.</p>
+            <span class="tag">графика</span>
+            <span class="tag">живопись</span>
+            <span class="tag">digital art</span>
+        </div>
+        
+        <div class="about-card">
+            <div class="icon">💻</div>
+            <h3>Разработчик</h3>
+            <p>Создаю мини-проекты на Python и других языках. ТВ, VPN, сборщики конфигов — моя стихия.</p>
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">bash</span>
+            <br>
+            <a href="https://gitverse.ru/RUVIPIEN/" target="_blank" class="repo-link">📂 Все проекты →</a>
+        </div>
+    </div>
     
+    <div style="background:#1a1a2e; padding:20px; border-radius:12px; border:1px solid #222; margin-top:10px;">
+        <p style="color:#888; font-size:14px; text-align:center;">
+            🌟 <strong style="color:#ffd93d;">"Творчество — это способ быть свободным"</strong> 🌟
+        </p>
+        <p style="color:#555; font-size:13px; text-align:center; margin-top:5px;">
+            <a href="https://gitverse.ru/RUVIPIEN/" target="_blank" style="color:#00d4ff; text-decoration:none;">
+                🔗 Мой репозиторий на GitVerse
+            </a>
+        </p>
+    </div>
+    """
+
+# ==================== FLASK МАРШРУТЫ ====================
+
+@app.route('/')
+def index():
+    """Главная страница с README"""
     if not README_PATH.exists():
-        print("⚠️ README.md не найден!")
-        return False
+        return "<h1>README.md не найден</h1>"
     
     with open(README_PATH, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # ===== АНАЛИЗИРУЕМ СТРУКТУРУ =====
-    print("📊 Анализ структуры README.md...")
-    
-    # Собираем статистику
+    # Статистика
     stats = {'files': 0, 'configs': 0, 'sources': 0}
-    
     if VPNMIRRORS_PATH.exists():
         for _ in VPNMIRRORS_PATH.rglob('*.txt'):
             stats['files'] += 1
-    
     metadata_path = VPNMIRRORS_PATH / "metadata.json"
     if metadata_path.exists():
         with open(metadata_path, 'r', encoding='utf-8') as f:
@@ -443,126 +426,193 @@ def generate_html():
             stats['sources'] = meta.get('stats', {}).get('success', 0)
             stats['configs'] = meta.get('stats', {}).get('total_keys', 0)
     
-    # Находим все заголовки для меню
-    headers = []
-    for line in content.split('\n'):
-        match = re.match(r'^(#{2,3})\s+(.+)$', line)
-        if match:
-            level = len(match.group(1))
-            title = match.group(2).strip()
-            # Убираем эмодзи и спецсимволы для ID
-            anchor = re.sub(r'[^a-zA-Z0-9]', '', title.lower())[:30]
-            headers.append({'level': level, 'title': title, 'anchor': anchor})
-    
-    # Парсим содержимое
     parsed_content = parse_markdown_to_html(content)
     
-    # ===== СОЗДАЁМ МЕНЮ =====
-    menu_html = '<div class="top-menu">\n'
-    menu_html += f'<a href="#top" class="active">🏠 Главная</a>\n'
-    for h in headers[:8]:  # Ограничиваем меню 8 пунктами
-        menu_html += f'<a href="#{h["anchor"]}">{h["title"]}</a>\n'
-    menu_html += f'<a href="#license">📄 Лицензия</a>\n'
-    menu_html += '</div>\n'
-    
-    # ===== ЛИЦЕНЗИЯ =====
-    license_text = """
-    <div id="license" style="margin-top: 30px; padding: 20px; background: #1a1a2e; border-radius: 8px; border-left: 3px solid #ffaa44;">
-        <h3 style="color: #ffaa44; margin-top: 0;">📄 Лицензия и отказ от ответственности</h3>
-        <p style="color: #888; font-size: 14px; line-height: 1.8;">
-            <strong style="color: #aaa;">Источники:</strong> Все конфигурации собраны из открытых интернет-источников.
-            Мы не являемся авторами этих конфигураций и не несём ответственности за их содержимое.
-        </p>
-        <p style="color: #888; font-size: 14px; line-height: 1.8;">
-            <strong style="color: #aaa;">Отказ от ответственности:</strong> Данный сайт и репозиторий созданы исключительно 
-            в <strong style="color: #aaa;">информационных и образовательных целях</strong>. Мы не пропагандируем и не поощряем 
-            использование VPN в обход законодательства. Все материалы предоставлены "как есть" без каких-либо гарантий.
-        </p>
-        <p style="color: #888; font-size: 14px; line-height: 1.8;">
-            <strong style="color: #aaa;">Авторские права:</strong> Все права на контент принадлежат их законным владельцам. 
-            Если вы являетесь правообладателем и считаете, что ваш материал используется неправомерно, 
-            свяжитесь с нами для его удаления.
-        </p>
-        <p style="color: #666; font-size: 13px; margin-top: 10px;">
-            🔄 Последнее обновление: <span style="color: #44ff88;">{}</span>
-        </p>
+    stats_html = f"""
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; margin:20px 0;">
+        <div style="background:#1a1a2e; padding:15px; border-radius:8px; text-align:center; border:1px solid #222;">
+            <div style="font-size:28px; font-weight:bold; color:#00d4ff;">{stats['files']}</div>
+            <div style="color:#888; font-size:13px;">📁 Файлов</div>
+        </div>
+        <div style="background:#1a1a2e; padding:15px; border-radius:8px; text-align:center; border:1px solid #222;">
+            <div style="font-size:28px; font-weight:bold; color:#00d4ff;">{stats['configs']}</div>
+            <div style="color:#888; font-size:13px;">🔗 Конфигураций</div>
+        </div>
+        <div style="background:#1a1a2e; padding:15px; border-radius:8px; text-align:center; border:1px solid #222;">
+            <div style="font-size:28px; font-weight:bold; color:#00d4ff;">{stats['sources']}</div>
+            <div style="color:#888; font-size:13px;">✅ Источников</div>
+        </div>
+        <div style="background:#1a1a2e; padding:15px; border-radius:8px; text-align:center; border:1px solid #222;">
+            <div style="font-size:28px; font-weight:bold; color:#44ff88;">{datetime.now().strftime('%d.%m')}</div>
+            <div style="color:#888; font-size:13px;">📅 Обновлено</div>
+        </div>
     </div>
-    """.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S MSK'))
+    """
     
-    # ===== ФОРМИРУЕМ HTML =====
-    html_content = f"""<!DOCTYPE html>
+    html = f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VPN White-Lists | Обновляемые конфиги</title>
-    <meta name="description" content="Автоматически обновляемые белые списки для обхода блокировок в России. {stats['configs']} конфигураций, {stats['files']} файлов.">
-    <meta property="og:title" content="VPN White-Lists для России">
-    <meta property="og:description" content="Автоматически обновляемые белые списки. {stats['configs']} конфигураций.">
-    <meta name="twitter:card" content="summary_large_image">
-    <link rel="canonical" href="{REPO_URL}">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔒</text></svg>">
-    {CSS_STYLES}
+    {COMMON_CSS}
 </head>
 <body>
-    <div class="container" id="top">
-        <!-- Шапка -->
+    <div class="container">
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
             <div>
-                <h1 style="border:none; padding:0; margin:0;">🔒 VPN White-Lists</h1>
+                <h1 style="color:#00d4ff; border:none; padding:0; margin:0;">🔒 VPN White-Lists</h1>
                 <p style="color:#888; margin-top:4px;">Автоматически обновляемые белые списки для обхода блокировок</p>
             </div>
-            <div style="text-align:right;">
-                <span class="badge">🔄 Обновлено: {datetime.now().strftime('%H:%M MSK')}</span>
-                <br>
-                <a href="{REPO_URL}" class="repo-link" target="_blank">📂 Репозиторий</a>
-            </div>
         </div>
         
-        <!-- Меню -->
-        {menu_html}
-        
-        <!-- Статистика -->
-        <div class="stats-grid">
-            <div class="stat-card"><div class="stat-number">{stats['files']}</div><div class="stat-label">📁 Файлов</div></div>
-            <div class="stat-card"><div class="stat-number">{stats['configs']}</div><div class="stat-label">🔗 Конфигураций</div></div>
-            <div class="stat-card"><div class="stat-number">{stats['sources']}</div><div class="stat-label">✅ Рабочих источников</div></div>
-            <div class="stat-card"><div class="stat-number">{datetime.now().strftime('%d.%m.%Y')}</div><div class="stat-label">📅 Последнее обновление</div></div>
-        </div>
-        
-        <!-- Содержимое README -->
+        {get_menu('/')}
+        {stats_html}
         {parsed_content}
+        {get_license_html()}
         
-        <!-- Лицензия -->
-        {license_text}
-        
-        <!-- Футер -->
         <div class="footer">
             <p>🤖 Автоматизировано с любовью для свободного интернета</p>
             <p style="font-size:12px; color:#444;">
                 <a href="{REPO_URL}">📂 Исходный код</a> &bull; 
-                <a href="{REPO_URL}/blob/master/README.md">📄 README</a> &bull;
                 Обновляется каждые 3 часа &bull; 
                 <a href="#top">⬆ Наверх</a>
             </p>
-            <div class="footer-license">
-                <strong>⚠️ Важно:</strong> Все материалы предоставлены "как есть" для информационных целей.
-                Использование VPN может регулироваться законодательством вашей страны.
-            </div>
         </div>
     </div>
 </body>
-</html>
-"""
+</html>"""
+    return render_template_string(html)
+
+
+@app.route('/checker')
+def checker():
+    """Страница с Config Generator V1.1"""
+    checker_html_path = Path("checker.html")
+    if checker_html_path.exists():
+        with open(checker_html_path, 'r', encoding='utf-8') as f:
+            checker_content = f.read()
+    else:
+        checker_content = get_checker_html()
     
-    with open(INDEX_PATH, 'w', encoding='utf-8') as f:
-        f.write(html_content)
-    
-    print(f"✅ index.html создан! Размер: {len(html_content):,} символов")
-    print(f"📁 Статистика: {stats['files']} файлов, {stats['configs']} конфигов")
-    print(f"📊 Найдено заголовков для меню: {len(headers)}")
-    print(f"📂 Репозиторий: {REPO_URL}")
-    return True
+    html = f"""<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Config Generator V1.1 – Xray / V2Ray / Sing‑box</title>
+    {COMMON_CSS}
+    <style>
+        .checker-wrapper {{
+            margin-top: 10px;
+        }}
+        .checker-wrapper iframe {{
+            width: 100%;
+            min-height: 800px;
+            border: none;
+            border-radius: 12px;
+            background: #0d1117;
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
+            <div>
+                <h1 style="color:#00d4ff; border:none; padding:0; margin:0;">⚡ Config Generator</h1>
+                <p style="color:#888; margin-top:4px;">Xray · V2Ray · Sing‑box – VLESS / VMess / Trojan / Shadowsocks</p>
+            </div>
+        </div>
+        
+        {get_menu('/checker')}
+        
+        <div class="checker-wrapper">
+            {checker_content}
+        </div>
+        
+        <div class="footer">
+            <p>⚡ Config Generator V1.1 — от <a href="https://github.com/SulgX" target="_blank">SulgX</a></p>
+            <p style="font-size:12px; color:#444;">
+                <a href="https://github.com/SulgX/ConfigGenerator" target="_blank">📖 README</a> &bull;
+                <a href="/">🏠 На главную</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>"""
+    return render_template_string(html)
+
+
+@app.route('/about')
+def about():
+    """Страница «Об авторе» с лицензией"""
+    html = f"""<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Об авторе | VPN White-Lists</title>
+    {COMMON_CSS}
+</head>
+<body>
+    <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
+            <div>
+                <h1 style="color:#00d4ff; border:none; padding:0; margin:0;">👤 Об авторе</h1>
+                <p style="color:#888; margin-top:4px;">Кто стоит за этим проектом</p>
+            </div>
+        </div>
+        
+        {get_menu('/about')}
+        
+        {get_about_html()}
+        
+        <div style="margin-top:40px;">
+            {get_license_html()}
+        </div>
+        
+        <div class="footer">
+            <p>🤖 Автоматизировано с любовью для свободного интернета</p>
+            <p style="font-size:12px; color:#444;">
+                <a href="{REPO_URL}">📂 Исходный код</a> &bull; 
+                <a href="https://gitverse.ru/RUVIPIEN/" target="_blank">📦 Все проекты</a> &bull;
+                <a href="/">🏠 На главную</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>"""
+    return render_template_string(html)
+
+
+# ==================== ВСТРОЕННЫЙ CONFIG GENERATOR ====================
+
+def get_checker_html():
+    """Возвращает полный HTML Config Generator V1.1"""
+    return """
+    <div style="color:#888; text-align:center; padding:40px; background:#1a1a2e; border-radius:12px;">
+        <h2 style="color:#00d4ff;">⚡ Config Generator V1.1</h2>
+        <p style="margin:15px 0;">Загрузка Config Generator...</p>
+        <p style="font-size:13px; color:#555;">Если вы видите это сообщение, значит файл <code>checker.html</code> не найден.</p>
+        <p style="font-size:13px; color:#555;">Создайте его в корне проекта или используйте встроенную версию.</p>
+        <button onclick="loadChecker()" class="btn btn-primary" style="margin-top:15px;">🔄 Загрузить чекер</button>
+    </div>
+    <script>
+        function loadChecker() {
+            fetch('/static/checker.html')
+                .then(r => r.text())
+                .then(html => {
+                    document.querySelector('.checker-wrapper').innerHTML = html;
+                })
+                .catch(() => {
+                    alert('Не удалось загрузить Config Generator');
+                });
+        }
+        // Автозагрузка
+        document.addEventListener('DOMContentLoaded', loadChecker);
+    </script>
+    """
+
 
 if __name__ == "__main__":
-    generate_html()
+    app.run(host='0.0.0.0', port=5000, debug=True)
