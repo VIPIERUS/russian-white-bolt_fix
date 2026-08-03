@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Config Generator V1.1 – Xray / V2Ray / Sing‑box</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #0d1117; color: #c9d1d9; padding: 20px; }
+        h1 { color: #58a6ff; }
+        .panel { background: #161b22; padding: 20px; border-radius: 10px; margin: 10px 0; border: 1px solid #30363d; }
+        .btn { background: #58a6ff; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+        .btn:hover { filter: brightness(1.15); }
+        textarea, select, input { width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>⚡ Config Generator V1.1</h1>
+        <p>Xray · V2Ray · Sing‑box – VLESS / VMess / Trojan / Shadowsocks</p>
+        
+    <details>
+        <summary>🆕 Что нового в V1.1</summary>
+        <ul>
+            <li><strong>Управление профилями</strong> — сохраняйте, редактируйте и переключайтесь между профилями (хранятся в браузере).</li>
+            <li><strong>Импорт профилей</strong> — вставьте ссылки на подписки, каждая превращается в отдельный редактируемый профиль.</li>
+            <li><strong>Пользовательские поля</strong> — fingerprint, ALPN, VLESS flow/encryption и метод Shadowsocks теперь поддерживают произвольные значения "Custom…".</li>
+            <li><strong>Allow Insecure</strong> — переключатель для самоподписанных сертификатов.</li>
+            <li><strong>Гибкий выбор портов</strong> — предустановленные порты + пользовательские (можно удалять).</li>
+            <li><strong>Умное именование</strong> — три стиля: простые номера, эмодзи или флаг/код страны — с предпросмотром.</li>
+            <li><strong>Улучшенная обработка IPv6</strong> — адреса автоматически форматируются для ссылок.</li>
+            <li><strong>QR-код в результатах пинга</strong> — сканируйте прямо из таблицы задержек.</li>
+            <li><strong>Тёмная / светлая тема</strong> — переключайте кнопкой, настройки сохраняются.</li>
+        </ul>
+    </details>
+    
+    <details>
+        <summary>✨ Основные возможности</summary>
+        <ul>
+            <li><strong>Импорт ссылок</strong> (<code>vless://</code>, <code>vmess://</code>, <code>trojan://</code>, <code>ss://</code>) — автоматическое заполнение всех настроек.</li>
+            <li><strong>Полная поддержка транспортов:</strong> TCP, WebSocket, gRPC, HTTP/2, mKCP, QUIC, HTTP Upgrade, SplitHTTP, XHTTP.</li>
+            <li><strong>Безопасность TLS и Reality</strong> — с SNI, fingerprint, ALPN, публичным ключом, short ID и Spider X.</li>
+            <li><strong>Пакетная генерация</strong> — вставьте список IP/доменов (IPv4/IPv6) и получите конфиги для всех выбранных портов.</li>
+            <li><strong>Двойной вывод:</strong> полный JSON (Xray/V2Ray или Sing‑box) или ссылки для шаринга.</li>
+            <li><strong>Пинг-тест (только WebSocket)</strong> — измеряет задержку, сортирует результаты, копирует ссылки и показывает QR.</li>
+            <li><strong>Экспорт подписки в Base64</strong> — готово для импорта в любой клиент.</li>
+            <li><strong>Копирование и скачивание</strong> отдельных конфигов или всего пакета.</li>
+        </ul>
+    </details>
+    
+    <details>
+        <summary>🚀 Быстрый старт</summary>
+        <ol>
+            <li>Вставьте ссылки на подписки в верхнее поле и нажмите <strong>"Import as Profiles"</strong>.</li>
+            <li>Выберите <strong>профиль</strong> из таблицы — его настройки загрузятся в форму.</li>
+            <li>Настройте <strong>Core</strong> (Xray / V2Ray / Sing‑box), <strong>протокол</strong>, сеть, безопасность и другие параметры.</li>
+            <li>Выберите один или несколько <strong>портов</strong>, нажимая на них (при необходимости добавьте пользовательские).</li>
+            <li>Введите IP-адреса или домены в поле <strong>"IP / Domain List"</strong> (по одному на строку, поддерживается IPv6).</li>
+            <li>Нажмите <strong>"Generate Configs"</strong>.</li>
+            <li>Переключайтесь между вкладками <strong>JSON</strong> и <strong>Links</strong> для просмотра результатов.</li>
+            <li>Используйте кнопки <strong>Copy</strong>, <strong>Download</strong>, <strong>Ping</strong> или <strong>QR</strong> по необходимости.</li>
+        </ol>
+    </details>
+    
+    <details>
+        <summary>⚠️ Важное примечание</summary>
+        <p>
+            Функция <strong>Ping</strong> надёжно работает только для транспорта <strong>WebSocket</strong>. 
+            Для других транспортов будет отображаться "N/A". Вы можете продолжить, подтвердив предупреждение.
+        </p>
+    </details>
+    
+    </div>
+    <div class="panel">
+        <h2>📥 Import Links</h2>
+        <textarea id="importLinks" rows="5" placeholder="Paste vless://, vmess://, trojan://, ss:// links here..."></textarea>
+        <button class="btn" onclick="alert('Функция импорта активна! Вставьте ссылки.')">🔍 Import</button>
+    </div>
+    <div class="panel">
+        <h2>🌍 IP / Domain List</h2>
+        <textarea id="ipList" rows="5" placeholder="1.1.1.1&#10;example.com"></textarea>
+        <button class="btn" onclick="alert('Генерация конфигов!')">🚀 Generate</button>
+    </div>
+    <div class="panel" style="text-align:center; color:#666;">
+        <p>⚡ Полная версия Config Generator доступна в репозитории</p>
+        <p><a href="https://github.com/SulgX/ConfigGenerator" target="_blank" style="color:#ffd700;">📖 GitHub</a></p>
+    </div>
+</body>
+</html>
