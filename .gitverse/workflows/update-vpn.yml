@@ -43,9 +43,6 @@ jobs:
       
       - name: "📦 Install dependencies"
         run: |
-          echo "🔄 Updating package lists..."
-          sudo apt-get update -qq
-          echo "📥 Installing Python packages..."
           pip install --upgrade pip
           if [ -f requirements.txt ]; then
             pip install -r requirements.txt
@@ -54,14 +51,10 @@ jobs:
           fi
       
       - name: "🌐 Fetch VPN configurations"
-        id: fetch
         run: |
-          echo "🚀 Starting VPN config fetcher"
           mkdir -p VPNMIRRORS sources scripts
           python scripts/fetch_configs.py
-          if [ -f "VPNMIRRORS/metadata.json" ]; then
-            echo "✅ Fetch completed!"
-          else
+          if [ ! -f "VPNMIRRORS/metadata.json" ]; then
             echo '{"updated":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'","success":0,"failed":0,"skipped":0,"total_configs":0}' > VPNMIRRORS/metadata.json
           fi
       
@@ -90,7 +83,6 @@ jobs:
           fi
       
       - name: "💾 Commit and push changes"
-        id: commit
         run: |
           git config --global user.name "gitverse-bot"
           git config --global user.email "bot@gitverse.ru"
@@ -112,8 +104,7 @@ jobs:
             echo "has_changes=true" >> $GITHUB_OUTPUT
           fi
       
-      # ===== DEPLOY TO BEGET VIA FTP =====
-      - name: "📤 Deploy to Beget via FTP"
+      - name: "📤 Deploy to Beget via FTPS"
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -121,6 +112,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
           server-dir: /public_html/
+          security: strict
           exclude: |
             .git/
             .github/
@@ -141,4 +133,3 @@ jobs:
           echo "| 📁 **VPN Files** | ${{ steps.count.outputs.vpn_files || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| 🔢 **Total Configs** | ${{ steps.count.outputs.total_configs || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
           echo "| 📦 **Folder Size** | ${{ steps.count.outputs.vpn_size || 'N/A' }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| 🌐 **Deploy** | ${{ job.status == 'success' && '✅ Deployed to Beget' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
