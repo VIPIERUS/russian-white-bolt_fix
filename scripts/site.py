@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Генератор сайта для GitVerse Pages с интеграцией Config Generator V1.1
-Страницы:
-- / - главная (README)
-- /checker - Config Generator V1.1 (Xray / V2Ray / Sing‑box)
-- /about - информация об авторе
+Генератор сайта для GitVerse Pages
+Генерирует index.html с:
+- Главной страницей (README)
+- Чекером (Config Generator V1.1)
+- sbcv (визуальный конструктор sing-box) через iframe
+- Страницей "Об авторе"
+- Лицензией и отказом от ответственности
 """
 
 import os
@@ -13,19 +15,18 @@ import re
 import json
 from pathlib import Path
 from datetime import datetime
-from flask import Flask, render_template_string, request, jsonify
-
-app = Flask(__name__)
 
 # ==================== КОНФИГУРАЦИЯ ====================
 README_PATH = Path("README.md")
+INDEX_PATH = Path("index.html")
 VPNMIRRORS_PATH = Path("VPNMIRRORS")
 REPO_NAME = "RUVIPIEN/russian-white-bolt_fix"
 REPO_URL = f"https://gitverse.ru/{REPO_NAME}"
 AUTHOR_REPO = "https://gitverse.ru/RUVIPIEN/"
+LAST_UPDATE = datetime.now().strftime('%Y-%m-%d %H:%M:%S MSK')
 
-# ==================== СТИЛИ ОБЩИЕ ====================
-COMMON_CSS = """
+# ==================== СТИЛИ ====================
+CSS_STYLES = """
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -44,7 +45,7 @@ COMMON_CSS = """
         border: 1px solid #1a1a2e;
         box-shadow: 0 0 60px rgba(0, 212, 255, 0.05);
     }
-    /* ===== МЕНЮ ===== */
+    /* Меню */
     .top-menu {
         display: flex;
         gap: 10px;
@@ -62,6 +63,7 @@ COMMON_CSS = """
         padding: 6px 14px;
         border-radius: 6px;
         font-weight: 500;
+        cursor: pointer;
     }
     .top-menu a:hover {
         color: #00d4ff;
@@ -82,6 +84,17 @@ COMMON_CSS = """
         transform: scale(1.05);
         box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
     }
+    .top-menu a.sbcv-btn {
+        background: linear-gradient(135deg, #c7ff00, #00ff88);
+        color: #000 !important;
+        font-weight: 700;
+        padding: 6px 18px;
+        border-radius: 20px;
+    }
+    .top-menu a.sbcv-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(199, 255, 0, 0.3);
+    }
     .top-menu a.about-btn {
         background: linear-gradient(135deg, #ff6b6b, #ffd93d);
         color: #000 !important;
@@ -101,29 +114,29 @@ COMMON_CSS = """
         background: #1a1a2e;
         border-radius: 20px;
     }
-    .top-menu .repo-badge a { color: #00d4ff; padding: 0; }
-    .top-menu .repo-badge a:hover { background: none; color: #44ff88; }
+    .top-menu .repo-badge a { color: #00d4ff; padding: 0; text-decoration: none; }
+    .top-menu .repo-badge a:hover { color: #44ff88; }
+    .page { display: none; }
+    .page.active { display: block; }
     
-    @media (max-width: 768px) {
-        .container { padding: 15px; }
-        .top-menu { gap: 6px; }
-        .top-menu a { font-size: 12px; padding: 4px 10px; }
-        .top-menu a.checker-btn, .top-menu a.about-btn { padding: 4px 14px; font-size: 12px; }
+    /* Карточки статистики */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
     }
-    
-    /* ===== ФУТЕР ===== */
-    .footer {
+    .stat-card {
+        background: #1a1a2e;
+        padding: 15px;
+        border-radius: 8px;
         text-align: center;
-        margin-top: 50px;
-        padding-top: 25px;
-        border-top: 1px solid #1a1a2e;
-        color: #555;
-        font-size: 14px;
+        border: 1px solid #222;
     }
-    .footer a { color: #666; }
-    .footer a:hover { color: #00d4ff; }
+    .stat-number { font-size: 28px; font-weight: bold; color: #00d4ff; }
+    .stat-label { color: #888; font-size: 13px; margin-top: 4px; }
     
-    /* ===== ЛИЦЕНЗИЯ ===== */
+    /* Лицензия */
     .license-box {
         margin-top: 30px;
         padding: 25px;
@@ -136,7 +149,7 @@ COMMON_CSS = """
     .license-box strong { color: #ccc; }
     .license-box .highlight { color: #44ff88; }
     
-    /* ===== ОБ АВТОРЕ ===== */
+    /* Об авторе */
     .about-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -177,38 +190,84 @@ COMMON_CSS = """
     }
     .about-card .repo-link:hover { color: #44ff88; text-decoration: underline; }
     
+    /* sbcv iframe */
+    .sbcv-wrapper {
+        background: #0d1116;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #1a1a2e;
+    }
+    .sbcv-iframe {
+        width: 100%;
+        min-height: 900px;
+        border: none;
+        background: #0d1116;
+    }
+    .sbcv-notice {
+        background: #1a1a2e;
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid #2a2a3e;
+    }
+    .sbcv-notice h3 { color: #c7ff00; margin-bottom: 15px; font-size: 1.5em; }
+    .sbcv-notice p { color: #888; margin: 10px 0; }
+    .sbcv-notice .btn-primary {
+        display: inline-block;
+        padding: 12px 30px;
+        background: #c7ff00;
+        color: #000;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 700;
+        margin-top: 15px;
+        transition: all 0.3s;
+    }
+    .sbcv-notice .btn-primary:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(199, 255, 0, 0.3);
+    }
+    
+    /* Футер */
+    .footer {
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 25px;
+        border-top: 1px solid #1a1a2e;
+        color: #555;
+        font-size: 14px;
+    }
+    .footer a { color: #666; text-decoration: none; }
+    .footer a:hover { color: #00d4ff; }
+    
     @media (max-width: 768px) {
+        .container { padding: 15px; }
+        .top-menu { gap: 6px; }
+        .top-menu a { font-size: 12px; padding: 4px 10px; }
+        .top-menu a.checker-btn, .top-menu a.sbcv-btn, .top-menu a.about-btn {
+            padding: 4px 14px;
+            font-size: 12px;
+        }
         .about-grid { grid-template-columns: 1fr; }
+        .sbcv-iframe { min-height: 600px; }
     }
 </style>
 """
 
-# ==================== HTML КОНСТРУКТОРЫ ====================
+# ==================== МЕНЮ ====================
+def get_menu(active='home'):
+    return f'''
+    <div class="top-menu">
+        <a class="{'active ' if active == 'home' else ''}" onclick="showPage('home')">🏠 Главная</a>
+        <a class="checker-btn {'active ' if active == 'checker' else ''}" onclick="showPage('checker')">⚡ Чекер</a>
+        <a class="sbcv-btn {'active ' if active == 'sbcv' else ''}" onclick="showPage('sbcv')">🎨 sbcv</a>
+        <a class="about-btn {'active ' if active == 'about' else ''}" onclick="showPage('about')">👤 Об авторе</a>
+        <span class="menu-spacer"></span>
+        <span class="repo-badge">📂 <a href="{REPO_URL}" target="_blank">Репозиторий</a></span>
+    </div>
+    '''
 
-def get_menu(active_page='/'):
-    """Генерирует меню с подсветкой активной страницы"""
-    pages = {
-        '/': '🏠 Главная',
-        '/checker': '⚡ Чекер',
-        '/about': '👤 Об авторе'
-    }
-    
-    menu_html = '<div class="top-menu">\n'
-    for url, label in pages.items():
-        is_active = 'active' if url == active_page else ''
-        if url == '/checker':
-            is_active += ' checker-btn'
-        elif url == '/about':
-            is_active += ' about-btn'
-        menu_html += f'    <a href="{url}" class="{is_active}">{label}</a>\n'
-    
-    menu_html += f'    <span class="menu-spacer"></span>\n'
-    menu_html += f'    <span class="repo-badge">📂 <a href="{REPO_URL}" target="_blank">Репозиторий</a></span>\n'
-    menu_html += '</div>\n'
-    return menu_html
-
-# ==================== АНАЛИЗ README ====================
-
+# ==================== ПАРСИНГ README ====================
 def parse_inline(text: str) -> str:
     text = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', lambda m: f'<img src="{m.group(2)}" alt="{m.group(1)}" loading="lazy">', text)
     text = re.sub(r'\[([^\]]+)\]\(([^)]+)\)', lambda m: f'<a href="{m.group(2)}" target="_blank">{m.group(1)}</a>', text)
@@ -315,10 +374,8 @@ def parse_markdown_to_html(content: str) -> str:
     return '\n'.join(html_parts)
 
 # ==================== ЛИЦЕНЗИЯ ====================
-
 def get_license_html():
-    """Возвращает HTML-блок с лицензией и отказом от ответственности"""
-    return f"""
+    return f'''
     <div class="license-box">
         <h3>📄 Лицензия и отказ от ответственности</h3>
         <p>
@@ -337,16 +394,14 @@ def get_license_html():
             свяжитесь с нами для его удаления.
         </p>
         <p style="margin-top:10px; color:#666; font-size:13px;">
-            🔄 Последнее обновление: <span class="highlight">{datetime.now().strftime('%Y-%m-%d %H:%M:%S MSK')}</span>
+            🔄 Последнее обновление: <span class="highlight">{LAST_UPDATE}</span>
         </p>
     </div>
-    """
+    '''
 
 # ==================== ОБ АВТОРЕ ====================
-
 def get_about_html():
-    """Возвращает HTML-блок с информацией об авторе"""
-    return """
+    return '''
     <div style="margin-bottom:25px;">
         <h2 style="color:#00d4ff; border-left:4px solid #00d4ff; padding-left:15px; margin-bottom:10px;">👤 Об авторе</h2>
         <p style="color:#888; font-size:16px;">Привет! Я <strong style="color:#00d4ff;">RUVIPIEN</strong> — создатель этого проекта и многих других.</p>
@@ -401,18 +456,74 @@ def get_about_html():
             </a>
         </p>
     </div>
-    """
+    '''
 
-# ==================== FLASK МАРШРУТЫ ====================
+# ==================== SBCV (через iframe) ====================
+def get_sbcv_html():
+    """Возвращает HTML для вкладки sbcv с iframe"""
+    return '''
+    <div style="margin-bottom:20px;">
+        <h2 style="color:#c7ff00; border-left:4px solid #c7ff00; padding-left:15px; margin-bottom:10px;">🎨 sbcv — визуальный конструктор sing-box</h2>
+        <p style="color:#888; font-size:14px; line-height:1.8;">
+            <strong>sbcv</strong> — это мощный инструмент для визуальной сборки конфигураций 
+            <strong style="color:#c7ff00;">sing-box</strong> через drag-and-drop. 
+            Собирайте конфиги, используйте шаблоны, валидируйте JSON и экспортируйте готовые настройки.
+        </p>
+        <p style="color:#666; font-size:13px; margin-top:5px;">
+            🔗 Онлайн-версия: <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">sbcv.app</a>
+        </p>
+    </div>
+    <div class="sbcv-wrapper">
+        <iframe 
+            src="https://sbcv.app" 
+            class="sbcv-iframe" 
+            allow="clipboard-read; clipboard-write"
+            loading="lazy"
+            title="sbcv — sing-box configuration visualizer"
+        ></iframe>
+    </div>
+    <div style="margin-top:15px; color:#555; font-size:13px; text-align:center;">
+        💡 <strong>sbcv</strong> работает в iframe. Если он не отображается — 
+        <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">откройте в новой вкладке</a>
+    </div>
+    '''
 
-@app.route('/')
-def index():
-    """Главная страница с README"""
-    if not README_PATH.exists():
-        return "<h1>README.md не найден</h1>"
+# ==================== ЧЕКЕР ====================
+def get_checker_html():
+    """Возвращает HTML для вкладки Чекер"""
+    checker_html_path = Path("checker.html")
+    if checker_html_path.exists():
+        with open(checker_html_path, 'r', encoding='utf-8') as f:
+            return f.read()
     
-    with open(README_PATH, 'r', encoding='utf-8') as f:
-        content = f.read()
+    return '''
+    <div style="color:#888; text-align:center; padding:60px; background:#1a1a2e; border-radius:12px;">
+        <h2 style="color:#00d4ff;">⚡ Config Generator V1.1</h2>
+        <p style="margin:20px 0; font-size:16px; line-height:1.8;">
+            Создайте файл <code style="background:#0a0a12; padding:2px 10px; border-radius:4px; color:#44ff88;">checker.html</code> 
+            в корне проекта со встроенным Config Generator.
+        </p>
+        <p style="font-size:13px; color:#555;">
+            Или используйте встроенную версию, скопировав код из <code style="background:#0a0a12; padding:2px 8px; border-radius:4px;">site.py</code>
+        </p>
+        <a href="https://github.com/SulgX/ConfigGenerator" target="_blank" style="color:#00d4ff; display:inline-block; margin-top:15px;">
+            📖 Оригинальный Config Generator на GitHub
+        </a>
+    </div>
+    '''
+
+# ==================== ГЕНЕРАЦИЯ HTML ====================
+def generate_html():
+    """Генерирует index.html со всем функционалом"""
+    print("🌐 Генерация index.html...")
+    
+    # Читаем README
+    readme_content = ""
+    if README_PATH.exists():
+        with open(README_PATH, 'r', encoding='utf-8') as f:
+            readme_content = parse_markdown_to_html(f.read())
+    else:
+        readme_content = "<p style='color:#888;'>README.md не найден. Добавьте его для отображения содержимого.</p>"
     
     # Статистика
     stats = {'files': 0, 'configs': 0, 'sources': 0}
@@ -426,36 +537,24 @@ def index():
             stats['sources'] = meta.get('stats', {}).get('success', 0)
             stats['configs'] = meta.get('stats', {}).get('total_keys', 0)
     
-    parsed_content = parse_markdown_to_html(content)
-    
-    stats_html = f"""
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:15px; margin:20px 0;">
-        <div style="background:#1a1a2e; padding:15px; border-radius:8px; text-align:center; border:1px solid #222;">
-            <div style="font-size:28px; font-weight:bold; color:#00d4ff;">{stats['files']}</div>
-            <div style="color:#888; font-size:13px;">📁 Файлов</div>
-        </div>
-        <div style="background:#1a1a2e; padding:15px; border-radius:8px; text-align:center; border:1px solid #222;">
-            <div style="font-size:28px; font-weight:bold; color:#00d4ff;">{stats['configs']}</div>
-            <div style="color:#888; font-size:13px;">🔗 Конфигураций</div>
-        </div>
-        <div style="background:#1a1a2e; padding:15px; border-radius:8px; text-align:center; border:1px solid #222;">
-            <div style="font-size:28px; font-weight:bold; color:#00d4ff;">{stats['sources']}</div>
-            <div style="color:#888; font-size:13px;">✅ Источников</div>
-        </div>
-        <div style="background:#1a1a2e; padding:15px; border-radius:8px; text-align:center; border:1px solid #222;">
-            <div style="font-size:28px; font-weight:bold; color:#44ff88;">{datetime.now().strftime('%d.%m')}</div>
-            <div style="color:#888; font-size:13px;">📅 Обновлено</div>
-        </div>
+    stats_html = f'''
+    <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number">{stats['files']}</div><div class="stat-label">📁 Файлов</div></div>
+        <div class="stat-card"><div class="stat-number">{stats['configs']}</div><div class="stat-label">🔗 Конфигураций</div></div>
+        <div class="stat-card"><div class="stat-number">{stats['sources']}</div><div class="stat-label">✅ Источников</div></div>
+        <div class="stat-card"><div class="stat-number">{datetime.now().strftime('%d.%m.%Y')}</div><div class="stat-label">📅 Обновлено</div></div>
     </div>
-    """
+    '''
     
-    html = f"""<!DOCTYPE html>
+    # ===== ФОРМИРУЕМ HTML =====
+    html_content = f'''<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VPN White-Lists | Обновляемые конфиги</title>
-    {COMMON_CSS}
+    <meta name="description" content="Автоматически обновляемые белые списки для обхода блокировок. Config Generator + sbcv.">
+    {CSS_STYLES}
 </head>
 <body>
     <div class="container">
@@ -466,108 +565,28 @@ def index():
             </div>
         </div>
         
-        {get_menu('/')}
-        {stats_html}
-        {parsed_content}
-        {get_license_html()}
+        {get_menu('home')}
         
-        <div class="footer">
-            <p>🤖 Автоматизировано с любовью для свободного интернета</p>
-            <p style="font-size:12px; color:#444;">
-                <a href="{REPO_URL}">📂 Исходный код</a> &bull; 
-                Обновляется каждые 3 часа &bull; 
-                <a href="#top">⬆ Наверх</a>
-            </p>
-        </div>
-    </div>
-</body>
-</html>"""
-    return render_template_string(html)
-
-
-@app.route('/checker')
-def checker():
-    """Страница с Config Generator V1.1"""
-    checker_html_path = Path("checker.html")
-    if checker_html_path.exists():
-        with open(checker_html_path, 'r', encoding='utf-8') as f:
-            checker_content = f.read()
-    else:
-        checker_content = get_checker_html()
-    
-    html = f"""<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Config Generator V1.1 – Xray / V2Ray / Sing‑box</title>
-    {COMMON_CSS}
-    <style>
-        .checker-wrapper {{
-            margin-top: 10px;
-        }}
-        .checker-wrapper iframe {{
-            width: 100%;
-            min-height: 800px;
-            border: none;
-            border-radius: 12px;
-            background: #0d1117;
-        }}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
-            <div>
-                <h1 style="color:#00d4ff; border:none; padding:0; margin:0;">⚡ Config Generator</h1>
-                <p style="color:#888; margin-top:4px;">Xray · V2Ray · Sing‑box – VLESS / VMess / Trojan / Shadowsocks</p>
-            </div>
+        <!-- ===== СТРАНИЦА: ГЛАВНАЯ ===== -->
+        <div id="page-home" class="page active">
+            {stats_html}
+            {readme_content}
+            {get_license_html()}
         </div>
         
-        {get_menu('/checker')}
-        
-        <div class="checker-wrapper">
-            {checker_content}
+        <!-- ===== СТРАНИЦА: ЧЕКЕР ===== -->
+        <div id="page-checker" class="page">
+            {get_checker_html()}
         </div>
         
-        <div class="footer">
-            <p>⚡ Config Generator V1.1 — от <a href="https://github.com/SulgX" target="_blank">SulgX</a></p>
-            <p style="font-size:12px; color:#444;">
-                <a href="https://github.com/SulgX/ConfigGenerator" target="_blank">📖 README</a> &bull;
-                <a href="/">🏠 На главную</a>
-            </p>
-        </div>
-    </div>
-</body>
-</html>"""
-    return render_template_string(html)
-
-
-@app.route('/about')
-def about():
-    """Страница «Об авторе» с лицензией"""
-    html = f"""<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Об авторе | VPN White-Lists</title>
-    {COMMON_CSS}
-</head>
-<body>
-    <div class="container">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
-            <div>
-                <h1 style="color:#00d4ff; border:none; padding:0; margin:0;">👤 Об авторе</h1>
-                <p style="color:#888; margin-top:4px;">Кто стоит за этим проектом</p>
-            </div>
+        <!-- ===== СТРАНИЦА: SBCV ===== -->
+        <div id="page-sbcv" class="page">
+            {get_sbcv_html()}
         </div>
         
-        {get_menu('/about')}
-        
-        {get_about_html()}
-        
-        <div style="margin-top:40px;">
+        <!-- ===== СТРАНИЦА: ОБ АВТОРЕ ===== -->
+        <div id="page-about" class="page">
+            {get_about_html()}
             {get_license_html()}
         </div>
         
@@ -575,44 +594,56 @@ def about():
             <p>🤖 Автоматизировано с любовью для свободного интернета</p>
             <p style="font-size:12px; color:#444;">
                 <a href="{REPO_URL}">📂 Исходный код</a> &bull; 
-                <a href="https://gitverse.ru/RUVIPIEN/" target="_blank">📦 Все проекты</a> &bull;
-                <a href="/">🏠 На главную</a>
+                Обновляется каждые 3 часа &bull; 
+                <a href="https://gitverse.ru/RUVIPIEN/" target="_blank">📦 Все проекты</a>
             </p>
         </div>
     </div>
-</body>
-</html>"""
-    return render_template_string(html)
-
-
-# ==================== ВСТРОЕННЫЙ CONFIG GENERATOR ====================
-
-def get_checker_html():
-    """Возвращает полный HTML Config Generator V1.1"""
-    return """
-    <div style="color:#888; text-align:center; padding:40px; background:#1a1a2e; border-radius:12px;">
-        <h2 style="color:#00d4ff;">⚡ Config Generator V1.1</h2>
-        <p style="margin:15px 0;">Загрузка Config Generator...</p>
-        <p style="font-size:13px; color:#555;">Если вы видите это сообщение, значит файл <code>checker.html</code> не найден.</p>
-        <p style="font-size:13px; color:#555;">Создайте его в корне проекта или используйте встроенную версию.</p>
-        <button onclick="loadChecker()" class="btn btn-primary" style="margin-top:15px;">🔄 Загрузить чекер</button>
-    </div>
+    
     <script>
-        function loadChecker() {
-            fetch('/static/checker.html')
-                .then(r => r.text())
-                .then(html => {
-                    document.querySelector('.checker-wrapper').innerHTML = html;
-                })
-                .catch(() => {
-                    alert('Не удалось загрузить Config Generator');
-                });
+    function showPage(page) {
+        document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+        const target = document.getElementById('page-' + page);
+        if (target) target.classList.add('active');
+        
+        document.querySelectorAll('.top-menu a').forEach(el => el.classList.remove('active'));
+        const links = document.querySelectorAll('.top-menu a');
+        const map = {{'home': 0, 'checker': 1, 'sbcv': 2, 'about': 3}};
+        if (map[page] !== undefined && links[map[page]]) {
+            links[map[page]].classList.add('active');
         }
-        // Автозагрузка
-        document.addEventListener('DOMContentLoaded', loadChecker);
+        localStorage.setItem('currentPage', page);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const saved = localStorage.getItem('currentPage');
+        if (saved && ['home','checker','sbcv','about'].includes(saved)) {
+            showPage(saved);
+        }
+        // Для iframe sbcv — передаём тему
+        const sbcvFrame = document.querySelector('.sbcv-iframe');
+        if (sbcvFrame) {
+            sbcvFrame.addEventListener('load', function() {{
+                // sbcv сам подхватит тему из системы
+            }});
+        }
+    });
     </script>
-    """
-
+</body>
+</html>'''
+    
+    with open(INDEX_PATH, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+    
+    print(f"✅ index.html создан! Размер: {len(html_content):,} символов")
+    print(f"📁 Статистика: {stats['files']} файлов, {stats['configs']} конфигов")
+    print(f"📂 Репозиторий: {REPO_URL}")
+    print(f"\n📋 Готовые страницы:")
+    print(f"   🏠 Главная:   /")
+    print(f"   ⚡ Чекер:     /#checker")
+    print(f"   🎨 sbcv:      /#sbcv")
+    print(f"   👤 Об авторе:  /#about")
+    return True
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    generate_html()
