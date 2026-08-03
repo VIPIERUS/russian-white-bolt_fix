@@ -2,28 +2,30 @@
 # -*- coding: utf-8 -*-
 """
 Генератор сайта для GitVerse Pages
-Генерирует index.html с:
-- Главной страницей (README)
-- Чекером (Config Generator V1.1) через iframe
-- sbcv (визуальный конструктор sing-box) через iframe
-- Страницей "Об авторе"
-- Лицензией и отказом от ответственности
+Генерирует:
+- index.html — главная страница
+- checker.html — скачивается с GitVerse (всегда свежий)
 """
 
 import os
 import re
 import json
+import urllib.request
 from pathlib import Path
 from datetime import datetime
 
 # ==================== КОНФИГУРАЦИЯ ====================
 README_PATH = Path("README.md")
 INDEX_PATH = Path("index.html")
+CHECKER_PATH = Path("checker.html")
 VPNMIRRORS_PATH = Path("VPNMIRRORS")
 REPO_NAME = "RUVIPIEN/russian-white-bolt_fix"
 REPO_URL = f"https://gitverse.ru/{REPO_NAME}"
 AUTHOR_REPO = "https://gitverse.ru/RUVIPIEN/"
 LAST_UPDATE = datetime.now().strftime('%Y-%m-%d %H:%M:%S MSK')
+
+# URL для скачивания checker.html с GitVerse
+CHECKER_URL = "https://gitverse.ru/api/repos/RUVIPIEN/russian-white-bolt_fix/raw/branch/master/checker.html"
 
 # ==================== СТИЛИ ====================
 CSS_STYLES = """
@@ -210,6 +212,78 @@ CSS_STYLES = """
     .footer a { color: #666; text-decoration: none; }
     .footer a:hover { color: #00d4ff; }
     
+    /* ===== СПОЙЛЕРЫ (details) ===== */
+    details {
+        background: #1a1a2e;
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin: 15px 0;
+        border: 1px solid #2a2a3e;
+        transition: all 0.3s;
+    }
+    details:hover {
+        border-color: #00d4ff;
+    }
+    details > summary {
+        cursor: pointer;
+        color: #00d4ff;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 5px 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    details > summary::-webkit-details-marker { display: none; }
+    details > summary::before {
+        content: "▶";
+        font-size: 14px;
+        transition: transform 0.3s;
+        color: #00d4ff;
+    }
+    details[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    details > summary:hover { color: #44ff88; }
+    details > summary:hover::before { color: #44ff88; }
+    details > *:not(summary) {
+        padding: 12px 0 0 10px;
+        border-left: 2px solid #2a2a3e;
+        margin-left: 10px;
+        color: #c9d1d9;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+    details ul, details ol {
+        padding-left: 20px;
+    }
+    details li {
+        margin: 5px 0;
+    }
+    details code {
+        background: #0a0a12;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 13px;
+        color: #44ff88;
+        font-family: "Courier New", monospace;
+    }
+    details .badge {
+        display: inline-block;
+        background: #0a0a12;
+        padding: 2px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        border: 1px solid #2a2a3e;
+        color: #888;
+        margin: 2px;
+    }
+    details .badge-new {
+        border-color: #44ff88;
+        color: #44ff88;
+    }
+    
     @media (max-width: 768px) {
         .container { padding: 15px; }
         .top-menu { gap: 6px; }
@@ -220,6 +294,8 @@ CSS_STYLES = """
         }
         .about-grid { grid-template-columns: 1fr; }
         .iframe-wrapper iframe { min-height: 600px; }
+        details { padding: 12px 15px; }
+        details > summary { font-size: 14px; }
     }
 </style>
 """
@@ -236,6 +312,156 @@ def get_menu(active='home'):
         <span class="repo-badge">📂 <a href="{REPO_URL}" target="_blank">Репозиторий</a></span>
     </div>
     '''
+
+# ==================== ЛИЦЕНЗИЯ ====================
+def get_license_html():
+    return f'''
+    <div class="license-box">
+        <h3>📄 Лицензия и отказ от ответственности</h3>
+        <p>
+            <strong>Источники:</strong> Все конфигурации собраны из открытых интернет-источников.
+            Мы не являемся авторами этих конфигураций и не несём ответственности за их содержимое.
+        </p>
+        <p>
+            <strong>Отказ от ответственности:</strong> Данный сайт и репозиторий созданы исключительно 
+            в <strong>информационных и образовательных целях</strong>. Мы не пропагандируем и не поощряем 
+            использование VPN в обход законодательства. Все материалы предоставлены <strong>"как есть"</strong> 
+            без каких-либо гарантий.
+        </p>
+        <p>
+            <strong>Авторские права:</strong> Все права на контент принадлежат их законным владельцам. 
+            Если вы являетесь правообладателем и считаете, что ваш материал используется неправомерно, 
+            свяжитесь с нами для его удаления.
+        </p>
+        <p style="margin-top:10px; color:#666; font-size:13px;">
+            🔄 Последнее обновление: <span class="highlight">{LAST_UPDATE}</span>
+        </p>
+    </div>
+    '''
+
+# ==================== ОПИСАНИЕ ДЛЯ ЧЕКЕРА (спойлеры) ====================
+def get_checker_description():
+    """Возвращает HTML с описанием чекера в спойлерах (на русском)"""
+    return '''
+    <details>
+        <summary>🆕 Что нового в V1.1</summary>
+        <ul>
+            <li><strong>Управление профилями</strong> — сохраняйте, редактируйте и переключайтесь между профилями (хранятся в браузере).</li>
+            <li><strong>Импорт профилей</strong> — вставьте ссылки на подписки, каждая превращается в отдельный редактируемый профиль.</li>
+            <li><strong>Пользовательские поля</strong> — fingerprint, ALPN, VLESS flow/encryption и метод Shadowsocks теперь поддерживают произвольные значения "Custom…".</li>
+            <li><strong>Allow Insecure</strong> — переключатель для самоподписанных сертификатов.</li>
+            <li><strong>Гибкий выбор портов</strong> — предустановленные порты + пользовательские (можно удалять).</li>
+            <li><strong>Умное именование</strong> — три стиля: простые номера, эмодзи или флаг/код страны — с предпросмотром.</li>
+            <li><strong>Улучшенная обработка IPv6</strong> — адреса автоматически форматируются для ссылок.</li>
+            <li><strong>QR-код в результатах пинга</strong> — сканируйте прямо из таблицы задержек.</li>
+            <li><strong>Тёмная / светлая тема</strong> — переключайте кнопкой, настройки сохраняются.</li>
+        </ul>
+    </details>
+    
+    <details>
+        <summary>✨ Основные возможности</summary>
+        <ul>
+            <li><strong>Импорт ссылок</strong> (<code>vless://</code>, <code>vmess://</code>, <code>trojan://</code>, <code>ss://</code>) — автоматическое заполнение всех настроек.</li>
+            <li><strong>Полная поддержка транспортов:</strong> TCP, WebSocket, gRPC, HTTP/2, mKCP, QUIC, HTTP Upgrade, SplitHTTP, XHTTP.</li>
+            <li><strong>Безопасность TLS и Reality</strong> — с SNI, fingerprint, ALPN, публичным ключом, short ID и Spider X.</li>
+            <li><strong>Пакетная генерация</strong> — вставьте список IP/доменов (IPv4/IPv6) и получите конфиги для всех выбранных портов.</li>
+            <li><strong>Двойной вывод:</strong> полный JSON (Xray/V2Ray или Sing‑box) или ссылки для шаринга.</li>
+            <li><strong>Пинг-тест (только WebSocket)</strong> — измеряет задержку, сортирует результаты, копирует ссылки и показывает QR.</li>
+            <li><strong>Экспорт подписки в Base64</strong> — готово для импорта в любой клиент.</li>
+            <li><strong>Копирование и скачивание</strong> отдельных конфигов или всего пакета.</li>
+        </ul>
+    </details>
+    
+    <details>
+        <summary>🚀 Быстрый старт</summary>
+        <ol>
+            <li>Вставьте ссылки на подписки в верхнее поле и нажмите <strong>"Import as Profiles"</strong>.</li>
+            <li>Выберите <strong>профиль</strong> из таблицы — его настройки загрузятся в форму.</li>
+            <li>Настройте <strong>Core</strong> (Xray / V2Ray / Sing‑box), <strong>протокол</strong>, сеть, безопасность и другие параметры.</li>
+            <li>Выберите один или несколько <strong>портов</strong>, нажимая на них (при необходимости добавьте пользовательские).</li>
+            <li>Введите IP-адреса или домены в поле <strong>"IP / Domain List"</strong> (по одному на строку, поддерживается IPv6).</li>
+            <li>Нажмите <strong>"Generate Configs"</strong>.</li>
+            <li>Переключайтесь между вкладками <strong>JSON</strong> и <strong>Links</strong> для просмотра результатов.</li>
+            <li>Используйте кнопки <strong>Copy</strong>, <strong>Download</strong>, <strong>Ping</strong> или <strong>QR</strong> по необходимости.</li>
+        </ol>
+    </details>
+    
+    <details>
+        <summary>⚠️ Важное примечание</summary>
+        <p>
+            Функция <strong>Ping</strong> надёжно работает только для транспорта <strong>WebSocket</strong>. 
+            Для других транспортов будет отображаться "N/A". Вы можете продолжить, подтвердив предупреждение.
+        </p>
+    </details>
+    '''
+
+# ==================== ФУНКЦИЯ СКАЧИВАНИЯ С GITVERSE ====================
+def download_checker():
+    """Скачивает checker.html с GitVerse"""
+    print("📥 Скачивание checker.html с GitVerse...")
+    
+    try:
+        req = urllib.request.Request(
+            CHECKER_URL,
+            headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        )
+        with urllib.request.urlopen(req, timeout=30) as response:
+            content = response.read().decode('utf-8')
+            if len(content) > 1000:  # Проверяем, что файл не пустой
+                with open(CHECKER_PATH, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                print(f"   ✅ checker.html скачан! Размер: {len(content):,} символов")
+                
+                # Проверяем, есть ли уже описание в спойлерах
+                if 'Что нового в V1.1' not in content and 'Основные возможности' not in content:
+                    # Если нет — добавляем описание
+                    print("   📝 Добавляем русское описание в спойлерах...")
+                    add_description_to_checker()
+                return True
+            else:
+                print("   ⚠️ Файл слишком маленький, возможно ошибка")
+                return False
+    except Exception as e:
+        print(f"   ❌ Ошибка скачивания: {e}")
+        return False
+
+def add_description_to_checker():
+    """Добавляет русское описание в спойлерах в checker.html"""
+    if not CHECKER_PATH.exists():
+        return False
+    
+    with open(CHECKER_PATH, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    description_html = get_checker_description()
+    
+    # Ищем место для вставки (после заголовка)
+    if '<div class="subtitle"' in content:
+        content = content.replace(
+            '</div>',
+            '</div>\n        <div style="margin-top:15px; text-align:left;">' + description_html + '</div>',
+            1  # Только первое вхождение
+        )
+    elif '<div class="header"' in content:
+        content = content.replace(
+            '<div class="header">',
+            '<div class="header">\n        <div style="margin-top:10px; text-align:left;">' + description_html + '</div>'
+        )
+    
+    # Добавляем автора, если нет
+    if 'SulgX' not in content:
+        content = content.replace(
+            '</body>',
+            '<div class="footer" style="text-align:center;padding:15px;margin-top:30px;border-top:1px solid var(--border);opacity:0.8;font-size:0.9rem;">'
+            '⚡ Config Generator V1.1 — от <a href="https://github.com/SulgX" target="_blank" style="color:var(--gold);text-decoration:none;">SulgX</a>'
+            '</div>\n</body>'
+        )
+    
+    with open(CHECKER_PATH, 'w', encoding='utf-8') as f:
+        f.write(content)
+    
+    print("   ✅ Описание добавлено в checker.html")
+    return True
 
 # ==================== ПАРСИНГ README ====================
 def parse_inline(text: str) -> str:
@@ -343,29 +569,31 @@ def parse_markdown_to_html(content: str) -> str:
     
     return '\n'.join(html_parts)
 
-# ==================== ЛИЦЕНЗИЯ ====================
-def get_license_html():
-    return f'''
-    <div class="license-box">
-        <h3>📄 Лицензия и отказ от ответственности</h3>
-        <p>
-            <strong>Источники:</strong> Все конфигурации собраны из открытых интернет-источников.
-            Мы не являемся авторами этих конфигураций и не несём ответственности за их содержимое.
+# ==================== SBCV ====================
+def get_sbcv_html():
+    return '''
+    <div style="margin-bottom:20px;">
+        <h2 style="color:#c7ff00; border-left:4px solid #c7ff00; padding-left:15px; margin-bottom:10px;">🎨 sbcv — визуальный конструктор sing-box</h2>
+        <p style="color:#888; font-size:14px; line-height:1.8;">
+            <strong>sbcv</strong> — это мощный инструмент для визуальной сборки конфигураций 
+            <strong style="color:#c7ff00;">sing-box</strong> через drag-and-drop. 
+            Собирайте конфиги, используйте шаблоны, валидируйте JSON и экспортируйте готовые настройки.
         </p>
-        <p>
-            <strong>Отказ от ответственности:</strong> Данный сайт и репозиторий созданы исключительно 
-            в <strong>информационных и образовательных целях</strong>. Мы не пропагандируем и не поощряем 
-            использование VPN в обход законодательства. Все материалы предоставлены <strong>"как есть"</strong> 
-            без каких-либо гарантий.
+        <p style="color:#666; font-size:13px; margin-top:5px;">
+            🔗 Онлайн-версия: <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">sbcv.app</a>
         </p>
-        <p>
-            <strong>Авторские права:</strong> Все права на контент принадлежат их законным владельцам. 
-            Если вы являетесь правообладателем и считаете, что ваш материал используется неправомерно, 
-            свяжитесь с нами для его удаления.
-        </p>
-        <p style="margin-top:10px; color:#666; font-size:13px;">
-            🔄 Последнее обновление: <span class="highlight">{LAST_UPDATE}</span>
-        </p>
+    </div>
+    <div class="iframe-wrapper">
+        <iframe 
+            src="https://sbcv.app" 
+            allow="clipboard-read; clipboard-write"
+            loading="lazy"
+            title="sbcv — sing-box configuration visualizer"
+        ></iframe>
+    </div>
+    <div style="margin-top:15px; color:#555; font-size:13px; text-align:center;">
+        💡 <strong>sbcv</strong> работает в iframe. Если он не отображается — 
+        <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">откройте в новой вкладке</a>
     </div>
     '''
 
@@ -428,61 +656,9 @@ def get_about_html():
     </div>
     '''
 
-# ==================== SBCV (iframe) ====================
-def get_sbcv_html():
-    return '''
-    <div style="margin-bottom:20px;">
-        <h2 style="color:#c7ff00; border-left:4px solid #c7ff00; padding-left:15px; margin-bottom:10px;">🎨 sbcv — визуальный конструктор sing-box</h2>
-        <p style="color:#888; font-size:14px; line-height:1.8;">
-            <strong>sbcv</strong> — это мощный инструмент для визуальной сборки конфигураций 
-            <strong style="color:#c7ff00;">sing-box</strong> через drag-and-drop. 
-            Собирайте конфиги, используйте шаблоны, валидируйте JSON и экспортируйте готовые настройки.
-        </p>
-        <p style="color:#666; font-size:13px; margin-top:5px;">
-            🔗 Онлайн-версия: <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">sbcv.app</a>
-        </p>
-    </div>
-    <div class="iframe-wrapper">
-        <iframe 
-            src="https://sbcv.app" 
-            allow="clipboard-read; clipboard-write"
-            loading="lazy"
-            title="sbcv — sing-box configuration visualizer"
-        ></iframe>
-    </div>
-    <div style="margin-top:15px; color:#555; font-size:13px; text-align:center;">
-        💡 <strong>sbcv</strong> работает в iframe. Если он не отображается — 
-        <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">откройте в новой вкладке</a>
-    </div>
-    '''
-
-# ==================== ЧЕКЕР ====================
-def get_checker_html():
-    """Возвращает HTML для вкладки Чекер"""
-    checker_html_path = Path("checker.html")
-    if checker_html_path.exists():
-        with open(checker_html_path, 'r', encoding='utf-8') as f:
-            return f.read()
-    
-    return '''
-    <div style="color:#888; text-align:center; padding:60px; background:#1a1a2e; border-radius:12px;">
-        <h2 style="color:#00d4ff;">⚡ Config Generator V1.1</h2>
-        <p style="margin:20px 0; font-size:16px; line-height:1.8;">
-            Создайте файл <code style="background:#0a0a12; padding:2px 10px; border-radius:4px; color:#44ff88;">checker.html</code> 
-            в корне проекта со встроенным Config Generator.
-        </p>
-        <p style="font-size:13px; color:#555;">
-            Или используйте встроенную версию, скопировав код из <code style="background:#0a0a12; padding:2px 8px; border-radius:4px;">site.py</code>
-        </p>
-        <a href="https://github.com/SulgX/ConfigGenerator" target="_blank" style="color:#00d4ff; display:inline-block; margin-top:15px;">
-            📖 Оригинальный Config Generator на GitHub
-        </a>
-    </div>
-    '''
-
-# ==================== ГЕНЕРАЦИЯ HTML ====================
-def generate_html():
-    """Генерирует index.html со всем функционалом"""
+# ==================== ГЕНЕРАЦИЯ INDEX.HTML ====================
+def generate_index():
+    """Генерирует index.html"""
     print("🌐 Генерация index.html...")
     
     # Читаем README
@@ -514,97 +690,14 @@ def generate_html():
     </div>
     '''
     
-    # ===== ФОРМИРУЕМ HTML =====
-    html_content = f'''<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VPN White-Lists | Обновляемые конфиги</title>
-    <meta name="description" content="Автоматически обновляемые белые списки для обхода блокировок. Config Generator + sbcv.">
-    {CSS_STYLES}
-</head>
-<body>
-    <div class="container">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
-            <div>
-                <h1 style="color:#00d4ff; border:none; padding:0; margin:0;">🔒 VPN White-Lists</h1>
-                <p style="color:#888; margin-top:4px;">Автоматически обновляемые белые списки для обхода блокировок</p>
-            </div>
-        </div>
-        
-        {get_menu('home')}
-        
-        <!-- ===== СТРАНИЦА: ГЛАВНАЯ ===== -->
-        <div id="page-home" class="page active">
-            {stats_html}
-            {readme_content}
-            {get_license_html()}
-        </div>
-        
-        <!-- ===== СТРАНИЦА: ЧЕКЕР ===== -->
-        <div id="page-checker" class="page">
-            {get_checker_html()}
-        </div>
-        
-        <!-- ===== СТРАНИЦА: SBCV ===== -->
-        <div id="page-sbcv" class="page">
-            {get_sbcv_html()}
-        </div>
-        
-        <!-- ===== СТРАНИЦА: ОБ АВТОРЕ ===== -->
-        <div id="page-about" class="page">
-            {get_about_html()}
-            {get_license_html()}
-        </div>
-        
-        <div class="footer">
-            <p>🤖 Автоматизировано с любовью для свободного интернета</p>
-            <p style="font-size:12px; color:#444;">
-                <a href="{REPO_URL}">📂 Исходный код</a> &bull; 
-                Обновляется каждые 3 часа &bull; 
-                <a href="https://gitverse.ru/RUVIPIEN/" target="_blank">📦 Все проекты</a>
-            </p>
-        </div>
-    </div>
-    
-    <script>
-    function showPage(page) {{
-        document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
-        const target = document.getElementById('page-' + page);
-        if (target) target.classList.add('active');
-        
-        document.querySelectorAll('.top-menu a').forEach(el => el.classList.remove('active'));
-        const links = document.querySelectorAll('.top-menu a');
-        const map = {{'home': 0, 'checker': 1, 'sbcv': 2, 'about': 3}};
-        if (map[page] !== undefined && links[map[page]]) {{
-            links[map[page]].classList.add('active');
-        }}
-        localStorage.setItem('currentPage', page);
-    }}
-    
-    document.addEventListener('DOMContentLoaded', function() {{
-        const saved = localStorage.getItem('currentPage');
-        if (saved && ['home','checker','sbcv','about'].includes(saved)) {{
-            showPage(saved);
-        }}
-    }});
-    </script>
-</body>
-</html>'''
-    
-    with open(INDEX_PATH, 'w', encoding='utf-8') as f:
-        f.write(html_content)
-    
-    print(f"✅ index.html создан! Размер: {len(html_content):,} символов")
-    print(f"📁 Статистика: {stats['files']} файлов, {stats['configs']} конфигов")
-    print(f"📂 Репозиторий: {REPO_URL}")
-    print(f"\n📋 Готовые страницы:")
-    print(f"   🏠 Главная:   /")
-    print(f"   ⚡ Чекер:     /#checker")
-    print(f"   🎨 sbcv:      /#sbcv")
-    print(f"   👤 Об авторе:  /#about")
-    return True
-
-if __name__ == "__main__":
-    generate_html()
+    # Проверяем, есть ли checker.html
+    checker_exists = CHECKER_PATH.exists() and os.path.getsize(CHECKER_PATH) > 1000
+    checker_html_content = ""
+    if checker_exists:
+        with open(CHECKER_PATH, 'r', encoding='utf-8') as f:
+            checker_html_content = f.read()
+    else:
+        checker_html_content = '''
+        <div style="color:#888; text-align:center; padding:60px; background:#1a1a2e; border-radius:12px;">
+            <h2 style="color:#00d4ff;">⚡ Config Generator V1.1</h2>
+            <p style="margin:20px 0; font-size:16px; line
