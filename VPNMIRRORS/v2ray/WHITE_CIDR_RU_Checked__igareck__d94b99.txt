@@ -1,19 +1,17 @@
 # WHITE CIDR RU Checked (igareck)
 # Source: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
 # Category: V2RayNG / V2RayN
-# Updated: 2026-08-07 21:02:42 UTC
-# Total configs: 4
-# Protocols: VLESS=4, VMess=0, Trojan=0, SS=0, Other=0
+# Updated: 2026-08-08 00:04:58 UTC
+# Total configs: 2
+# Protocols: VLESS=2, VMess=0, Trojan=0, SS=0, Other=0
 # ================================================================
 
 # profile-title: 🏳️ БЕЛЫЕ СПИСКИ 🏳️ WHITE LISTS | CIDR | Только VK, Yandex, CDNvideo, Beeline
 # profile-update-interval: 1
-# Date/Time: 2026-08-07 / 23:55 (Moscow)
-# Количество: 5
+# Date/Time: 2026-08-08 / 02:26 (Moscow)
+# Количество: 3
 # For more info and VPN-configs - visit: www.github.com/igareck/vpn-configs-for-russia
 
-vless://ceeba701-bb9f-4f2c-8142-677d27a2acb1@37.139.43.57:443?encryption=none&flow=xtls-rprx-vision&pbk=3v-9P94hjSE1fw6we1J4RvyIYnFhySQUAe1DUKqkaBo&security=reality&sid=7f2e9c4b1a8d6a53&sni=eh.vk.com&type=tcp&fp=android#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
-vless://ceeba701-bb9f-4f2c-8142-677d27a2acb1@37.139.43.57:443?encryption=none&flow=xtls-rprx-vision&pbk=3v-9P94hjSE1fw6we1J4RvyIYnFhySQUAe1DUKqkaBo&security=reality&sid=7f2e9c4b1a8d6a53&sni=eh.vk.com&type=tcp&fp=chrome#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
-vless://ceeba701-bb9f-4f2c-8142-677d27a2acb1@37.139.43.57:443?encryption=none&flow=xtls-rprx-vision&pbk=3v-9P94hjSE1fw6we1J4RvyIYnFhySQUAe1DUKqkaBo&security=reality&sid=7f2e9c4b1a8d6a53&sni=eh.vk.com&type=tcp&fp=ios#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
-vless://ceeba701-bb9f-4f2c-8142-677d27a2acb1@37.139.43.57:443?encryption=none&flow=xtls-rprx-vision&pbk=3v-9P94hjSE1fw6we1J4RvyIYnFhySQUAe1DUKqkaBo&security=reality&sid=7f2e9c4b1a8d6a53&sni=eh.vk.com&type=tcp&fp=safari#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%5B%2ACIDR%5D%20VK
+vless://99216440-8607-48a6-8a96-397a45e03356@217.16.18.174:5443?encryption=none&flow=xtls-rprx-vision&pbk=EC_gDR0zwFKeVnGhy2RD1GePSUYyDhRjxCM2wCGktTk&security=reality&sid=ad7dab462a323acb&sni=ads.x5.ru&type=raw&fp=chrome#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
+vless://99216440-8607-48a6-8a96-397a45e03356@217.16.18.174:5443?encryption=none&flow=xtls-rprx-vision&pbk=EC_gDR0zwFKeVnGhy2RD1GePSUYyDhRjxCM2wCGktTk&security=reality&sid=ad7dab462a323acb&sni=ads.x5.ru&type=raw&fp=firefox#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
 hysteria2://8e9b2c52-e083-40fb-92c1-8a8cd4c6a02c@78.159.250.230:443?alpn=h3&sni=quic.tyr-agentstvo.tech&fp=chrome#%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%B5%F0%9F%87%B1%20%F0%9F%87%BA%F0%9F%87%B8%20%5B%2ACIDR%5D%20Beeline
