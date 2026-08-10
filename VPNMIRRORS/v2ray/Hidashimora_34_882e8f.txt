@@ -1,12 +1,14 @@
 # Hidashimora 34
 # Source: https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/34.txt
 # Category: V2RayNG / V2RayN
-# Updated: 2026-08-10 12:06:21 UTC
-# Total configs: 3
-# Protocols: VLESS=3, VMess=0, Trojan=0, SS=0, Other=0
+# Updated: 2026-08-10 15:05:58 UTC
+# Total configs: 5
+# Protocols: VLESS=5, VMess=0, Trojan=0, SS=0, Other=0
 # ================================================================
 
 # Подписка 34 | SNI белый список (igareck)
-vless://78c407f6-3f20-426e-94ea-7227e760c180@ns.1tut1.click:443?encryption=none&fp=chrome&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&security=reality&serviceName=vless-grpc-reality&sni=id.vk.com&type=grpc#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%5BSNI-RU%5D%20id.vk.com
-vless://78c407f6-3f20-426e-94ea-7227e760c180@ns.1tut1.click:443?type=grpc&security=reality&fp=safari&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=id.vk.com&mode=gun&serviceName=vless-grpc-reality#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%5BSNI-RU%5D%20id.vk.com
-vless://78c407f6-3f20-426e-94ea-7227e760c180@ns.1tut1.click:443?type=grpc&security=reality&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&sni=id.vk.com&mode=gun&serviceName=vless-grpc-reality&fp=qq#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%5BSNI-RU%5D%20id.vk.com
+vless://00790c59-b1ef-402f-8305-20b938bfb7ca@46.243.142.180:7443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&pbk=X3ukS8lu3cNsbazVqxhD7yoRNfofmLqb0LzOKcMAyTs&sni=ads.x5.ru&sid=1497fe3dff69ff78&spx=%2F&fp=android#%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A9%F0%9F%87%AA%20%F0%9F%87%B3%F0%9F%87%B1%20%7C%20%5BSNI-RU%5D%20ads.x5.ru
+vless://00790c59-b1ef-402f-8305-20b938bfb7ca@46.243.142.180:7443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&pbk=X3ukS8lu3cNsbazVqxhD7yoRNfofmLqb0LzOKcMAyTs&sni=ads.x5.ru&sid=1497fe3dff69ff78&spx=%2F&fp=chrome#%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A9%F0%9F%87%AA%20%F0%9F%87%B3%F0%9F%87%B1%20%7C%20%5BSNI-RU%5D%20ads.x5.ru
+vless://00790c59-b1ef-402f-8305-20b938bfb7ca@46.243.142.180:7443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&pbk=X3ukS8lu3cNsbazVqxhD7yoRNfofmLqb0LzOKcMAyTs&sni=ads.x5.ru&sid=1497fe3dff69ff78&spx=%2F&fp=firefox#%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A9%F0%9F%87%AA%20%F0%9F%87%B3%F0%9F%87%B1%20%7C%20%5BSNI-RU%5D%20ads.x5.ru
+vless://00790c59-b1ef-402f-8305-20b938bfb7ca@46.243.142.180:7443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&pbk=X3ukS8lu3cNsbazVqxhD7yoRNfofmLqb0LzOKcMAyTs&sni=ads.x5.ru&sid=1497fe3dff69ff78&spx=%2F&fp=ios#%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A9%F0%9F%87%AA%20%F0%9F%87%B3%F0%9F%87%B1%20%7C%20%5BSNI-RU%5D%20ads.x5.ru
+vless://00790c59-b1ef-402f-8305-20b938bfb7ca@46.243.142.180:7443?type=tcp&security=reality&encryption=none&flow=xtls-rprx-vision&pbk=X3ukS8lu3cNsbazVqxhD7yoRNfofmLqb0LzOKcMAyTs&sni=ads.x5.ru&sid=1497fe3dff69ff78&spx=%2F&fp=qq#%F0%9F%8C%90%20Anycast-IP%20%7C%20%F0%9F%87%A9%F0%9F%87%AA%20%F0%9F%87%B3%F0%9F%87%B1%20%7C%20%5BSNI-RU%5D%20ads.x5.ru
