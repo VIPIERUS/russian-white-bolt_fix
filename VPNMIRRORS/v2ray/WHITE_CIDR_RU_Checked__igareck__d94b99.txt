@@ -1,13 +1,22 @@
 # WHITE CIDR RU Checked (igareck)
 # Source: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
 # Category: V2RayNG / V2RayN
-# Updated: 2026-08-11 06:02:24 UTC
-# Total configs: 0
-# Protocols: VLESS=0, VMess=0, Trojan=0, SS=0, Other=0
+# Updated: 2026-08-11 09:02:26 UTC
+# Total configs: 8
+# Protocols: VLESS=8, VMess=0, Trojan=0, SS=0, Other=0
 # ================================================================
 
 # profile-title: 🏳️ БЕЛЫЕ СПИСКИ 🏳️ WHITE LISTS | CIDR | Только VK, Yandex, CDNvideo, Beeline
 # profile-update-interval: 1
-# Date/Time: 2026-08-11 / 07:40 (Moscow)
-# Количество: 0
+# Date/Time: 2026-08-11 / 11:57 (Moscow)
+# Количество: 8
 # For more info and VPN-configs - visit: www.github.com/igareck/vpn-configs-for-russia
+
+vless://8f6085da-2a5f-4969-97c8-ee3e490ec75d@89.208.199.252:443?encryption=none&flow=xtls-rprx-vision&pbk=C819rM4M_c473A8glp-eBFh8Fm9O1cmEeXmivDhM1Fc&security=reality&sni=obx1.vypnet.su&type=raw&fp=android#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
+vless://8f6085da-2a5f-4969-97c8-ee3e490ec75d@89.208.199.252:443?encryption=none&flow=xtls-rprx-vision&pbk=C819rM4M_c473A8glp-eBFh8Fm9O1cmEeXmivDhM1Fc&security=reality&sni=obx1.vypnet.su&type=raw&fp=edge#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
+vless://8f6085da-2a5f-4969-97c8-ee3e490ec75d@89.208.199.252:443?encryption=none&flow=xtls-rprx-vision&pbk=C819rM4M_c473A8glp-eBFh8Fm9O1cmEeXmivDhM1Fc&security=reality&sni=obx1.vypnet.su&type=raw&fp=safari#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
+vless://8f6085da-2a5f-4969-97c8-ee3e490ec75d@obx1.vypnet.su:443?security=reality&flow=xtls-rprx-vision&type=raw&sni=obx1.vypnet.su&pbk=C819rM4M_c473A8glp-eBFh8Fm9O1cmEeXmivDhM1Fc&fp=chrome#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
+vless://8f6085da-2a5f-4969-97c8-ee3e490ec75d@obx1.vypnet.su:443?security=reality&flow=xtls-rprx-vision&type=raw&sni=obx1.vypnet.su&pbk=C819rM4M_c473A8glp-eBFh8Fm9O1cmEeXmivDhM1Fc&fp=edge#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
+vless://8f6085da-2a5f-4969-97c8-ee3e490ec75d@obx1.vypnet.su:443?security=reality&flow=xtls-rprx-vision&type=raw&sni=obx1.vypnet.su&pbk=C819rM4M_c473A8glp-eBFh8Fm9O1cmEeXmivDhM1Fc&fp=firefox#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20VK
+vless://8f6085da-2a5f-4969-97c8-ee3e490ec75d@89.208.199.252:443?encryption=none&flow=xtls-rprx-vision&pbk=C819rM4M_c473A8glp-eBFh8Fm9O1cmEeXmivDhM1Fc&security=reality&sni=obx1.vypnet.su&type=raw&fp=firefox#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%5B%2ACIDR%5D%20VK
+vless://8f6085da-2a5f-4969-97c8-ee3e490ec75d@obx1.vypnet.su:443?security=reality&flow=xtls-rprx-vision&type=raw&sni=obx1.vypnet.su&pbk=C819rM4M_c473A8glp-eBFh8Fm9O1cmEeXmivDhM1Fc&fp=ios#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%5B%2ACIDR%5D%20VK
