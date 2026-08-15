@@ -1,12 +1,12 @@
 {
-  "updated": "2026-08-15T06:06:35.883178+00:00",
-  "updated_formatted": "2026-08-15 06:06:35 UTC",
-  "updated_msk": "2026-08-15 09:06 MSK",
+  "updated": "2026-08-15T09:06:41.696349+00:00",
+  "updated_formatted": "2026-08-15 09:06:41 UTC",
+  "updated_msk": "2026-08-15 12:06 MSK",
   "total_sources": 102,
   "success": 82,
   "failed": 20,
   "skipped": 0,
-  "total_configs": 504006,
+  "total_configs": 504553,
   "configs": [
     {
       "name": "WHITE CIDR RU Checked (igareck)",
@@ -14,7 +14,7 @@
       "filename": "WHITE_CIDR_RU_Checked__igareck__d94b99.txt",
       "filepath": "VPNMIRRORS/v2ray/WHITE_CIDR_RU_Checked__igareck__d94b99.txt",
       "counts": {
-        "vless": 1,
+        "vless": 2,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -23,7 +23,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 1
+        "total": 2
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -34,10 +34,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 0.55,
-      "hash": "41ab588f348df785",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "size_kb": 0.82,
+      "hash": "74bbfd13e8215452",
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "WHITE CIDR RU All (igareck)",
@@ -45,16 +45,16 @@
       "filename": "WHITE_CIDR_RU_All__igareck__611028.txt",
       "filepath": "VPNMIRRORS/v2ray/WHITE_CIDR_RU_All__igareck__611028.txt",
       "counts": {
-        "vless": 132,
+        "vless": 140,
         "vmess": 0,
         "trojan": 0,
-        "ss": 1,
+        "ss": 0,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 1,
-        "total": 134
+        "total": 141
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -65,10 +65,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 38.81,
-      "hash": "daf5baa68e394612",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "size_kb": 42.07,
+      "hash": "d98eefdff8b75604",
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "WHITE SNI RU All (igareck)",
@@ -76,7 +76,7 @@
       "filename": "WHITE_SNI_RU_All__igareck__dd9b8c.txt",
       "filepath": "VPNMIRRORS/nekobox/WHITE_SNI_RU_All__igareck__dd9b8c.txt",
       "counts": {
-        "vless": 10,
+        "vless": 15,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -85,7 +85,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 10
+        "total": 15
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt",
       "app_name": "Nekoray / Nekobox",
@@ -95,10 +95,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 3.26,
-      "hash": "2e495bd7de988d86",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "size_kb": 4.91,
+      "hash": "9a968e9d62a265da",
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "VLESS Reality White Lists RU Mobile (igareck)",
@@ -106,16 +106,16 @@
       "filename": "VLESS_Reality_White_Lists_RU_Mobile__iga_3eac2d.txt",
       "filepath": "VPNMIRRORS/v2ray/VLESS_Reality_White_Lists_RU_Mobile__iga_3eac2d.txt",
       "counts": {
-        "vless": 132,
+        "vless": 140,
         "vmess": 0,
         "trojan": 0,
-        "ss": 1,
+        "ss": 0,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 1,
-        "total": 134
+        "total": 141
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -126,10 +126,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 38.8,
-      "hash": "854ad27f4e6c8a1e",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "size_kb": 42.01,
+      "hash": "3b12485f7c0b1f6a",
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "BLACK VLESS RUS (igareck)",
@@ -159,8 +159,8 @@
       ],
       "size_kb": 43.6,
       "hash": "98975035ba4cacbe",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "BLACK VLESS RUS Mobile (igareck)",
@@ -190,8 +190,8 @@
       ],
       "size_kb": 37.3,
       "hash": "6b1776533bac31f9",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "BLACK SS+All RUS (igareck)",
@@ -221,8 +221,8 @@
       ],
       "size_kb": 23.63,
       "hash": "839f5bcce2093cb9",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "TOR Bridges TOP100 (igareck)",
@@ -251,8 +251,8 @@
       ],
       "size_kb": 12.37,
       "hash": "682b4d5759930667",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "TOR Bridges ALL (igareck)",
@@ -281,8 +281,8 @@
       ],
       "size_kb": 31.85,
       "hash": "2c865b3ea2a425e8",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "GOIDA VLESS 1 (AvenCores)",
@@ -290,16 +290,16 @@
       "filename": "GOIDA_VLESS_1__AvenCores__32fadf.txt",
       "filepath": "VPNMIRRORS/v2ray/GOIDA_VLESS_1__AvenCores__32fadf.txt",
       "counts": {
-        "vless": 7530,
-        "vmess": 1390,
-        "trojan": 786,
-        "ss": 269,
+        "vless": 7561,
+        "vmess": 1391,
+        "trojan": 794,
+        "ss": 271,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 9,
-        "total": 9984
+        "total": 10026
       },
       "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -310,10 +310,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 2634.56,
-      "hash": "5b786496d7e0e8ae",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "size_kb": 2643.16,
+      "hash": "b93bbb7d1e08972a",
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "GOIDA 10 (AvenCores)",
@@ -321,7 +321,7 @@
       "filename": "GOIDA_10__AvenCores__57f405.txt",
       "filepath": "VPNMIRRORS/v2ray/GOIDA_10__AvenCores__57f405.txt",
       "counts": {
-        "vless": 5725,
+        "vless": 5688,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -330,7 +330,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 5725
+        "total": 5688
       },
       "url": "https://raw.githubusercontent.com/AvenCores/goida-vpn-configs/refs/heads/main/githubmirror/10.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -341,10 +341,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 1329.31,
-      "hash": "ae4df57753c6e313",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "size_kb": 1323.22,
+      "hash": "79940d49b14d2e6b",
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "EtoNeYa Raw 1",
@@ -373,8 +373,8 @@
       ],
       "size_kb": 660.37,
       "hash": "a10f0b0de52dac52",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "EtoNeYa Raw 2",
@@ -403,8 +403,8 @@
       ],
       "size_kb": 660.37,
       "hash": "a10f0b0de52dac52",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "EtoNeYa CDN 1",
@@ -431,10 +431,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 305.37,
-      "hash": "5650409525f7d561",
-      "updated": "2026-08-15 06:03 UTC",
-      "updated_msk": "2026-08-15 09:03 MSK"
+      "size_kb": 184.46,
+      "hash": "a630fe6caf74b6c8",
+      "updated": "2026-08-15 09:03 UTC",
+      "updated_msk": "2026-08-15 12:03 MSK"
     },
     {
       "name": "ByeWhiteLists 2",
@@ -463,8 +463,8 @@
       ],
       "size_kb": 306.78,
       "hash": "9e6288d876514c07",
-      "updated": "2026-08-15 06:04 UTC",
-      "updated_msk": "2026-08-15 09:04 MSK"
+      "updated": "2026-08-15 09:04 UTC",
+      "updated_msk": "2026-08-15 12:04 MSK"
     },
     {
       "name": "SilentGhost Whitelist 1",
@@ -493,8 +493,8 @@
       ],
       "size_kb": 44.21,
       "hash": "a54ce5f5c4f0d26b",
-      "updated": "2026-08-15 06:04 UTC",
-      "updated_msk": "2026-08-15 09:04 MSK"
+      "updated": "2026-08-15 09:04 UTC",
+      "updated_msk": "2026-08-15 12:04 MSK"
     },
     {
       "name": "SilentGhost Whitelist 2",
@@ -523,8 +523,8 @@
       ],
       "size_kb": 36.46,
       "hash": "d5bf04429039421c",
-      "updated": "2026-08-15 06:04 UTC",
-      "updated_msk": "2026-08-15 09:04 MSK"
+      "updated": "2026-08-15 09:04 UTC",
+      "updated_msk": "2026-08-15 12:04 MSK"
     },
     {
       "name": "SilentGhost Blacklist",
@@ -554,8 +554,8 @@
       ],
       "size_kb": 2.42,
       "hash": "0acd9ff199de8451",
-      "updated": "2026-08-15 06:04 UTC",
-      "updated_msk": "2026-08-15 09:04 MSK"
+      "updated": "2026-08-15 09:04 UTC",
+      "updated_msk": "2026-08-15 12:04 MSK"
     },
     {
       "name": "GPU Cloud Merged",
@@ -563,16 +563,16 @@
       "filename": "GPU_Cloud_Merged_bbadbd.txt",
       "filepath": "VPNMIRRORS/nekobox/GPU_Cloud_Merged_bbadbd.txt",
       "counts": {
-        "vless": 7743,
-        "vmess": 323,
-        "trojan": 467,
-        "ss": 761,
+        "vless": 7701,
+        "vmess": 310,
+        "trojan": 487,
+        "ss": 777,
         "ssr": 0,
-        "hysteria": 57,
+        "hysteria": 64,
         "tuic": 2,
         "tor": 0,
         "other": 40,
-        "total": 9393
+        "total": 9381
       },
       "url": "https://s3c3.001.gpucloud.ru/wlr/merged.txt",
       "app_name": "Nekoray / Nekobox",
@@ -582,10 +582,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 2815.84,
-      "hash": "052b9279f70ed619",
-      "updated": "2026-08-15 06:04 UTC",
-      "updated_msk": "2026-08-15 09:04 MSK"
+      "size_kb": 2800.09,
+      "hash": "b0f8e2961e27d70e",
+      "updated": "2026-08-15 09:04 UTC",
+      "updated_msk": "2026-08-15 12:04 MSK"
     },
     {
       "name": "Hidashimora 1.1",
@@ -593,10 +593,10 @@
       "filename": "Hidashimora_1.1_376791.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_1.1_376791.txt",
       "counts": {
-        "vless": 229,
-        "vmess": 43,
-        "trojan": 20,
-        "ss": 7,
+        "vless": 221,
+        "vmess": 44,
+        "trojan": 29,
+        "ss": 5,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
@@ -613,10 +613,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 81.73,
-      "hash": "86a8b1b7f5e3c491",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 83.64,
+      "hash": "bb3cd66355bed402",
+      "updated": "2026-08-15 09:05 UTC",
+      "updated_msk": "2026-08-15 12:05 MSK"
     },
     {
       "name": "Hidashimora 1.2",
@@ -624,16 +624,16 @@
       "filename": "Hidashimora_1.2_edc955.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_1.2_edc955.txt",
       "counts": {
-        "vless": 7530,
-        "vmess": 1390,
-        "trojan": 786,
-        "ss": 269,
+        "vless": 7561,
+        "vmess": 1391,
+        "trojan": 794,
+        "ss": 271,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 9975
+        "total": 10017
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/1.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -644,10 +644,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 2632.12,
-      "hash": "519ee88d1dba7566",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 2640.72,
+      "hash": "fa2e278959025a27",
+      "updated": "2026-08-15 09:05 UTC",
+      "updated_msk": "2026-08-15 12:05 MSK"
     },
     {
       "name": "Hidashimora 2.1",
@@ -677,8 +677,8 @@
       ],
       "size_kb": 72.09,
       "hash": "966db2d058edc0c6",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 2.2",
@@ -708,8 +708,8 @@
       ],
       "size_kb": 96831.4,
       "hash": "ade6e7f2880560fc",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 3.1",
@@ -717,12 +717,12 @@
       "filename": "Hidashimora_3.1_19303c.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_3.1_19303c.txt",
       "counts": {
-        "vless": 211,
-        "vmess": 28,
-        "trojan": 14,
-        "ss": 46,
+        "vless": 210,
+        "vmess": 29,
+        "trojan": 12,
+        "ss": 47,
         "ssr": 0,
-        "hysteria": 0,
+        "hysteria": 1,
         "tuic": 0,
         "tor": 0,
         "other": 0,
@@ -737,10 +737,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 69.5,
-      "hash": "22c696fcad5d6724",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 69.57,
+      "hash": "d3acfe0bb6cffd74",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 3.2",
@@ -748,16 +748,16 @@
       "filename": "Hidashimora_3.2_8f3fcf.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_3.2_8f3fcf.txt",
       "counts": {
-        "vless": 2886,
-        "vmess": 380,
-        "trojan": 164,
-        "ss": 502,
+        "vless": 2861,
+        "vmess": 383,
+        "trojan": 159,
+        "ss": 519,
         "ssr": 0,
         "hysteria": 1,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 3933
+        "total": 3923
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/3.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -768,10 +768,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 930.23,
-      "hash": "22f0f517c7003a49",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 926.27,
+      "hash": "3ece77d84903247d",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 4.1",
@@ -779,16 +779,16 @@
       "filename": "Hidashimora_4.1_d46eaf.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_4.1_d46eaf.txt",
       "counts": {
-        "vless": 68,
-        "vmess": 18,
-        "trojan": 37,
-        "ss": 5,
+        "vless": 64,
+        "vmess": 20,
+        "trojan": 38,
+        "ss": 4,
         "ssr": 0,
-        "hysteria": 1,
+        "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 129
+        "total": 126
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/4.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -799,10 +799,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 27.55,
-      "hash": "9ce23bf982b87447",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 27.45,
+      "hash": "407df1cf67293be2",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 4.2",
@@ -810,16 +810,16 @@
       "filename": "Hidashimora_4.2_8519c7.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_4.2_8519c7.txt",
       "counts": {
-        "vless": 68,
-        "vmess": 18,
-        "trojan": 37,
-        "ss": 5,
+        "vless": 64,
+        "vmess": 20,
+        "trojan": 38,
+        "ss": 4,
         "ssr": 0,
-        "hysteria": 1,
+        "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 129
+        "total": 126
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/4.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -830,10 +830,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 27.55,
-      "hash": "febb037c235cc6a8",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 27.45,
+      "hash": "8326c799a96d647a",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 5.1",
@@ -841,7 +841,7 @@
       "filename": "Hidashimora_5.1_791f42.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_5.1_791f42.txt",
       "counts": {
-        "vless": 34,
+        "vless": 36,
         "vmess": 1,
         "trojan": 0,
         "ss": 16,
@@ -850,7 +850,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 51
+        "total": 53
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/5.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -861,10 +861,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 10.13,
-      "hash": "cdd429d580f44cab",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 10.73,
+      "hash": "2666599f01d2563e",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 5.2",
@@ -872,7 +872,7 @@
       "filename": "Hidashimora_5.2_0c9335.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_5.2_0c9335.txt",
       "counts": {
-        "vless": 34,
+        "vless": 36,
         "vmess": 1,
         "trojan": 0,
         "ss": 16,
@@ -881,7 +881,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 51
+        "total": 53
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/5.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -892,10 +892,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 10.12,
-      "hash": "5163e13dc95b91db",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 10.72,
+      "hash": "ec00282c970b3326",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 6.1",
@@ -903,10 +903,10 @@
       "filename": "Hidashimora_6.1_d48dd2.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_6.1_d48dd2.txt",
       "counts": {
-        "vless": 58,
+        "vless": 62,
         "vmess": 20,
-        "trojan": 51,
-        "ss": 17,
+        "trojan": 44,
+        "ss": 20,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
@@ -923,10 +923,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 29.65,
-      "hash": "0be78a937160ba07",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 30.7,
+      "hash": "5abdb2744db271a7",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 6.2",
@@ -934,10 +934,10 @@
       "filename": "Hidashimora_6.2_0c9ee6.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_6.2_0c9ee6.txt",
       "counts": {
-        "vless": 58,
+        "vless": 62,
         "vmess": 20,
-        "trojan": 51,
-        "ss": 17,
+        "trojan": 44,
+        "ss": 20,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
@@ -954,10 +954,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 29.65,
-      "hash": "3aa56c72da05ea20",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 30.69,
+      "hash": "134cc64ea6c50d7f",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 7.1",
@@ -985,10 +985,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 14.93,
-      "hash": "11ecaaa7757cc558",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 15.28,
+      "hash": "c0c806032fd83e4a",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 7.2",
@@ -998,14 +998,14 @@
       "counts": {
         "vless": 0,
         "vmess": 0,
-        "trojan": 430,
+        "trojan": 432,
         "ss": 0,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 430
+        "total": 432
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/7.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1016,10 +1016,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 61.08,
-      "hash": "2e26fa243f3ff934",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 59.3,
+      "hash": "71dbcee9396366c2",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 8.1",
@@ -1027,7 +1027,7 @@
       "filename": "Hidashimora_8.1_5ecc9d.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_8.1_5ecc9d.txt",
       "counts": {
-        "vless": 219,
+        "vless": 226,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -1036,7 +1036,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 219
+        "total": 226
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/8.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1047,10 +1047,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 53.32,
-      "hash": "d0f9c3c73e0c6307",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 55.97,
+      "hash": "2129a3af2b701a21",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 8.2",
@@ -1058,7 +1058,7 @@
       "filename": "Hidashimora_8.2_8dd3a5.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_8.2_8dd3a5.txt",
       "counts": {
-        "vless": 873,
+        "vless": 903,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -1067,7 +1067,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 873
+        "total": 903
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/8.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1078,10 +1078,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 211.5,
-      "hash": "ebe41e654ca2ac26",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 226.0,
+      "hash": "e37ec09248d3bfc1",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 9.1",
@@ -1089,7 +1089,7 @@
       "filename": "Hidashimora_9.1_cf5b59.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_9.1_cf5b59.txt",
       "counts": {
-        "vless": 294,
+        "vless": 287,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -1098,7 +1098,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 294
+        "total": 287
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/9.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1109,10 +1109,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 70.91,
-      "hash": "8e698775ebfdcf6b",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 68.93,
+      "hash": "c12b1b58e25232b3",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 9.2",
@@ -1120,7 +1120,7 @@
       "filename": "Hidashimora_9.2_55e096.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_9.2_55e096.txt",
       "counts": {
-        "vless": 294,
+        "vless": 287,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -1129,7 +1129,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 294
+        "total": 287
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/9.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1140,10 +1140,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 70.91,
-      "hash": "9f8202a5432ef0f5",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 68.93,
+      "hash": "b38f4c6be6a36420",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 10.1",
@@ -1171,10 +1171,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 65.9,
-      "hash": "7acad39701249dbd",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 70.18,
+      "hash": "ddb093676c2ae005",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 10.2",
@@ -1182,7 +1182,7 @@
       "filename": "Hidashimora_10.2_bb2206.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_10.2_bb2206.txt",
       "counts": {
-        "vless": 5725,
+        "vless": 5688,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -1191,7 +1191,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 5725
+        "total": 5688
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/10.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1202,10 +1202,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 1329.36,
-      "hash": "613e1cc840661270",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 1323.27,
+      "hash": "26ac084ac691c4ed",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 11.1",
@@ -1235,8 +1235,8 @@
       ],
       "size_kb": 16.03,
       "hash": "c3c40e56bfecfcee",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 11.2",
@@ -1266,8 +1266,8 @@
       ],
       "size_kb": 63.72,
       "hash": "cd5eb6848591d90d",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 12.1",
@@ -1295,10 +1295,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 83.14,
-      "hash": "10ffc76a708fd461",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 81.3,
+      "hash": "1dc279caa20dd852",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 12.2",
@@ -1306,7 +1306,7 @@
       "filename": "Hidashimora_12.2_a303f0.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_12.2_a303f0.txt",
       "counts": {
-        "vless": 5997,
+        "vless": 5545,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -1315,7 +1315,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 5997
+        "total": 5545
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/12.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1326,10 +1326,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 1657.53,
-      "hash": "09f1733df89e20c8",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 1504.51,
+      "hash": "bfb43830a90503b7",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 13.1",
@@ -1337,10 +1337,10 @@
       "filename": "Hidashimora_13.1_8da349.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_13.1_8da349.txt",
       "counts": {
-        "vless": 146,
-        "vmess": 22,
-        "trojan": 113,
-        "ss": 18,
+        "vless": 194,
+        "vmess": 16,
+        "trojan": 74,
+        "ss": 15,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
@@ -1357,10 +1357,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 64.97,
-      "hash": "2480c63ff054f023",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 72.31,
+      "hash": "c3785fc600416d1c",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 13.2",
@@ -1368,16 +1368,16 @@
       "filename": "Hidashimora_13.2_0b3f92.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_13.2_0b3f92.txt",
       "counts": {
-        "vless": 1323,
-        "vmess": 218,
-        "trojan": 1004,
-        "ss": 182,
+        "vless": 2293,
+        "vmess": 217,
+        "trojan": 1043,
+        "ss": 184,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 2727
+        "total": 3737
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/13.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1388,10 +1388,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 586.5,
-      "hash": "189c19cd558dc2ba",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 864.72,
+      "hash": "4d7c682b75785fd4",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 14.1",
@@ -1399,10 +1399,10 @@
       "filename": "Hidashimora_14.1_159bfa.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_14.1_159bfa.txt",
       "counts": {
-        "vless": 212,
-        "vmess": 17,
-        "trojan": 33,
-        "ss": 37,
+        "vless": 209,
+        "vmess": 15,
+        "trojan": 42,
+        "ss": 33,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
@@ -1419,10 +1419,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 67.02,
-      "hash": "f8e6bcef2712ac12",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 65.99,
+      "hash": "cfff7d37c358abb2",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 14.2",
@@ -1431,7 +1431,7 @@
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_14.2_7106a2.txt",
       "counts": {
         "vless": 1367,
-        "vmess": 115,
+        "vmess": 116,
         "trojan": 249,
         "ss": 225,
         "ssr": 0,
@@ -1439,7 +1439,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 1956
+        "total": 1957
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/14.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1450,10 +1450,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 444.85,
-      "hash": "8651b68399227da0",
-      "updated": "2026-08-15 06:05 UTC",
-      "updated_msk": "2026-08-15 09:05 MSK"
+      "size_kb": 445.21,
+      "hash": "396e2432e9d64a05",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 15.1",
@@ -1461,16 +1461,16 @@
       "filename": "Hidashimora_15.1_51fab2.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_15.1_51fab2.txt",
       "counts": {
-        "vless": 124,
+        "vless": 121,
         "vmess": 2,
-        "trojan": 6,
-        "ss": 11,
+        "trojan": 5,
+        "ss": 12,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 143
+        "total": 140
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/15.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1481,10 +1481,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 28.01,
-      "hash": "8fe06928ea8354ab",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 27.57,
+      "hash": "284570310ef3d35f",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 15.2",
@@ -1492,16 +1492,16 @@
       "filename": "Hidashimora_15.2_4a4fdc.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_15.2_4a4fdc.txt",
       "counts": {
-        "vless": 495,
+        "vless": 481,
         "vmess": 8,
-        "trojan": 23,
-        "ss": 45,
+        "trojan": 22,
+        "ss": 48,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 571
+        "total": 559
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/15.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1512,10 +1512,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 113.47,
-      "hash": "d6941f709305fd34",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 110.89,
+      "hash": "95878227c75331ec",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 16.1",
@@ -1523,16 +1523,16 @@
       "filename": "Hidashimora_16.1_618d3e.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_16.1_618d3e.txt",
       "counts": {
-        "vless": 7,
-        "vmess": 0,
-        "trojan": 2,
-        "ss": 1,
+        "vless": 3,
+        "vmess": 2,
+        "trojan": 3,
+        "ss": 0,
         "ssr": 0,
-        "hysteria": 1,
+        "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 11
+        "total": 8
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/16.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1543,10 +1543,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 2.44,
-      "hash": "b0b1b7ee98d32142",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 2.34,
+      "hash": "34103db058e7ffb2",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 16.2",
@@ -1554,16 +1554,16 @@
       "filename": "Hidashimora_16.2_61e98f.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_16.2_61e98f.txt",
       "counts": {
-        "vless": 7,
-        "vmess": 0,
-        "trojan": 2,
-        "ss": 1,
+        "vless": 3,
+        "vmess": 2,
+        "trojan": 3,
+        "ss": 0,
         "ssr": 0,
-        "hysteria": 1,
+        "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 11
+        "total": 8
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/16.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1574,10 +1574,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 2.44,
-      "hash": "b514b45689657996",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 2.34,
+      "hash": "ae8b3b5095c400fc",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 17.1",
@@ -1585,10 +1585,10 @@
       "filename": "Hidashimora_17.1_d54497.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_17.1_d54497.txt",
       "counts": {
-        "vless": 233,
-        "vmess": 9,
-        "trojan": 15,
-        "ss": 42,
+        "vless": 235,
+        "vmess": 7,
+        "trojan": 21,
+        "ss": 36,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
@@ -1605,10 +1605,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 66.38,
-      "hash": "a398f8ac43ae5ed3",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 64.63,
+      "hash": "d34e363d5d299de6",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 17.2",
@@ -1616,16 +1616,16 @@
       "filename": "Hidashimora_17.2_60efbe.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_17.2_60efbe.txt",
       "counts": {
-        "vless": 1268,
-        "vmess": 35,
-        "trojan": 87,
-        "ss": 191,
+        "vless": 1260,
+        "vmess": 32,
+        "trojan": 84,
+        "ss": 189,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 1581
+        "total": 1565
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/17.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1636,10 +1636,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 352.79,
-      "hash": "0edf99fbf6903c39",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 349.36,
+      "hash": "4eeb1329f873e6fb",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 18.1",
@@ -1669,8 +1669,8 @@
       ],
       "size_kb": 33.16,
       "hash": "60deac0680400095",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 18.2",
@@ -1700,8 +1700,8 @@
       ],
       "size_kb": 33.16,
       "hash": "700d9f36e5212bce",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 19.1",
@@ -1709,8 +1709,8 @@
       "filename": "Hidashimora_19.1_ea4617.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_19.1_ea4617.txt",
       "counts": {
-        "vless": 121,
-        "vmess": 16,
+        "vless": 120,
+        "vmess": 17,
         "trojan": 6,
         "ss": 156,
         "ssr": 0,
@@ -1729,10 +1729,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 75.71,
-      "hash": "90520ef1607d1c7d",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 78.81,
+      "hash": "11843f39ff18b718",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 19.2",
@@ -1740,16 +1740,16 @@
       "filename": "Hidashimora_19.2_b112c2.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_19.2_b112c2.txt",
       "counts": {
-        "vless": 634,
+        "vless": 614,
         "vmess": 86,
         "trojan": 32,
-        "ss": 819,
+        "ss": 797,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 1571
+        "total": 1529
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/19.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1760,10 +1760,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 402.55,
-      "hash": "da0606c29b1e2a7b",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 392.65,
+      "hash": "91b4795b5ea34cf7",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 20.1",
@@ -1771,10 +1771,10 @@
       "filename": "Hidashimora_20.1_0f5970.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_20.1_0f5970.txt",
       "counts": {
-        "vless": 63,
-        "vmess": 13,
-        "trojan": 142,
-        "ss": 72,
+        "vless": 47,
+        "vmess": 22,
+        "trojan": 145,
+        "ss": 76,
         "ssr": 0,
         "hysteria": 9,
         "tuic": 0,
@@ -1791,10 +1791,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 56.47,
-      "hash": "f21fc6e2c55d507b",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 56.79,
+      "hash": "23c64580276ac737",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 20.2",
@@ -1802,16 +1802,16 @@
       "filename": "Hidashimora_20.2_70956e.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_20.2_70956e.txt",
       "counts": {
-        "vless": 377,
-        "vmess": 124,
-        "trojan": 977,
+        "vless": 383,
+        "vmess": 120,
+        "trojan": 1021,
         "ss": 513,
         "ssr": 0,
-        "hysteria": 62,
+        "hysteria": 64,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 2053
+        "total": 2101
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/20.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1822,10 +1822,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 384.99,
-      "hash": "caac406361910f91",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 393.67,
+      "hash": "ec191f8b6675a2a1",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 21.1",
@@ -1855,8 +1855,8 @@
       ],
       "size_kb": 75.59,
       "hash": "0ddde76577f5f50d",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 21.2",
@@ -1886,8 +1886,8 @@
       ],
       "size_kb": 2395.48,
       "hash": "1c08638ba5381020",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 22.1",
@@ -1895,8 +1895,8 @@
       "filename": "Hidashimora_22.1_7c80fa.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_22.1_7c80fa.txt",
       "counts": {
-        "vless": 167,
-        "vmess": 41,
+        "vless": 142,
+        "vmess": 47,
         "trojan": 2,
         "ss": 0,
         "ssr": 0,
@@ -1904,7 +1904,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 210
+        "total": 191
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/22.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1915,10 +1915,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 55.64,
-      "hash": "e7c885077d685913",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 48.09,
+      "hash": "0ee35503613bb248",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 22.2",
@@ -1926,8 +1926,8 @@
       "filename": "Hidashimora_22.2_fa00fa.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_22.2_fa00fa.txt",
       "counts": {
-        "vless": 658,
-        "vmess": 170,
+        "vless": 577,
+        "vmess": 177,
         "trojan": 9,
         "ss": 0,
         "ssr": 0,
@@ -1935,7 +1935,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 837
+        "total": 763
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/22.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1946,10 +1946,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 220.14,
-      "hash": "e7cf0370731fcea3",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 196.61,
+      "hash": "84ff8f58097946ef",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 23.1",
@@ -1957,7 +1957,7 @@
       "filename": "Hidashimora_23.1_9d9b27.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_23.1_9d9b27.txt",
       "counts": {
-        "vless": 127,
+        "vless": 151,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -1966,7 +1966,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 127
+        "total": 151
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/23.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -1977,10 +1977,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 35.62,
-      "hash": "35edbb4b6570ff6b",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 43.38,
+      "hash": "140e61ee13581863",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 23.2",
@@ -1988,7 +1988,7 @@
       "filename": "Hidashimora_23.2_c48497.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_23.2_c48497.txt",
       "counts": {
-        "vless": 127,
+        "vless": 151,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -1997,7 +1997,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 127
+        "total": 151
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/23.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2008,10 +2008,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 35.61,
-      "hash": "c2a90667a40fc8d2",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 43.37,
+      "hash": "d5b8005186bae8be",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 24.1",
@@ -2019,7 +2019,7 @@
       "filename": "Hidashimora_24.1_ccfd46.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_24.1_ccfd46.txt",
       "counts": {
-        "vless": 270,
+        "vless": 261,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -2028,7 +2028,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 270
+        "total": 261
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/24.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2039,10 +2039,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 72.17,
-      "hash": "4dd0b818a61da50c",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 70.43,
+      "hash": "a532aa662cef9730",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 24.2",
@@ -2050,7 +2050,7 @@
       "filename": "Hidashimora_24.2_bd00f7.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_24.2_bd00f7.txt",
       "counts": {
-        "vless": 1079,
+        "vless": 1042,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -2059,7 +2059,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 1079
+        "total": 1042
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/24.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2070,10 +2070,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 289.49,
-      "hash": "491786fbdc9870bf",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 281.06,
+      "hash": "2b93fe0956b35f3c",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 25.1",
@@ -2103,8 +2103,8 @@
       ],
       "size_kb": 68.8,
       "hash": "d18cd199357caeb7",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 25.2",
@@ -2134,8 +2134,8 @@
       ],
       "size_kb": 68.8,
       "hash": "1717ecf8d15789ae",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 26.1",
@@ -2143,10 +2143,10 @@
       "filename": "Hidashimora_26.1_cb02df.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_26.1_cb02df.txt",
       "counts": {
-        "vless": 296,
+        "vless": 295,
         "vmess": 0,
-        "trojan": 1,
-        "ss": 2,
+        "trojan": 0,
+        "ss": 4,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
@@ -2163,10 +2163,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 80.47,
-      "hash": "524f977b66c4a5c3",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 80.27,
+      "hash": "c1fc0ca5cdc41389",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 26.2",
@@ -2174,16 +2174,16 @@
       "filename": "Hidashimora_26.2_b1b8bb.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_26.2_b1b8bb.txt",
       "counts": {
-        "vless": 2428,
+        "vless": 2421,
         "vmess": 2,
         "trojan": 2,
-        "ss": 19,
+        "ss": 17,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 2451
+        "total": 2442
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/26.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2194,10 +2194,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 659.11,
-      "hash": "e28a4f1a5f5b5eb1",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 654.71,
+      "hash": "9f106146f9daea93",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 27",
@@ -2206,15 +2206,15 @@
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_27_ecb292.txt",
       "counts": {
         "vless": 0,
-        "vmess": 15,
-        "trojan": 2,
-        "ss": 16,
+        "vmess": 4,
+        "trojan": 4,
+        "ss": 21,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 33
+        "total": 29
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/27.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2225,10 +2225,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 9.42,
-      "hash": "9cc2816b2a6e813a",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 6.96,
+      "hash": "cc53e611d372b82e",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 28.1",
@@ -2236,7 +2236,7 @@
       "filename": "Hidashimora_28.1_347c87.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_28.1_347c87.txt",
       "counts": {
-        "vless": 127,
+        "vless": 151,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -2245,7 +2245,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 127
+        "total": 151
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/28.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2256,10 +2256,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 35.64,
-      "hash": "ced1d25c52a17676",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 43.41,
+      "hash": "8b4a8702bded4a9e",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 28.2",
@@ -2267,7 +2267,7 @@
       "filename": "Hidashimora_28.2_0675de.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_28.2_0675de.txt",
       "counts": {
-        "vless": 127,
+        "vless": 151,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -2276,7 +2276,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 127
+        "total": 151
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/28.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2287,10 +2287,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 35.64,
-      "hash": "75179b96aeda87da",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 43.4,
+      "hash": "e8851847b133a11b",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 29",
@@ -2298,16 +2298,16 @@
       "filename": "Hidashimora_29_49bde0.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_29_49bde0.txt",
       "counts": {
-        "vless": 75,
-        "vmess": 15,
+        "vless": 92,
+        "vmess": 4,
         "trojan": 0,
-        "ss": 16,
+        "ss": 19,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 106
+        "total": 115
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/29.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2318,10 +2318,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 29.95,
-      "hash": "6326008f7c2782e8",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 30.88,
+      "hash": "39d1e67d61c2a66d",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 30",
@@ -2329,16 +2329,16 @@
       "filename": "Hidashimora_30_f5d0e4.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_30_f5d0e4.txt",
       "counts": {
-        "vless": 132,
+        "vless": 140,
         "vmess": 0,
         "trojan": 0,
-        "ss": 1,
+        "ss": 0,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 133
+        "total": 140
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/30.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2349,10 +2349,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 38.3,
-      "hash": "2098e7888023e2bb",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 41.64,
+      "hash": "e70e1d5049b586cf",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 31",
@@ -2360,16 +2360,16 @@
       "filename": "Hidashimora_31_b425b3.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_31_b425b3.txt",
       "counts": {
-        "vless": 132,
+        "vless": 140,
         "vmess": 0,
         "trojan": 0,
-        "ss": 1,
+        "ss": 0,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 133
+        "total": 140
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/31.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2380,10 +2380,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 38.3,
-      "hash": "08fb82d1b62c2be4",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 41.64,
+      "hash": "89446cd7cb743698",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 32.1",
@@ -2391,16 +2391,16 @@
       "filename": "Hidashimora_32.1_ecc521.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_32.1_ecc521.txt",
       "counts": {
-        "vless": 132,
+        "vless": 140,
         "vmess": 0,
         "trojan": 0,
-        "ss": 1,
+        "ss": 0,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 133
+        "total": 140
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/32.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2411,10 +2411,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 38.32,
-      "hash": "6d35668f17f82501",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 41.71,
+      "hash": "e71914faeb48c555",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 32.2",
@@ -2422,16 +2422,16 @@
       "filename": "Hidashimora_32.2_410535.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_32.2_410535.txt",
       "counts": {
-        "vless": 132,
+        "vless": 140,
         "vmess": 0,
         "trojan": 0,
-        "ss": 1,
+        "ss": 0,
         "ssr": 0,
         "hysteria": 0,
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 133
+        "total": 140
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/32.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2442,10 +2442,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 38.32,
-      "hash": "b3d702a03e065806",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 41.71,
+      "hash": "ffb925ce480b5b5c",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 33.1",
@@ -2453,7 +2453,7 @@
       "filename": "Hidashimora_33.1_52901b.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_33.1_52901b.txt",
       "counts": {
-        "vless": 1,
+        "vless": 2,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -2462,7 +2462,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 1
+        "total": 2
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/33.1.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2473,10 +2473,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 0.33,
-      "hash": "71a8a7bdf67aacf9",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 0.6,
+      "hash": "6e3faef3df1714f4",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 33.2",
@@ -2484,7 +2484,7 @@
       "filename": "Hidashimora_33.2_3eca60.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_33.2_3eca60.txt",
       "counts": {
-        "vless": 1,
+        "vless": 2,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -2493,7 +2493,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 1
+        "total": 2
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/33.2.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2504,10 +2504,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 0.33,
-      "hash": "c30399e6f79edbf9",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 0.6,
+      "hash": "e3e866d543e807c5",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     },
     {
       "name": "Hidashimora 34",
@@ -2515,7 +2515,7 @@
       "filename": "Hidashimora_34_882e8f.txt",
       "filepath": "VPNMIRRORS/v2ray/Hidashimora_34_882e8f.txt",
       "counts": {
-        "vless": 10,
+        "vless": 15,
         "vmess": 0,
         "trojan": 0,
         "ss": 0,
@@ -2524,7 +2524,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 0,
-        "total": 10
+        "total": 15
       },
       "url": "https://raw.githubusercontent.com/Hidashimora/free-vpn-anti-rkn/main/configs/34.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -2535,10 +2535,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 2.9,
-      "hash": "358ae60a5e2a2f07",
-      "updated": "2026-08-15 06:06 UTC",
-      "updated_msk": "2026-08-15 09:06 MSK"
+      "size_kb": 4.55,
+      "hash": "600ae56319bda50b",
+      "updated": "2026-08-15 09:06 UTC",
+      "updated_msk": "2026-08-15 12:06 MSK"
     }
   ],
   "errors": [
@@ -2588,7 +2588,7 @@
       "name": "EtoNeYa Main",
       "url": "https://etoneya.a9fm.site/2",
       "category": "nekobox",
-      "error": "Connection error"
+      "error": "Timeout"
     },
     {
       "name": "CID White List",
