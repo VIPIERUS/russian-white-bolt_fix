@@ -14,14 +14,15 @@ import hashlib
 import requests
 from datetime import datetime, timezone
 from pathlib import Path
+from collections import defaultdict
 
 # Настройки
 TIMEOUT = 30
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-OUTPUT_DIR = Path("configs")          # единая папка
+OUTPUT_DIR = Path("configs")
 SOURCES_FILE = Path("sources/urls.txt")
 
-# Токен GitVerse из окружения (если есть)
+# Токен GitVerse из окружения
 GITVERSE_TOKEN = os.environ.get("GITVERSE_TOKEN", "")
 
 # Приложения
@@ -31,34 +32,64 @@ APPS = {
     "happ":    {"name": "Happ VPN", "icon": "happ",   "url": "https://happ.su", "ext": ".txt"},
 }
 
+# Протоколы для подсчёта
+PROTOCOLS = {
+    'vless': r'^vless://',
+    'vmess': r'^vmess://',
+    'trojan': r'^trojan://',
+    'ss': r'^ss://',
+    'ssr': r'^ssr://',
+    'tuic': r'^tuic://',
+    'hysteria': r'^hysteria://',
+    'hy2': r'^hy2://',
+    'wireguard': r'^wg://',
+    'bridge': r'^bridge\s*=|^obfs4|^meek',
+    'ip': r'^\d+\.\d+\.\d+\.\d+',
+}
 
-def count_configs(content: str) -> int:
-    """Считает количество валидных конфигураций в файле"""
+
+def count_configs_detailed(content: str) -> dict:
+    """
+    Подробный подсчёт конфигов по протоколам
+    Возвращает словарь с общим количеством и количеством по каждому протоколу
+    """
     if not content.strip():
-        return 0
-    patterns = [
-        r'^vless://', r'^vmess://', r'^trojan://', r'^ss://', r'^ssr://',
-        r'^tuic://', r'^hysteria://', r'^hy2://', r'^\d+\.\d+\.\d+\.\d+',
-        r'^bridge\s*=', r'^obfs4', r'^meek'
-    ]
-    count = 0
+        return {"total": 0, "protocols": {}}
+    
+    result = {"total": 0, "protocols": defaultdict(int)}
+    
     for line in content.splitlines():
         line = line.strip()
-        if any(re.match(p, line, re.I) for p in patterns):
-            count += 1
-    # Если нет ни одной строки с протоколом, но есть что-то — считаем как 1 (для TOR-мостов и т.п.)
-    if count == 0 and content.strip():
-        # Проверяем, похоже ли на список мостов
-        if any(x in content.lower() for x in ['bridge', 'obfs4', 'meek']):
-            count = len([l for l in content.splitlines() if l.strip()])
-    return count
+        if not line:
+            continue
+        
+        matched = False
+        for proto, pattern in PROTOCOLS.items():
+            if re.match(pattern, line, re.I):
+                result["protocols"][proto] += 1
+                result["total"] += 1
+                matched = True
+                break
+        
+        # Если не подошло ни одному паттерну, но строка не пустая
+        # возможно это TOR мост или что-то похожее
+        if not matched and len(line) > 5:
+            # Проверяем, похоже ли на TOR мост
+            if any(x in line.lower() for x in ['bridge', 'obfs4', 'meek', 'tor']):
+                result["protocols"]["tor_bridge"] += 1
+                result["total"] += 1
+            elif '://' in line or '.' in line:
+                # Возможно это IP или другой конфиг
+                result["protocols"]["other"] += 1
+                result["total"] += 1
+    
+    return result
 
 
 def fetch_url(url: str) -> tuple:
-    """Скачивает файл, возвращает (content, config_count, error)"""
+    """Скачивает файл, возвращает (content, stats, error)"""
     try:
         headers = {"User-Agent": USER_AGENT}
-        # Если ссылка на GitVerse и есть токен — добавляем авторизацию
         if "gitverse.ru" in url and GITVERSE_TOKEN:
             headers["Authorization"] = f"Bearer {GITVERSE_TOKEN}"
 
@@ -75,13 +106,13 @@ def fetch_url(url: str) -> tuple:
             except Exception:
                 pass
 
-        count = count_configs(content)
-        return content, count, ""
+        stats = count_configs_detailed(content)
+        return content, stats, ""
     except Exception as e:
-        return "", 0, str(e)
+        return "", {"total": 0, "protocols": {}}, str(e)
 
 
-def save_config(name: str, category: str, content: str, count: int, url: str) -> dict:
+def save_config(name: str, category: str, content: str, stats: dict, url: str) -> dict:
     """Сохраняет конфиг и возвращает метаданные"""
     app_info = APPS.get(category, APPS["nekobox"])
     output_path = OUTPUT_DIR / category
@@ -91,11 +122,15 @@ def save_config(name: str, category: str, content: str, count: int, url: str) ->
     filename = f"{safe_name}{app_info['ext']}"
     filepath = output_path / filename
 
+    # Сортируем протоколы для красивого вывода
+    protocols_str = ', '.join([f"{k}: {v}" for k, v in sorted(stats["protocols"].items())])
+    
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(f"# {name}\n")
         f.write(f"# Source: {url}\n")
         f.write(f"# Updated: {datetime.now(timezone.utc).isoformat()}\n")
-        f.write(f"# Count: {count}\n\n")
+        f.write(f"# Total: {stats['total']}\n")
+        f.write(f"# Protocols: {protocols_str}\n\n")
         f.write(content)
 
     file_hash = hashlib.md5(content.encode()).hexdigest()[:8]
@@ -103,7 +138,8 @@ def save_config(name: str, category: str, content: str, count: int, url: str) ->
         "name": name,
         "category": category,
         "filename": filename,
-        "count": count,
+        "count": stats["total"],
+        "protocols": dict(stats["protocols"]),
         "url": url,
         "app": app_info["name"],
         "app_icon": app_info["icon"],
@@ -118,7 +154,6 @@ def main():
     print(f"Starting update: {datetime.now(timezone.utc).isoformat()}")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Проверяем наличие файла источников
     if not SOURCES_FILE.exists():
         print(f"ERROR: {SOURCES_FILE} not found!")
         return 1
@@ -126,6 +161,8 @@ def main():
     results = []
     errors = []
     total_links = 0
+    total_configs = 0
+    total_protocols = defaultdict(int)
 
     with open(SOURCES_FILE, 'r', encoding='utf-8') as f:
         for line in f:
@@ -139,20 +176,26 @@ def main():
             url, category, name = parts[0], parts[1].lower(), parts[2]
             total_links += 1
 
-            print(f"Downloading ({total_links}): {name} from {url[:60]}...")
-            content, count, error = fetch_url(url)
+            print(f"Downloading ({total_links}): {name}")
+            content, stats, error = fetch_url(url)
 
             if error:
                 errors.append({"name": name, "url": url, "error": error})
                 print(f"  ❌ Error: {error}")
                 continue
 
-            meta = save_config(name, category, content, count, url)
+            meta = save_config(name, category, content, stats, url)
             results.append(meta)
-            print(f"  ✅ OK: {count} configs, {meta['size_kb']} KB")
-            time.sleep(1)   # небольшая задержка между запросами
+            
+            # Суммируем общую статистику
+            total_configs += stats["total"]
+            for proto, count in stats["protocols"].items():
+                total_protocols[proto] += count
+            
+            print(f"  ✅ OK: {stats['total']} configs ({', '.join([f'{k}:{v}' for k, v in stats['protocols'].items()])})")
+            time.sleep(1)
 
-    # Сохраняем метаданные для README
+    # Сохраняем метаданные
     metadata_path = OUTPUT_DIR / "metadata.json"
     with open(metadata_path, 'w', encoding='utf-8') as f:
         json.dump({
@@ -160,12 +203,21 @@ def main():
             "total_sources": len(results) + len(errors),
             "success": len(results),
             "failed": len(errors),
+            "total_configs": total_configs,
+            "total_protocols": dict(total_protocols),
             "configs": results,
             "errors": errors
         }, f, ensure_ascii=False, indent=2)
 
-    print(f"\nDone: {len(results)} success, {len(errors)} warnings (skipped)")
-    print(f"Total links processed: {total_links}")
+    print(f"\n{'='*50}")
+    print(f"SUMMARY:")
+    print(f"  Total links processed: {total_links}")
+    print(f"  Success: {len(results)}")
+    print(f"  Failed: {len(errors)}")
+    print(f"  Total configs: {total_configs}")
+    print(f"  Protocols: {', '.join([f'{k}: {v}' for k, v in sorted(total_protocols.items())])}")
+    print(f"{'='*50}")
+    
     return 0
 
 
