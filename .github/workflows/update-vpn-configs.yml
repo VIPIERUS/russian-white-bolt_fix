@@ -18,6 +18,7 @@ env:
   TZ: Europe/Moscow
   PYTHONUTF8: "1"
   PYTHONIOENCODING: "utf-8"
+  GITVERSE_TOKEN: ${{ secrets.GITVERSE_TOKEN }}   # передаём токен в скрипт
 
 jobs:
   update-configs:
@@ -29,15 +30,13 @@ jobs:
       - name: "📂 Checkout from GitHub"
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}   # токен для доступа к GitHub
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
           persist-credentials: true
 
       - name: "🔑 Add GitVerse remote"
         run: |
           git remote add gitverse https://RUVIPIEN:${{ secrets.GITVERSE_TOKEN }}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git
-        env:
-          GITVERSE_TOKEN: ${{ secrets.GITVERSE_TOKEN }}
 
       - name: "🐍 Setup Python"
         uses: actions/setup-python@v5
@@ -47,10 +46,12 @@ jobs:
       - name: "📦 Install dependencies"
         run: pip install requests beautifulsoup4 lxml
 
-      - name: "🌐 Fetch VPN configs"
+      - name: "📁 Prepare directories"
         run: |
-          mkdir -p VPNMIRRORS sources scripts
-          python scripts/fetch_configs.py
+          mkdir -p configs sources scripts   # теперь создаём configs, а не VPNMIRRORS
+
+      - name: "🌐 Fetch VPN configs"
+        run: python scripts/fetch_configs.py
 
       - name: "📝 Generate README"
         run: python scripts/generate_readme.py
@@ -61,7 +62,7 @@ jobs:
       - name: "📊 Count files"
         id: count
         run: |
-          VPN_FILES=$(find VPNMIRRORS -type f ! -name "metadata.json" 2>/dev/null | wc -l)
+          VPN_FILES=$(find configs -type f ! -name "metadata.json" 2>/dev/null | wc -l)
           echo "vpn_files=$VPN_FILES" >> $GITHUB_OUTPUT
 
       - name: "💾 Commit and push to both remotes"
@@ -70,5 +71,5 @@ jobs:
           git config user.email "bot@gitverse.ru"
           git add -A
           git diff --cached --quiet || git commit -m "🔄 Auto-update: $(date)"
-          git push origin HEAD          # на GitHub
-          git push gitverse HEAD        # на GitVerse
+          git push origin HEAD
+          git push gitverse HEAD
