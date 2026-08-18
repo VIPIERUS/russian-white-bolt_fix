@@ -5,9 +5,11 @@
 Запускается в CI/CD каждые 3 часа
 """
 
+import os
 import re
 import time
 import json
+import base64
 import hashlib
 import requests
 from datetime import datetime, timezone
@@ -16,8 +18,11 @@ from pathlib import Path
 # Настройки
 TIMEOUT = 30
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-OUTPUT_DIR = Path("configs")
+OUTPUT_DIR = Path("configs")          # единая папка
 SOURCES_FILE = Path("sources/urls.txt")
+
+# Токен GitVerse из окружения (если есть)
+GITVERSE_TOKEN = os.environ.get("GITVERSE_TOKEN", "")
 
 # Приложения
 APPS = {
@@ -41,19 +46,28 @@ def count_configs(content: str) -> int:
         line = line.strip()
         if any(re.match(p, line, re.I) for p in patterns):
             count += 1
-    return count if count > 0 else (1 if content.strip() else 0)
+    # Если нет ни одной строки с протоколом, но есть что-то — считаем как 1 (для TOR-мостов и т.п.)
+    if count == 0 and content.strip():
+        # Проверяем, похоже ли на список мостов
+        if any(x in content.lower() for x in ['bridge', 'obfs4', 'meek']):
+            count = len([l for l in content.splitlines() if l.strip()])
+    return count
 
 
 def fetch_url(url: str) -> tuple:
     """Скачивает файл, возвращает (content, config_count, error)"""
     try:
         headers = {"User-Agent": USER_AGENT}
+        # Если ссылка на GitVerse и есть токен — добавляем авторизацию
+        if "gitverse.ru" in url and GITVERSE_TOKEN:
+            headers["Authorization"] = f"Bearer {GITVERSE_TOKEN}"
+
         resp = requests.get(url, headers=headers, timeout=TIMEOUT, allow_redirects=True)
         resp.raise_for_status()
         content = resp.text.strip()
 
+        # Если контент не похож на конфиги, пробуем декодировать base64
         if content and not any(c in content for c in ['://', 'bridge', 'obfs']):
-            import base64
             try:
                 decoded = base64.b64decode(content).decode('utf-8', errors='ignore')
                 if decoded.strip():
@@ -103,8 +117,15 @@ def save_config(name: str, category: str, content: str, count: int, url: str) ->
 def main():
     print(f"Starting update: {datetime.now(timezone.utc).isoformat()}")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    # Проверяем наличие файла источников
+    if not SOURCES_FILE.exists():
+        print(f"ERROR: {SOURCES_FILE} not found!")
+        return 1
+
     results = []
     errors = []
+    total_links = 0
 
     with open(SOURCES_FILE, 'r', encoding='utf-8') as f:
         for line in f:
@@ -113,24 +134,26 @@ def main():
                 continue
             parts = line.split('|')
             if len(parts) < 3:
+                print(f"Warning: skipping invalid line: {line}")
                 continue
             url, category, name = parts[0], parts[1].lower(), parts[2]
+            total_links += 1
 
-            print(f"Downloading: {name} ...")
+            print(f"Downloading ({total_links}): {name} from {url[:60]}...")
             content, count, error = fetch_url(url)
 
             if error:
                 errors.append({"name": name, "url": url, "error": error})
-                print(f"Warning (skipping): {error}")
+                print(f"  ❌ Error: {error}")
                 continue
 
             meta = save_config(name, category, content, count, url)
             results.append(meta)
-            print(f"OK {name}: {count} configs, {meta['size_kb']} KB")
-            time.sleep(1)
+            print(f"  ✅ OK: {count} configs, {meta['size_kb']} KB")
+            time.sleep(1)   # небольшая задержка между запросами
 
     # Сохраняем метаданные для README
-    metadata_path = Path("configs") / "metadata.json"
+    metadata_path = OUTPUT_DIR / "metadata.json"
     with open(metadata_path, 'w', encoding='utf-8') as f:
         json.dump({
             "updated": datetime.now(timezone.utc).isoformat(),
@@ -142,7 +165,7 @@ def main():
         }, f, ensure_ascii=False, indent=2)
 
     print(f"\nDone: {len(results)} success, {len(errors)} warnings (skipped)")
-    # Всегда возвращаем 0 — частичный успех не должен ронять CI
+    print(f"Total links processed: {total_links}")
     return 0
 
 
