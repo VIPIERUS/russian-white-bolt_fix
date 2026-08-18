@@ -66,11 +66,12 @@ def generate_readme():
 """
 
     if data["errors"]:
-        readme += "### Unavailable sources
+        readme += """### Unavailable sources
 
-"
+"""
         for err in data["errors"]:
             readme += "- " + err["name"] + " — " + err["error"][:80] + """
+
 """
         readme += """
 > Will be retried on next update.
