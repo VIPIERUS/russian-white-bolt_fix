@@ -20,7 +20,6 @@ def generate_readme():
     for cfg in data["configs"]:
         grouped[cfg["category"]].append(cfg)
 
-    # Исправлено: используем тройные кавычки для многострочных строк
     readme = """# VPN configs
 
 > Auto-update every 3 hours | Last: """ + data["updated"] + """
