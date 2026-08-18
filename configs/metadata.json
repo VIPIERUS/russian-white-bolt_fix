@@ -1,0 +1,770 @@
+{
+  "updated": "2026-08-18T20:53:23.179805+00:00",
+  "total_sources": 57,
+  "success": 34,
+  "failed": 23,
+  "total_configs": 517058,
+  "total_protocols": {
+    "vless": 494483,
+    "ss": 6042,
+    "other": 2815,
+    "vmess": 6370,
+    "trojan": 6760,
+    "tor_bridge": 44,
+    "ip": 163,
+    "bridge": 233,
+    "hy2": 128,
+    "tuic": 2,
+    "ssr": 18
+  },
+  "configs": [
+    {
+      "name": "Alley_Config_1",
+      "category": "nekobox",
+      "filename": "Alley_Config_1.txt",
+      "count": 5729,
+      "protocols": {
+        "vless": 4123,
+        "ss": 256,
+        "other": 469,
+        "vmess": 375,
+        "trojan": 499,
+        "tor_bridge": 7
+      },
+      "url": "https://alley.serv00.net/1",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 1131.6,
+      "hash": "a5aca497",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "Alley_Config_2",
+      "category": "nekobox",
+      "filename": "Alley_Config_2.txt",
+      "count": 5729,
+      "protocols": {
+        "vless": 4123,
+        "ss": 256,
+        "other": 469,
+        "vmess": 375,
+        "trojan": 499,
+        "tor_bridge": 7
+      },
+      "url": "https://alley.serv00.net/2",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 1131.6,
+      "hash": "a5aca497",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "EtoNeYa_Raw_1",
+      "category": "nekobox",
+      "filename": "EtoNeYa_Raw_1.txt",
+      "count": 5729,
+      "protocols": {
+        "vless": 4123,
+        "ss": 256,
+        "other": 469,
+        "vmess": 375,
+        "trojan": 499,
+        "tor_bridge": 7
+      },
+      "url": "https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/1",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 1131.6,
+      "hash": "a5aca497",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "BLACK_VLESS_RUS",
+      "category": "v2ray",
+      "filename": "BLACK_VLESS_RUS.txt",
+      "count": 141,
+      "protocols": {
+        "other": 1,
+        "vless": 140
+      },
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt",
+      "app": "V2RayNG",
+      "app_icon": "v2ray",
+      "app_url": "https://getv2rayng.com",
+      "size_kb": 41.4,
+      "hash": "ed72ebc0",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "BLACK_SS_All",
+      "category": "v2ray",
+      "filename": "BLACK_SS_All.txt",
+      "count": 69,
+      "protocols": {
+        "other": 66,
+        "vmess": 3
+      },
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_SS+All_RUS.txt",
+      "app": "V2RayNG",
+      "app_icon": "v2ray",
+      "app_url": "https://getv2rayng.com",
+      "size_kb": 12.9,
+      "hash": "12a4335c",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "TOR_BRIDGES_TOP100",
+      "category": "happ",
+      "filename": "TOR_BRIDGES_TOP100.txt",
+      "count": 103,
+      "protocols": {
+        "tor_bridge": 3,
+        "ip": 34,
+        "bridge": 58,
+        "other": 8
+      },
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/TOR-BRIDGES/TOR_BRIDGES_TOP100.txt",
+      "app": "Happ VPN",
+      "app_icon": "happ",
+      "app_url": "https://happ.su",
+      "size_kb": 12.7,
+      "hash": "9565c534",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "TOR_BRIDGES_ALL",
+      "category": "happ",
+      "filename": "TOR_BRIDGES_ALL.txt",
+      "count": 322,
+      "protocols": {
+        "tor_bridge": 5,
+        "ip": 129,
+        "bridge": 175,
+        "other": 13
+      },
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/TOR-BRIDGES/TOR_BRIDGES_ALL.txt",
+      "app": "Happ VPN",
+      "app_icon": "happ",
+      "app_url": "https://happ.su",
+      "size_kb": 36.7,
+      "hash": "3c1ac79f",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "VLESS_Reality_White",
+      "category": "v2ray",
+      "filename": "VLESS_Reality_White.txt",
+      "count": 130,
+      "protocols": {
+        "other": 4,
+        "vless": 126
+      },
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
+      "app": "V2RayNG",
+      "app_icon": "v2ray",
+      "app_url": "https://getv2rayng.com",
+      "size_kb": 34.0,
+      "hash": "0e5091d4",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "WHITE_CIDR_RU_All",
+      "category": "nekobox",
+      "filename": "WHITE_CIDR_RU_All.txt",
+      "count": 134,
+      "protocols": {
+        "other": 8,
+        "vless": 126
+      },
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 34.8,
+      "hash": "7829d2b8",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "WHITE_CIDR_RU_checked",
+      "category": "nekobox",
+      "filename": "WHITE_CIDR_RU_checked.txt",
+      "count": 5,
+      "protocols": {
+        "other": 3,
+        "vless": 2
+      },
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 1.3,
+      "hash": "2faae195",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "WHITE_SNI_RU_All",
+      "category": "nekobox",
+      "filename": "WHITE_SNI_RU_All.txt",
+      "count": 15,
+      "protocols": {
+        "other": 1,
+        "vless": 14
+      },
+      "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 4.4,
+      "hash": "bc3b21fc",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "EtoNeYa_Raw_2",
+      "category": "nekobox",
+      "filename": "EtoNeYa_Raw_2.txt",
+      "count": 5729,
+      "protocols": {
+        "vless": 4123,
+        "ss": 256,
+        "other": 469,
+        "vmess": 375,
+        "trojan": 499,
+        "tor_bridge": 7
+      },
+      "url": "https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/2",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 1131.6,
+      "hash": "a5aca497",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "EtoNeYa_CDN_1",
+      "category": "nekobox",
+      "filename": "EtoNeYa_CDN_1.txt",
+      "count": 5091,
+      "protocols": {
+        "vless": 3613,
+        "ss": 231,
+        "other": 413,
+        "vmess": 361,
+        "trojan": 467,
+        "tor_bridge": 6
+      },
+      "url": "https://cdn.jsdelivr.net/gh/EtoNeYaProject/EtoNeYaProject.github.io@refs/heads/main/1",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 983.7,
+      "hash": "28260eaa",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "nowmeow_whitelist",
+      "category": "nekobox",
+      "filename": "nowmeow_whitelist.txt",
+      "count": 30,
+      "protocols": {
+        "vless": 30
+      },
+      "url": "https://nowmeow.pw/8ybBd3fdCAQ6Ew5H0d66Y1hMbh63GpKUtEXQClIu/whitelist",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 10.9,
+      "hash": "266429ac",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "gpucloud_merged",
+      "category": "nekobox",
+      "filename": "gpucloud_merged.txt",
+      "count": 9642,
+      "protocols": {
+        "other": 79,
+        "vless": 7849,
+        "ss": 694,
+        "trojan": 669,
+        "vmess": 297,
+        "hy2": 51,
+        "tor_bridge": 1,
+        "tuic": 2
+      },
+      "url": "https://s3c3.001.gpucloud.ru/wlr/merged.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 2846.0,
+      "hash": "ad4dc71c",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "ByeWhiteLists2",
+      "category": "nekobox",
+      "filename": "ByeWhiteLists2.txt",
+      "count": 1031,
+      "protocols": {
+        "vless": 1031
+      },
+      "url": "https://raw.githubusercontent.com/ByeWhiteLists/ByeWhiteLists2/refs/heads/main/ByeWhiteLists2.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 306.8,
+      "hash": "4ef0c6b9",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "SilentGhostCodes_Whitelist",
+      "category": "nekobox",
+      "filename": "SilentGhostCodes_Whitelist.txt",
+      "count": 166,
+      "protocols": {
+        "other": 6,
+        "vless": 156,
+        "trojan": 4
+      },
+      "url": "https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/Whitelist.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 44.2,
+      "hash": "1d568ae2",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "SilentGhostCodes_Whitelist2",
+      "category": "nekobox",
+      "filename": "SilentGhostCodes_Whitelist2.txt",
+      "count": 137,
+      "protocols": {
+        "other": 2,
+        "vless": 135
+      },
+      "url": "https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/Whitelist%20%E2%84%962.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 36.5,
+      "hash": "7c97dbce",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "SilentGhostCodes_BlackList",
+      "category": "nekobox",
+      "filename": "SilentGhostCodes_BlackList.txt",
+      "count": 9,
+      "protocols": {
+        "other": 2,
+        "vless": 7
+      },
+      "url": "https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/BlackList.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 2.4,
+      "hash": "62ceefe6",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "sakha1370_OpenRay",
+      "category": "nekobox",
+      "filename": "sakha1370_OpenRay.txt",
+      "count": 11462,
+      "protocols": {
+        "vless": 9330,
+        "trojan": 954,
+        "vmess": 878,
+        "ss": 290,
+        "other": 10
+      },
+      "url": "https://github.com/sakha1370/OpenRay/raw/refs/heads/main/output/all_valid_proxies.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 2962.8,
+      "hash": "de4f9814",
+      "updated": "2026-08-18 20:52 UTC"
+    },
+    {
+      "name": "sevcator_vl",
+      "category": "nekobox",
+      "filename": "sevcator_vl.txt",
+      "count": 420430,
+      "protocols": {
+        "vless": 420430
+      },
+      "url": "https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 102241.0,
+      "hash": "2075b3d8",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "yitong2333_proxy-minging",
+      "category": "nekobox",
+      "filename": "yitong2333_proxy-minging.txt",
+      "count": 13633,
+      "protocols": {
+        "vless": 9578,
+        "trojan": 893,
+        "ss": 1721,
+        "vmess": 1144,
+        "other": 216,
+        "ssr": 9,
+        "hy2": 71,
+        "tor_bridge": 1
+      },
+      "url": "https://raw.githubusercontent.com/yitong2333/proxy-minging/refs/heads/main/v2ray.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 3222.3,
+      "hash": "d134296a",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "roosterkid_V2RAY_RAW",
+      "category": "nekobox",
+      "filename": "roosterkid_V2RAY_RAW.txt",
+      "count": 150,
+      "protocols": {
+        "vless": 53,
+        "vmess": 10,
+        "ss": 14,
+        "trojan": 73
+      },
+      "url": "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_RAW.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 27.6,
+      "hash": "f428b049",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "CidVpn_general",
+      "category": "nekobox",
+      "filename": "CidVpn_general.txt",
+      "count": 359,
+      "protocols": {
+        "other": 2,
+        "vless": 357
+      },
+      "url": "https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 79.2,
+      "hash": "2c8c3512",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "Pawdroid_Free-servers",
+      "category": "nekobox",
+      "filename": "Pawdroid_Free-servers.txt",
+      "count": 20,
+      "protocols": {
+        "trojan": 17,
+        "vless": 3
+      },
+      "url": "https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 3.8,
+      "hash": "696ba781",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "wuqb2i4f_mix-uri",
+      "category": "nekobox",
+      "filename": "wuqb2i4f_mix-uri.txt",
+      "count": 391,
+      "protocols": {
+        "vless": 237,
+        "vmess": 139,
+        "trojan": 15
+      },
+      "url": "https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 99.6,
+      "hash": "77cb5600",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "Mr-Meshky_vify_vless",
+      "category": "nekobox",
+      "filename": "Mr-Meshky_vify_vless.txt",
+      "count": 894,
+      "protocols": {
+        "vless": 894
+      },
+      "url": "https://github.com/Mr-Meshky/vify/raw/refs/heads/main/configs/vless.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 244.0,
+      "hash": "30160224",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "AvenCores_goida_26",
+      "category": "nekobox",
+      "filename": "AvenCores_goida_26.txt",
+      "count": 4640,
+      "protocols": {
+        "vless": 4572,
+        "other": 7,
+        "trojan": 10,
+        "ss": 49,
+        "vmess": 2
+      },
+      "url": "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 1251.4,
+      "hash": "d702c0e9",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "V2RayRoot_vless",
+      "category": "nekobox",
+      "filename": "V2RayRoot_vless.txt",
+      "count": 263,
+      "protocols": {
+        "vless": 263
+      },
+      "url": "https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 69.8,
+      "hash": "cc2771e4",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "whoahaow_bypass-7",
+      "category": "nekobox",
+      "filename": "whoahaow_bypass-7.txt",
+      "count": 304,
+      "protocols": {
+        "other": 4,
+        "vless": 193,
+        "ss": 10,
+        "vmess": 14,
+        "trojan": 83
+      },
+      "url": "https://raw.githubusercontent.com/whoahaow/rjsxrd/refs/heads/main/githubmirror/bypass/bypass-7.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 86.4,
+      "hash": "81feb378",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "AvenCores_goida_1",
+      "category": "nekobox",
+      "filename": "AvenCores_goida_1.txt",
+      "count": 11305,
+      "protocols": {
+        "vless": 9246,
+        "trojan": 886,
+        "vmess": 878,
+        "ss": 288,
+        "other": 7
+      },
+      "url": "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 2917.6,
+      "hash": "c496c911",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "AvenCores_goida_3",
+      "category": "nekobox",
+      "filename": "AvenCores_goida_3.txt",
+      "count": 12964,
+      "protocols": {
+        "vless": 9310,
+        "trojan": 691,
+        "ss": 1721,
+        "vmess": 1144,
+        "other": 83,
+        "ssr": 9,
+        "hy2": 6
+      },
+      "url": "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/3.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 3076.8,
+      "hash": "d2469aa8",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "SER38Off_happ-subscription",
+      "category": "nekobox",
+      "filename": "SER38Off_happ-subscription.txt",
+      "count": 298,
+      "protocols": {
+        "other": 3,
+        "vless": 293,
+        "trojan": 2
+      },
+      "url": "https://raw.githubusercontent.com/SER38Off/happ-subscription/refs/heads/main/sub1-white-lists.txt",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 81.4,
+      "hash": "749d9240",
+      "updated": "2026-08-18 20:53 UTC"
+    },
+    {
+      "name": "obwlsub_wwh",
+      "category": "nekobox",
+      "filename": "obwlsub_wwh.txt",
+      "count": 4,
+      "protocols": {
+        "other": 1,
+        "vless": 3
+      },
+      "url": "https://obwlsub.vercel.app/wwh",
+      "app": "Nekobox",
+      "app_icon": "nekobox",
+      "app_url": "https://nekobox.one",
+      "size_kb": 0.7,
+      "hash": "ae08b2a5",
+      "updated": "2026-08-18 20:53 UTC"
+    }
+  ],
+  "errors": [
+    {
+      "name": "EtoNeYa_Main",
+      "url": "https://etoneya.a9fm.site/2",
+      "error": "HTTPSConnectionPool(host='etoneya.a9fm.site', port=443): Max retries exceeded with url: /2 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1017)')))"
+    },
+    {
+      "name": "EtoNeYa_general",
+      "url": "https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/general.txt",
+      "error": "404 Client Error: Not Found for url: https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/general.txt"
+    },
+    {
+      "name": "Worker_sub",
+      "url": "https://vlesstrojan.alexanderyurievich88.workers.dev?token=sub",
+      "error": "404 Client Error: Not Found for url: https://vlesstrojan.alexanderyurievich88.workers.dev/?token=sub"
+    },
+    {
+      "name": "Worker_vless",
+      "url": "https://vlesstrojan.alexanderyurievich88.workers.dev?token=sub&filter=vless",
+      "error": "404 Client Error: Not Found for url: https://vlesstrojan.alexanderyurievich88.workers.dev/?token=sub&filter=vless"
+    },
+    {
+      "name": "Worker_vless_warp",
+      "url": "https://vlesstrojan.alexanderyurievich88.workers.dev?token=sub&filter=vless&warp=on",
+      "error": "404 Client Error: Not Found for url: https://vlesstrojan.alexanderyurievich88.workers.dev/?token=sub&filter=vless&warp=on"
+    },
+    {
+      "name": "kort0881_vless",
+      "url": "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vless.txt",
+      "error": "404 Client Error: Not Found for url: https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vless.txt"
+    },
+    {
+      "name": "kort0881_vless_ru",
+      "url": "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/ru-sni/vless_ru.txt",
+      "error": "404 Client Error: Not Found for url: https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/ru-sni/vless_ru.txt"
+    },
+    {
+      "name": "kort0881_vmess",
+      "url": "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vmess.txt",
+      "error": "404 Client Error: Not Found for url: https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/vmess.txt"
+    },
+    {
+      "name": "kort0881_trojan",
+      "url": "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/trojan.txt",
+      "error": "404 Client Error: Not Found for url: https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/trojan.txt"
+    },
+    {
+      "name": "kort0881_ss",
+      "url": "https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/ss.txt",
+      "error": "404 Client Error: Not Found for url: https://raw.githubusercontent.com/kort0881/vpn-vless-configs-russia/main/githubmirror/clean/ss.txt"
+    },
+    {
+      "name": "cid-white_whitelist",
+      "url": "https://gitverse.ru/api/repos/cid-uskoritel/cid-white/raw/branch/master/whitelist.txt",
+      "error": "401 Client Error: Unauthorized for url: https://gitverse.ru/api/repos/cid-uskoritel/cid-white/raw/branch/master/whitelist.txt"
+    },
+    {
+      "name": "wlrus_blackl",
+      "url": "https://wlrus.lol/confs/blackl.txt",
+      "error": "HTTPSConnectionPool(host='wlrus.lol', port=443): Max retries exceeded with url: /confs/blackl.txt (Caused by NameResolutionError(\"HTTPSConnection(host='wlrus.lol', port=443): Failed to resolve 'wlrus.lol' ([Errno -2] Name or service not known)\"))"
+    },
+    {
+      "name": "bywarm_selected",
+      "url": "https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/selected.txt",
+      "error": "401 Client Error: Unauthorized for url: https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/selected.txt"
+    },
+    {
+      "name": "bywarm_wl",
+      "url": "https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/wl.txt",
+      "error": "401 Client Error: Unauthorized for url: https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/wl.txt"
+    },
+    {
+      "name": "bywarm_merged",
+      "url": "https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/merged.txt",
+      "error": "401 Client Error: Unauthorized for url: https://gitverse.ru/api/repos/bywarm/rser/raw/branch/master/merged.txt"
+    },
+    {
+      "name": "whiteprime_white-list_available",
+      "url": "https://whiteprime.github.io/xraycheck/configs/white-list_available",
+      "error": "404 Client Error: Not Found for url: https://whiteprime.github.io/xraycheck/configs/white-list_available"
+    },
+    {
+      "name": "whiteprime_available",
+      "url": "https://whiteprime.github.io/xraycheck/configs/available",
+      "error": "404 Client Error: Not Found for url: https://whiteprime.github.io/xraycheck/configs/available"
+    },
+    {
+      "name": "whiteprime_available_st",
+      "url": "https://whiteprime.github.io/xraycheck/configs/available_st",
+      "error": "404 Client Error: Not Found for url: https://whiteprime.github.io/xraycheck/configs/available_st"
+    },
+    {
+      "name": "whiteprime_white-list_available_st",
+      "url": "https://whiteprime.github.io/xraycheck/configs/white-list_available_st",
+      "error": "404 Client Error: Not Found for url: https://whiteprime.github.io/xraycheck/configs/white-list_available_st"
+    },
+    {
+      "name": "Worker_edikru",
+      "url": "https://vlesstrojan.alexanderyurievich88.workers.dev?token=sub&name=edikru",
+      "error": "404 Client Error: Not Found for url: https://vlesstrojan.alexanderyurievich88.workers.dev/?token=sub&name=edikru"
+    },
+    {
+      "name": "MahsaNetConfigTopic_xray",
+      "url": "https://raw.githubusercontent.com/MahsaNetConfigTopic/config/refs/heads/main/xray_final.txt",
+      "error": "404 Client Error: Not Found for url: https://raw.githubusercontent.com/MahsaNetConfigTopic/config/refs/heads/main/xray_final.txt"
+    },
+    {
+      "name": "subrostunnel_wl",
+      "url": "https://subrostunnel.vercel.app/wl.txt",
+      "error": "404 Client Error: Not Found for url: https://subrostunnel.vercel.app/wl.txt"
+    },
+    {
+      "name": "KiryaScript_white-lists_25",
+      "url": "https://github.com/KiryaScript/white-lists/raw/refs/heads/main/githubmirror/25.txt",
+      "error": "404 Client Error: Not Found for url: https://github.com/KiryaScript/white-lists/raw/refs/heads/main/githubmirror/25.txt"
+    }
+  ]
+}

@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPN White-Lists | Обновляемые конфиги</title>
+    
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #0a0a0f;
+        color: #e0e0e0;
+        line-height: 1.7;
+        padding: 20px;
+    }
+    .container {
+        max-width: 1400px;
+        margin: 0 auto;
+        background: #0f0f1a;
+        padding: 30px;
+        border-radius: 16px;
+        border: 1px solid #1a1a2e;
+        box-shadow: 0 0 60px rgba(0, 212, 255, 0.05);
+    }
+    .top-menu {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 12px 0;
+        margin-bottom: 25px;
+        border-bottom: 1px solid #1a1a2e;
+        align-items: center;
+    }
+    .top-menu a {
+        color: #888;
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s;
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-weight: 500;
+        cursor: pointer;
+    }
+    .top-menu a:hover {
+        color: #00d4ff;
+        background: #1a1a2e;
+    }
+    .top-menu a.active {
+        color: #00d4ff;
+        background: #1a1a2e;
+    }
+    .top-menu a.checker-btn {
+        background: linear-gradient(135deg, #00d4ff, #44ff88);
+        color: #000 !important;
+        font-weight: 700;
+        padding: 6px 18px;
+        border-radius: 20px;
+    }
+    .top-menu a.checker-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+    }
+    .top-menu a.sbcv-btn {
+        background: linear-gradient(135deg, #c7ff00, #00ff88);
+        color: #000 !important;
+        font-weight: 700;
+        padding: 6px 18px;
+        border-radius: 20px;
+    }
+    .top-menu a.sbcv-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(199, 255, 0, 0.3);
+    }
+    .top-menu a.about-btn {
+        background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+        color: #000 !important;
+        font-weight: 700;
+        padding: 6px 18px;
+        border-radius: 20px;
+    }
+    .top-menu a.about-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+    }
+    .top-menu .menu-spacer { flex: 1; }
+    .top-menu .repo-badge {
+        color: #555;
+        font-size: 12px;
+        padding: 4px 12px;
+        background: #1a1a2e;
+        border-radius: 20px;
+    }
+    .top-menu .repo-badge a { color: #00d4ff; padding: 0; text-decoration: none; }
+    .top-menu .repo-badge a:hover { color: #44ff88; }
+    .page { display: none; }
+    .page.active { display: block; }
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+    }
+    .stat-card {
+        background: #1a1a2e;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid #222;
+    }
+    .stat-number { font-size: 28px; font-weight: bold; color: #00d4ff; }
+    .stat-label { color: #888; font-size: 13px; margin-top: 4px; }
+    
+    .license-box {
+        margin-top: 30px;
+        padding: 25px;
+        background: #1a1a2e;
+        border-radius: 12px;
+        border-left: 4px solid #ffaa44;
+    }
+    .license-box h3 { color: #ffaa44; margin-top: 0; font-size: 1.3em; }
+    .license-box p { color: #999; font-size: 14px; line-height: 1.8; }
+    .license-box strong { color: #ccc; }
+    .license-box .highlight { color: #44ff88; }
+    
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        margin: 25px 0;
+    }
+    .about-card {
+        background: #1a1a2e;
+        padding: 25px;
+        border-radius: 12px;
+        border: 1px solid #222;
+        transition: all 0.3s;
+    }
+    .about-card:hover {
+        border-color: #00d4ff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 40px rgba(0, 212, 255, 0.05);
+    }
+    .about-card .icon { font-size: 2.5em; margin-bottom: 10px; }
+    .about-card h3 { color: #00d4ff; font-size: 1.2em; margin-bottom: 8px; }
+    .about-card p { color: #999; font-size: 14px; line-height: 1.6; }
+    .about-card .tag {
+        display: inline-block;
+        background: #0a0a12;
+        padding: 2px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        color: #44ff88;
+        border: 1px solid #1a1a2e;
+        margin: 3px 3px 3px 0;
+    }
+    .about-card .repo-link {
+        display: inline-block;
+        margin-top: 10px;
+        color: #00d4ff;
+        font-size: 13px;
+        text-decoration: none;
+    }
+    .about-card .repo-link:hover { color: #44ff88; text-decoration: underline; }
+    
+    .iframe-wrapper {
+        background: #0d1116;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #1a1a2e;
+    }
+    .iframe-wrapper iframe {
+        width: 100%;
+        min-height: 900px;
+        border: none;
+        background: #0d1116;
+    }
+    
+    .footer {
+        text-align: center;
+        margin-top: 50px;
+        padding-top: 25px;
+        border-top: 1px solid #1a1a2e;
+        color: #555;
+        font-size: 14px;
+    }
+    .footer a { color: #666; text-decoration: none; }
+    .footer a:hover { color: #00d4ff; }
+    
+    /* ===== СПОЙЛЕРЫ (details) ===== */
+    details {
+        background: #1a1a2e;
+        padding: 15px 20px;
+        border-radius: 10px;
+        margin: 15px 0;
+        border: 1px solid #2a2a3e;
+        transition: all 0.3s;
+    }
+    details:hover {
+        border-color: #00d4ff;
+    }
+    details > summary {
+        cursor: pointer;
+        color: #00d4ff;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 5px 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    details > summary::-webkit-details-marker { display: none; }
+    details > summary::before {
+        content: "▶";
+        font-size: 14px;
+        transition: transform 0.3s;
+        color: #00d4ff;
+    }
+    details[open] > summary::before {
+        transform: rotate(90deg);
+    }
+    details > summary:hover { color: #44ff88; }
+    details > summary:hover::before { color: #44ff88; }
+    details > *:not(summary) {
+        padding: 12px 0 0 10px;
+        border-left: 2px solid #2a2a3e;
+        margin-left: 10px;
+        color: #c9d1d9;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+    details ul, details ol {
+        padding-left: 20px;
+    }
+    details li {
+        margin: 5px 0;
+    }
+    details code {
+        background: #0a0a12;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 13px;
+        color: #44ff88;
+        font-family: "Courier New", monospace;
+    }
+    
+    @media (max-width: 768px) {
+        .container { padding: 15px; }
+        .top-menu { gap: 6px; }
+        .top-menu a { font-size: 12px; padding: 4px 10px; }
+        .top-menu a.checker-btn, .top-menu a.sbcv-btn, .top-menu a.about-btn {
+            padding: 4px 14px;
+            font-size: 12px;
+        }
+        .about-grid { grid-template-columns: 1fr; }
+        .iframe-wrapper iframe { min-height: 600px; }
+        details { padding: 12px 15px; }
+        details > summary { font-size: 14px; }
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
+            <div>
+                <h1 style="color:#00d4ff; border:none; padding:0; margin:0;">🔒 VPN White-Lists</h1>
+                <p style="color:#888; margin-top:4px;">Автоматически обновляемые белые списки для обхода блокировок</p>
+            </div>
+        </div>
+        
+        
+    <div class="top-menu">
+        <a class="active " onclick="showPage('home')">🏠 Главная</a>
+        <a class="checker-btn " onclick="showPage('checker')">⚡ Чекер</a>
+        <a class="sbcv-btn " onclick="showPage('sbcv')">🎨 sbcv</a>
+        <a class="about-btn " onclick="showPage('about')">👤 Об авторе</a>
+        <span class="menu-spacer"></span>
+        <span class="repo-badge">📂 <a href="https://gitverse.ru/RUVIPIEN/russian-white-bolt_fix" target="_blank">Репозиторий</a></span>
+    </div>
+    
+        
+        <!-- ===== СТРАНИЦА: ГЛАВНАЯ ===== -->
+        <div id="page-home" class="page active">
+            
+    <div class="stats-grid">
+        <div class="stat-card"><div class="stat-number">0</div><div class="stat-label">📁 Файлов</div></div>
+        <div class="stat-card"><div class="stat-number">0</div><div class="stat-label">🔗 Конфигураций</div></div>
+        <div class="stat-card"><div class="stat-number">0</div><div class="stat-label">✅ Источников</div></div>
+        <div class="stat-card"><div class="stat-number">18.08.2026</div><div class="stat-label">📅 Обновлено</div></div>
+    </div>
+    
+            <h1>VPN configs</h1>
+
+<table><thead><tr>
+</tr></thead><tbody>
+</tbody></table>
+<p>> Working sources: 34 / 57</p>
+
+<p>---</p>
+
+<h2>Apps</h2>
+
+<table><thead><tr>
+<th>App</th>
+<th>Link</th>
+<th>Supports</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----|------|----------|</p>
+<table><thead><tr>
+<th><strong>Nekobox</strong></th>
+<th><a href="https://nekobox.one" target="_blank">nekobox.one</a></th>
+<th>VLESS, VMess, Trojan, SS, Reality</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>V2RayNG</strong></td>
+<td><a href="https://getv2rayng.com" target="_blank">getv2rayng.com</a></td>
+<td>VLESS, VMess, Trojan, SS</td>
+</tr>
+<tr>
+<td><strong>Happ VPN</strong></td>
+<td><a href="https://happ.su" target="_blank">happ.su</a></td>
+<td>VLESS, Trojan, TOR Bridges</td>
+</tr>
+</tbody></table>
+
+<p>---</p>
+
+<h3>Nekobox Configs</h3>
+
+<p><details></p>
+<p><summary><b>Alley_Config_1</b> — 5729 configs, 1131.6 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>Alley_Config_1.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://alley.serv00.net/1</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>5729</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>a5aca497</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/Alley_Config_1.txt" target="_blank">configs/nekobox/Alley_Config_1.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>Alley_Config_2</b> — 5729 configs, 1131.6 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>Alley_Config_2.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://alley.serv00.net/2</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>5729</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>a5aca497</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/Alley_Config_2.txt" target="_blank">configs/nekobox/Alley_Config_2.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>EtoNeYa_Raw_1</b> — 5729 configs, 1131.6 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>EtoNeYa_Raw_1.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/1</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>5729</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>a5aca497</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/EtoNeYa_Raw_1.txt" target="_blank">configs/nekobox/EtoNeYa_Raw_1.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>WHITE_CIDR_RU_All</b> — 134 configs, 34.8 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>WHITE_CIDR_RU_All.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>134</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>7829d2b8</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/WHITE_CIDR_RU_All.txt" target="_blank">configs/nekobox/WHITE_CIDR_RU_All.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>WHITE_CIDR_RU_checked</b> — 5 configs, 1.3 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>WHITE_CIDR_RU_checked.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>2faae195</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/WHITE_CIDR_RU_checked.txt" target="_blank">configs/nekobox/WHITE_CIDR_RU_checked.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>WHITE_SNI_RU_All</b> — 15 configs, 4.4 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>WHITE_SNI_RU_All.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>bc3b21fc</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/WHITE_SNI_RU_All.txt" target="_blank">configs/nekobox/WHITE_SNI_RU_All.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>EtoNeYa_Raw_2</b> — 5729 configs, 1131.6 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>EtoNeYa_Raw_2.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/2</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>5729</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>a5aca497</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/EtoNeYa_Raw_2.txt" target="_blank">configs/nekobox/EtoNeYa_Raw_2.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>EtoNeYa_CDN_1</b> — 5091 configs, 983.7 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>EtoNeYa_CDN_1.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://cdn.jsdelivr.net/gh/EtoNeYaProject/EtoNeYaProject.github.io@refs/heads/main/1</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>5091</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>28260eaa</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/EtoNeYa_CDN_1.txt" target="_blank">configs/nekobox/EtoNeYa_CDN_1.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>nowmeow_whitelist</b> — 30 configs, 10.9 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>nowmeow_whitelist.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://nowmeow.pw/8ybBd3fdCAQ6Ew5H0d66Y1hMbh63GpKUtEXQClIu/whitelist</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>266429ac</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/nowmeow_whitelist.txt" target="_blank">configs/nekobox/nowmeow_whitelist.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>gpucloud_merged</b> — 9642 configs, 2846.0 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>gpucloud_merged.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://s3c3.001.gpucloud.ru/wlr/merged.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>9642</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>ad4dc71c</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/gpucloud_merged.txt" target="_blank">configs/nekobox/gpucloud_merged.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>ByeWhiteLists2</b> — 1031 configs, 306.8 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>ByeWhiteLists2.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/ByeWhiteLists/ByeWhiteLists2/refs/heads/main/ByeWhiteLists2.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>1031</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>4ef0c6b9</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/ByeWhiteLists2.txt" target="_blank">configs/nekobox/ByeWhiteLists2.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>SilentGhostCodes_Whitelist</b> — 166 configs, 44.2 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>SilentGhostCodes_Whitelist.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/Whitelist.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>166</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>1d568ae2</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/SilentGhostCodes_Whitelist.txt" target="_blank">configs/nekobox/SilentGhostCodes_Whitelist.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>SilentGhostCodes_Whitelist2</b> — 137 configs, 36.5 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>SilentGhostCodes_Whitelist2.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/Whitelist%20%E2%84%962.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>137</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>7c97dbce</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/SilentGhostCodes_Whitelist2.txt" target="_blank">configs/nekobox/SilentGhostCodes_Whitelist2.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>SilentGhostCodes_BlackList</b> — 9 configs, 2.4 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>SilentGhostCodes_BlackList.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/SilentGhostCodes/WhiteListVpn/refs/heads/main/BlackList.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>62ceefe6</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/SilentGhostCodes_BlackList.txt" target="_blank">configs/nekobox/SilentGhostCodes_BlackList.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>sakha1370_OpenRay</b> — 11462 configs, 2962.8 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>sakha1370_OpenRay.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://github.com/sakha1370/OpenRay/raw/refs/heads/main/output/all_valid_proxies.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>11462</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>de4f9814</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/sakha1370_OpenRay.txt" target="_blank">configs/nekobox/sakha1370_OpenRay.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>sevcator_vl</b> — 420430 configs, 102241.0 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>sevcator_vl.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/sevcator/5ubscrpt10n/main/protocols/vl.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>420430</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>2075b3d8</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/sevcator_vl.txt" target="_blank">configs/nekobox/sevcator_vl.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>yitong2333_proxy-minging</b> — 13633 configs, 3222.3 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>yitong2333_proxy-minging.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/yitong2333/proxy-minging/refs/heads/main/v2ray.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>13633</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>d134296a</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/yitong2333_proxy-minging.txt" target="_blank">configs/nekobox/yitong2333_proxy-minging.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>roosterkid_V2RAY_RAW</b> — 150 configs, 27.6 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>roosterkid_V2RAY_RAW.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_RAW.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>150</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>f428b049</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/roosterkid_V2RAY_RAW.txt" target="_blank">configs/nekobox/roosterkid_V2RAY_RAW.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>CidVpn_general</b> — 359 configs, 79.2 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>CidVpn_general.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/CidVpn/cid-vpn-config/refs/heads/main/general.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>359</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>2c8c3512</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/CidVpn_general.txt" target="_blank">configs/nekobox/CidVpn_general.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>Pawdroid_Free-servers</b> — 20 configs, 3.8 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>Pawdroid_Free-servers.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>696ba781</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/Pawdroid_Free-servers.txt" target="_blank">configs/nekobox/Pawdroid_Free-servers.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>wuqb2i4f_mix-uri</b> — 391 configs, 99.6 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>wuqb2i4f_mix-uri.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>391</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>77cb5600</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/wuqb2i4f_mix-uri.txt" target="_blank">configs/nekobox/wuqb2i4f_mix-uri.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>Mr-Meshky_vify_vless</b> — 894 configs, 244.0 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>Mr-Meshky_vify_vless.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://github.com/Mr-Meshky/vify/raw/refs/heads/main/configs/vless.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>894</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>30160224</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/Mr-Meshky_vify_vless.txt" target="_blank">configs/nekobox/Mr-Meshky_vify_vless.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>AvenCores_goida_26</b> — 4640 configs, 1251.4 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>AvenCores_goida_26.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>4640</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>d702c0e9</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/AvenCores_goida_26.txt" target="_blank">configs/nekobox/AvenCores_goida_26.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>V2RayRoot_vless</b> — 263 configs, 69.8 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>V2RayRoot_vless.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/V2RayRoot/V2RayConfig/refs/heads/main/Config/vless.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>263</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>cc2771e4</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/V2RayRoot_vless.txt" target="_blank">configs/nekobox/V2RayRoot_vless.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>whoahaow_bypass-7</b> — 304 configs, 86.4 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>whoahaow_bypass-7.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/whoahaow/rjsxrd/refs/heads/main/githubmirror/bypass/bypass-7.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>304</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>81feb378</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/whoahaow_bypass-7.txt" target="_blank">configs/nekobox/whoahaow_bypass-7.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>AvenCores_goida_1</b> — 11305 configs, 2917.6 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>AvenCores_goida_1.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>11305</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>c496c911</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/AvenCores_goida_1.txt" target="_blank">configs/nekobox/AvenCores_goida_1.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>AvenCores_goida_3</b> — 12964 configs, 3076.8 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>AvenCores_goida_3.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/3.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>12964</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>d2469aa8</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/AvenCores_goida_3.txt" target="_blank">configs/nekobox/AvenCores_goida_3.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>SER38Off_happ-subscription</b> — 298 configs, 81.4 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>SER38Off_happ-subscription.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/SER38Off/happ-subscription/refs/heads/main/sub1-white-lists.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>298</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>749d9240</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/SER38Off_happ-subscription.txt" target="_blank">configs/nekobox/SER38Off_happ-subscription.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>obwlsub_wwh</b> — 4 configs, 0.7 KB, 2026-08-18 20:53 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>obwlsub_wwh.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://obwlsub.vercel.app/wwh</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>ae08b2a5</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/nekobox/obwlsub_wwh.txt" target="_blank">configs/nekobox/obwlsub_wwh.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<h3>V2RayNG Configs</h3>
+
+<p><details></p>
+<p><summary><b>BLACK_VLESS_RUS</b> — 141 configs, 41.4 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>BLACK_VLESS_RUS.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>141</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>ed72ebc0</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/v2ray/BLACK_VLESS_RUS.txt" target="_blank">configs/v2ray/BLACK_VLESS_RUS.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>BLACK_SS_All</b> — 69 configs, 12.9 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>BLACK_SS_All.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_SS+All_RUS.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>69</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>12a4335c</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/v2ray/BLACK_SS_All.txt" target="_blank">configs/v2ray/BLACK_SS_All.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>VLESS_Reality_White</b> — 130 configs, 34.0 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>VLESS_Reality_White.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>130</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>0e5091d4</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/v2ray/VLESS_Reality_White.txt" target="_blank">configs/v2ray/VLESS_Reality_White.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<h3>Happ VPN Configs</h3>
+
+<p><details></p>
+<p><summary><b>TOR_BRIDGES_TOP100</b> — 103 configs, 12.7 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>TOR_BRIDGES_TOP100.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/TOR-BRIDGES/TOR_BRIDGES_TOP100.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>103</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>9565c534</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/happ/TOR_BRIDGES_TOP100.txt" target="_blank">configs/happ/TOR_BRIDGES_TOP100.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary><b>TOR_BRIDGES_ALL</b> — 322 configs, 36.7 KB, 2026-08-18 20:52 UTC</summary></p>
+
+<table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+</tbody></table>
+<p>|-----------|-------|</p>
+<table><thead><tr>
+<th>File</th>
+<th>TOR_BRIDGES_ALL.txt</th>
+</tr></thead><tbody>
+<tr>
+<td>Source</td>
+<td>https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/TOR-BRIDGES/TOR_BRIDGES_ALL.txt</td>
+</tr>
+<tr>
+<td>Configs</td>
+<td>322</td>
+</tr>
+<tr>
+<td>Hash</td>
+<td>3c1ac79f</td>
+</tr>
+<tr>
+<td>Download</td>
+<td><a href="configs/happ/TOR_BRIDGES_ALL.txt" target="_blank">configs/happ/TOR_BRIDGES_ALL.txt</a></td>
+</tr>
+</tbody></table>
+
+<p></details></p>
+
+<h3>Unavailable sources</h3>
+
+<ul>
+<li>EtoNeYa_Main — HTTPSConnectionPool(host='etoneya.a9fm.site', port=443): Max retries exceeded wi</li>
+</ul>
+
+<ul>
+<li>EtoNeYa_general — 404 Client Error: Not Found for url: https://raw.githubusercontent.com/EtoNeYaPr</li>
+</ul>
+
+<ul>
+<li>Worker_sub — 404 Client Error: Not Found for url: https://vlesstrojan.alexanderyurievich88.wo</li>
+</ul>
+
+<ul>
+<li>Worker_vless — 404 Client Error: Not Found for url: https://vlesstrojan.alexanderyurievich88.wo</li>
+</ul>
+
+<ul>
+<li>Worker_vless_warp — 404 Client Error: Not Found for url: https://vlesstrojan.alexanderyurievich88.wo</li>
+</ul>
+
+<ul>
+<li>kort0881_vless — 404 Client Error: Not Found for url: https://raw.githubusercontent.com/kort0881/</li>
+</ul>
+
+<ul>
+<li>kort0881_vless_ru — 404 Client Error: Not Found for url: https://raw.githubusercontent.com/kort0881/</li>
+</ul>
+
+<ul>
+<li>kort0881_vmess — 404 Client Error: Not Found for url: https://raw.githubusercontent.com/kort0881/</li>
+</ul>
+
+<ul>
+<li>kort0881_trojan — 404 Client Error: Not Found for url: https://raw.githubusercontent.com/kort0881/</li>
+</ul>
+
+<ul>
+<li>kort0881_ss — 404 Client Error: Not Found for url: https://raw.githubusercontent.com/kort0881/</li>
+</ul>
+
+<ul>
+<li>cid-white_whitelist — 401 Client Error: Unauthorized for url: https://gitverse.ru/api/repos/cid-uskori</li>
+</ul>
+
+<ul>
+<li>wlrus_blackl — HTTPSConnectionPool(host='wlrus.lol', port=443): Max retries exceeded with url: </li>
+</ul>
+
+<ul>
+<li>bywarm_selected — 401 Client Error: Unauthorized for url: https://gitverse.ru/api/repos/bywarm/rse</li>
+</ul>
+
+<ul>
+<li>bywarm_wl — 401 Client Error: Unauthorized for url: https://gitverse.ru/api/repos/bywarm/rse</li>
+</ul>
+
+<ul>
+<li>bywarm_merged — 401 Client Error: Unauthorized for url: https://gitverse.ru/api/repos/bywarm/rse</li>
+</ul>
+
+<ul>
+<li>whiteprime_white-list_available — 404 Client Error: Not Found for url: https://whiteprime.github.io/xraycheck/conf</li>
+</ul>
+
+<ul>
+<li>whiteprime_available — 404 Client Error: Not Found for url: https://whiteprime.github.io/xraycheck/conf</li>
+</ul>
+
+<ul>
+<li>whiteprime_available_st — 404 Client Error: Not Found for url: https://whiteprime.github.io/xraycheck/conf</li>
+</ul>
+
+<ul>
+<li>whiteprime_white-list_available_st — 404 Client Error: Not Found for url: https://whiteprime.github.io/xraycheck/conf</li>
+</ul>
+
+<ul>
+<li>Worker_edikru — 404 Client Error: Not Found for url: https://vlesstrojan.alexanderyurievich88.wo</li>
+</ul>
+
+<ul>
+<li>MahsaNetConfigTopic_xray — 404 Client Error: Not Found for url: https://raw.githubusercontent.com/MahsaNetC</li>
+</ul>
+
+<ul>
+<li>subrostunnel_wl — 404 Client Error: Not Found for url: https://subrostunnel.vercel.app/wl.txt</li>
+</ul>
+
+<ul>
+<li>KiryaScript_white-lists_25 — 404 Client Error: Not Found for url: https://github.com/KiryaScript/white-lists/</li>
+</ul>
+
+
+<p>> Will be retried on next update.</p>
+
+<p>---</p>
+
+<h2>How auto-update works</h2>
+
+<ol>
+<li>GitVerse Actions runs every 3 hours</li>
+<li>Script downloads all sources</li>
+<li>Parses and counts valid configs</li>
+<li>Generates this README</li>
+<li>Pushes changes to repo</li>
+</ol>
+
+<h2>Add your source</h2>
+
+<ol>
+<li>Edit sources/urls.txt</li>
+<table><thead><tr>
+<th>CATEGORY</th>
+</tr></thead><tbody>
+<tr>
+<td>v2ray</td>
+</tr>
+</tbody></table>
+</ol>
+
+<p>---</p>
+
+<p>> Updated: 2026-08-18 23:53 UTC</p>
+
+            
+    <div class="license-box">
+        <h3>📄 Лицензия и отказ от ответственности</h3>
+        <p>
+            <strong>Источники:</strong> Все конфигурации собраны из открытых интернет-источников.
+            Мы не являемся авторами этих конфигураций и не несём ответственности за их содержимое.
+        </p>
+        <p>
+            <strong>Отказ от ответственности:</strong> Данный сайт и репозиторий созданы исключительно 
+            в <strong>информационных и образовательных целях</strong>. Мы не пропагандируем и не поощряем 
+            использование VPN в обход законодательства. Все материалы предоставлены <strong>"как есть"</strong> 
+            без каких-либо гарантий.
+        </p>
+        <p>
+            <strong>Авторские права:</strong> Все права на контент принадлежат их законным владельцам. 
+            Если вы являетесь правообладателем и считаете, что ваш материал используется неправомерно, 
+            свяжитесь с нами для его удаления.
+        </p>
+        <p style="margin-top:10px; color:#666; font-size:13px;">
+            🔄 Последнее обновление: <span class="highlight">2026-08-18 23:53:23 MSK</span>
+        </p>
+    </div>
+    
+        </div>
+        
+        <!-- ===== СТРАНИЦА: ЧЕКЕР ===== -->
+        <div id="page-checker" class="page">
+            <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Config Generator V1.1 – Xray / V2Ray / Sing‑box</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #0d1117; color: #c9d1d9; padding: 20px; }
+        h1 { color: #58a6ff; }
+        .panel { background: #161b22; padding: 20px; border-radius: 10px; margin: 10px 0; border: 1px solid #30363d; }
+        .btn { background: #58a6ff; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+        .btn:hover { filter: brightness(1.15); }
+        textarea, select, input { width: 100%; padding: 10px; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: #c9d1d9; }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <h1>⚡ Config Generator V1.1</h1>
+        <p>Xray · V2Ray · Sing‑box – VLESS / VMess / Trojan / Shadowsocks</p>
+        
+    <details>
+        <summary>🆕 Что нового в V1.1</summary>
+        <ul>
+            <li><strong>Управление профилями</strong> — сохраняйте, редактируйте и переключайтесь между профилями (хранятся в браузере).</li>
+            <li><strong>Импорт профилей</strong> — вставьте ссылки на подписки, каждая превращается в отдельный редактируемый профиль.</li>
+            <li><strong>Пользовательские поля</strong> — fingerprint, ALPN, VLESS flow/encryption и метод Shadowsocks теперь поддерживают произвольные значения "Custom…".</li>
+            <li><strong>Allow Insecure</strong> — переключатель для самоподписанных сертификатов.</li>
+            <li><strong>Гибкий выбор портов</strong> — предустановленные порты + пользовательские (можно удалять).</li>
+            <li><strong>Умное именование</strong> — три стиля: простые номера, эмодзи или флаг/код страны — с предпросмотром.</li>
+            <li><strong>Улучшенная обработка IPv6</strong> — адреса автоматически форматируются для ссылок.</li>
+            <li><strong>QR-код в результатах пинга</strong> — сканируйте прямо из таблицы задержек.</li>
+            <li><strong>Тёмная / светлая тема</strong> — переключайте кнопкой, настройки сохраняются.</li>
+        </ul>
+    </details>
+    
+    <details>
+        <summary>✨ Основные возможности</summary>
+        <ul>
+            <li><strong>Импорт ссылок</strong> (<code>vless://</code>, <code>vmess://</code>, <code>trojan://</code>, <code>ss://</code>) — автоматическое заполнение всех настроек.</li>
+            <li><strong>Полная поддержка транспортов:</strong> TCP, WebSocket, gRPC, HTTP/2, mKCP, QUIC, HTTP Upgrade, SplitHTTP, XHTTP.</li>
+            <li><strong>Безопасность TLS и Reality</strong> — с SNI, fingerprint, ALPN, публичным ключом, short ID и Spider X.</li>
+            <li><strong>Пакетная генерация</strong> — вставьте список IP/доменов (IPv4/IPv6) и получите конфиги для всех выбранных портов.</li>
+            <li><strong>Двойной вывод:</strong> полный JSON (Xray/V2Ray или Sing‑box) или ссылки для шаринга.</li>
+            <li><strong>Пинг-тест (только WebSocket)</strong> — измеряет задержку, сортирует результаты, копирует ссылки и показывает QR.</li>
+            <li><strong>Экспорт подписки в Base64</strong> — готово для импорта в любой клиент.</li>
+            <li><strong>Копирование и скачивание</strong> отдельных конфигов или всего пакета.</li>
+        </ul>
+    </details>
+    
+    <details>
+        <summary>🚀 Быстрый старт</summary>
+        <ol>
+            <li>Вставьте ссылки на подписки в верхнее поле и нажмите <strong>"Import as Profiles"</strong>.</li>
+            <li>Выберите <strong>профиль</strong> из таблицы — его настройки загрузятся в форму.</li>
+            <li>Настройте <strong>Core</strong> (Xray / V2Ray / Sing‑box), <strong>протокол</strong>, сеть, безопасность и другие параметры.</li>
+            <li>Выберите один или несколько <strong>портов</strong>, нажимая на них (при необходимости добавьте пользовательские).</li>
+            <li>Введите IP-адреса или домены в поле <strong>"IP / Domain List"</strong> (по одному на строку, поддерживается IPv6).</li>
+            <li>Нажмите <strong>"Generate Configs"</strong>.</li>
+            <li>Переключайтесь между вкладками <strong>JSON</strong> и <strong>Links</strong> для просмотра результатов.</li>
+            <li>Используйте кнопки <strong>Copy</strong>, <strong>Download</strong>, <strong>Ping</strong> или <strong>QR</strong> по необходимости.</li>
+        </ol>
+    </details>
+    
+    <details>
+        <summary>⚠️ Важное примечание</summary>
+        <p>
+            Функция <strong>Ping</strong> надёжно работает только для транспорта <strong>WebSocket</strong>. 
+            Для других транспортов будет отображаться "N/A". Вы можете продолжить, подтвердив предупреждение.
+        </p>
+    </details>
+    
+    </div>
+    <div class="panel">
+        <h2>📥 Import Links</h2>
+        <textarea id="importLinks" rows="5" placeholder="Paste vless://, vmess://, trojan://, ss:// links here..."></textarea>
+        <button class="btn" onclick="alert('Функция импорта активна! Вставьте ссылки.')">🔍 Import</button>
+    </div>
+    <div class="panel">
+        <h2>🌍 IP / Domain List</h2>
+        <textarea id="ipList" rows="5" placeholder="1.1.1.1&#10;example.com"></textarea>
+        <button class="btn" onclick="alert('Генерация конфигов!')">🚀 Generate</button>
+    </div>
+    <div class="panel" style="text-align:center; color:#666;">
+        <p>⚡ Полная версия Config Generator доступна в репозитории</p>
+        <p><a href="https://github.com/SulgX/ConfigGenerator" target="_blank" style="color:#ffd700;">📖 GitHub</a></p>
+    </div>
+</body>
+</html>
+        </div>
+        
+        <!-- ===== СТРАНИЦА: SBCV ===== -->
+        <div id="page-sbcv" class="page">
+            
+    <div style="margin-bottom:20px;">
+        <h2 style="color:#c7ff00; border-left:4px solid #c7ff00; padding-left:15px; margin-bottom:10px;">🎨 sbcv — визуальный конструктор sing-box</h2>
+        <p style="color:#888; font-size:14px; line-height:1.8;">
+            <strong>sbcv</strong> — это мощный инструмент для визуальной сборки конфигураций 
+            <strong style="color:#c7ff00;">sing-box</strong> через drag-and-drop. 
+            Собирайте конфиги, используйте шаблоны, валидируйте JSON и экспортируйте готовые настройки.
+        </p>
+        <p style="color:#666; font-size:13px; margin-top:5px;">
+            🔗 Онлайн-версия: <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">sbcv.app</a>
+        </p>
+    </div>
+    <div class="iframe-wrapper">
+        <iframe 
+            src="https://sbcv.app" 
+            allow="clipboard-read; clipboard-write"
+            loading="lazy"
+            title="sbcv — sing-box configuration visualizer"
+        ></iframe>
+    </div>
+    <div style="margin-top:15px; color:#555; font-size:13px; text-align:center;">
+        💡 <strong>sbcv</strong> работает в iframe. Если он не отображается — 
+        <a href="https://sbcv.app" target="_blank" style="color:#00d4ff;">откройте в новой вкладке</a>
+    </div>
+    
+        </div>
+        
+        <!-- ===== СТРАНИЦА: ОБ АВТОРЕ ===== -->
+        <div id="page-about" class="page">
+            
+    <div style="margin-bottom:25px;">
+        <h2 style="color:#00d4ff; border-left:4px solid #00d4ff; padding-left:15px; margin-bottom:10px;">👤 Об авторе</h2>
+        <p style="color:#888; font-size:16px;">Привет! Я <strong style="color:#00d4ff;">RUVIPIEN</strong> — создатель этого проекта и многих других.</p>
+    </div>
+    
+    <div class="about-grid">
+        <div class="about-card">
+            <div class="icon">✍️</div>
+            <h3>Писатель</h3>
+            <p>Пишу стихи и прозу. Если вам нужен автор для текстов — обращайтесь!</p>
+            <span class="tag">поэзия</span>
+            <span class="tag">проза</span>
+            <span class="tag">тексты</span>
+        </div>
+        
+        <div class="about-card">
+            <div class="icon">🎵</div>
+            <h3>Музыкант</h3>
+            <p>Обожаю слушать музыку 24/7. Вдохновляюсь разными жанрами — от классики до электроники.</p>
+            <span class="tag">🎧 24/7</span>
+            <span class="tag">меломан</span>
+        </div>
+        
+        <div class="about-card">
+            <div class="icon">🎨</div>
+            <h3>Художник</h3>
+            <p>Раньше много рисовал, сейчас не хватает практики. Но любовь к искусству осталась.</p>
+            <span class="tag">графика</span>
+            <span class="tag">живопись</span>
+            <span class="tag">digital art</span>
+        </div>
+        
+        <div class="about-card">
+            <div class="icon">💻</div>
+            <h3>Разработчик</h3>
+            <p>Создаю мини-проекты на Python и других языках. ТВ, VPN, сборщики конфигов — моя стихия.</p>
+            <span class="tag">Python</span>
+            <span class="tag">Flask</span>
+            <span class="tag">bash</span>
+            <br>
+            <a href="https://gitverse.ru/RUVIPIEN/" target="_blank" class="repo-link">📂 Все проекты →</a>
+        </div>
+    </div>
+    
+    <div style="background:#1a1a2e; padding:20px; border-radius:12px; border:1px solid #222; margin-top:10px;">
+        <p style="color:#888; font-size:14px; text-align:center;">
+            🌟 <strong style="color:#ffd93d;">"Творчество — это способ быть свободным"</strong> 🌟
+        </p>
+        <p style="color:#555; font-size:13px; text-align:center; margin-top:5px;">
+            <a href="https://gitverse.ru/RUVIPIEN/" target="_blank" style="color:#00d4ff; text-decoration:none;">
+                🔗 Мой репозиторий на GitVerse
+            </a>
+        </p>
+    </div>
+    
+            
+    <div class="license-box">
+        <h3>📄 Лицензия и отказ от ответственности</h3>
+        <p>
+            <strong>Источники:</strong> Все конфигурации собраны из открытых интернет-источников.
+            Мы не являемся авторами этих конфигураций и не несём ответственности за их содержимое.
+        </p>
+        <p>
+            <strong>Отказ от ответственности:</strong> Данный сайт и репозиторий созданы исключительно 
+            в <strong>информационных и образовательных целях</strong>. Мы не пропагандируем и не поощряем 
+            использование VPN в обход законодательства. Все материалы предоставлены <strong>"как есть"</strong> 
+            без каких-либо гарантий.
+        </p>
+        <p>
+            <strong>Авторские права:</strong> Все права на контент принадлежат их законным владельцам. 
+            Если вы являетесь правообладателем и считаете, что ваш материал используется неправомерно, 
+            свяжитесь с нами для его удаления.
+        </p>
+        <p style="margin-top:10px; color:#666; font-size:13px;">
+            🔄 Последнее обновление: <span class="highlight">2026-08-18 23:53:23 MSK</span>
+        </p>
+    </div>
+    
+        </div>
+        
+        <div class="footer">
+            <p>🤖 Автоматизировано с любовью для свободного интернета</p>
+            <p style="font-size:12px; color:#444;">
+                <a href="https://gitverse.ru/RUVIPIEN/russian-white-bolt_fix">📂 Исходный код</a> &bull; 
+                Обновляется каждые 3 часа &bull; 
+                <a href="https://gitverse.ru/RUVIPIEN/" target="_blank">📦 Все проекты</a>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+    function showPage(page) {
+        document.querySelectorAll('.page').forEach(el => el.classList.remove('active'));
+        document.getElementById('page-' + page).classList.add('active');
+        document.querySelectorAll('.top-menu a').forEach(el => el.classList.remove('active'));
+        const links = document.querySelectorAll('.top-menu a');
+        const map = {'home': 0, 'checker': 1, 'sbcv': 2, 'about': 3};
+        if (map[page] !== undefined && links[map[page]]) {
+            links[map[page]].classList.add('active');
+        }
+        localStorage.setItem('currentPage', page);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        const saved = localStorage.getItem('currentPage');
+        if (saved && ['home','checker','sbcv','about'].includes(saved)) {
+            showPage(saved);
+        }
+    });
+    </script>
+</body>
+</html>
