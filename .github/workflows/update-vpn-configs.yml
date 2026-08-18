@@ -1,4 +1,4 @@
-                            name: "🔄 Auto-update VPN Configs"
+name: "🔄 Auto-update VPN Configs"
 
 on:
   schedule:
@@ -71,4 +71,4 @@ jobs:
           git add -A
           git diff --cached --quiet || git commit -m "🔄 Auto-update: $(date)"
           git push origin HEAD          # на GitHub
-          git push gitverse HEAD        # на GitVerse     
+          git push gitverse HEAD        # на GitVerse
