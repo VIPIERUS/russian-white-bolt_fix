@@ -20,34 +20,25 @@ def generate_readme():
     for cfg in data["configs"]:
         grouped[cfg["category"]].append(cfg)
 
-    readme = "# VPN configs
+    # Исправлено: используем тройные кавычки для многострочных строк
+    readme = """# VPN configs
 
-"
-    readme += "> Auto-update every 3 hours | Last: " + data["updated"] + "
-"
-    readme += "> Working sources: " + str(data["success"]) + " / " + str(data["total_sources"]) + "
+> Auto-update every 3 hours | Last: """ + data["updated"] + """
+> Working sources: """ + str(data["success"]) + """ / """ + str(data["total_sources"]) + """
 
-"
-    readme += "---
-
-"
-    readme += "## Apps
-
-"
-    readme += "| App | Link | Supports |
-"
-    readme += "|-----|------|----------|
-"
-    readme += "| **Nekobox** | [nekobox.one](https://nekobox.one) | VLESS, VMess, Trojan, SS, Reality |
-"
-    readme += "| **V2RayNG** | [getv2rayng.com](https://getv2rayng.com) | VLESS, VMess, Trojan, SS |
-"
-    readme += "| **Happ VPN** | [happ.su](https://happ.su) | VLESS, Trojan, TOR Bridges |
-"
-    readme += "
 ---
 
-"
+## Apps
+
+| App | Link | Supports |
+|-----|------|----------|
+| **Nekobox** | [nekobox.one](https://nekobox.one) | VLESS, VMess, Trojan, SS, Reality |
+| **V2RayNG** | [getv2rayng.com](https://getv2rayng.com) | VLESS, VMess, Trojan, SS |
+| **Happ VPN** | [happ.su](https://happ.su) | VLESS, Trojan, TOR Bridges |
+
+---
+
+"""
 
     category_names = {
         "nekobox": "Nekobox Configs",
@@ -56,78 +47,57 @@ def generate_readme():
     }
 
     for cat, configs in grouped.items():
-        readme += "### " + category_names.get(cat, cat.upper()) + "
+        readme += "### " + category_names.get(cat, cat.upper()) + """
 
-"
+"""
         for cfg in configs:
-            readme += "<details>
-"
-            readme += "<summary><b>" + cfg["name"] + "</b> — " + str(cfg["count"]) + " configs, " + str(cfg["size_kb"]) + " KB, " + cfg["updated"] + "</summary>
+            readme += """<details>
+<summary><b>""" + cfg["name"] + """</b> — """ + str(cfg["count"]) + """ configs, """ + str(cfg["size_kb"]) + """ KB, """ + cfg["updated"] + """</summary>
 
-"
-            readme += "| Parameter | Value |
-"
-            readme += "|-----------|-------|
-"
-            readme += "| File | " + cfg["filename"] + " |
-"
-            readme += "| Source | " + cfg["url"] + " |
-"
-            readme += "| Configs | " + str(cfg["count"]) + " |
-"
-            readme += "| Hash | " + cfg["hash"] + " |
-"
-            readme += "| Download | [configs/" + cfg["category"] + "/" + cfg["filename"] + "](configs/" + cfg["category"] + "/" + cfg["filename"] + ") |
-"
-            readme += "
+| Parameter | Value |
+|-----------|-------|
+| File | """ + cfg["filename"] + """ |
+| Source | """ + cfg["url"] + """ |
+| Configs | """ + str(cfg["count"]) + """ |
+| Hash | """ + cfg["hash"] + """ |
+| Download | [configs/""" + cfg["category"] + """/""" + cfg["filename"] + """](configs/""" + cfg["category"] + """/""" + cfg["filename"] + """) |
+
 </details>
 
-"
+"""
 
     if data["errors"]:
         readme += "### Unavailable sources
 
 "
         for err in data["errors"]:
-            readme += "- " + err["name"] + " — " + err["error"][:80] + "
-"
-        readme += "
+            readme += "- " + err["name"] + " — " + err["error"][:80] + """
+"""
+        readme += """
 > Will be retried on next update.
 
-"
+"""
 
-    readme += "---
+    readme += """---
 
-"
-    readme += "## How auto-update works
+## How auto-update works
 
-"
-    readme += "1. GitVerse Actions runs every 3 hours
-"
-    readme += "2. Script downloads all sources
-"
-    readme += "3. Parses and counts valid configs
-"
-    readme += "4. Generates this README
-"
-    readme += "5. Pushes changes to repo
+1. GitVerse Actions runs every 3 hours
+2. Script downloads all sources
+3. Parses and counts valid configs
+4. Generates this README
+5. Pushes changes to repo
 
-"
-    readme += "## Add your source
+## Add your source
 
-"
-    readme += "1. Edit sources/urls.txt
-"
-    readme += "2. Format: URL|CATEGORY|NAME
-"
-    readme += "3. CATEGORY: nekobox | v2ray | happ
+1. Edit sources/urls.txt
+2. Format: URL|CATEGORY|NAME
+3. CATEGORY: nekobox | v2ray | happ
 
-"
-    readme += "---
+---
 
-"
-    readme += "> Updated: " + datetime.now().strftime("%Y-%m-%d %H:%M UTC") + "
-"
+> Updated: """ + datetime.now().strftime("%Y-%m-%d %H:%M UTC") + """
+"""
 
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(readme)
