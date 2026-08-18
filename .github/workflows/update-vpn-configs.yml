@@ -1,63 +1,74 @@
-name: "🔄 Авто-обновление VPN"
+                            name: "🔄 Auto-update VPN Configs"
 
 on:
   schedule:
-      - cron: "0 */3 * * *"
-        workflow_dispatch:
+    - cron: "0 */3 * * *"
+  workflow_dispatch:
+    inputs:
+      force_update:
+        description: 'Force update even if no changes'
+        required: false
+        default: false
+        type: boolean
 
-        permissions:
-          contents: write
+permissions:
+  contents: write
 
-          jobs:
-            update-configs:
-                runs-on: ubuntu-latest
-                    timeout-minutes: 30
-                        
-                            steps:
-                                  - name: "📦 Клонирование репозитория"
-                                          uses: actions/checkout@v4
-                                                  with:
-                                                            token: ${{ secrets.GITVERSE_TOKEN }}
-                                                                      fetch-depth: 0
+env:
+  TZ: Europe/Moscow
+  PYTHONUTF8: "1"
+  PYTHONIOENCODING: "utf-8"
 
-                                                                            - name: "🐍 Установка Python"
-                                                                                    uses: actions/setup-python@v5
-                                                                                            with:
-                                                                                                      python-version: "3.11"
-                                                                                                                cache: "pip"
+jobs:
+  update-configs:
+    name: "📥 Fetch & Update VPN Configs"
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
 
-                                                                                                                      - name: "📥 Установка зависимостей"
-                                                                                                                              run: |
-                                                                                                                                        pip install -r requirements.txt || echo "requests" > requirements.txt && pip install requests
+    steps:
+      - name: "📂 Checkout from GitHub"
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}   # токен для доступа к GitHub
+          fetch-depth: 0
+          persist-credentials: true
 
-                                                                                                                                              - name: "🔄 Загрузка и парсинг конфигураций"
-                                                                                                                                                      run: python scripts/fetch_configs.py
-                                                                                                                                                              env:
-                                                                                                                                                                        PYTHONUTF8: "1"
-                                                                                                                                                                                  TZ: "Europe/Moscow"
+      - name: "🔑 Add GitVerse remote"
+        run: |
+          git remote add gitverse https://RUVIPIEN:${{ secrets.GITVERSE_TOKEN }}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git
+        env:
+          GITVERSE_TOKEN: ${{ secrets.GITVERSE_TOKEN }}
 
-                                                                                                                                                                                        - name: "🎨 Генерация README"
-                                                                                                                                                                                                run: python scripts/generate_readme.py
-                                                                                                                                                                                                        env:
-                                                                                                                                                                                                                  TZ: "Europe/Moscow"
+      - name: "🐍 Setup Python"
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
 
-                                                                                                                                                                                                                        - name: "💾 Коммит и пуш"
-                                                                                                                                                                                                                                run: |
-                                                                                                                                                                                                                                          git config --global user.name "gitverse-bot"
-                                                                                                                                                                                                                                                    git config --global user.email "bot@gitverse.ru"
-                                                                                                                                                                                                                                                              if git diff --quiet; then
-                                                                                                                                                                                                                                                                          echo "Изменений нет, пропускаем коммит"
-                                                                                                                                                                                                                                                                                    else
-                                                                                                                                                                                                                                                                                                git add configs/ README.md sources/
-                                                                                                                                                                                                                                                                                                            git commit -m "🤖 Авто-обновление: $(date +'%Y-%m-%d %H:%M MSK')"
-                                                                                                                                                                                                                                                                                                                        git push origin HEAD
-                                                                                                                                                                                                                                                                                                                                    echo "Изменения успешно отправлены"
-                                                                                                                                                                                                                                                                                                                                              fi
+      - name: "📦 Install dependencies"
+        run: pip install requests beautifulsoup4 lxml
 
-                                                                                                                                                                                                                                                                                                                                                    - name: "📊 Отчёт о выполнении"
-                                                                                                                                                                                                                                                                                                                                                            if: always()
-                                                                                                                                                                                                                                                                                                                                                                    run: |
-                                                                                                                                                                                                                                                                                                                                                                              echo "## 📋 Отчёт о выполнении" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                        echo "- Статус: ${{ job.status }}" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                  echo "- Время: $(date +'%Y-%m-%d %H:%M:%S MSK')" >> $GITHUB_STEP_SUMMARY
-                                                                                                                                                                                                                                                                                                                                                                                                  
+      - name: "🌐 Fetch VPN configs"
+        run: |
+          mkdir -p VPNMIRRORS sources scripts
+          python scripts/fetch_configs.py
+
+      - name: "📝 Generate README"
+        run: python scripts/generate_readme.py
+
+      - name: "🌐 Generate index.html"
+        run: python scripts/site.py
+
+      - name: "📊 Count files"
+        id: count
+        run: |
+          VPN_FILES=$(find VPNMIRRORS -type f ! -name "metadata.json" 2>/dev/null | wc -l)
+          echo "vpn_files=$VPN_FILES" >> $GITHUB_OUTPUT
+
+      - name: "💾 Commit and push to both remotes"
+        run: |
+          git config user.name "gitverse-bot"
+          git config user.email "bot@gitverse.ru"
+          git add -A
+          git diff --cached --quiet || git commit -m "🔄 Auto-update: $(date)"
+          git push origin HEAD          # на GitHub
+          git push gitverse HEAD        # на GitVerse     
