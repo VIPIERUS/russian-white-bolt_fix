@@ -1,19 +1,19 @@
 {
-  "updated": "2026-08-19T12:31:59.608376+00:00",
+  "updated": "2026-08-19T15:25:26.110962+00:00",
   "total_sources": 57,
   "success": 34,
   "failed": 23,
-  "total_configs": 514537,
+  "total_configs": 518384,
   "total_protocols": {
-    "vless": 492967,
-    "ss": 6147,
-    "vmess": 6182,
-    "trojan": 6677,
-    "other": 1972,
-    "tor_bridge": 48,
+    "vless": 496231,
+    "ss": 6256,
+    "vmess": 6319,
+    "trojan": 6842,
+    "other": 2139,
+    "tor_bridge": 50,
     "ip": 158,
-    "bridge": 248,
-    "hy2": 118,
+    "bridge": 250,
+    "hy2": 119,
     "tuic": 2,
     "ssr": 18
   },
@@ -22,99 +22,99 @@
       "name": "Alley_Config_1",
       "category": "nekobox",
       "filename": "Alley_Config_1.txt",
-      "count": 5263,
+      "count": 5580,
       "protocols": {
-        "vless": 3843,
-        "ss": 264,
-        "vmess": 351,
-        "trojan": 501,
-        "other": 296,
+        "vless": 4086,
+        "ss": 274,
+        "vmess": 359,
+        "trojan": 528,
+        "other": 325,
         "tor_bridge": 8
       },
       "url": "https://alley.serv00.net/1",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 1055.8,
-      "hash": "f6058aa7",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 1123.9,
+      "hash": "0692ca24",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "Alley_Config_2",
       "category": "nekobox",
       "filename": "Alley_Config_2.txt",
-      "count": 5279,
+      "count": 5580,
       "protocols": {
-        "vless": 3855,
-        "ss": 264,
-        "vmess": 351,
-        "trojan": 502,
-        "other": 299,
+        "vless": 4086,
+        "ss": 274,
+        "vmess": 359,
+        "trojan": 528,
+        "other": 325,
         "tor_bridge": 8
       },
       "url": "https://alley.serv00.net/2",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 1058.6,
-      "hash": "ee867c0c",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 1123.9,
+      "hash": "0692ca24",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "EtoNeYa_Raw_1",
       "category": "nekobox",
       "filename": "EtoNeYa_Raw_1.txt",
-      "count": 5279,
+      "count": 5580,
       "protocols": {
-        "vless": 3855,
-        "ss": 264,
-        "vmess": 351,
-        "trojan": 502,
-        "other": 299,
+        "vless": 4086,
+        "ss": 274,
+        "vmess": 359,
+        "trojan": 528,
+        "other": 325,
         "tor_bridge": 8
       },
       "url": "https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/1",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 1058.6,
-      "hash": "ee867c0c",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 1123.9,
+      "hash": "0692ca24",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "BLACK_VLESS_RUS",
       "category": "v2ray",
       "filename": "BLACK_VLESS_RUS.txt",
-      "count": 206,
+      "count": 126,
       "protocols": {
         "other": 1,
-        "vless": 205
+        "vless": 125
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_VLESS_RUS.txt",
       "app": "V2RayNG",
       "app_icon": "v2ray",
       "app_url": "https://getv2rayng.com",
-      "size_kb": 73.2,
-      "hash": "85bb809b",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 38.2,
+      "hash": "53f41119",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "BLACK_SS_All",
       "category": "v2ray",
       "filename": "BLACK_SS_All.txt",
-      "count": 86,
+      "count": 56,
       "protocols": {
-        "other": 77,
-        "vmess": 1,
-        "trojan": 8
+        "other": 42,
+        "vmess": 11,
+        "trojan": 3
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/BLACK_SS+All_RUS.txt",
       "app": "V2RayNG",
       "app_icon": "v2ray",
       "app_url": "https://getv2rayng.com",
-      "size_kb": 16.5,
-      "hash": "710cba3b",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 12.2,
+      "hash": "7c9582aa",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "TOR_BRIDGES_TOP100",
@@ -123,17 +123,17 @@
       "count": 103,
       "protocols": {
         "tor_bridge": 3,
-        "ip": 27,
-        "bridge": 65,
-        "other": 8
+        "ip": 26,
+        "bridge": 67,
+        "other": 7
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/TOR-BRIDGES/TOR_BRIDGES_TOP100.txt",
       "app": "Happ VPN",
       "app_icon": "happ",
       "app_url": "https://happ.su",
-      "size_kb": 13.3,
-      "hash": "8d6b249b",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 13.4,
+      "hash": "362de601",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "TOR_BRIDGES_ALL",
@@ -142,126 +142,126 @@
       "count": 334,
       "protocols": {
         "tor_bridge": 5,
-        "ip": 131,
+        "ip": 132,
         "bridge": 183,
-        "other": 15
+        "other": 14
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/TOR-BRIDGES/TOR_BRIDGES_ALL.txt",
       "app": "Happ VPN",
       "app_icon": "happ",
       "app_url": "https://happ.su",
-      "size_kb": 38.3,
-      "hash": "28a82696",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 38.2,
+      "hash": "a88ba739",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "VLESS_Reality_White",
       "category": "v2ray",
       "filename": "VLESS_Reality_White.txt",
-      "count": 9,
+      "count": 34,
       "protocols": {
         "other": 4,
-        "vless": 5
+        "vless": 30
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
       "app": "V2RayNG",
       "app_icon": "v2ray",
       "app_url": "https://getv2rayng.com",
-      "size_kb": 2.2,
-      "hash": "6b2b5c32",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 15.1,
+      "hash": "84265e16",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "WHITE_CIDR_RU_All",
       "category": "nekobox",
       "filename": "WHITE_CIDR_RU_All.txt",
-      "count": 9,
+      "count": 34,
       "protocols": {
         "other": 4,
-        "vless": 5
+        "vless": 30
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 2.2,
-      "hash": "13be82b4",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 15.1,
+      "hash": "90660de0",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "WHITE_CIDR_RU_checked",
       "category": "nekobox",
       "filename": "WHITE_CIDR_RU_checked.txt",
-      "count": 2,
+      "count": 3,
       "protocols": {
-        "other": 2
+        "other": 3
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 0.5,
-      "hash": "def24bc5",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 0.7,
+      "hash": "3219c451",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "WHITE_SNI_RU_All",
       "category": "nekobox",
       "filename": "WHITE_SNI_RU_All.txt",
-      "count": 13,
+      "count": 39,
       "protocols": {
-        "other": 2,
-        "vless": 11
+        "other": 1,
+        "vless": 38
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 4.0,
-      "hash": "938901f9",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 10.8,
+      "hash": "aad12e2e",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "EtoNeYa_Raw_2",
       "category": "nekobox",
       "filename": "EtoNeYa_Raw_2.txt",
-      "count": 5279,
+      "count": 5580,
       "protocols": {
-        "vless": 3855,
-        "ss": 264,
-        "vmess": 351,
-        "trojan": 502,
-        "other": 299,
+        "vless": 4086,
+        "ss": 274,
+        "vmess": 359,
+        "trojan": 528,
+        "other": 325,
         "tor_bridge": 8
       },
       "url": "https://raw.githubusercontent.com/EtoNeYaProject/etoneyaproject.github.io/refs/heads/main/2",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 1058.6,
-      "hash": "ee867c0c",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 1123.9,
+      "hash": "0692ca24",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "EtoNeYa_CDN_1",
       "category": "nekobox",
       "filename": "EtoNeYa_CDN_1.txt",
-      "count": 3009,
+      "count": 5580,
       "protocols": {
-        "vless": 1875,
-        "trojan": 425,
-        "ss": 191,
-        "other": 232,
-        "vmess": 280,
-        "tor_bridge": 6
+        "vless": 4086,
+        "ss": 274,
+        "vmess": 359,
+        "trojan": 528,
+        "other": 325,
+        "tor_bridge": 8
       },
       "url": "https://cdn.jsdelivr.net/gh/EtoNeYaProject/EtoNeYaProject.github.io@refs/heads/main/1",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 626.2,
-      "hash": "e5631d1c",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 1123.9,
+      "hash": "0692ca24",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "nowmeow_whitelist",
@@ -275,22 +275,22 @@
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 9.0,
-      "hash": "d18128d8",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 11.5,
+      "hash": "bf6ca0ac",
+      "updated": "2026-08-19 15:24 UTC"
     },
     {
       "name": "gpucloud_merged",
       "category": "nekobox",
       "filename": "gpucloud_merged.txt",
-      "count": 9679,
+      "count": 9770,
       "protocols": {
-        "other": 74,
-        "vless": 7795,
-        "ss": 765,
-        "trojan": 697,
-        "vmess": 296,
-        "hy2": 49,
+        "other": 69,
+        "vless": 7952,
+        "ss": 726,
+        "trojan": 661,
+        "vmess": 309,
+        "hy2": 50,
         "tor_bridge": 1,
         "tuic": 2
       },
@@ -298,9 +298,9 @@
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 2878.2,
-      "hash": "2c2c9375",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 2901.4,
+      "hash": "98c6ff7b",
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "ByeWhiteLists2",
@@ -316,7 +316,7 @@
       "app_url": "https://nekobox.one",
       "size_kb": 306.8,
       "hash": "4ef0c6b9",
-      "updated": "2026-08-19 12:31 UTC"
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "SilentGhostCodes_Whitelist",
@@ -334,7 +334,7 @@
       "app_url": "https://nekobox.one",
       "size_kb": 44.2,
       "hash": "1d568ae2",
-      "updated": "2026-08-19 12:31 UTC"
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "SilentGhostCodes_Whitelist2",
@@ -351,7 +351,7 @@
       "app_url": "https://nekobox.one",
       "size_kb": 36.5,
       "hash": "7c97dbce",
-      "updated": "2026-08-19 12:31 UTC"
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "SilentGhostCodes_BlackList",
@@ -368,27 +368,27 @@
       "app_url": "https://nekobox.one",
       "size_kb": 2.4,
       "hash": "62ceefe6",
-      "updated": "2026-08-19 12:31 UTC"
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "sakha1370_OpenRay",
       "category": "nekobox",
       "filename": "sakha1370_OpenRay.txt",
-      "count": 11820,
+      "count": 11851,
       "protocols": {
-        "vless": 9626,
-        "trojan": 991,
-        "vmess": 898,
-        "ss": 295,
+        "vless": 9645,
+        "ss": 296,
+        "vmess": 900,
+        "trojan": 1000,
         "other": 10
       },
       "url": "https://github.com/sakha1370/OpenRay/raw/refs/heads/main/output/all_valid_proxies.txt",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 3050.6,
-      "hash": "bdcbe54a",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 3051.8,
+      "hash": "13b1e77b",
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "sevcator_vl",
@@ -404,19 +404,19 @@
       "app_url": "https://nekobox.one",
       "size_kb": 102241.0,
       "hash": "2075b3d8",
-      "updated": "2026-08-19 12:31 UTC"
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "yitong2333_proxy-minging",
       "category": "nekobox",
       "filename": "yitong2333_proxy-minging.txt",
-      "count": 13828,
+      "count": 13848,
       "protocols": {
-        "vless": 9840,
-        "trojan": 817,
-        "ss": 1740,
-        "vmess": 1126,
-        "other": 230,
+        "vless": 9846,
+        "trojan": 812,
+        "ss": 1752,
+        "vmess": 1130,
+        "other": 233,
         "ssr": 9,
         "hy2": 65,
         "tor_bridge": 1
@@ -425,9 +425,9 @@
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 3189.3,
-      "hash": "c0cae65a",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 3196.4,
+      "hash": "c28f05e4",
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "roosterkid_V2RAY_RAW",
@@ -435,18 +435,18 @@
       "filename": "roosterkid_V2RAY_RAW.txt",
       "count": 150,
       "protocols": {
-        "ss": 16,
-        "vless": 70,
-        "trojan": 60,
-        "vmess": 4
+        "vless": 75,
+        "ss": 14,
+        "trojan": 55,
+        "vmess": 6
       },
       "url": "https://raw.githubusercontent.com/roosterkid/openproxylist/main/V2RAY_RAW.txt",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 29.1,
-      "hash": "f71660d2",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 30.1,
+      "hash": "e93a0845",
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "CidVpn_general",
@@ -463,7 +463,7 @@
       "app_url": "https://nekobox.one",
       "size_kb": 79.2,
       "hash": "2c8c3512",
-      "updated": "2026-08-19 12:31 UTC"
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "Pawdroid_Free-servers",
@@ -471,70 +471,71 @@
       "filename": "Pawdroid_Free-servers.txt",
       "count": 20,
       "protocols": {
-        "vless": 6,
-        "trojan": 14
+        "trojan": 15,
+        "other": 1,
+        "vless": 4
       },
       "url": "https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 3.9,
-      "hash": "53accabd",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 3.8,
+      "hash": "7fc549ff",
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "wuqb2i4f_mix-uri",
       "category": "nekobox",
       "filename": "wuqb2i4f_mix-uri.txt",
-      "count": 624,
+      "count": 460,
       "protocols": {
-        "vless": 476,
-        "vmess": 133,
-        "trojan": 15
+        "vless": 326,
+        "vmess": 122,
+        "trojan": 12
       },
       "url": "https://raw.githubusercontent.com/wuqb2i4f/xray-config-toolkit/main/output/base64/mix-uri",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 157.7,
-      "hash": "c7bbbad6",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 117.7,
+      "hash": "6e669cab",
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "Mr-Meshky_vify_vless",
       "category": "nekobox",
       "filename": "Mr-Meshky_vify_vless.txt",
-      "count": 992,
+      "count": 981,
       "protocols": {
-        "vless": 992
+        "vless": 981
       },
       "url": "https://github.com/Mr-Meshky/vify/raw/refs/heads/main/configs/vless.txt",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 281.8,
-      "hash": "32b1790a",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 274.8,
+      "hash": "245de565",
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "AvenCores_goida_26",
       "category": "nekobox",
       "filename": "AvenCores_goida_26.txt",
-      "count": 4697,
+      "count": 4757,
       "protocols": {
-        "vless": 4636,
+        "vless": 4695,
         "other": 7,
         "trojan": 11,
-        "ss": 41,
+        "ss": 42,
         "vmess": 2
       },
       "url": "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/26.txt",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 1274.8,
-      "hash": "f6f3377c",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 1284.4,
+      "hash": "b732d73b",
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "V2RayRoot_vless",
@@ -550,7 +551,7 @@
       "app_url": "https://nekobox.one",
       "size_kb": 69.8,
       "hash": "cc2771e4",
-      "updated": "2026-08-19 12:31 UTC"
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "whoahaow_bypass-7",
@@ -570,39 +571,39 @@
       "app_url": "https://nekobox.one",
       "size_kb": 86.4,
       "hash": "81feb378",
-      "updated": "2026-08-19 12:31 UTC"
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "AvenCores_goida_1",
       "category": "nekobox",
       "filename": "AvenCores_goida_1.txt",
-      "count": 11663,
+      "count": 11694,
       "protocols": {
-        "vless": 9542,
-        "trojan": 923,
-        "vmess": 898,
-        "ss": 293,
+        "vless": 9561,
+        "ss": 294,
+        "vmess": 900,
+        "trojan": 932,
         "other": 7
       },
       "url": "https://github.com/AvenCores/goida-vpn-configs/raw/refs/heads/main/githubmirror/1.txt",
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 3005.4,
-      "hash": "5ca9a91d",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 3006.6,
+      "hash": "f03ad4e0",
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "AvenCores_goida_3",
       "category": "nekobox",
       "filename": "AvenCores_goida_3.txt",
-      "count": 13162,
+      "count": 13193,
       "protocols": {
-        "vless": 9577,
-        "trojan": 620,
-        "ss": 1740,
-        "vmess": 1126,
-        "other": 86,
+        "vless": 9595,
+        "trojan": 612,
+        "ss": 1752,
+        "vmess": 1130,
+        "other": 91,
         "ssr": 9,
         "hy2": 4
       },
@@ -610,9 +611,9 @@
       "app": "Nekobox",
       "app_icon": "nekobox",
       "app_url": "https://nekobox.one",
-      "size_kb": 3050.0,
-      "hash": "30e337c4",
-      "updated": "2026-08-19 12:31 UTC"
+      "size_kb": 3059.7,
+      "hash": "35946db1",
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "SER38Off_happ-subscription",
@@ -630,7 +631,7 @@
       "app_url": "https://nekobox.one",
       "size_kb": 81.4,
       "hash": "749d9240",
-      "updated": "2026-08-19 12:31 UTC"
+      "updated": "2026-08-19 15:25 UTC"
     },
     {
       "name": "obwlsub_wwh",
@@ -647,14 +648,14 @@
       "app_url": "https://nekobox.one",
       "size_kb": 0.7,
       "hash": "ae08b2a5",
-      "updated": "2026-08-19 12:31 UTC"
+      "updated": "2026-08-19 15:25 UTC"
     }
   ],
   "errors": [
     {
       "name": "EtoNeYa_Main",
       "url": "https://etoneya.a9fm.site/2",
-      "error": "HTTPSConnectionPool(host='etoneya.a9fm.site', port=443): Max retries exceeded with url: /2 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1017)')))"
+      "error": "HTTPSConnectionPool(host='etoneya.a9fm.site', port=443): Max retries exceeded with url: /2 (Caused by NameResolutionError(\"HTTPSConnection(host='etoneya.a9fm.site', port=443): Failed to resolve 'etoneya.a9fm.site' ([Errno -2] Name or service not known)\"))"
     },
     {
       "name": "EtoNeYa_general",
