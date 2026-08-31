@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       force_update:
-        description: 'Force update even if no changes'
+        description: "Force update even if no changes"
         required: false
         default: false
         type: boolean
@@ -24,7 +24,7 @@ jobs:
     name: "📥 Fetch, Update & Push Everywhere"
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    
+
     steps:
       - name: "📂 Checkout Repository"
         uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-      
+
       - name: "📦 Install dependencies"
         run: pip install requests beautifulsoup4 lxml
 
@@ -44,7 +44,7 @@ jobs:
         run: |
           mkdir -p VPNMIRRORS sources scripts
           python scripts/fetch_configs.py
-          
+
           export GENERATED_AT="$(date '+%d.%m.%Y %H:%M:%S') (MSK)"
           python scripts/generate_readme.py
           python scripts/site.py
@@ -53,7 +53,7 @@ jobs:
         id: count
         run: |
           VPN_FILES=$(find VPNMIRRORS -type f ! -name "metadata.json" 2>/dev/null | wc -l)
-          echo "vpn_files=$VPN_FILES" >> $GITHUB_OUTPUT
+          echo "vpn_files=$VPN_FILES" >> "$GITHUB_OUTPUT"
 
       - name: "🚀 Commit & Push to GitHub and GitVerse"
         env:
@@ -63,33 +63,34 @@ jobs:
           # Настройка бота
           git config user.name "gitverse-bot"
           git config user.email "bot@gitverse.ru"
-          
-          # Индексируем абсолютно все изменения и свежие файлы
+
+          # Индексируем все изменения
           git add -A
 
           COMMIT_DATE=$(date --iso-8601=seconds)
-          
+
           # Проверяем, есть ли изменения или принудительный запуск
           IF_CHANGES=$(git status --porcelain)
-          
+
           if [ -n "$IF_CHANGES" ] || [ "${{ inputs.force_update }}" = "true" ]; then
             echo "Обнаружены свежие файлы. Создаем коммит..."
-            
-            # Если изменений не было, но вызван force_update — делаем пустой коммит для обновления даты
+
+            # Если изменений не было, но вызван force_update — делаем пустой коммит
             if [ -z "$IF_CHANGES" ]; then
               GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --allow-empty --date="$COMMIT_DATE" -m "🔄 Forced Sync: $(date '+%Y-%m-%d %H:%M:%S MSK')"
             else
-              GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --date="$COMMIT_DATE" -m "🔄 Auto-update: $(date '+%Y-%m-%d %H:%M:%S MSK')"
+              GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --date="$COMMIT_DATE" -m "🔄 Auto-update: $(date '+%Y-%m-%d %H:%M:%S MSK') — configs: ${{ steps.count.outputs.vpn_files }}"
             fi
-            
+
             echo "1. Пушим свежие файлы в GitHub..."
             git push origin HEAD
 
             echo "2. Пушим свежие файлы в GitVerse (в ветку master)..."
-            git remote add gitverse https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git 2>/dev/null || git remote set-url gitverse https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git
+            git remote add gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git" 2>/dev/null || \
+              git remote set-url gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git"
             git -c core.askPass= push gitverse HEAD:refs/heads/master --force
-            
-            echo "Успешно обновлено на всех серверах!"
+
+            echo "✅ Успешно обновлено на всех серверах!"
           else
-            echo "Свежих изменений нет. Пропуск отправки."
+            echo "ℹ️ Свежих изменений нет. Пропуск отправки."
           fi
