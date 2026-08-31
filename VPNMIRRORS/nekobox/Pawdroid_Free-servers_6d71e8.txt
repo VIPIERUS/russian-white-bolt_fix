@@ -1,26 +1,28 @@
 # Pawdroid_Free-servers
 # Source: https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub
 # Category: Nekoray / Nekobox
-# Updated: 2026-08-31 15:10:05 UTC
-# Total configs: 16
-# Protocols: VLESS=8, VMess=0, Trojan=8, SS=0, Other=0
+# Updated: 2026-08-31 18:10:15 UTC
+# Total configs: 19
+# Protocols: VLESS=1, VMess=0, Trojan=18, SS=0, Other=0
 # ================================================================
 
-trojan://humanity@104.18.152.149:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-vless://423b1d79-08c4-403f-9d5e-c541f791b55f@31.76.70.32:443?encryption=none&flow=xtls-rprx-vision&fp=chrome&headerType=none&pbk=t_qv0VOfWhKZJV_giGC55-ipgHYWo44Yfvik_B8T8ik&security=reality&sid=4a46213c935e2ee4&sni=baltic.cendora.ru&type=tcp#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
-vless://d4cae7df-50a1-428c-bd62-881c8f3bbd90@45.95.96.225:443?security=reality&type=tcp&packetEncoding=xudp&sni=germany.superbuba.top&fp=firefox&flow=xtls-rprx-vision&sid=4fa44664f6a566d3&pbk=rCkSHJ7goy7ZvSlau4LfXF-QLloOJMNeMxpeeQtwtVs&encryption=none#%E6%AC%A7%E7%9B%9F+V2CROSS.COM
-vless://5d8fae5f-0427-4da3-99ab-242905fa5c69@fast.iqiraq.shop:443?encryption=none&path=%2F&security=tls&type=ws#%E8%8F%B2%E5%BE%8B%E5%AE%BE+V2CROSS.COM
-vless://d499fa8c-2e14-4bd5-a3ca-73fae7f04cb5@151.101.56.6:443?path=/?TELEGRAM--TOOTFFARANGI--TOOTFFARANGI--TOOTFFARANGI--TOOTFFARANGI--TOOTFFARANGI--TOOTFFARANGI--TOOTFFARANGI--TOOTFFARANGI--TOOTFFARANGI--TOOTFFARANGI&security=tls&alpn=h2&encryption=none&insecure=0&host=c12.com&fp=chrome&type=ws&allowInsecure=0&sni=ssl.fastly.com#%E7%BE%8E%E5%9B%BD+%E4%B9%94%E6%B2%BB%E4%BA%9A%E6%B4%B2%E4%BA%9A%E7%89%B9%E5%85%B0%E5%A4%A7Fastly%E8%8A%82%E7%82%B9
-vless://9bbd487f-8f84-4ad7-b897-681c3f7d95dc@150.241.73.194:443?security=reality&encryption=none&pbk=9hU6AMKLyYk7iFeX-JF_6bd5ek-0CdHmk7t38raL9T4&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=logomarket.mervi.icu&sid=2e11269895800a3c#%E8%A5%BF%E7%8F%AD%E7%89%99+V2CROSS.COM
-vless://60e2a548-96aa-4850-a279-1edab743c39b@132.243.235.53:2096?security=reality&encryption=none&fm=Free Internet&pbk=0XSgK4OAEjNPsjYdhNBV5xl5mCCRRzYucSQ9LIO0Gkg&host=BIA_TELEGRAM?=@ShadowFlux2---@ShadowFlux2---@ShadowFlux2---@ShadowFlux2---@ShadowFlux2&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=dhlparcel.nl&sid=3dad96f8693ea653#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
-hysteria2://19f72087-4591-4d72-930b-2697078ec2be@sg1.xiaoliyu.cyou:1933?insecure=1&security=tls&sni=sg1.xiaoliyu.cyou#%E6%96%B0%E5%8A%A0%E5%9D%A1+M247%E7%BD%91%E7%BB%9C
-vless://d4cae7df-50a1-428c-bd62-881c8f3bbd90@germany.superbuba.top:443?encryption=none&flow=xtls-rprx-vision&security=reality&sni=germany.superbuba.top&fp=firefox&pbk=rCkSHJ7goy7ZvSlau4LfXF-QLloOJMNeMxpeeQtwtVs&sid=4fa44664f6a566d3&type=tcp&headerType=none#%E6%AC%A7%E7%9B%9F+V2CROSS.COM
-trojan://humanity@104.16.174.101:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.16.174.117:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 trojan://humanity@104.18.152.229:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@104.18.152.210:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-vless://5bfc6650-8b56-416a-b0e9-b98fc6367c0d@84.32.61.79:443?security=reality&encryption=none&pbk=jA_Xd8qfMloJg0lbdxPnEcDJc3MltgueXpxYQAWnlD0&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=us.api-yandex.net&sid=0f4dacf66101e05f#%E7%AB%8B%E9%99%B6%E5%AE%9B+V2CROSS.COM
-trojan://humanity@104.18.152.159:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@104.18.23.63:443?security=tls&sni=www.ignitelimit.com&fp=chrome&alpn=http%2F1.1&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-hysteria2://19f72087-4591-4d72-930b-2697078ec2be@us4.xiaoliyu.cyou:4433?insecure=1&security=tls&sni=us4.xiaoliyu.cyou#%E5%8C%97%E7%BE%8E%E5%9C%B0%E5%8C%BA+V2CROSS.COM
-trojan://humanity@104.16.174.6:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment&Host=www.ignitelimit.com#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.16.174.46:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@www.speedtest.org:443?security=tls&sni=www.ignitelimit.com&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+hysteria2://github.com%2FAlvin9999-newpac%2Ffanqiang@62.210.7.139:60111?insecure=1&security=tls&sni=bing.com#%E6%B3%95%E5%9B%BD+ONLINE+S.A.S.%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
 trojan://humanity@104.16.7.70:443?security=tls&sni=www.ignitelimit.com&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@176.97.66.175:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
+trojan://humanity@104.18.152.230:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.16.174.14:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment&Host=www.ignitelimit.com#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://a289a3d3-5833-4b28-8809-ae72898a98d0@ru05.abvpn.ru:443?type=ws&security=tls&encryption=none&sni=ru05.abvpn.ru&path=/websocket&fp=chrome#%E6%AC%A7%E7%9B%9F+V2CROSS.COM
+trojan://humanity@104.18.152.155:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment&Host=www.ignitelimit.com#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.18.152.108:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.18.23.63:443?security=tls&sni=www.ignitelimit.com&alpn=http%2F1.1&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.17.111.8:443?security=tls&sni=www.ignitelimit.com&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.26.15.137:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.16.174.44:443?security=tls&sni=www.ignitelimit.com&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.26.14.137:443?security=tls&sni=www.ignitelimit.com&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.18.152.159:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.20.6.134:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.18.152.175:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
