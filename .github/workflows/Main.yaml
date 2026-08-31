@@ -79,6 +79,7 @@ jobs:
       - name: "🚀 Push to GitVerse"
         env:
           GITVERSE_TOKEN: ${{ secrets.GITVERSE_TOKEN }}
+          GIT_TERMINAL_PROMPT: "0"
         run: |
-          git remote add gitverse https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git || git remote set-url gitverse https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git
-          git push gitverse HEAD:main --force
+          git remote add gitverse https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git 2>/dev/null || git remote set-url gitverse https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git
+          git -c core.askPass= push gitverse HEAD:refs/heads/main --force
