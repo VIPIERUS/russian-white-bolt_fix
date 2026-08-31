@@ -1,19 +1,29 @@
 # WHITE_CIDR_RU_checked
 # Source: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
 # Category: Nekoray / Nekobox
-# Updated: 2026-08-31 18:09:48 UTC
-# Total configs: 5
-# Protocols: VLESS=5, VMess=0, Trojan=0, SS=0, Other=0
+# Updated: 2026-08-31 21:09:32 UTC
+# Total configs: 15
+# Protocols: VLESS=15, VMess=0, Trojan=0, SS=0, Other=0
 # ================================================================
 
 # profile-title: 🏳️ БЕЛЫЕ СПИСКИ 🏳️ WHITE LISTS | CIDR | Только VK, Yandex, CDNvideo, Beeline
 # profile-update-interval: 1
-# Date/Time: 2026-08-31 / 20:26 (Moscow)
-# Количество: 5
+# Date/Time: 2026-08-31 / 23:58 (Moscow)
+# Количество: 15
 # For more info and VPN-configs - visit: www.github.com/igareck/vpn-configs-for-russia
 
-vless://2dfd0db2-cd4e-4c09-97fc-67c3d8ee9409@46.243.234.213:8449?encryption=none&flow=xtls-rprx-vision&pbk=XF3wXFapd311fC0M0APxbrf3cIaGnyKU7BR4Pv_l7Rs&security=reality&sid=15954a1c5a3d5bfc&sni=akashi.vk-portal.net&type=raw&fp=android#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%5B%2ACIDR%5D%20CDN
-vless://2dfd0db2-cd4e-4c09-97fc-67c3d8ee9409@46.243.234.213:8449?encryption=none&flow=xtls-rprx-vision&pbk=XF3wXFapd311fC0M0APxbrf3cIaGnyKU7BR4Pv_l7Rs&security=reality&sid=15954a1c5a3d5bfc&sni=akashi.vk-portal.net&type=raw&fp=firefox#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%5B%2ACIDR%5D%20CDN
-vless://2dfd0db2-cd4e-4c09-97fc-67c3d8ee9409@46.243.234.213:8449?encryption=none&flow=xtls-rprx-vision&pbk=XF3wXFapd311fC0M0APxbrf3cIaGnyKU7BR4Pv_l7Rs&security=reality&sid=15954a1c5a3d5bfc&sni=akashi.vk-portal.net&type=raw&fp=ios#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%5B%2ACIDR%5D%20CDN
-vless://2dfd0db2-cd4e-4c09-97fc-67c3d8ee9409@46.243.234.213:8449?encryption=none&flow=xtls-rprx-vision&pbk=XF3wXFapd311fC0M0APxbrf3cIaGnyKU7BR4Pv_l7Rs&security=reality&sid=15954a1c5a3d5bfc&sni=akashi.vk-portal.net&type=raw&fp=qq#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%5B%2ACIDR%5D%20CDN
-vless://2dfd0db2-cd4e-4c09-97fc-67c3d8ee9409@46.243.234.213:8449?encryption=none&flow=xtls-rprx-vision&pbk=XF3wXFapd311fC0M0APxbrf3cIaGnyKU7BR4Pv_l7Rs&security=reality&sid=15954a1c5a3d5bfc&sni=akashi.vk-portal.net&type=raw&fp=safari#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?encryption=none&flow=xtls-rprx-vision&pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&security=reality&sid=108b0a197e41e4d0&sni=optim.tildacdn.pub&type=raw&fp=chrome#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?encryption=none&flow=xtls-rprx-vision&pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&security=reality&sid=108b0a197e41e4d0&sni=optim.tildacdn.pub&type=raw&fp=edge#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?encryption=none&flow=xtls-rprx-vision&pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&security=reality&sid=108b0a197e41e4d0&sni=optim.tildacdn.pub&type=raw&fp=firefox#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?encryption=none&flow=xtls-rprx-vision&pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&security=reality&sid=108b0a197e41e4d0&sni=optim.tildacdn.pub&type=raw&fp=qq#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?encryption=none&flow=xtls-rprx-vision&pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&security=reality&sid=108b0a197e41e4d0&sni=optim.tildacdn.pub&type=raw&fp=safari#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?encryption=none&flow=xtls-rprx-vision&pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&security=reality&sid=af741883226b0af9&sni=optim.tildacdn.pub&type=raw&fp=chrome#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?encryption=none&flow=xtls-rprx-vision&pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&security=reality&sid=af741883226b0af9&sni=optim.tildacdn.pub&type=raw&fp=edge#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?encryption=none&flow=xtls-rprx-vision&pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&security=reality&sid=af741883226b0af9&sni=optim.tildacdn.pub&type=raw&fp=ios#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?encryption=none&flow=xtls-rprx-vision&pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&security=reality&sid=af741883226b0af9&sni=optim.tildacdn.pub&type=raw&fp=qq#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?encryption=none&flow=xtls-rprx-vision&pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&security=reality&sid=af741883226b0af9&sni=optim.tildacdn.pub&type=raw&fp=safari#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&encryption=none&security=reality&type=raw&flow=xtls-rprx-vision&sid=bcfba22d203308aa&sni=optim.tildacdn.pub&fp=android#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&encryption=none&security=reality&type=raw&flow=xtls-rprx-vision&sid=bcfba22d203308aa&sni=optim.tildacdn.pub&fp=chrome#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&encryption=none&security=reality&type=raw&flow=xtls-rprx-vision&sid=bcfba22d203308aa&sni=optim.tildacdn.pub&fp=edge#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&encryption=none&security=reality&type=raw&flow=xtls-rprx-vision&sid=bcfba22d203308aa&sni=optim.tildacdn.pub&fp=firefox#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
+vless://6fd533e0-1333-4494-8b24-7f7dc586db8c@46.243.233.98:443?pbk=uYiZWRgbowvS9uOhVZTe0FBS1pLzA3QMyQ_NfDh4_h8&encryption=none&security=reality&type=raw&flow=xtls-rprx-vision&sid=bcfba22d203308aa&sni=optim.tildacdn.pub&fp=safari#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%5B%2ACIDR%5D%20CDN
