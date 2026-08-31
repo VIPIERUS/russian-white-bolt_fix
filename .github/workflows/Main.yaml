@@ -1,4 +1,4 @@
-name: "🔄 Auto-update VPN Configs & Sync GitVerse"
+Name: "🔄 Auto-update VPN Configs & Sync GitVerse"
 
 on:
   schedule:
@@ -40,9 +40,9 @@ jobs:
       - name: "📦 Install dependencies"
         run: pip install requests beautifulsoup4 lxml
 
-      - name: "🌐 Run scripts & regenerate all files"
+      - name: "📁 Prepare directories & generate all files"
         run: |
-          mkdir -p VPNMIRRORS sources scripts
+          mkdir -p VPNMIRRORS configs sources scripts
           python scripts/fetch_configs.py
 
           export GENERATED_AT="$(date '+%d.%m.%Y %H:%M:%S') (MSK)"
@@ -52,7 +52,7 @@ jobs:
       - name: "📊 Count VPN files"
         id: count
         run: |
-          VPN_FILES=$(find VPNMIRRORS -type f ! -name "metadata.json" 2>/dev/null | wc -l)
+          VPN_FILES=$(find VPNMIRRORS configs -type f ! -name "metadata.json" 2>/dev/null | wc -l)
           echo "vpn_files=$VPN_FILES" >> "$GITHUB_OUTPUT"
 
       - name: "🚀 Commit & Push to GitHub and GitVerse"
@@ -87,7 +87,7 @@ jobs:
 
             echo "2. Пушим свежие файлы в GitVerse (в ветку master)..."
             git remote add gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git" 2>/dev/null || \
-              git remote set-url gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git"
+            git remote set-url gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git"
             git -c core.askPass= push gitverse HEAD:refs/heads/master --force
 
             echo "✅ Успешно обновлено на всех серверах!"
