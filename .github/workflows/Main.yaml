@@ -1,4 +1,4 @@
-name: "🔄 Auto-update VPN Configs"
+name: "🔄 Auto-update VPN Configs & Sync GitVerse"
 
 on:
   schedule:
@@ -20,18 +20,18 @@ env:
   PYTHONIOENCODING: "utf-8"
 
 jobs:
-  update-configs:
-    name: "📥 Fetch & Update VPN Configs"
+  update-and-sync:
+    name: "📥 Fetch, Update & Push Everywhere"
     runs-on: ubuntu-latest
     timeout-minutes: 30
     
     steps:
-      - name: "📂 Checkout"
+      - name: "📂 Checkout Repository"
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           persist-credentials: true
-      
+
       - name: "🐍 Setup Python"
         uses: actions/setup-python@v5
         with:
@@ -39,47 +39,57 @@ jobs:
       
       - name: "📦 Install dependencies"
         run: pip install requests beautifulsoup4 lxml
-      
-      - name: "🌐 Fetch VPN configs"
+
+      - name: "🌐 Run scripts & regenerate all files"
         run: |
           mkdir -p VPNMIRRORS sources scripts
           python scripts/fetch_configs.py
-      
-      - name: "📝 Generate README"
-        env:
-          TZ: "Europe/Moscow"
-        run: |
+          
           export GENERATED_AT="$(date '+%d.%m.%Y %H:%M:%S') (MSK)"
           python scripts/generate_readme.py
-      
-      - name: "🌐 Generate index.html"
-        run: python scripts/site.py
-      
-      - name: "📊 Count files"
+          python scripts/site.py
+
+      - name: "📊 Count VPN files"
         id: count
         run: |
           VPN_FILES=$(find VPNMIRRORS -type f ! -name "metadata.json" 2>/dev/null | wc -l)
           echo "vpn_files=$VPN_FILES" >> $GITHUB_OUTPUT
-      
-      - name: "💾 Commit and push to GitHub"
-        run: |
-          git config user.name "gitverse-bot"
-          git config user.email "bot@gitverse.ru"
-          git add -A
-          
-          COMMIT_DATE=$(date --iso-8601=seconds)
-          
-          if ! git diff --cached --quiet; then
-            GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --date="$COMMIT_DATE" -m "🔄 Auto-update: $(date '+%Y-%m-%d %H:%M:%S MSK')"
-            git push origin HEAD
-          else
-            echo "No changes to commit."
-          fi
 
-      - name: "🚀 Push to GitVerse"
+      - name: "🚀 Commit & Push to GitHub and GitVerse"
         env:
           GITVERSE_TOKEN: ${{ secrets.GITVERSE_TOKEN }}
           GIT_TERMINAL_PROMPT: "0"
         run: |
-          git remote add gitverse https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git 2>/dev/null || git remote set-url gitverse https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git
-          git -c core.askPass= push gitverse HEAD:refs/heads/main --force
+          # Настройка бота
+          git config user.name "gitverse-bot"
+          git config user.email "bot@gitverse.ru"
+          
+          # Индексируем абсолютно все изменения и свежие файлы
+          git add -A
+
+          COMMIT_DATE=$(date --iso-8601=seconds)
+          
+          # Проверяем, есть ли изменения или принудительный запуск
+          IF_CHANGES=$(git status --porcelain)
+          
+          if [ -n "$IF_CHANGES" ] || [ "${{ inputs.force_update }}" = "true" ]; then
+            echo "Обнаружены свежие файлы. Создаем коммит..."
+            
+            # Если изменений не было, но вызван force_update — делаем пустой коммит для обновления даты
+            if [ -z "$IF_CHANGES" ]; then
+              GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --allow-empty --date="$COMMIT_DATE" -m "🔄 Forced Sync: $(date '+%Y-%m-%d %H:%M:%S MSK')"
+            else
+              GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --date="$COMMIT_DATE" -m "🔄 Auto-update: $(date '+%Y-%m-%d %H:%M:%S MSK')"
+            fi
+            
+            echo "1. Пушим свежие файлы в GitHub..."
+            git push origin HEAD
+
+            echo "2. Пушим свежие файлы в GitVerse (в ветку master)..."
+            git remote add gitverse https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git 2>/dev/null || git remote set-url gitverse https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git
+            git -c core.askPass= push gitverse HEAD:refs/heads/master --force
+            
+            echo "Успешно обновлено на всех серверах!"
+          else
+            echo "Свежих изменений нет. Пропуск отправки."
+          fi
