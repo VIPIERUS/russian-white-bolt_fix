@@ -1,28 +1,18 @@
 # Pawdroid_Free-servers
 # Source: https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub
 # Category: Nekoray / Nekobox
-# Updated: 2026-09-02 12:23:30 UTC
-# Total configs: 20
-# Protocols: VLESS=5, VMess=1, Trojan=14, SS=0, Other=0
+# Updated: 2026-09-02 15:22:37 UTC
+# Total configs: 10
+# Protocols: VLESS=3, VMess=0, Trojan=6, SS=0, Other=0
 # ================================================================
 
-trojan://humanity@104.18.152.208:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@104.16.174.34:443?security=tls&sni=www.ignitelimit.com&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@render.com:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+%E5%8A%A0%E5%B7%9E
-trojan://humanity@104.18.152.103:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://MiTiVPN@199.232.78.160:443?type=ws&security=tls&path=/---@VPNine1---@VPNine1/---@VPNine1---@VPNine1/---@VPNine1---@VPNine1/NLSs---@VPNine1---@VPNine1/---@VPNine1---@VPNine1/---@VPNine1---@VPNine1&host=1--2---3--mitivpn.global.ssl.fastly.net&sni=ssl.fastly.com&alpn=http/1.1&fp=chrome&insecure=0&allowInsecure=0#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
-trojan://humanity@104.18.152.143:443?security=tls&sni=www.ignitelimit.com&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@104.26.15.137:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@104.18.152.140:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@www.ignitelimit.com:443?security=tls&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-vless://90da514d-8888-4a53-912e-ac2981c8c6ee@188.220.67.245:2087?path=/8f2690e2d016&security=none&encryption=none&type=ws#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
-vless://86c2939c-4506-4028-cdc9-6fe073890e81@151.101.56.6:443?path=/?TELEGRAM--KANAL--@mainv2ray--@mainv2ray--@mainv2ray--@mainv2ray--@mainv2ray--@mainv2ray--@mainv2ray--@mainv2ray--@mainv2ray--@mainv2ray--@mainv2ray--@mainv2ray&security=tls&alpn=h2&encryption=none&insecure=0&host=c12.com&fp=chrome&type=ws&allowInsecure=0&sni=ssl.fastly.com#%E7%BE%8E%E5%9B%BD+%E4%B9%94%E6%B2%BB%E4%BA%9A%E6%B4%B2%E4%BA%9A%E7%89%B9%E5%85%B0%E5%A4%A7Fastly%E8%8A%82%E7%82%B9
-trojan://humanity@104.18.152.179:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@104.17.177.143:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-vless://8535e46f-4c0b-4b02-9369-d4d553c9a892@78.17.186.154:443?pbk=ho99K9SlOhJxolr4nVfw8SV4Z1yI22KaKaxUfk2o8jE&type=tcp&sni=www.nokia.com&security=reality&flow=xtls-rprx-vision&encryption=none&fp=chrome&headerType=none#%E7%88%B1%E5%B0%94%E5%85%B0+V2CROSS.COM
-vless://09f2e2f4-3225-4342-bc92-cb58ee841f72@201.24.49.228:2200?encryption=none&type=ws&security=none&path=/v1&host=rzd.ru#%E5%B7%B4%E8%A5%BF+%E5%9C%A3%E4%BF%9D%E7%BD%97
-trojan://humanity@165.215.250.14:443?security=tls&sni=www.ignitelimit.com&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
-vmess://eyJhZGQiOiAidC5jbm1qY24uY3lvdSIsICJhaWQiOiAwLCAiYWxwbiI6ICIiLCAiZnAiOiAiIiwgImhvc3QiOiAiNjg2YTc1NThkZjU3MWFmYjE0MDhiMGU3N2FlNGY2ODcubW9iZ3NsYi50YmNhY2hlLmNvbSIsICJpZCI6ICI1NmE1MTFiZC1mMjA3LTQ4ZjQtYmU1Yi00NjUyYWZlMTc4YTQiLCAibmV0IjogIndzIiwgInBhdGgiOiAiLyIsICJwb3J0IjogMTY2MzIsICJwcyI6ICJcdTYyYzlcdTgxMzFcdTdlZjRcdTRlOWEgVjJDUk9TUy5DT00iLCAic2N5IjogImF1dG8iLCAic2VjdXJpdHkiOiAiYXV0byIsICJzbmkiOiAiIiwgInRscyI6ICIiLCAidHlwZSI6ICJub25lIiwgInYiOiAiMiJ9
-trojan://humanity@104.18.152.159:443?security=tls&sni=www.ignitelimit.com&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-vless://219f9fec-8983-4f6f-af8c-31bd0c6dbf19@45.155.52.231:443?security=reality&encryption=none&pbk=6p0aVCkOgd-xaxqSMANYABL6O4Tdbftnxjiy5qcmISQ&headerType=none&fp=chrome&type=tcp&sni=ru2.skydrgn-online.online&sid=0b#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
-trojan://humanity@104.18.22.63:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@198.41.223.96:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://ef4f4c3d-0b16-48ad-a8d8-2d22512b3b36@fin.sdssh-vid.online:443?security=reality&encryption=none&pbk=74pbcWZE8Ne6iYrsl_31qy_pWKRrILQiAWfZs2IuGR0&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=fin.sdssh-vid.online&sid=f3c4da18e7c4f4#%E8%8D%B7%E5%85%B0+V2CROSS.COM
+trojan://humanity@176.97.66.175:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
+trojan://humanity@join-telegram-channel-tirexnet.trex.kdns.fr:443?security=tls&sni=www.ignitelimit.com&alpn=h3%2Ch2%2Chttp%2F1.1&type=ws&host=www.ignitelimit.com&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+hy2://sOiWCQ2AdIV0OWNuqQVyWp4JZnRxdyLROSjX@faq.wwwinternetvideo.click:443/?insecure=1&security=tls&sni=cabinet.wwwinternetvideo.click#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
+trojan://humanity@104.26.15.137:443?security=tls&sni=www.ignitelimit.com&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://56ba5d34-ef22-4ba6-8090-4188b807df54@163.8.195.241:2087?path=/29c8fed7ca22&security=&encryption=none&type=ws#%E6%BE%B3%E5%A4%A7%E5%88%A9%E4%BA%9A+V2CROSS.COM
+vless://06a70256-5acc-4a79-bd73-cc8e3c4c204b@144.31.183.177:443?security=reality&encryption=none&pbk=_VeT5AgFK65VebuF3KC-yYJtFw_fnJCLYGK1Ap2NfWI&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=yt.be&sid=e9a7#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+trojan://MiTiVPN@151.101.56.7:443?type=ws&security=tls&path=/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/D-e2@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN&host=mitivpn-ss-ss.global.ssl.fastly.net&sni=ssl.fastly.com&alpn=http/1.1&fp=chrome&insecure=0&allowInsecure=0#%E7%BE%8E%E5%9B%BD+%E4%B9%94%E6%B2%BB%E4%BA%9A%E6%B4%B2%E4%BA%9A%E7%89%B9%E5%85%B0%E5%A4%A7Fastly%E8%8A%82%E7%82%B9
+trojan://MiTiVPN@199.232.78.160:443?path=/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/NLSs---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN/---@MiTiVPN---@MiTiVPN&security=tls&alpn=http/1.1&insecure=0&host=1--2---3--mitivpn.global.ssl.fastly.net&fp=chrome&type=ws&allowInsecure=0&sni=ssl.fastly.com#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
