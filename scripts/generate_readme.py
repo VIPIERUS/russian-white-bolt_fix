@@ -13,7 +13,7 @@ from pathlib import Path
 
 # Конфигурация
 REPO_OWNER = "RUVIPIEN"
-REPO_NAME = "russian-white-bolt"
+REPO_NAME = "russian-white-bolt_fix"
 BRANCH = "master"
 
 # Категории и их описания + соответствие файлам фото
