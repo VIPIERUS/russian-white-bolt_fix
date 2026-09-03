@@ -1,13 +1,19 @@
 # WHITE_CIDR_RU_checked
 # Source: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
 # Category: Nekoray / Nekobox
-# Updated: 2026-09-03 18:20:17 UTC
-# Total configs: 0
-# Protocols: VLESS=0, VMess=0, Trojan=0, SS=0, Other=0
+# Updated: 2026-09-03 21:17:04 UTC
+# Total configs: 5
+# Protocols: VLESS=5, VMess=0, Trojan=0, SS=0, Other=0
 # ================================================================
 
 # profile-title: 🏳️ БЕЛЫЕ СПИСКИ 🏳️ WHITE LISTS | CIDR | Только VK, Yandex, CDNvideo, Beeline
 # profile-update-interval: 1
-# Date/Time: 2026-09-03 / 20:38 (Moscow)
-# Количество: 0
+# Date/Time: 2026-09-03 / 23:58 (Moscow)
+# Количество: 5
 # For more info and VPN-configs - visit: www.github.com/igareck/vpn-configs-for-russia
+
+vless://2eb1e3e2-34b9-4ca8-864f-9fada68d6c81@bs1.whitehost.org:443?type=tcp&headerType=none&security=tls&encryption=none&sni=wde5.whitedeu.org&flow=xtls-rprx-vision&fp=android#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%7C%20%5B%2ACIDR%5D%20YA
+vless://2eb1e3e2-34b9-4ca8-864f-9fada68d6c81@bs1.whitehost.org:443?type=tcp&headerType=none&security=tls&encryption=none&sni=wde5.whitedeu.org&flow=xtls-rprx-vision&fp=firefox#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%7C%20%5B%2ACIDR%5D%20YA
+vless://2eb1e3e2-34b9-4ca8-864f-9fada68d6c81@bs1.whitehost.org:443?type=tcp&headerType=none&security=tls&encryption=none&sni=wde5.whitedeu.org&flow=xtls-rprx-vision&fp=ios#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%7C%20%5B%2ACIDR%5D%20YA
+vless://2eb1e3e2-34b9-4ca8-864f-9fada68d6c81@bs1.whitehost.org:443?type=tcp&headerType=none&security=tls&encryption=none&sni=wde5.whitedeu.org&flow=xtls-rprx-vision&fp=qq#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%7C%20%5B%2ACIDR%5D%20YA
+vless://2eb1e3e2-34b9-4ca8-864f-9fada68d6c81@bs1.whitehost.org:443?type=tcp&headerType=none&security=tls&encryption=none&sni=wde5.whitedeu.org&flow=xtls-rprx-vision&fp=safari#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%7C%20%5B%2ACIDR%5D%20YA
