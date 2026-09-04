@@ -1,23 +1,26 @@
 # Pawdroid_Free-servers
 # Source: https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub
 # Category: Nekoray / Nekobox
-# Updated: 2026-09-04 15:18:03 UTC
-# Total configs: 12
-# Protocols: VLESS=6, VMess=0, Trojan=5, SS=0, Other=0
+# Updated: 2026-09-04 18:20:08 UTC
+# Total configs: 13
+# Protocols: VLESS=9, VMess=0, Trojan=4, SS=0, Other=0
 # ================================================================
 
-vless://0afc6426-606c-48e7-bd70-3c424a416842@us22.sofast.live:58011?encryption=none&type=tcp#%E7%A6%8F%E5%BB%BA%E7%9C%81%E7%A6%8F%E5%B7%9E%E5%B8%82+%E8%81%94%E9%80%9A
-vless://47fcef29-ab4e-4aa6-932b-d95a18f28a4e@172.64.158.146:8080?security=none&type=ws&path=/?ed=2560security=tls&host=8nj2r.2k8t.f88.hh.vavava.kdns.fr&packetEncoding=xudp#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@172.67.221.242:443?security=tls&sni=www.ignitelimit.com&fp=chrome&alpn=h3%2Ch2%2Chttp%2F1.1&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+trojan://humanity@104.18.22.63:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://2c7f1414-87ae-4a01-9796-a02c067891a6@176.109.88.216:443?security=reality&encryption=none&pbk=oqRus6Z_Q1jqJaTEPu7ENbRL0-XKOw54K0jwCCGLtEk&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=api-maps.yandex.ru&sid=a9c4f17e3b62d8#%E4%BF%84%E7%BD%97%E6%96%AF+V2CROSS.COM
+vless://423b1d79-08c4-403f-9d5e-c541f791b55f@144.31.168.95:443?security=reality&type=tcp&packetEncoding=xudp&sni=eu-central.cendora.ru&fp=firefox&flow=xtls-rprx-vision&sid=00bca5982f82d083&pbk=b-Cm9hX-3UHsS1L_lnUB6AMjuKhlN1IDdBbZ506itjI#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+hysteria2://7302ad33229de166d393cd56143a1e4c@131.186.19.174:50160?insecure=1&security=tls&sni=t.me#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+hysteria2://865e271f7c97b549b024255c9d02cebe9cc0c2c070a82b1e11bb11b9cd88dd01@217.60.33.215:443?insecure=1&security=tls&sni=streambox.wwwinternetvideo.click#%E4%BC%8A%E6%9C%97+V2CROSS.COM
+vless://47fcef29-ab4e-4aa6-932b-d95a18f28a4e@172.64.158.146:8080?security=none&type=ws&path=/?ed=2560security=tls&host=8nj2r.2k8t.f88.hh.vavava.kdns.fr&packetEncoding=xudp&sni=8nj2r.2k8t.f88.hh.vavava.kdns.fr#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
 hysteria2://19f72087-4591-4d72-930b-2697078ec2be@ru1.xiaoliyu.cyou:4433?insecure=1&security=tls&sni=ru1.xiaoliyu.cyou#%E4%BF%84%E7%BD%97%E6%96%AF+%E8%8E%AB%E6%96%AF%E7%A7%91justhost.ru
-trojan://humanity@130.250.137.171:443?fp=chrome&path=%2Fassignment&security=tls&sni=www.ignitelimit.com&type=ws#%E5%8A%A0%E6%8B%BF%E5%A4%A7+V2CROSS.COM
-trojan://humanity@172.67.74.2:443?security=tls&sni=www.ignitelimit.com&fp=chrome&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@104.26.14.137:443?fp=chrome&path=%2Fassignment&security=tls&sni=www.ignitelimit.com&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-hysteria2://sOiWCQ2AdIV0OWNuqQVyWp4JZnRxdyLROSjX@news.gazette.help:443?security=tls&sni=news.gazette.help#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
-vless://a289a3d3-5833-4b28-8809-ae72898a98d0@45.9.15.206:443?&security=tls&fp=edge&sni=ru05.abvpn.ru&type=ws&headerType=none&host=ru05.abvpn.ru&path=%2Fwebsocket#%E6%AC%A7%E7%9B%9F+V2CROSS.COM
-hy2://H7mP2xY9kJ4nQ8wR5tF6vB3z@vpn-au-002.fastervpn.world:443/?insecure=1&security=tls&sni=css.rbxcdn.com#%E6%BE%B3%E5%A4%A7%E5%88%A9%E4%BA%9A+%E6%96%B0%E5%8D%97%E5%A8%81%E5%B0%94%E5%A3%AB%E5%B7%9E%E6%82%89%E5%B0%BCAmazon%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
-vless://11af1c47-865a-47c6-92ff-118013655d78@51.158.241.182:8080?encryption=none&type=ws#%E6%B3%95%E5%9B%BD+%E5%B7%B4%E9%BB%8EOnline+S.A.S
-vless://a1a6a3be-2bf9-46a2-bc24-328306e49ab7@104.21.62.202:443?security=tls&type=ws&path=/fVs1qv0xm8dxmnwuaPwokxgY4XlP&host=3-m17.KazaKHStaN-link.kDnS.FR&packetEncoding=xudp&sni=3-m17.KAzAKHsTAn-Link.kDns.fR&fp=chrome&encryption=none#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-trojan://humanity@185.75.243.102:443?fp=android&path=%2Fassignment&security=tls&sni=www.ignitelimit.com&type=ws#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
-hysteria2://5d0a6445-a30d-4522-bb1f-94f1d3ad63be@msjp.mangshe.xyz:20562?insecure=1&security=tls&sni=www.microsoft.com#%E6%97%A5%E6%9C%AC+%E4%B8%9C%E4%BA%ACDigital+VM
-vless://bf443e4a-aa9e-4509-abf0-d0f6828d57be@178.95.170.83:2087?path=/4bc027a44532&security=none&encryption=none&host=Telegram-Leviko_v2ray&type=ws#%E4%B9%8C%E5%85%8B%E5%85%B0+V2CROSS.COM
+trojan://humanity@172.67.221.242:443?security=tls&sni=www.ignitelimit.com&fp=chrome&alpn=h3%2Ch2%2Chttp%2F1.1&type=ws&path=%2Fassignment#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://5aaa5259-f924-4682-a4a3-149d472a9dcc@jp.sofast.live:52683?encryption=none&security=none&type=tcp&headerType=none#%E5%B9%BF%E4%B8%9C%E7%9C%81%E5%B9%BF%E5%B7%9E%E5%B8%82+UCloud
+trojan://humanity@165.215.250.14:443?allowInsecure=1&fp=chrome&path=%2Fassignment&security=tls&sni=www.ignitelimit.com&type=ws#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+vless://47fcef29-ab4e-4aa6-932b-d95a18f28a4e@172.64.158.146:2082?security=none&type=ws&path=/?ed=2560security=tls&host=8nj2r.2k8t.f88.hh.vavava.kdns.fr&packetEncoding=xudp&sni=8nj2r.2k8t.f88.hh.vavava.kdns.fr#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://47fcef29-ab4e-4aa6-932b-d95a18f28a4e@172.64.158.146:80?security=none&type=ws&path=/?ed=2560security=tls&host=8nj2r.2k8t.f88.hh.vavava.kdns.fr&packetEncoding=xudp#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://791a171e-c0af-4bd7-b8ce-43541c7585db@31.76.61.232:443?encryption=none&flow=xtls-rprx-vision&fp=chrome&pbk=CMTA5uuaIVIeqHslZMT3CbFwP8F5ysMLii72ybsTlyY&security=reality&sid=e2a4c6b8&sni=policies.google.com&type=tcp#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
+vless://56ba5d34-ef22-4ba6-8090-4188b807df54@163.8.195.241:2087?security=none&type=ws&path=/29c8fed7ca22&packetEncoding=xudp&encryption=none#%E6%BE%B3%E5%A4%A7%E5%88%A9%E4%BA%9A+V2CROSS.COM
+trojan://humanity@104.21.46.3:443?alpn=h3%2Ch2%2Chttp%2F1.1&fp=chrome&path=%2Fassignment&security=tls&sni=www.ignitelimit.com&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://0346a35f-8e11-4b33-852d-00fa9c642878@18.177.61.231:30203?security=reality&type=tcp&packetEncoding=xudp&sni=www.sony.com&fp=chrome&flow=xtls-rprx-vision&sid=40150721499a92&pbk=dsJ2WwzENgTAgd8okJPXLpwzdsDjU67mBEnhUhgvvTk&encryption=none#%E6%97%A5%E6%9C%AC+%E4%B8%9C%E4%BA%ACAmazon%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
+hysteria2://YutbgyXL1mGaSlBXDoEucWvYbrDCINgUcQ6R6_At5Pjr2xCc@go2.wwwinternetvideo.click:443?insecure=1&security=tls&sni=admin.wwwinternetvideo.click#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+hysteria2://s0_sdK93x9wer_D02Lz9cvK3_Sa014Oakl_C2z@46.229.243.146:8443?security=tls&sni=grape-turbo-fr.roxa.org#%E5%85%8B%E7%BD%97%E5%9C%B0%E4%BA%9A+V2CROSS.COM
