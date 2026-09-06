@@ -1,13 +1,19 @@
 # WHITE_SNI_RU_All
 # Source: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
 # Category: Nekoray / Nekobox
-# Updated: 2026-09-06 09:17:08 UTC
-# Total configs: 0
-# Protocols: VLESS=0, VMess=0, Trojan=0, SS=0, Other=0
+# Updated: 2026-09-06 12:21:06 UTC
+# Total configs: 4
+# Protocols: VLESS=4, VMess=0, Trojan=0, SS=0, Other=0
 # ================================================================
 
 # profile-title: 🏳️ БЕЛЫЕ СПИСКИ 🏳️ WHITE LISTS | SNI-RU
 # profile-update-interval: 1
-# Date/Time: 2026-09-06 / 11:10 (Moscow)
-# Количество: 0
+# Date/Time: 2026-09-06 / 14:37 (Moscow)
+# Количество: 5
 # For more info and VPN-configs - visit: www.github.com/igareck/vpn-configs-for-russia
+
+vless://c80a96e8-d4a6-4785-b53b-a475b252c4ed@5.129.210.63:8443?encryption=none&pbk=Z5WItgtmxxL_umUUIPO72kSTBGjlGg3sUPigtTG6wlI&security=reality&sid=ac&sni=sun6-21.userapi.com&type=grpc&fp=edge#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%5BSNI-RU%5D%20sun6-21.userapi.com
+vless://c80a96e8-d4a6-4785-b53b-a475b252c4ed@5.129.210.63:8443?encryption=none&pbk=Z5WItgtmxxL_umUUIPO72kSTBGjlGg3sUPigtTG6wlI&security=reality&sid=ac&sni=sun6-21.userapi.com&type=grpc&fp=firefox#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%5BSNI-RU%5D%20sun6-21.userapi.com
+vless://fee2cdd8-55d1-4c5b-a67a-cfde8d45eed0@72.56.78.50:443?type=grpc&security=reality&pbk=huH_8n0Dfk4iolIkzrc-qET8ySHWgZAr-i6K6lr6xSs&sid=375838bc17c0&sni=sun6-21.userapi.com&fp=chrome#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%F0%9F%8C%90%20%7C%20%5BSNI-RU%5D%20sun6-21.userapi.com
+vless://fee2cdd8-55d1-4c5b-a67a-cfde8d45eed0@72.56.78.50:443?type=grpc&security=reality&pbk=huH_8n0Dfk4iolIkzrc-qET8ySHWgZAr-i6K6lr6xSs&sid=375838bc17c0&sni=sun6-21.userapi.com&fp=firefox#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%F0%9F%8C%90%20%7C%20%5BSNI-RU%5D%20sun6-21.userapi.com
+hysteria2://gf1%3Agfhysteria2024@5.129.235.85:443?insecure=1&sni=vk.com#%F0%9F%87%B3%F0%9F%87%B1%20The%20Netherlands%20%7C%20%F0%9F%8C%90%20%5BSNI-RU%5D%20vk.com
