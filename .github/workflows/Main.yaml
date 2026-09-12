@@ -46,7 +46,7 @@ jobs:
           python scripts/fetch_configs.py
 
           export GENERATED_AT="$(date '+%d.%m.%Y %H:%M:%S') (MSK)"
-          python scripts/generate_readme.py
+          python scripts/generate_readme.py   # <-- одна общая версия README
           python scripts/site.py
 
       - name: "📊 Count VPN files"
@@ -62,7 +62,6 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Настройка бота
           git config user.name "gitverse-bot"
           git config user.email "bot@gitverse.ru"
 
@@ -84,16 +83,21 @@ jobs:
               -m "🔄 Auto-update: $(date '+%Y-%m-%d %H:%M:%S MSK') — configs: ${{ steps.count.outputs.vpn_files }}"
           fi
 
-          echo "1. Пушим свежие файлы в GitHub (оригиналы)..."
+          # ═════════════════════════════════════════════════════
+          # 1. Push в GitHub (оригиналы + общий README)
+          # ═════════════════════════════════════════════════════
+          echo "1. Пушим свежие файлы в GitHub (оригиналы + общий README)..."
           git push origin HEAD
 
-          # ─────────────────────────────────────────────────────
-          # 2. Готовим версию для GitVerse: режем файлы > 90 МБ
-          # ─────────────────────────────────────────────────────
-          LIMIT_MB=90
+          # ═════════════════════════════════════════════════════
+          # 2. Готовим GitVerse-версию: split больших файлов
+          # ═════════════════════════════════════════════════════
+          LIMIT_MB=40
           echo "2. Разбиваю файлы > ${LIMIT_MB} МБ для GitVerse..."
 
           SPLIT_ANY=0
+          MAP_FILE=$(mktemp)   # карта: оригинал<TAB>part1,part2,...
+
           while IFS= read -r -d '' file; do
             SPLIT_ANY=1
             dir=$(dirname "$file")
@@ -103,29 +107,113 @@ jobs:
 
             echo "  → $file ($(du -h "$file" | cut -f1)) → ${base}_partN.${ext}"
 
-            # Режем на куски по LIMIT_MB, суффиксы: _part1, _part2, ...
             split -b "${LIMIT_MB}M" -d --numeric-suffixes=1 -a 1 \
                   --additional-suffix=".${ext}" \
                   "$file" "${dir}/${base}_part"
 
             rm -f "$file"
+
+            parts=$(ls "${dir}/${base}_part"*".${ext}" | xargs -n1 basename | paste -sd, -)
+            printf '%s\t%s\n' "$filename" "$parts" >> "$MAP_FILE"
           done < <(find VPNMIRRORS configs -type f -size +${LIMIT_MB}M -print0 2>/dev/null)
 
+          # ═════════════════════════════════════════════════════
+          # 3. ПЕРЕСБОРКА README/HTML ДЛЯ GITVERSE (чисто YAML)
+          #    Локальный README уже идентичен тому, что в GitHub.
+          #    Здесь только подменяем имена файлов на список частей
+          #    и дописываем предупреждение сверху.
+          # ═════════════════════════════════════════════════════
           if [ "$SPLIT_ANY" = "1" ]; then
+            echo "3. Пересобираю README/HTML для GitVerse..."
+
+            # 3a. Заменяем "orig.txt" на "orig_part1.txt (+ part2, ...)"
+            while IFS=$'\t' read -r orig parts; do
+              first=$(echo "$parts" | cut -d, -f1)
+              rest=$(echo "$parts" | cut -d, -f2- | tr ',' ' ')
+
+              if [ -n "$rest" ] && [ "$rest" != "$first" ]; then
+                replacement="${first} (плюс части: ${rest})"
+              else
+                replacement="${first}"
+              fi
+
+              echo "    • $orig"
+              echo "        → $replacement"
+
+              find . -type f \( -name "*.md" -o -name "*.html" -o -name "*.json" -o -name "*.txt" \) \
+                   -not -path "./.git/*" -not -path "./.github/*" -print0 \
+                | xargs -0 -r grep -l -- "$orig" 2>/dev/null \
+                | while IFS= read -r f; do
+                    ORIG="$orig" REPL="$replacement" perl -i -pe '
+                      my $o = $ENV{ORIG};
+                      my $r = $ENV{REPL};
+                      s/\Q$o\E/$r/g;
+                    ' "$f"
+                  done
+            done < "$MAP_FILE"
+
+            # 3b. Добавляем шапку-предупреждение в начало README.md
+            if [ -f README.md ] && ! grep -q "Внимание (GitVerse)" README.md; then
+              NOTE=$(mktemp)
+              {
+                echo "> ⚠️ **Внимание (GitVerse):** некоторые файлы разбиты на части из-за лимита загрузки."
+                echo "> Скачивайте **все** части и объединяйте:"
+                echo "> \`cat file_part* > file\` (Linux/macOS) или \`copy /b file_part* file\` (Windows)."
+                echo
+              } > "$NOTE"
+              cat README.md >> "$NOTE"
+              mv "$NOTE" README.md
+            fi
+
+            # 3c. Amend — GitHub-версия уже отправлена выше, здесь только GitVerse
             git add -A
             GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE"
-            echo "  ✓ Коммит пересобран для GitVerse"
+            echo "  ✓ README пересобран для GitVerse"
           else
-            echo "  ✓ Файлов > ${LIMIT_MB} МБ нет, GitVerse получит оригинал"
+            echo "3. Файлов > ${LIMIT_MB} МБ нет — README не трогаем"
           fi
 
-          # ─────────────────────────────────────────────────────
-          # 3. Пуш в GitVerse
-          # ─────────────────────────────────────────────────────
-          echo "3. Пушим в GitVerse (ветка master)..."
+          rm -f "$MAP_FILE"
+
+          # ═════════════════════════════════════════════════════
+          # 4. Push в GitVerse порциями (обход HTTP 413)
+          # ═════════════════════════════════════════════════════
+          echo "4. Пушим в GitVerse (ветка master)..."
+
           git remote add gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git" 2>/dev/null || \
           git remote set-url gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git"
 
-          git -c core.askPass= push gitverse HEAD:refs/heads/master --force
+          # Крупные _part1 уводим в сторону — они дают основной вес пакета
+          HOLD_DIR=$(mktemp -d)
+          HOLD_LIST=$(mktemp)
+          HOLD_COUNT=0
+          while IFS= read -r -d '' f; do
+            mv "$f" "${HOLD_DIR}/$(basename "$f")"
+            printf '%s\n' "$f" >> "$HOLD_LIST"
+            HOLD_COUNT=$((HOLD_COUNT + 1))
+          done < <(find VPNMIRRORS configs -type f -name "*_part1.*" -print0 2>/dev/null)
+
+          if [ "$HOLD_COUNT" -gt 0 ]; then
+            echo "  → Отложил крупных _part1 файлов: ${HOLD_COUNT}"
+            git add -A
+            GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
+          fi
+
+          echo "  → Push #1: мелкие изменения + мелкие части (_part2+)"
+          git -c core.askPass= -c http.postBuffer=524288000 \
+              push gitverse HEAD:refs/heads/master --force
+
+          if [ "$HOLD_COUNT" -gt 0 ]; then
+            while IFS= read -r f; do
+              echo "  → Push: возвращаю $f"
+              mv "${HOLD_DIR}/$(basename "$f")" "$f"
+              git add -A
+              GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
+              git -c core.askPass= -c http.postBuffer=524288000 \
+                  push gitverse HEAD:refs/heads/master --force
+            done < "$HOLD_LIST"
+          fi
+
+          rm -rf "$HOLD_DIR" "$HOLD_LIST"
 
           echo "✅ Успешно обновлено на всех серверах!"
