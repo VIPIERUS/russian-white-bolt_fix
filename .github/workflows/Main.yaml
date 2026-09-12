@@ -60,37 +60,72 @@ jobs:
           GITVERSE_TOKEN: ${{ secrets.GITVERSE_TOKEN }}
           GIT_TERMINAL_PROMPT: "0"
         run: |
+          set -euo pipefail
+
           # Настройка бота
           git config user.name "gitverse-bot"
           git config user.email "bot@gitverse.ru"
 
-          # Индексируем все изменения
           git add -A
-
           COMMIT_DATE=$(date --iso-8601=seconds)
-
-          # Проверяем, есть ли изменения или принудительный запуск
           IF_CHANGES=$(git status --porcelain)
 
-          if [ -n "$IF_CHANGES" ] || [ "${{ inputs.force_update }}" = "true" ]; then
-            echo "Обнаружены свежие файлы. Создаем коммит..."
-
-            # Если изменений не было, но вызван force_update — делаем пустой коммит
-            if [ -z "$IF_CHANGES" ]; then
-              GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --allow-empty --date="$COMMIT_DATE" -m "🔄 Forced Sync: $(date '+%Y-%m-%d %H:%M:%S MSK')"
-            else
-              GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --date="$COMMIT_DATE" -m "🔄 Auto-update: $(date '+%Y-%m-%d %H:%M:%S MSK') — configs: ${{ steps.count.outputs.vpn_files }}"
-            fi
-
-            echo "1. Пушим свежие файлы в GitHub..."
-            git push origin HEAD
-
-            echo "2. Пушим свежие файлы в GitVerse (в ветку master)..."
-            git remote add gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git" 2>/dev/null || \
-            git remote set-url gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git"
-            git -c core.askPass= push gitverse HEAD:refs/heads/master --force
-
-            echo "✅ Успешно обновлено на всех серверах!"
-          else
+          if [ -z "$IF_CHANGES" ] && [ "${{ inputs.force_update }}" != "true" ]; then
             echo "ℹ️ Свежих изменений нет. Пропуск отправки."
+            exit 0
           fi
+
+          echo "Обнаружены свежие файлы. Создаем коммит..."
+          if [ -z "$IF_CHANGES" ]; then
+            GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --allow-empty --date="$COMMIT_DATE" \
+              -m "🔄 Forced Sync: $(date '+%Y-%m-%d %H:%M:%S MSK')"
+          else
+            GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --date="$COMMIT_DATE" \
+              -m "🔄 Auto-update: $(date '+%Y-%m-%d %H:%M:%S MSK') — configs: ${{ steps.count.outputs.vpn_files }}"
+          fi
+
+          echo "1. Пушим свежие файлы в GitHub (оригиналы)..."
+          git push origin HEAD
+
+          # ─────────────────────────────────────────────────────
+          # 2. Готовим версию для GitVerse: режем файлы > 90 МБ
+          # ─────────────────────────────────────────────────────
+          LIMIT_MB=90
+          echo "2. Разбиваю файлы > ${LIMIT_MB} МБ для GitVerse..."
+
+          SPLIT_ANY=0
+          while IFS= read -r -d '' file; do
+            SPLIT_ANY=1
+            dir=$(dirname "$file")
+            filename=$(basename "$file")
+            base="${filename%.*}"
+            ext="${filename##*.}"
+
+            echo "  → $file ($(du -h "$file" | cut -f1)) → ${base}_partN.${ext}"
+
+            # Режем на куски по LIMIT_MB, суффиксы: _part1, _part2, ...
+            split -b "${LIMIT_MB}M" -d --numeric-suffixes=1 -a 1 \
+                  --additional-suffix=".${ext}" \
+                  "$file" "${dir}/${base}_part"
+
+            rm -f "$file"
+          done < <(find VPNMIRRORS configs -type f -size +${LIMIT_MB}M -print0 2>/dev/null)
+
+          if [ "$SPLIT_ANY" = "1" ]; then
+            git add -A
+            GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE"
+            echo "  ✓ Коммит пересобран для GitVerse"
+          else
+            echo "  ✓ Файлов > ${LIMIT_MB} МБ нет, GitVerse получит оригинал"
+          fi
+
+          # ─────────────────────────────────────────────────────
+          # 3. Пуш в GitVerse
+          # ─────────────────────────────────────────────────────
+          echo "3. Пушим в GitVerse (ветка master)..."
+          git remote add gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git" 2>/dev/null || \
+          git remote set-url gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git"
+
+          git -c core.askPass= push gitverse HEAD:refs/heads/master --force
+
+          echo "✅ Успешно обновлено на всех серверах!"
