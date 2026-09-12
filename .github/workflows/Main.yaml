@@ -46,7 +46,7 @@ jobs:
           python scripts/fetch_configs.py
 
           export GENERATED_AT="$(date '+%d.%m.%Y %H:%M:%S') (MSK)"
-          python scripts/generate_readme.py   # <-- одна общая версия README
+          python scripts/generate_readme.py
           python scripts/site.py
 
       - name: "📊 Count VPN files"
@@ -64,6 +64,14 @@ jobs:
 
           git config user.name "gitverse-bot"
           git config user.email "bot@gitverse.ru"
+
+          # ═════════════════════════════════════════════════════
+          # 0. Чистим локальную копию от старых _partN-файлов
+          #    (могут остаться от предыдущих прогонов, если что-то
+          #    прерывалось посередине).
+          # ═════════════════════════════════════════════════════
+          echo "0. Чищу старые _partN-файлы от предыдущих запусков..."
+          find VPNMIRRORS configs -type f -name "*_part[0-9]*.*" -print -delete 2>/dev/null || true
 
           git add -A
           COMMIT_DATE=$(date --iso-8601=seconds)
@@ -84,13 +92,13 @@ jobs:
           fi
 
           # ═════════════════════════════════════════════════════
-          # 1. Push в GitHub (оригиналы + общий README)
+          # 1. Push в GitHub (оригиналы, общий README)
           # ═════════════════════════════════════════════════════
           echo "1. Пушим свежие файлы в GitHub (оригиналы + общий README)..."
           git push origin HEAD
 
           # ═════════════════════════════════════════════════════
-          # 2. Готовим GitVerse-версию: split больших файлов
+          # 2. Split больших файлов для GitVerse
           # ═════════════════════════════════════════════════════
           LIMIT_MB=40
           echo "2. Разбиваю файлы > ${LIMIT_MB} МБ для GitVerse..."
@@ -118,15 +126,14 @@ jobs:
           done < <(find VPNMIRRORS configs -type f -size +${LIMIT_MB}M -print0 2>/dev/null)
 
           # ═════════════════════════════════════════════════════
-          # 3. ПЕРЕСБОРКА README/HTML ДЛЯ GITVERSE (чисто YAML)
-          #    Локальный README уже идентичен тому, что в GitHub.
+          # 3. Пересборка README/HTML для GitVerse (чисто YAML)
+          #    Локальный README идентичен тому, что ушёл в GitHub.
           #    Здесь только подменяем имена файлов на список частей
           #    и дописываем предупреждение сверху.
           # ═════════════════════════════════════════════════════
           if [ "$SPLIT_ANY" = "1" ]; then
             echo "3. Пересобираю README/HTML для GitVerse..."
 
-            # 3a. Заменяем "orig.txt" на "orig_part1.txt (+ part2, ...)"
             while IFS=$'\t' read -r orig parts; do
               first=$(echo "$parts" | cut -d, -f1)
               rest=$(echo "$parts" | cut -d, -f2- | tr ',' ' ')
@@ -152,7 +159,6 @@ jobs:
                   done
             done < "$MAP_FILE"
 
-            # 3b. Добавляем шапку-предупреждение в начало README.md
             if [ -f README.md ] && ! grep -q "Внимание (GitVerse)" README.md; then
               NOTE=$(mktemp)
               {
@@ -165,7 +171,6 @@ jobs:
               mv "$NOTE" README.md
             fi
 
-            # 3c. Amend — GitHub-версия уже отправлена выше, здесь только GitVerse
             git add -A
             GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE"
             echo "  ✓ README пересобран для GitVerse"
@@ -176,44 +181,95 @@ jobs:
           rm -f "$MAP_FILE"
 
           # ═════════════════════════════════════════════════════
-          # 4. Push в GitVerse порциями (обход HTTP 413)
+          # 4. Push в GitVerse: ЯВНОЕ УДАЛЕНИЕ старья + заливка
           # ═════════════════════════════════════════════════════
-          echo "4. Пушим в GitVerse (ветка master)..."
+          echo "4. Пушим в GitVerse..."
 
           git remote add gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git" 2>/dev/null || \
           git remote set-url gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git"
 
-          # Крупные _part1 уводим в сторону — они дают основной вес пакета
-          HOLD_DIR=$(mktemp -d)
-          HOLD_LIST=$(mktemp)
-          HOLD_COUNT=0
-          while IFS= read -r -d '' f; do
-            mv "$f" "${HOLD_DIR}/$(basename "$f")"
-            printf '%s\n' "$f" >> "$HOLD_LIST"
-            HOLD_COUNT=$((HOLD_COUNT + 1))
-          done < <(find VPNMIRRORS configs -type f -name "*_part1.*" -print0 2>/dev/null)
+          GIT_PUSH=(git -c core.askPass= \
+                        -c http.postBuffer=1073741824 \
+                        -c http.lowSpeedLimit=0 \
+                        -c http.lowSpeedTime=999999 \
+                        push gitverse HEAD:refs/heads/master --force)
 
-          if [ "$HOLD_COUNT" -gt 0 ]; then
-            echo "  → Отложил крупных _part1 файлов: ${HOLD_COUNT}"
+          # ─────────────────────────────────────────────────────
+          # 4.1. ЯВНОЕ УДАЛЕНИЕ
+          # Смотрим, что из старых _partN лежит в текущем HEAD
+          # (это ровно то, что уже есть в GitVerse до нашего push'а).
+          # Отправляем их удаление отдельным коммитом в ветке-
+          # снапшоте. Пакет удаления содержит только имена путей,
+          # вес почти нулевой → 413 не грозит.
+          # ─────────────────────────────────────────────────────
+          echo "  4.1. Явное удаление старых файлов на GitVerse..."
+
+          DELETE_LIST=$(mktemp)
+          git ls-tree -r --name-only HEAD | grep -E '_part[0-9]+\.' > "$DELETE_LIST" || true
+
+          if [ -s "$DELETE_LIST" ]; then
+            echo "    Список к удалению на GitVerse:"
+            sed 's/^/      /' "$DELETE_LIST"
+
+            git checkout -b gitverse-delete 2>/dev/null || git checkout gitverse-delete
+            git reset --hard HEAD >/dev/null
+
+            while IFS= read -r path; do
+              git rm --cached --ignore-unmatch -- "$path" >/dev/null 2>&1 || true
+            done < "$DELETE_LIST"
+
             git add -A
-            GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
+            GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --date="$COMMIT_DATE" \
+              -m "🗑️ GitVerse: удаление старых файлов перед обновлением" >/dev/null
+
+            echo "    → Push удаления на GitVerse (маленький пакет)"
+            "${GIT_PUSH[@]}"
+
+            git checkout main >/dev/null 2>&1
+            git branch -D gitverse-delete >/dev/null 2>&1 || true
+          else
+            echo "    Нечего удалять — старых _partN в GitVerse нет."
           fi
 
-          echo "  → Push #1: мелкие изменения + мелкие части (_part2+)"
-          git -c core.askPass= -c http.postBuffer=524288000 \
-              push gitverse HEAD:refs/heads/master --force
+          rm -f "$DELETE_LIST"
 
-          if [ "$HOLD_COUNT" -gt 0 ]; then
+          # ─────────────────────────────────────────────────────
+          # 4.2. ЗАЛИВКА АКТУАЛЬНОГО НАБОРА
+          # Отправляем коммит по частям: сначала лёгкий контент,
+          # потом крупные _partN по одному — чтобы ни один push
+          # не превысил HTTP-лимит.
+          # ─────────────────────────────────────────────────────
+          echo "  4.2. Заливаю актуальный набор на GitVerse..."
+
+          HEAVY_DIR=$(mktemp -d)
+          HEAVY_LIST=$(mktemp)
+          while IFS= read -r -d '' f; do
+            mkdir -p "${HEAVY_DIR}/$(dirname "$f")"
+            mv "$f" "${HEAVY_DIR}/$f"
+            printf '%s\n' "$f" >> "$HEAVY_LIST"
+          done < <(find VPNMIRRORS configs -type f -name "*_part[0-9]*.*" -print0 2>/dev/null)
+
+          git add -A
+          GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
+
+          echo "    → Push #1: лёгкий контент + README (без _partN)"
+          "${GIT_PUSH[@]}"
+
+          if [ -s "$HEAVY_LIST" ]; then
             while IFS= read -r f; do
-              echo "  → Push: возвращаю $f"
-              mv "${HOLD_DIR}/$(basename "$f")" "$f"
+              size=$(stat -c%s "${HEAVY_DIR}/$f")
+              printf '%s\t%s\n' "$size" "$f"
+            done < "$HEAVY_LIST" | sort -n | while IFS=$'\t' read -r size f; do
+              human=$(numfmt --to=iec-i --suffix=B "$size")
+              echo "    → Push: $f (${human})"
+              mkdir -p "$(dirname "$f")"
+              mv "${HEAVY_DIR}/$f" "$f"
               git add -A
               GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
-              git -c core.askPass= -c http.postBuffer=524288000 \
-                  push gitverse HEAD:refs/heads/master --force
-            done < "$HOLD_LIST"
+              "${GIT_PUSH[@]}"
+            done
           fi
 
-          rm -rf "$HOLD_DIR" "$HOLD_LIST"
+          rm -rf "$HEAVY_DIR" "$HEAVY_LIST"
 
           echo "✅ Успешно обновлено на всех серверах!"
