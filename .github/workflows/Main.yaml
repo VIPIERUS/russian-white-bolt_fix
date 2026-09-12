@@ -97,8 +97,8 @@ jobs:
 
           # ═════════════════════════════════════════════════════
           # 2. Split больших файлов для GitVerse
-          #    LIMIT_MB=15 — чтобы каждый отдельный push в
-          #    GitVerse весил ~5-7 МБ сжатых. Тогда 413 не будет.
+          #    LIMIT_MB=15 — чтобы каждый отдельный push был
+          #    ~5-7 МБ сжатых. Тогда 413 не будет.
           # ═════════════════════════════════════════════════════
           LIMIT_MB=15
           echo "2. Разбиваю файлы > ${LIMIT_MB} МБ для GitVerse..."
@@ -172,22 +172,25 @@ jobs:
           fi
 
           # ═════════════════════════════════════════════════════
-          # 4. Push в GitVerse БЕЗ --force (не переписываем историю)
-          #    Сначала амендим коммит так, чтобы в нём НЕ было
-          #    крупных файлов вообще (их потом вернём по одному).
+          # 4. Push в GitVerse с --force
+          #    Force нужен, потому что предыдущий (упавший)
+          #    запуск мог оставить расхождение между локальной
+          #    main и gitverse/master. Первый push — лёгкий (без
+          #    _partN), чтобы сервер не считал большой дельты.
+          #    Все последующие push'и — по одному файлу.
           # ═════════════════════════════════════════════════════
           echo "4. Пушим в GitVerse..."
 
           git remote add gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git" 2>/dev/null || \
           git remote set-url gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git"
 
-          GIT_PUSH=(git -c core.askPass= \
-                        -c http.postBuffer=268435456 \
-                        -c http.lowSpeedLimit=0 \
-                        -c http.lowSpeedTime=999999 \
-                        push gitverse HEAD:refs/heads/master)
+          GIT_PUSH_FORCE=(git -c core.askPass= \
+                              -c http.postBuffer=268435456 \
+                              -c http.lowSpeedLimit=0 \
+                              -c http.lowSpeedTime=999999 \
+                              push gitverse HEAD:refs/heads/master --force)
 
-          # Временно выносим ВСЕ _partN
+          # Временно выносим ВСЕ _partN, чтобы первый push был лёгким
           HEAVY_DIR=$(mktemp -d)
           HEAVY_LIST=$(mktemp)
           while IFS= read -r -d '' f; do
@@ -196,22 +199,15 @@ jobs:
             printf '%s\n' "$f" >> "$HEAVY_LIST"
           done < <(find VPNMIRRORS configs -type f -name "*_part[0-9]*.*" -print0 2>/dev/null)
 
-          # Амендим коммит, чтобы он содержал только «лёгкий» контент
           git add -A
           GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
 
           echo "  → Push #1: лёгкий контент (без _partN)"
-          "${GIT_PUSH[@]}" || {
-            echo "  ⚠️ Первый push без --force упал — возможно, ветка разошлась."
-            echo "  ⚠️ Пробую с --force-with-lease один раз..."
-            git -c core.askPass= \
-                -c http.postBuffer=268435456 \
-                -c http.lowSpeedLimit=0 \
-                -c http.lowSpeedTime=999999 \
-                push gitverse HEAD:refs/heads/master --force-with-lease
-          }
+          "${GIT_PUSH_FORCE[@]}"
 
           # Возвращаем _partN по одному, каждый — отдельный amend и push.
+          # Сортируем по возрастанию размера: сначала самые мелкие,
+          # чтобы каждая дельта от предыдущего push'а была минимальной.
           if [ -s "$HEAVY_LIST" ]; then
             while IFS= read -r f; do
               size=$(stat -c%s "${HEAVY_DIR}/$f")
@@ -223,7 +219,7 @@ jobs:
               mv "${HEAVY_DIR}/$f" "$f"
               git add -A
               GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
-              "${GIT_PUSH[@]}"
+              "${GIT_PUSH_FORCE[@]}"
             done
           fi
 
