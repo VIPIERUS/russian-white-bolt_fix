@@ -23,7 +23,7 @@ jobs:
   update-and-sync:
     name: "📥 Fetch, Update & Push Everywhere"
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
       - name: "📂 Checkout Repository"
@@ -97,12 +97,14 @@ jobs:
 
           # ═════════════════════════════════════════════════════
           # 2. Split больших файлов для GitVerse
+          #    LIMIT_MB=15 — чтобы каждый отдельный push в
+          #    GitVerse весил ~5-7 МБ сжатых. Тогда 413 не будет.
           # ═════════════════════════════════════════════════════
-          LIMIT_MB=40
+          LIMIT_MB=15
           echo "2. Разбиваю файлы > ${LIMIT_MB} МБ для GitVerse..."
 
           SPLIT_ANY=0
-          MAP_FILE=$(mktemp)   # карта: оригинал<TAB>part1,part2,...
+          MAP_FILE=$(mktemp)
 
           while IFS= read -r -d '' file; do
             SPLIT_ANY=1
@@ -113,7 +115,7 @@ jobs:
 
             echo "  → $file ($(du -h "$file" | cut -f1)) → ${base}_partN.${ext}"
 
-            split -b "${LIMIT_MB}M" -d --numeric-suffixes=1 -a 1 \
+            split -b "${LIMIT_MB}M" -d --numeric-suffixes=1 -a 2 \
                   --additional-suffix=".${ext}" \
                   "$file" "${dir}/${base}_part"
 
@@ -124,7 +126,7 @@ jobs:
           done < <(find VPNMIRRORS configs -type f -size +${LIMIT_MB}M -print0 2>/dev/null)
 
           # ═════════════════════════════════════════════════════
-          # 3. Пересборка README/HTML для GitVerse (чисто YAML)
+          # 3. Пересборка README/HTML для GitVerse
           # ═════════════════════════════════════════════════════
           if [ "$SPLIT_ANY" = "1" ]; then
             echo "3. Пересобираю README/HTML для GitVerse..."
@@ -165,17 +167,14 @@ jobs:
               cat README.md >> "$NOTE"
               mv "$NOTE" README.md
             fi
-
-            git add -A
-            GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE"
-            echo "  ✓ README пересобран для GitVerse"
           else
             echo "3. Файлов > ${LIMIT_MB} МБ нет — README не трогаем"
           fi
 
           # ═════════════════════════════════════════════════════
-          # 4. Push в GitVerse: сначала ЯВНОЕ УДАЛЕНИЕ старья,
-          #    потом заливка актуального набора порциями.
+          # 4. Push в GitVerse БЕЗ --force (не переписываем историю)
+          #    Сначала амендим коммит так, чтобы в нём НЕ было
+          #    крупных файлов вообще (их потом вернём по одному).
           # ═════════════════════════════════════════════════════
           echo "4. Пушим в GitVerse..."
 
@@ -183,63 +182,12 @@ jobs:
           git remote set-url gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git"
 
           GIT_PUSH=(git -c core.askPass= \
-                        -c http.postBuffer=1073741824 \
+                        -c http.postBuffer=268435456 \
                         -c http.lowSpeedLimit=0 \
                         -c http.lowSpeedTime=999999 \
-                        push gitverse HEAD:refs/heads/master --force)
+                        push gitverse HEAD:refs/heads/master)
 
-          # ─────────────────────────────────────────────────────
-          # 4.1. ЯВНОЕ УДАЛЕНИЕ
-          # Работаем в той же ветке main: делаем отдельный коммит
-          # с удалением, пушим его, потом откатываем через
-          # `git reset --hard HEAD~1`, чтобы вернуть _partN на
-          # место для шага 4.2.
-          # Пакет удаления содержит только имена путей, вес
-          # почти нулевой → 413 не грозит.
-          # ─────────────────────────────────────────────────────
-          echo "  4.1. Явное удаление старых файлов на GitVerse..."
-
-          DELETE_LIST=$(mktemp)
-          git ls-tree -r --name-only HEAD | grep -E '_part[0-9]+\.' > "$DELETE_LIST" || true
-
-          if [ -s "$DELETE_LIST" ]; then
-            echo "    Список к удалению на GitVerse:"
-            sed 's/^/      /' "$DELETE_LIST"
-
-            # На всякий случай фиксируем любые незакоммиченные изменения
-            git add -A
-            if ! git diff --cached --quiet; then
-              GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
-            fi
-
-            # Удаляем пути из индекса и рабочего дерева
-            while IFS= read -r path; do
-              git rm --ignore-unmatch -- "$path" >/dev/null 2>&1 || true
-            done < "$DELETE_LIST"
-
-            GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --date="$COMMIT_DATE" \
-              -m "🗑️ GitVerse: удаление старых файлов перед обновлением" >/dev/null
-
-            echo "    → Push удаления на GitVerse (маленький пакет)"
-            "${GIT_PUSH[@]}"
-
-            # Откатываем коммит удаления — _partN возвращаются в дерево
-            git reset --hard HEAD~1 >/dev/null
-          else
-            echo "    Нечего удалять — старых _partN в GitVerse нет."
-          fi
-
-          rm -f "$DELETE_LIST"
-
-          # ─────────────────────────────────────────────────────
-          # 4.2. ЗАЛИВКА АКТУАЛЬНОГО НАБОРА
-          # Временно выносим все _partN, амендим HEAD до
-          # «лёгкого» состояния, пушим. Затем возвращаем _partN
-          # по одному, каждый — отдельный amend и push.
-          # Один push = один файл → 413 не будет.
-          # ─────────────────────────────────────────────────────
-          echo "  4.2. Заливаю актуальный набор на GitVerse..."
-
+          # Временно выносим ВСЕ _partN
           HEAVY_DIR=$(mktemp -d)
           HEAVY_LIST=$(mktemp)
           while IFS= read -r -d '' f; do
@@ -248,19 +196,29 @@ jobs:
             printf '%s\n' "$f" >> "$HEAVY_LIST"
           done < <(find VPNMIRRORS configs -type f -name "*_part[0-9]*.*" -print0 2>/dev/null)
 
+          # Амендим коммит, чтобы он содержал только «лёгкий» контент
           git add -A
           GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
 
-          echo "    → Push #1: лёгкий контент + README (без _partN)"
-          "${GIT_PUSH[@]}"
+          echo "  → Push #1: лёгкий контент (без _partN)"
+          "${GIT_PUSH[@]}" || {
+            echo "  ⚠️ Первый push без --force упал — возможно, ветка разошлась."
+            echo "  ⚠️ Пробую с --force-with-lease один раз..."
+            git -c core.askPass= \
+                -c http.postBuffer=268435456 \
+                -c http.lowSpeedLimit=0 \
+                -c http.lowSpeedTime=999999 \
+                push gitverse HEAD:refs/heads/master --force-with-lease
+          }
 
+          # Возвращаем _partN по одному, каждый — отдельный amend и push.
           if [ -s "$HEAVY_LIST" ]; then
             while IFS= read -r f; do
               size=$(stat -c%s "${HEAVY_DIR}/$f")
               printf '%s\t%s\n' "$size" "$f"
             done < "$HEAVY_LIST" | sort -n | while IFS=$'\t' read -r size f; do
               human=$(numfmt --to=iec-i --suffix=B "$size")
-              echo "    → Push: $f (${human})"
+              echo "  → Push: $f (${human})"
               mkdir -p "$(dirname "$f")"
               mv "${HEAVY_DIR}/$f" "$f"
               git add -A
