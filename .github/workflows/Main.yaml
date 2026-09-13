@@ -126,6 +126,9 @@ jobs:
       #    Дальше — только изменённые файлы (сравнение по MD5).
       #    Удалённые локально — удаляет с сервера.
       #    Конфиги, скрипты, .git и .github на FTP не попадают.
+      #
+      #    ⚠️ uCoz запрещает имена файлов, начинающиеся с точки.
+      #       Поэтому state-name переименован в "ftp-deploy-state.json".
       # ═════════════════════════════════════════════════════════
       - name: "🌐 Обновить сайт на uCoz через FTP"
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -135,6 +138,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
           local-dir: ./
+          state-name: ftp-deploy-state.json
           exclude: |
             **/*
             !**/*.html
