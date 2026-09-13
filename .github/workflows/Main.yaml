@@ -76,7 +76,6 @@ jobs:
 
           # ═════════════════════════════════════════════════════
           # 0. Чистим локальные остатки _partN от прошлых запусков
-          #    (после перехода на SSH они больше не нужны)
           # ═════════════════════════════════════════════════════
           echo "0. Чищу старые _partN-файлы от предыдущих запусков..."
           find VPNMIRRORS configs -type f -name "*_part[0-9]*.*" -print -delete 2>/dev/null || true
@@ -120,3 +119,31 @@ jobs:
             git push gitverse HEAD:refs/heads/master --force
 
           echo "✅ Успешно обновлено на всех серверах!"
+
+      # ═════════════════════════════════════════════════════════
+      # 3. Умная заливка HTML на uCoz через FTP
+      #    Первый запуск — заливает всё.
+      #    Дальше — только изменённые файлы (сравнение по MD5).
+      #    Удалённые локально — удаляет с сервера.
+      #    Конфиги, скрипты, .git и .github на FTP не попадают.
+      # ═════════════════════════════════════════════════════════
+      - name: "🌐 Обновить сайт на uCoz через FTP"
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./
+          exclude: |
+            **/*
+            !**/*.html
+            !**/*.css
+            !**/*.js
+            !**/*.png
+            !**/*.jpg
+            !**/*.jpeg
+            !**/*.svg
+            !**/*.ico
+            !**/*.webp
+          log-level: standard
