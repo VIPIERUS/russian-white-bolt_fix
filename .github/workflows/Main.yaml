@@ -40,6 +40,16 @@ jobs:
       - name: "📦 Install dependencies"
         run: pip install requests beautifulsoup4 lxml
 
+      - name: "🔑 Setup SSH for GitVerse"
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.GITVERSE_SSH_KEY }}
+
+      - name: "🔐 Known hosts для gitverse.ru"
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H gitverse.ru >> ~/.ssh/known_hosts 2>/dev/null
+
       - name: "📁 Prepare directories & generate all files"
         run: |
           mkdir -p VPNMIRRORS configs sources scripts
@@ -57,7 +67,6 @@ jobs:
 
       - name: "🚀 Commit & Push to GitHub and GitVerse"
         env:
-          GITVERSE_TOKEN: ${{ secrets.GITVERSE_TOKEN }}
           GIT_TERMINAL_PROMPT: "0"
         run: |
           set -euo pipefail
@@ -66,7 +75,8 @@ jobs:
           git config user.email "bot@gitverse.ru"
 
           # ═════════════════════════════════════════════════════
-          # 0. Чистим локальную копию от старых _partN-файлов
+          # 0. Чистим локальные остатки _partN от прошлых запусков
+          #    (после перехода на SSH они больше не нужны)
           # ═════════════════════════════════════════════════════
           echo "0. Чищу старые _partN-файлы от предыдущих запусков..."
           find VPNMIRRORS configs -type f -name "*_part[0-9]*.*" -print -delete 2>/dev/null || true
@@ -92,137 +102,21 @@ jobs:
           # ═════════════════════════════════════════════════════
           # 1. Push в GitHub (оригиналы, общий README)
           # ═════════════════════════════════════════════════════
-          echo "1. Пушим свежие файлы в GitHub (оригиналы + общий README)..."
+          echo "1. Пушим свежие файлы в GitHub..."
           git push origin HEAD
 
           # ═════════════════════════════════════════════════════
-          # 2. Split больших файлов для GitVerse
-          #    LIMIT_MB=15 — чтобы каждый отдельный push был
-          #    ~5-7 МБ сжатых. Тогда 413 не будет.
+          # 2. Push в GitVerse по SSH — одним запросом, без split
+          #    и без пересборки README. SSH не имеет HTTP-лимита
+          #    на размер packfile, поэтому большой файл 100 МБ
+          #    уйдёт целиком без проблем.
           # ═════════════════════════════════════════════════════
-          LIMIT_MB=15
-          echo "2. Разбиваю файлы > ${LIMIT_MB} МБ для GitVerse..."
+          echo "2. Пушим в GitVerse по SSH..."
 
-          SPLIT_ANY=0
-          MAP_FILE=$(mktemp)
+          git remote add gitverse "git@gitverse.ru:RUVIPIEN/russian-white-bolt_fix.git" 2>/dev/null || \
+          git remote set-url gitverse "git@gitverse.ru:RUVIPIEN/russian-white-bolt_fix.git"
 
-          while IFS= read -r -d '' file; do
-            SPLIT_ANY=1
-            dir=$(dirname "$file")
-            filename=$(basename "$file")
-            base="${filename%.*}"
-            ext="${filename##*.}"
-
-            echo "  → $file ($(du -h "$file" | cut -f1)) → ${base}_partN.${ext}"
-
-            split -b "${LIMIT_MB}M" -d --numeric-suffixes=1 -a 2 \
-                  --additional-suffix=".${ext}" \
-                  "$file" "${dir}/${base}_part"
-
-            rm -f "$file"
-
-            parts=$(ls "${dir}/${base}_part"*".${ext}" | xargs -n1 basename | paste -sd, -)
-            printf '%s\t%s\n' "$filename" "$parts" >> "$MAP_FILE"
-          done < <(find VPNMIRRORS configs -type f -size +${LIMIT_MB}M -print0 2>/dev/null)
-
-          # ═════════════════════════════════════════════════════
-          # 3. Пересборка README/HTML для GitVerse
-          # ═════════════════════════════════════════════════════
-          if [ "$SPLIT_ANY" = "1" ]; then
-            echo "3. Пересобираю README/HTML для GitVerse..."
-
-            while IFS=$'\t' read -r orig parts; do
-              first=$(echo "$parts" | cut -d, -f1)
-              rest=$(echo "$parts" | cut -d, -f2- | tr ',' ' ')
-
-              if [ -n "$rest" ] && [ "$rest" != "$first" ]; then
-                replacement="${first} (плюс части: ${rest})"
-              else
-                replacement="${first}"
-              fi
-
-              echo "    • $orig"
-              echo "        → $replacement"
-
-              find . -type f \( -name "*.md" -o -name "*.html" -o -name "*.json" -o -name "*.txt" \) \
-                   -not -path "./.git/*" -not -path "./.github/*" -print0 \
-                | xargs -0 -r grep -l -- "$orig" 2>/dev/null \
-                | while IFS= read -r f; do
-                    ORIG="$orig" REPL="$replacement" perl -i -pe '
-                      my $o = $ENV{ORIG};
-                      my $r = $ENV{REPL};
-                      s/\Q$o\E/$r/g;
-                    ' "$f"
-                  done
-            done < "$MAP_FILE"
-
-            if [ -f README.md ] && ! grep -q "Внимание (GitVerse)" README.md; then
-              NOTE=$(mktemp)
-              {
-                echo "> ⚠️ **Внимание (GitVerse):** некоторые файлы разбиты на части из-за лимита загрузки."
-                echo "> Скачивайте **все** части и объединяйте:"
-                echo "> \`cat file_part* > file\` (Linux/macOS) или \`copy /b file_part* file\` (Windows)."
-                echo
-              } > "$NOTE"
-              cat README.md >> "$NOTE"
-              mv "$NOTE" README.md
-            fi
-          else
-            echo "3. Файлов > ${LIMIT_MB} МБ нет — README не трогаем"
-          fi
-
-          # ═════════════════════════════════════════════════════
-          # 4. Push в GitVerse с --force
-          #    Force нужен, потому что предыдущий (упавший)
-          #    запуск мог оставить расхождение между локальной
-          #    main и gitverse/master. Первый push — лёгкий (без
-          #    _partN), чтобы сервер не считал большой дельты.
-          #    Все последующие push'и — по одному файлу.
-          # ═════════════════════════════════════════════════════
-          echo "4. Пушим в GitVerse..."
-
-          git remote add gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git" 2>/dev/null || \
-          git remote set-url gitverse "https://RUVIPIEN:${GITVERSE_TOKEN}@gitverse.ru/RUVIPIEN/russian-white-bolt_fix.git"
-
-          GIT_PUSH_FORCE=(git -c core.askPass= \
-                              -c http.postBuffer=268435456 \
-                              -c http.lowSpeedLimit=0 \
-                              -c http.lowSpeedTime=999999 \
-                              push gitverse HEAD:refs/heads/master --force)
-
-          # Временно выносим ВСЕ _partN, чтобы первый push был лёгким
-          HEAVY_DIR=$(mktemp -d)
-          HEAVY_LIST=$(mktemp)
-          while IFS= read -r -d '' f; do
-            mkdir -p "${HEAVY_DIR}/$(dirname "$f")"
-            mv "$f" "${HEAVY_DIR}/$f"
-            printf '%s\n' "$f" >> "$HEAVY_LIST"
-          done < <(find VPNMIRRORS configs -type f -name "*_part[0-9]*.*" -print0 2>/dev/null)
-
-          git add -A
-          GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
-
-          echo "  → Push #1: лёгкий контент (без _partN)"
-          "${GIT_PUSH_FORCE[@]}"
-
-          # Возвращаем _partN по одному, каждый — отдельный amend и push.
-          # Сортируем по возрастанию размера: сначала самые мелкие,
-          # чтобы каждая дельта от предыдущего push'а была минимальной.
-          if [ -s "$HEAVY_LIST" ]; then
-            while IFS= read -r f; do
-              size=$(stat -c%s "${HEAVY_DIR}/$f")
-              printf '%s\t%s\n' "$size" "$f"
-            done < "$HEAVY_LIST" | sort -n | while IFS=$'\t' read -r size f; do
-              human=$(numfmt --to=iec-i --suffix=B "$size")
-              echo "  → Push: $f (${human})"
-              mkdir -p "$(dirname "$f")"
-              mv "${HEAVY_DIR}/$f" "$f"
-              git add -A
-              GIT_COMMITTER_DATE="$COMMIT_DATE" git commit --amend --no-edit --date="$COMMIT_DATE" >/dev/null
-              "${GIT_PUSH_FORCE[@]}"
-            done
-          fi
-
-          rm -rf "$HEAVY_DIR" "$HEAVY_LIST"
+          GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=accept-new -o ServerAliveInterval=30" \
+            git push gitverse HEAD:refs/heads/master --force
 
           echo "✅ Успешно обновлено на всех серверах!"
