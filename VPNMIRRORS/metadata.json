@@ -1,12 +1,12 @@
 {
-  "updated": "2026-09-13T12:13:40.277688+00:00",
-  "updated_formatted": "2026-09-13 12:13:40 UTC",
-  "updated_msk": "2026-09-13 15:13 MSK",
+  "updated": "2026-09-13T12:22:31.026057+00:00",
+  "updated_formatted": "2026-09-13 12:22:31 UTC",
+  "updated_msk": "2026-09-13 15:22 MSK",
   "total_sources": 129,
   "success": 53,
   "failed": 76,
   "skipped": 0,
-  "total_configs": 520565,
+  "total_configs": 520597,
   "configs": [
     {
       "name": "Alley_Config_1",
@@ -35,8 +35,8 @@
       ],
       "size_kb": 1357.1,
       "hash": "7138f49a2fea3224",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "Alley_Config_2",
@@ -65,8 +65,8 @@
       ],
       "size_kb": 1357.1,
       "hash": "7138f49a2fea3224",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "BLACK_VLESS_RUS",
@@ -96,8 +96,8 @@
       ],
       "size_kb": 41.52,
       "hash": "2b76da9ca792c8fa",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "BLACK_SS_All",
@@ -127,8 +127,8 @@
       ],
       "size_kb": 32.66,
       "hash": "a2928192e1600172",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "TOR_BRIDGES_TOP100",
@@ -157,8 +157,8 @@
       ],
       "size_kb": 11.97,
       "hash": "46f29fe76cf0e2b3",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "TOR_BRIDGES_ALL",
@@ -187,8 +187,8 @@
       ],
       "size_kb": 39.19,
       "hash": "67b782096608984a",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "VLESS_Reality_White_Mobile",
@@ -196,8 +196,8 @@
       "filename": "VLESS_Reality_White_Mobile_3eac2d.txt",
       "filepath": "VPNMIRRORS/v2ray/VLESS_Reality_White_Mobile_3eac2d.txt",
       "counts": {
-        "vless": 53,
-        "vmess": 10,
+        "vless": 70,
+        "vmess": 9,
         "trojan": 0,
         "ss": 0,
         "ssr": 0,
@@ -205,7 +205,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 3,
-        "total": 66
+        "total": 82
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/Vless-Reality-White-Lists-Rus-Mobile.txt",
       "app_name": "V2RayNG / V2RayN",
@@ -216,10 +216,10 @@
         "Windows",
         "iOS"
       ],
-      "size_kb": 22.51,
-      "hash": "220b2565f79bf3b6",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "size_kb": 26.69,
+      "hash": "c248b2da3f607d89",
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "WHITE_CIDR_RU_All",
@@ -227,8 +227,8 @@
       "filename": "WHITE_CIDR_RU_All_611028.txt",
       "filepath": "VPNMIRRORS/nekobox/WHITE_CIDR_RU_All_611028.txt",
       "counts": {
-        "vless": 53,
-        "vmess": 10,
+        "vless": 70,
+        "vmess": 9,
         "trojan": 0,
         "ss": 0,
         "ssr": 0,
@@ -236,7 +236,7 @@
         "tuic": 0,
         "tor": 0,
         "other": 3,
-        "total": 66
+        "total": 82
       },
       "url": "https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-all.txt",
       "app_name": "Nekoray / Nekobox",
@@ -246,10 +246,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 23.41,
-      "hash": "ccf47761d15617f0",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "size_kb": 26.7,
+      "hash": "ecf1841d59cd5660",
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "WHITE_CIDR_RU_checked",
@@ -278,8 +278,8 @@
       ],
       "size_kb": 5.38,
       "hash": "542e2ed0d228d5cd",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "WHITE_SNI_RU_All",
@@ -307,9 +307,9 @@
         "Android"
       ],
       "size_kb": 0.25,
-      "hash": "c5968602ede85534",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "hash": "2802bdee52cc4b8f",
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "nowmeow_whitelist",
@@ -336,10 +336,10 @@
         "Windows",
         "Android"
       ],
-      "size_kb": 11.46,
-      "hash": "14b389ff624ee408",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "size_kb": 11.48,
+      "hash": "b610a7d1cc1dba43",
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "gpucloud_merged",
@@ -368,8 +368,8 @@
       ],
       "size_kb": 2878.3,
       "hash": "6d483c20af56df46",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "ByeWhiteLists2",
@@ -398,8 +398,8 @@
       ],
       "size_kb": 306.78,
       "hash": "9e6288d876514c07",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "SilentGhostCodes_Whitelist",
@@ -428,8 +428,8 @@
       ],
       "size_kb": 44.21,
       "hash": "a54ce5f5c4f0d26b",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "SilentGhostCodes_Whitelist2",
@@ -458,8 +458,8 @@
       ],
       "size_kb": 36.46,
       "hash": "d5bf04429039421c",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "SilentGhostCodes_BlackList",
@@ -488,8 +488,8 @@
       ],
       "size_kb": 2.42,
       "hash": "0acd9ff199de8451",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "sakha1370_OpenRay",
@@ -518,8 +518,8 @@
       ],
       "size_kb": 2968.6,
       "hash": "e4df5a857c6fbcab",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "sevcator_vl",
@@ -548,8 +548,8 @@
       ],
       "size_kb": 102240.96,
       "hash": "d405a997a11036fe",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "yitong2333_proxy-minging",
@@ -578,8 +578,8 @@
       ],
       "size_kb": 3261.72,
       "hash": "b7daa401d52f661c",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "roosterkid_V2RAY_RAW",
@@ -608,8 +608,8 @@
       ],
       "size_kb": 34.35,
       "hash": "d190d3b19d14734d",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "CidVpn_general",
@@ -638,8 +638,8 @@
       ],
       "size_kb": 79.19,
       "hash": "5e8cee5e958182b0",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "Pawdroid_Free-servers",
@@ -668,8 +668,8 @@
       ],
       "size_kb": 2.72,
       "hash": "2984e464303ef3a2",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "wuqb2i4f_mix-uri",
@@ -698,8 +698,8 @@
       ],
       "size_kb": 227.48,
       "hash": "b8e138bb70e26c37",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "Mr-Meshky_vify_vless",
@@ -728,8 +728,8 @@
       ],
       "size_kb": 223.59,
       "hash": "855859501b8cda3e",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "AvenCores_goida_26",
@@ -758,8 +758,8 @@
       ],
       "size_kb": 1304.78,
       "hash": "dd5813d15a105bba",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "V2RayRoot_vless",
@@ -788,8 +788,8 @@
       ],
       "size_kb": 69.76,
       "hash": "69bfc038c0e8ee97",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "whoahaow_bypass-7",
@@ -818,8 +818,8 @@
       ],
       "size_kb": 86.4,
       "hash": "dace5373a2ce9ef3",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "AvenCores_goida_1",
@@ -848,8 +848,8 @@
       ],
       "size_kb": 2917.75,
       "hash": "6b45014601322bda",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "AvenCores_goida_3",
@@ -878,8 +878,8 @@
       ],
       "size_kb": 3187.51,
       "hash": "3f151fe9665758cc",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "SER38Off_happ-subscription",
@@ -908,8 +908,8 @@
       ],
       "size_kb": 81.43,
       "hash": "d83fef0176c5df38",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "obwlsub_wwh",
@@ -938,8 +938,8 @@
       ],
       "size_kb": 0.67,
       "hash": "60897c050e86530c",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "HikaruApps_config",
@@ -968,8 +968,8 @@
       ],
       "size_kb": 11.27,
       "hash": "7f109f9cd10ad9cb",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "HikaruApps_Magic_VLESS",
@@ -999,8 +999,8 @@
       ],
       "size_kb": 7.34,
       "hash": "9ad9c9b8ff34aedc",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "HikaruApps_Shadow_Trojan",
@@ -1030,8 +1030,8 @@
       ],
       "size_kb": 3.06,
       "hash": "0abe11db4c881000",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "liMilCo_all_configs",
@@ -1060,8 +1060,8 @@
       ],
       "size_kb": 3783.49,
       "hash": "4c4afaf09a5fc8d6",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "zieng2_vless_lite",
@@ -1090,8 +1090,8 @@
       ],
       "size_kb": 58.49,
       "hash": "e3e4506ae058c251",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "zieng2_vless_universal",
@@ -1120,8 +1120,8 @@
       ],
       "size_kb": 57.26,
       "hash": "2b965ff1f4070a39",
-      "updated": "2026-09-13 12:12 UTC",
-      "updated_msk": "2026-09-13 15:12 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "VPNStarLink_MB63UT",
@@ -1149,9 +1149,9 @@
         "Android"
       ],
       "size_kb": 8.48,
-      "hash": "525ca7f8e4a7e325",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "hash": "ab9d220da22e0ecf",
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "55prosek_whitelist",
@@ -1180,8 +1180,8 @@
       ],
       "size_kb": 14.32,
       "hash": "4ac67266480dfa6a",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "vlesscollector_configs",
@@ -1210,8 +1210,8 @@
       ],
       "size_kb": 82.76,
       "hash": "562e523703d69657",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "LiVPN_sub",
@@ -1240,8 +1240,8 @@
       ],
       "size_kb": 6.31,
       "hash": "592dcdb42d298d48",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "whoahaow_bypass_unsecure",
@@ -1270,8 +1270,8 @@
       ],
       "size_kb": 0.19,
       "hash": "5423b08f2915ea75",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "LuxusVPN_sub",
@@ -1300,8 +1300,8 @@
       ],
       "size_kb": 109.55,
       "hash": "a2d513cb6fa8270b",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "WeTruth_sub",
@@ -1330,8 +1330,8 @@
       ],
       "size_kb": 2.52,
       "hash": "656398be3b3bf715",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:21 UTC",
+      "updated_msk": "2026-09-13 15:21 MSK"
     },
     {
       "name": "Flux_bypass_all",
@@ -1360,8 +1360,8 @@
       ],
       "size_kb": 389.87,
       "hash": "7a56e04d70717abc",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:22 UTC",
+      "updated_msk": "2026-09-13 15:22 MSK"
     },
     {
       "name": "Matryoshka_russia_whitelist",
@@ -1390,8 +1390,8 @@
       ],
       "size_kb": 673.02,
       "hash": "05486e6c54237e0f",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:22 UTC",
+      "updated_msk": "2026-09-13 15:22 MSK"
     },
     {
       "name": "Alley_whitelist",
@@ -1420,8 +1420,8 @@
       ],
       "size_kb": 32.11,
       "hash": "d26eb6489c8c2287",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:22 UTC",
+      "updated_msk": "2026-09-13 15:22 MSK"
     },
     {
       "name": "LimeVPN",
@@ -1450,8 +1450,8 @@
       ],
       "size_kb": 0.57,
       "hash": "053381735eb808da",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:22 UTC",
+      "updated_msk": "2026-09-13 15:22 MSK"
     },
     {
       "name": "officialdakari_subwl",
@@ -1480,8 +1480,8 @@
       ],
       "size_kb": 357.1,
       "hash": "0ecad251e73695aa",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:22 UTC",
+      "updated_msk": "2026-09-13 15:22 MSK"
     },
     {
       "name": "Ai123999_WhiteeListSub",
@@ -1510,8 +1510,8 @@
       ],
       "size_kb": 88.02,
       "hash": "b6364a37a9343052",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:22 UTC",
+      "updated_msk": "2026-09-13 15:22 MSK"
     },
     {
       "name": "Ai123999_WhiteKeys",
@@ -1540,8 +1540,8 @@
       ],
       "size_kb": 59.34,
       "hash": "f3c3a763fd9c605c",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:22 UTC",
+      "updated_msk": "2026-09-13 15:22 MSK"
     },
     {
       "name": "FalerChannel_configs",
@@ -1570,8 +1570,8 @@
       ],
       "size_kb": 31.16,
       "hash": "6fc3cb78e6eb457d",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:22 UTC",
+      "updated_msk": "2026-09-13 15:22 MSK"
     },
     {
       "name": "xcom024_vless_list",
@@ -1600,8 +1600,8 @@
       ],
       "size_kb": 77.02,
       "hash": "616a8fd2092c0c07",
-      "updated": "2026-09-13 12:13 UTC",
-      "updated_msk": "2026-09-13 15:13 MSK"
+      "updated": "2026-09-13 12:22 UTC",
+      "updated_msk": "2026-09-13 15:22 MSK"
     }
   ],
   "errors": [
