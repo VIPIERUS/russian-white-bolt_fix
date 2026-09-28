@@ -1,15 +1,21 @@
 # WHITE_CIDR_RU_checked
 # Source: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
 # Category: Nekoray / Nekobox
-# Updated: 2026-09-27 21:16:53 UTC
-# Total configs: 1
-# Protocols: VLESS=0, VMess=1, Trojan=0, SS=0, Other=0
+# Updated: 2026-09-28 00:27:09 UTC
+# Total configs: 7
+# Protocols: VLESS=6, VMess=1, Trojan=0, SS=0, Other=0
 # ================================================================
 
 # profile-title: 🏳️ БЕЛЫЕ СПИСКИ 🏳️ WHITE LISTS | CIDR | Только VK, Yandex, CDNvideo, Beeline
 # profile-update-interval: 1
-# Date/Time: 2026-09-27 / 23:37 (Moscow)
-# Количество: 1
+# Date/Time: 2026-09-28 / 02:21 (Moscow)
+# Количество: 7
 # For more info and VPN-configs - visit: www.github.com/igareck/vpn-configs-for-russia
 
+vless://68d89911-b92d-46fe-9007-3645c3b285f0@entry3.sparxiecn.com:28447?encryption=none&security=tls&sni=pl.sparxiecn.com&alpn=h2%2Chttp%2F1.1&type=ws&path=%2Flovelive&host=pl.sparxiecn.com&fp=android#%F0%9F%87%B5%F0%9F%87%B1%20Poland%20%7C%20%F0%9F%8C%90%20%5B%2ACIDR%5D%20VK
+vless://68d89911-b92d-46fe-9007-3645c3b285f0@entry3.sparxiecn.com:28447?encryption=none&security=tls&sni=pl.sparxiecn.com&alpn=h2%2Chttp%2F1.1&type=ws&path=%2Flovelive&host=pl.sparxiecn.com&fp=qq#%F0%9F%87%B5%F0%9F%87%B1%20Poland%20%7C%20%F0%9F%8C%90%20%5B%2ACIDR%5D%20VK
+vless://68d89911-b92d-46fe-9007-3645c3b285f0@entry3.sparxiecn.com:28447?encryption=none&security=tls&sni=pl.sparxiecn.com&alpn=h2%2Chttp%2F1.1&type=ws&path=%2Flovelive&host=pl.sparxiecn.com&fp=random#%F0%9F%87%B5%F0%9F%87%B1%20Poland%20%7C%20%F0%9F%8C%90%20%5B%2ACIDR%5D%20VK
+vless://68d89911-b92d-46fe-9007-3645c3b285f0@entry3.sparxiecn.com:28447?encryption=none&security=tls&sni=pl.sparxiecn.com&alpn=h2%2Chttp%2F1.1&type=ws&path=%2Flovelive&host=pl.sparxiecn.com&fp=safari#%F0%9F%87%B5%F0%9F%87%B1%20Poland%20%7C%20%F0%9F%8C%90%20%5B%2ACIDR%5D%20VK
+vless://52b58d58-f533-4855-b29f-d6b156c3daa9@37.139.42.235:443?alpn=http%2F1.1&encryption=none&host=katering.coteite.pro&path=%2Feuws&security=tls&sni=katering.coteite.pro&type=ws&fp=edge#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%F0%9F%8C%90%20%7C%20%5B%2ACIDR%5D%20VK
+vless://52b58d58-f533-4855-b29f-d6b156c3daa9@37.139.42.235:443?alpn=http%2F1.1&encryption=none&host=katering.coteite.pro&path=%2Feuws&security=tls&sni=katering.coteite.pro&type=ws&fp=safari#%F0%9F%87%AC%F0%9F%87%A7%20United%20Kingdom%20%7C%20%F0%9F%8C%90%20%7C%20%5B%2ACIDR%5D%20VK
 vmess://eyJ2IjoiMiIsInBzIjoi8J+Ht/Cfh7ogUnVzc2lhIHwgWypDSURSXSBZQSIsImFkZCI6IjE1OC4xNjAuMjExLjIwMCIsInBvcnQiOiIxMTU1NiIsImlkIjoiZTI3MzNkYmMtMWJjNi00ODM1LWI5MGEtNDQ3ODA2ZjllZmNkIiwic2N5IjoiYXV0byIsIm5ldCI6InRjcCIsInRscyI6InRscyIsInR5cGUiOiJub25lIiwiZnAiOiJjaHJvbWUiLCJhbHBuIjoiaDIsaHR0cC8xLjEiLCJlY2giOiJBRlArRFFCUEFBQWdBQ0MyS29FTklma1ZLdHZYWFQrdzNIbWdKTTFPTXVhWnp2VWlzYXpTaW1qQVJBQWtBQUVBQVFBQkFBSUFBUUFEQUFJQUFRQUNBQUlBQWdBREFBTUFBUUFEQUFJQUF3QURBQUFBQUE9PSIsInBjcyI6ImM4MjI5ZTJjZTk3MmJlMjc2ZWI4NzQ1ZWQzNTY4MjVkZDJlOGVjZDc3NmQ3MjYyNjQyMmY5MjkwOWRjYTllZDksOTc2NThkZThjNjhkZmE5OGFjZTFlNTAyOGE2M2Q1NGExYWFlOTExYjNlMjE0NzEwNzZjNjg1MGNkMDhjYmFiNCwwZmMwOTAxY2NhMmJhZTllOWZkYmIwMmQ1MGQwMmYxMDk0ZjdiMzY2NzIwODY5OTFiOWU4OTc2MjZkYzQ4NWYwLGVlNWY3YWJkNjk4MWJiMDI1NTYzMmNkOGY0OTI4MzQ1MWI0YjE4ODQ0ZDEyMDQwYjQ0ZWUwMGYwN2I4ZmUyYzYiLCJhaWQiOiIwIiwiaG9zdCI6IiIsInBhdGgiOiIiLCJzbmkiOiIifQ==
