@@ -1,17 +1,19 @@
 # Pawdroid_Free-servers
 # Source: https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub
 # Category: Nekoray / Nekobox
-# Updated: 2026-10-02 00:40:35 UTC
-# Total configs: 5
-# Protocols: VLESS=4, VMess=0, Trojan=1, SS=0, Other=0
+# Updated: 2026-10-02 09:39:40 UTC
+# Total configs: 8
+# Protocols: VLESS=7, VMess=1, Trojan=0, SS=0, Other=0
 # ================================================================
 
-hysteria2://H7mP2xY9kJ4nQ8wR5tF6vB3z@vpn-au-001.fastervpn.world:443?insecure=1&security=tls&sni=vpn-au-001.fastervpn.world#%E6%BE%B3%E5%A4%A7%E5%88%A9%E4%BA%9A+%E6%96%B0%E5%8D%97%E5%A8%81%E5%B0%94%E5%A3%AB%E5%B7%9E%E6%82%89%E5%B0%BCAmazon%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
-trojan://fb2defa0-2ee5-4ad9-90b7-dde7cbf3f01f@51.75.118.5:20161?security=none&type=ws&host=51.75.118.5&path=/batman-trojan#%E6%B3%95%E5%9B%BD+%E6%A0%BC%E6%8B%89%E6%B2%83%E5%88%A9%E7%BA%B3OVH%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
-vless://69848b7f-3ee7-4c30-b035-6cff5e08ac4a@188.114.96.3:8443?path=/assets&security=tls&encryption=none&insecure=0&fp=chrome&type=ws&allowInsecure=0&sni=us.luxes.network#%E5%B7%B4%E8%A5%BF%E5%9C%A3%E4%BF%9D%E7%BD%97+CloudFlare%E8%8A%82%E7%82%B9
-hysteria2://19f72087-4591-4d72-930b-2697078ec2be@hk2.xiaoliyu.cyou:4433?insecure=1&security=tls&sni=hk2.xiaoliyu.cyou#%E4%BF%84%E7%BD%97%E6%96%AF+V2CROSS.COM
-vless://4bdeee92-97e8-414d-bef6-ec1d5e2ab73b@polkakurvich.hohoterz.beer:443?security=reality&encryption=none&pbk=X6gBZNZSv_k1pyvLmQaDD4LsYk7jIA1SObRR5r-4Ynk&headerType=none&fp=chrome&spx=/&type=tcp&flow=xtls-rprx-vision&sni=polkakurvich.hohoterz.beer&sid=fcfd621a2f36e3b6#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
-vless://fb2defa0-2ee5-4ad9-90b7-dde7cbf3f01f@51.75.118.5:20161?encryption=none&security=none&type=ws&host=51.75.118.5&path=/batman-ws#%E6%B3%95%E5%9B%BD+%E6%A0%BC%E6%8B%89%E6%B2%83%E5%88%A9%E7%BA%B3OVH%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
-vless://1c5ed2e1-56da-41ab-9a78-159d9892ec17@185.147.26.210:443?Telegram=@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad,@GozargahAzad&security=reality&encryption=none&pbk=9rdvkUGJyNbRvsB0Pp06h1URq9AHDPRtH9-wmNB1-j4&host=/?TELEGRAM--MARAMBASHI--MARAMBASHI&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=example.com&sid=e4aa362b5f9d07d7#%E4%B9%8C%E5%85%8B%E5%85%B0+V2CROSS.COM
-hysteria2://a56619e2bed91121eabb97d20be207c3@85.237.207.49:50160?insecure=1&security=tls&sni=85-237-207-49.liao.kdns.fr#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
-hysteria2://3f63c86c-ac4a-4900-85cf-4fedf93c2ca5@91.240.86.70:24443?security=tls&sni=hy.quattro-tech.ru#%E4%BF%84%E7%BD%97%E6%96%AF+V2CROSS.COM
+vless://aa7461af-3176-42a3-8974-59930189c521@172.66.158.115:8880?security=none&type=ws&path=/pyip=ProxyIP.US.CMLiussss.net&host=round-block-e864.326.workers.dev&packetEncoding=xudp#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://6b6733fb-580b-411b-8bf8-51137c2aa037@172.66.170.53:8880?security=none&type=ws&path=/pyip=ProxyIP.KR.CMLiussss.net&host=restless-sky-eb31.438-aa8.workers.dev&packetEncoding=xudp#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vmess://eyJhZGQiOiAiMTg4LjExNC45Ni4xOSIsICJhaWQiOiAwLCAiYWxwbiI6ICIiLCAiZnAiOiAiIiwgImhvc3QiOiAiZ29vZ2xlLndoYXRzYXBwLnNuYXBwLnRvcm9iLmJhc2FsYW0uaGVzYW5pZDguaXIuIiwgImlkIjogImFlZDg4ZTc5LTU3NjItNGQyZi04NmZhLWY0MzhmMzJhNzY1NCIsICJuZXQiOiAid3MiLCAicGF0aCI6ICIvIiwgInBvcnQiOiA4MCwgInBzIjogIlx1NWRmNFx1ODk3Zlx1NTcyM1x1NGZkZFx1N2Y1NyBDbG91ZEZsYXJlXHU4MjgyXHU3MGI5IiwgInNjeSI6ICJhdXRvIiwgInNlY3VyaXR5IjogImF1dG8iLCAic2tpcC1jZXJ0LXZlcmlmeSI6IHRydWUsICJzbmkiOiAiIiwgInRscyI6ICIiLCAidHlwZSI6ICJub25lIiwgInYiOiAiMiJ9
+vless://37615d66-5467-44a3-bc23-f2c3bef7f761@tk1.high-speed-test-56424.me:443?security=reality&type=tcp&packetEncoding=xudp&sni=aws.amazon.com&fp=chrome&flow=xtls-rprx-vision&sid=21270a66&pbk=p8VhFzvFOBAhWAEAeWmwDxT3xBSRsGYixqi0qnLFnBM&encryption=none#%E7%BE%8E%E5%9B%BD+Merit%E7%BD%91%E7%BB%9C%E5%85%AC%E5%8F%B8
+vless://bc5ec86c-3e65-4272-994c-59a924c72a68@fbsv6.guardora.pro:443?path=/ws&security=tls&alpn=http/1.1&encryption=none&insecure=0&host=fbsv6.guardora.pro&fp=chrome&type=ws&allowInsecure=0&sni=fbsv6.guardora.pro#%E4%BF%84%E7%BD%97%E6%96%AF+V2CROSS.COM
+hysteria2://06e88dd6-e264-4981-8c26-d7ab17348ab2@144.31.232.216:443?security=tls&sni=fi01.clgate.network#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+vless://0afc6426-606c-48e7-bd70-3c424a416842@us22.sofast.live:58011#%E5%8C%97%E4%BA%AC%E5%B8%82+%E7%99%BE%E5%BA%A6%E7%94%B5%E4%BF%A1%E8%8A%82%E7%82%B9
+hysteria2://9Me_Jx935gnHx13_Nx45M_NYXe037js_Be4z@162.249.127.143:8443?security=tls&sni=hop-germany-september.dynuddns.com#%E7%BE%8E%E5%9B%BD+V2CROSS.COM
+hysteria2://6c077487-06af-4fb1-9e46-d485d98f0a31@108.181.5.106:51285?insecure=1&security=tls&sni=www.bing.com#%E5%8A%A0%E6%8B%BF%E5%A4%A7+V2CROSS.COM
+vless://44f06ad1-982c-4e03-849f-899c1c8dc14f@vl.cocopon.top:443?encryption=none&security=tls&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://dc53f855-5025-45c8-9a85-981036839c5c@skk.moe:8880?security=none&type=ws&path=/pyip=ProxyIP.JP.CMLiussss.net&host=summer-breeze-0574.279.workers.dev&packetEncoding=xudp&encryption=none#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
