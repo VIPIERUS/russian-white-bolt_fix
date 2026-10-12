@@ -1,18 +1,16 @@
 # Pawdroid_Free-servers
 # Source: https://raw.githubusercontent.com/Pawdroid/Free-servers/refs/heads/main/sub
 # Category: Nekoray / Nekobox
-# Updated: 2026-10-12 00:25:48 UTC
-# Total configs: 10
-# Protocols: VLESS=9, VMess=0, Trojan=1, SS=0, Other=0
+# Updated: 2026-10-12 10:36:42 UTC
+# Total configs: 8
+# Protocols: VLESS=7, VMess=0, Trojan=1, SS=0, Other=0
 # ================================================================
 
-vless://9ebf4fda-7395-4800-b42f-b2dda649880a@gw1.edgemedia.lol:13443?security=reality&encryption=none&pbk=1MLoHw7RVkGefh7XUyuGg4ndxwv4vDU9en-f9JxpXRQ&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=ya.ru&sid=d2061bb1#%E7%BE%8E%E5%9B%BD+Xerox
-vless://edee8379-1a08-45c8-8401-338452d8ca9b@n2.whuiy.xyz:443?&security=tls&fp=chrome&sni=n2.whuiy.xyz&type=ws&headerType=none&host=n2.whuiy.xyz&path=%2Fvless-cdn#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
-vless://318c935d-c195-41d3-99ad-9bbcfdab3386@de2.srv.vbuste.ru:443?security=reality&encryption=none&pbk=0-or5ogGhYbBgsVSrSC2Fhxyp2BN97Y9pqIdg61Qd08&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=de2.srv.vbuste.ru&sid=4be4110078ebed4a#%E5%B7%B4%E8%A5%BF+V2CROSS.COM
-vless://267b3a79-81f2-42ac-a409-c23b05b6329d@87.58.158.82:443?security=reality&encryption=none&pbk=zBNHm7DwlBZ2rfu2F5e3jMsmR2q74KpS2L6EavCVmkA&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=dk7.bbobr.win&sid=f6985908fcb5612f#%E4%B8%B9%E9%BA%A6+V2CROSS.COM
-vless://df53b6c2-8005-475c-9eb9-74e1be785dc8@157.228.160.166:443?security=reality&encryption=none&pbk=NOw-idkk3OCn-N0IRS93leujH4ik-E749O2T5BYJQ0M&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=addons.mozilla.org&sid=3cef317b#%E8%8B%B1%E5%9B%BD+%E6%A1%91%E5%BE%B7%E5%85%B0%E5%A4%A7%E5%AD%A6
-vless://df53b6c2-8005-475c-9eb9-74e1be785dc8@157.228.128.59:443?security=reality&type=tcp&packetEncoding=xudp&sni=addons.mozilla.org&fp=chrome&flow=xtls-rprx-vision&sid=06e00e7c&pbk=QnxkyscHouhaLDJHT47beyenVd4LHi62yfJIeRV01Ws&encryption=none#%E8%8B%B1%E5%9B%BD+%E6%A1%91%E5%BE%B7%E5%85%B0%E5%A4%A7%E5%AD%A6
-vless://30e52776-55ac-3cb4-8d36-e2910f07e2c3@185.119.19.105:10829?encryption=none&type=tcp&headerType=&fp=firefox&host=2c5f47d6s8746.gogocs.xyz&path=&flow=xtls-rprx-vision&security=tls&sni=u695098u2c5f47d6s8746.gogocs.xyz&serviceName=&mode=&alpn=h2%2Chttp%2F1.1#%E5%BE%B7%E5%9B%BD+V2CROSS.COM
-vless://92295a0d-b610-4075-85e9-bfab09ec6f3a@blog.salphetka.ru:443?encryption=none&flow=xtls-rprx-vision&fp=chrome&headerType=&pbk=ahmKn2YPXJJ0gGtSKyEVCavB2YHyGQSbHCq40tgfHkA&security=reality&sid=e96c3d6878c984bf&sni=www.uni-bonn.de&type=tcp#%E4%BC%8A%E6%8B%89%E5%85%8B+V2CROSS.COM
-vless://30e52776-55ac-3cb4-8d36-e2910f07e2c3@s8748.okgg.top:10829?encryption=none&type=tcp&headerType=&fp=firefox&host=2c5f47d6s8746.gogocs.xyz&path=&flow=xtls-rprx-vision&security=tls&sni=u695098u2c5f47d6s8746.gogocs.xyz&serviceName=&mode=&alpn=h2%2Chttp%2F1.1#%E5%BE%B7%E5%9B%BD+V2CROSS.COM
-trojan://humanity@172.66.40.99:443?allowInsecure=1&alpn=http%2F1.1&host=www.trusteeforward.com&path=%2Fassignment&security=tls&sni=www.trusteeforward.com&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://c6e3c24c-ce20-4ad5-8c8c-68cb05890ea8@80.47.12.94:443?&security=reality&pbk=gS0qvWKumWcOVoAgf8SHt6Sm3tqpBw07c5sA_Clb1hg&fp=random&sni=pl-1-1.unturned-rust-dead.lol&type=tcp&headerType=none&host=pl-1-1.unturned-rust-dead.lol&path=%2F#%E8%8B%B1%E5%9B%BD+V2CROSS.COM
+vless://616c7b3b-41f4-4038-88c6-d6fedd0ae4a7@213.21.232.26:443?type=tcp&security=reality&flow=xtls-rprx-vision&fp=chrome&pbk=PKlt_5ASsz137EvA9SKSadtjEv1k_U7VRtoelKCgADs&sid=9ea74b83f4993ca9&sni=pl-3.ardesnode.ru#%E6%8B%89%E8%84%B1%E7%BB%B4%E4%BA%9A+V2CROSS.COM
+vless://6cc29a05-4828-4e48-a34a-20b7ada60e85@104.21.70.21:8080?encryption=none&host=testmikonim.hydrymhmdamyn7.workers.dev&path=/OAZko425kNFF0PpQ&sni=testmikonim.hydrymhmdamyn7.workers.dev&type=ws#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://30e52776-55ac-3cb4-8d36-e2910f07e2c3@s482.wagahaha.xyz:10829?encryption=none&type=tcp&headerType=&fp=firefox&host=764943ccs478.gogocs.xyz&path=&flow=xtls-rprx-vision&security=tls&sni=u695098u764943ccs478.gogocs.xyz&serviceName=&mode=&alpn=h2%2Chttp%2F1.1#%E7%BE%8E%E5%9B%BD+%E7%BA%BD%E7%BA%A6%E5%B7%9E%E4%BC%8A%E5%88%A9%E5%8E%BF%E5%A8%81%E5%BB%89%E6%96%AF%E7%BB%B4%E5%B0%94%E6%9D%91ColoCrossing%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8
+vless://1bda2ae7-b597-4704-95a8-29c0f76324ba@nl.alpheratzz.org:8443?&security=tls&flow=xtls-rprx-vision&fp=firefox&alpn=h2&sni=api-v1-6aca6fae.vmagnum.win&type=tcp&headerType=none&host=nl.alpheratzz.org&path=%2F#%E5%A1%9E%E8%88%8C%E5%B0%94+V2CROSS.COM
+vless://495c7195-85b8-498a-bf20-2ea9ce9175b5@162.159.135.234:443?encryption=none&security=tls&sni=snip.edgeoneai.cc.cd&fp=chrome&alpn=h3%2Ch2&type=ws&host=snip.edgeoneai.cc.cd&path=%2Ffdip%3Dsstp%3A%2F%2Fvpn%3Avpn%40public-vpn-200.opengw.net%3A443%3Fed%3D2560#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
+vless://616c7b3b-41f4-4038-88c6-d6fedd0ae4a7@de-3.ardesnode.ru:443?security=reality&encryption=none&pbk=PKlt_5ASsz137EvA9SKSadtjEv1k_U7VRtoelKCgADs&headerType=none&fp=chrome&type=tcp&flow=xtls-rprx-vision&sni=de-3.ardesnode.ru&sid=9ea74b83f4993ca9#%E4%BF%9D%E5%8A%A0%E5%88%A9%E4%BA%9A+V2CROSS.COM
+trojan://humanity@www.calmlunch.com:443?security=tls&sni=www.calmlunch.com&type=ws&path=/assignment&Host=www.calmlunch.com#%E7%BE%8E%E5%9B%BD+CloudFlare%E8%8A%82%E7%82%B9
