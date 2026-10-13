@@ -1,9 +1,9 @@
 # VPNStarLink_MB63UT
 # Source: https://key.vpnstarlink.ru/MB63UT
 # Category: Nekoray / Nekobox
-# Updated: 2026-10-13 16:53:38 UTC
-# Total configs: 20
-# Protocols: VLESS=0, VMess=0, Trojan=0, SS=0, Other=20
+# Updated: 2026-10-13 22:36:22 UTC
+# Total configs: 21
+# Protocols: VLESS=0, VMess=0, Trojan=0, SS=0, Other=21
 # ================================================================
 
 <!--app/apps/remnawave/templates/keys.html-->
@@ -29,7 +29,7 @@
 <div class="info">
     <p>💰 Баланс: <strong>2195.00</strong> ₽</p>
     <p>📅 Остаток дней: <strong>219</strong></p>
-    <p>📊 Израсходовано трафика: <strong>196.25</strong> ГБ</p>
+    <p>📊 Израсходовано трафика: <strong>200.60</strong> ГБ</p>
     <div class="support">
         <a href="https://t.me/STAR_LINK_VPN_bot" target="_blank" class="support-btn">
             ✉️ Написать в Поддержку
@@ -40,7 +40,7 @@
 
 <h2>Основной ключ</h2>
 <div class="info2">
-    <input class="key-input" readonly value="https://20.172.111.30/MB63UT">
+    <input class="key-input" readonly value="https://4.236.89.249/MB63UT">
     <button onclick="copyKey(this)">Copy</button>
 </div>
 
@@ -101,6 +101,14 @@
     <span class="flag">🇳🇱</span>
     
     <input class="key-input" readonly value="vless://f10ce7c9-55ed-44ab-a7c0-30cfa37fd0c1@217.60.35.139:40443?encryption=none&amp;flow=xtls-rprx-vision&amp;type=tcp&amp;security=tls&amp;sni=eh-snl1.craft-supply.org&amp;fp=firefox&amp;alpn=h2%2Chttp%2F1.1#🇳🇱 Нидерланды">
+    <button onclick="copyKey(this)">Copy</button>
+</div>
+
+<div class="key">
+    
+    <span class="flag">🇫🇷</span>
+    
+    <input class="key-input" readonly value="vless://f10ce7c9-55ed-44ab-a7c0-30cfa37fd0c1@s-fr1.pine-valley.net:443?encryption=none&amp;flow=xtls-rprx-vision&amp;type=tcp&amp;security=tls&amp;sni=s-fr1.pine-valley.net&amp;fp=firefox&amp;alpn=h2%2Chttp%2F1.1#🇫🇷 Франция">
     <button onclick="copyKey(this)">Copy</button>
 </div>
 
