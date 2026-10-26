@@ -1,13 +1,18 @@
 # WHITE_SNI_RU_All
 # Source: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-SNI-RU-all.txt
 # Category: Nekoray / Nekobox
-# Updated: 2026-10-26 04:24:47 UTC
-# Total configs: 0
-# Protocols: VLESS=0, VMess=0, Trojan=0, SS=0, Other=0
+# Updated: 2026-10-26 12:44:28 UTC
+# Total configs: 4
+# Protocols: VLESS=4, VMess=0, Trojan=0, SS=0, Other=0
 # ================================================================
 
 # profile-title: 🏳️ БЕЛЫЕ СПИСКИ 🏳️ WHITE LISTS | SNI-RU
 # profile-update-interval: 1
-# Date/Time: 2026-10-26 / 05:21 (Moscow)
-# Количество: 0
+# Date/Time: 2026-10-26 / 14:37 (Moscow)
+# Количество: 4
 # For more info and VPN-configs - visit: www.github.com/igareck/vpn-configs-for-russia
+
+vless://bcf07b50-9da7-44dc-a955-43302f12e1e5@103.91.147.231:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=reality&sni=ozon.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&fp=safari#%F0%9F%87%AB%F0%9F%87%B7%20France%20%7C%20%5BSNI-RU%5D%20ozon.ru
+vless://bcf07b50-9da7-44dc-a955-43302f12e1e5@103.91.147.231:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=reality&sni=ozon.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&fp=firefox#%F0%9F%87%AB%F0%9F%87%B7%20France%20%5BSNI-RU%5D%20ozon.ru
+vless://bcf07b50-9da7-44dc-a955-43302f12e1e5@45.128.78.197:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=reality&sni=ozon.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&fp=qq#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%7C%20%5BSNI-RU%5D%20ozon.ru
+vless://bcf07b50-9da7-44dc-a955-43302f12e1e5@45.128.78.197:443?encryption=none&flow=xtls-rprx-vision&type=tcp&security=reality&sni=ozon.ru&pbk=SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc&fp=firefox#%F0%9F%87%A9%F0%9F%87%AA%20Germany%20%5BSNI-RU%5D%20ozon.ru
