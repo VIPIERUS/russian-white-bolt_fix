@@ -1,22 +1,17 @@
 # WHITE_CIDR_RU_checked
 # Source: https://raw.githubusercontent.com/igareck/vpn-configs-for-russia/refs/heads/main/WHITE-CIDR-RU-checked.txt
 # Category: Nekoray / Nekobox
-# Updated: 2026-11-04 14:17:17 UTC
-# Total configs: 8
-# Protocols: VLESS=8, VMess=0, Trojan=0, SS=0, Other=0
+# Updated: 2026-11-04 21:15:31 UTC
+# Total configs: 3
+# Protocols: VLESS=3, VMess=0, Trojan=0, SS=0, Other=0
 # ================================================================
 
 # profile-title: 🏳️ БЕЛЫЕ СПИСКИ 🏳️ WHITE LISTS | CIDR | Только VK, Yandex, CDNvideo, Beeline
 # profile-update-interval: 1
-# Date/Time: 2026-11-04 / 15:26 (Moscow)
-# Количество: 8
+# Date/Time: 2026-11-04 / 23:51 (Moscow)
+# Количество: 3
 # For more info and VPN-configs - visit: www.github.com/igareck/vpn-configs-for-russia
 
-vless://2f6c70f3-206a-4bc1-ac1f-6b70153f9c73@connect2.accessgate.link:2087?encryption=none&type=tcp&flow=xtls-rprx-vision&security=reality&sni=unpkg.com&pbk=CQBmePak1QN5SsSmK_KTOSLjsCTaiaM4Jtxt7jLheko&sid=b0d8c9a285c70f6f&allowInsecure=1&fp=edge#%F0%9F%87%A6%F0%9F%87%B9%20Austria%20%7C%20%5B%2ACIDR%5D%20VK
-vless://2f6c70f3-206a-4bc1-ac1f-6b70153f9c73@connect2.accessgate.link:2087?encryption=none&type=tcp&flow=xtls-rprx-vision&security=reality&sni=unpkg.com&pbk=CQBmePak1QN5SsSmK_KTOSLjsCTaiaM4Jtxt7jLheko&sid=b0d8c9a285c70f6f&allowInsecure=1&fp=ios#%F0%9F%87%A6%F0%9F%87%B9%20Austria%20%7C%20%5B%2ACIDR%5D%20VK
-vless://2f6c70f3-206a-4bc1-ac1f-6b70153f9c73@217.16.26.34:2081?flow=xtls-rprx-vision&pbk=CQBmePak1QN5SsSmK_KTOSLjsCTaiaM4Jtxt7jLheko&security=reality&sid=b0d8c9a285c70f6f&sni=unpkg.com&type=raw&fp=edge#%F0%9F%87%AD%F0%9F%87%BA%20Hungary%20%7C%20%5B%2ACIDR%5D%20VK
-vless://2f6c70f3-206a-4bc1-ac1f-6b70153f9c73@217.16.26.34:2081?flow=xtls-rprx-vision&pbk=CQBmePak1QN5SsSmK_KTOSLjsCTaiaM4Jtxt7jLheko&security=reality&sid=b0d8c9a285c70f6f&sni=unpkg.com&type=raw&fp=ios#%F0%9F%87%AD%F0%9F%87%BA%20Hungary%20%7C%20%5B%2ACIDR%5D%20VK
-vless://2f6c70f3-206a-4bc1-ac1f-6b70153f9c73@connect.accessgate.link:2081?type=raw&security=reality&flow=xtls-rprx-vision&pbk=CQBmePak1QN5SsSmK_KTOSLjsCTaiaM4Jtxt7jLheko&sid=b0d8c9a285c70f6f&sni=unpkg.com&fp=edge#%F0%9F%87%AD%F0%9F%87%BA%20Hungary%20%7C%20%5B%2ACIDR%5D%20VK
-vless://2f6c70f3-206a-4bc1-ac1f-6b70153f9c73@connect.accessgate.link:2081?type=raw&security=reality&flow=xtls-rprx-vision&pbk=CQBmePak1QN5SsSmK_KTOSLjsCTaiaM4Jtxt7jLheko&sid=b0d8c9a285c70f6f&sni=unpkg.com&fp=firefox#%F0%9F%87%AD%F0%9F%87%BA%20Hungary%20%7C%20%5B%2ACIDR%5D%20VK
-vless://2f6c70f3-206a-4bc1-ac1f-6b70153f9c73@connect.accessgate.link:2084?encryption=none&type=tcp&flow=xtls-rprx-vision&security=reality&sni=unpkg.com&pbk=CQBmePak1QN5SsSmK_KTOSLjsCTaiaM4Jtxt7jLheko&sid=b0d8c9a285c70f6f&allowInsecure=1&fp=edge#%F0%9F%87%B2%F0%9F%87%B0%20North%20Macedonia%20%7C%20%5B%2ACIDR%5D%20VK
-vless://2f6c70f3-206a-4bc1-ac1f-6b70153f9c73@connect.accessgate.link:2084?encryption=none&type=tcp&flow=xtls-rprx-vision&security=reality&sni=unpkg.com&pbk=CQBmePak1QN5SsSmK_KTOSLjsCTaiaM4Jtxt7jLheko&sid=b0d8c9a285c70f6f&allowInsecure=1&fp=ios#%F0%9F%87%B2%F0%9F%87%B0%20North%20Macedonia%20%7C%20%5B%2ACIDR%5D%20VK
+vless://0408e624-0d2a-49bc-8c1c-cbcf5fb75328@84.201.145.167:51191?type=tcp&security=reality&flow=xtls-rprx-vision&pbk=PfSDTeA5VEg8LgrpBG5zf2kDU3P2wc9c9bA_9SbCeVY&sid=6ba85179e30d4fc2&sni=yandex.ru&fp=chrome#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20YA
+vless://0408e624-0d2a-49bc-8c1c-cbcf5fb75328@84.201.145.167:51191?type=tcp&security=reality&flow=xtls-rprx-vision&pbk=PfSDTeA5VEg8LgrpBG5zf2kDU3P2wc9c9bA_9SbCeVY&sid=6ba85179e30d4fc2&sni=yandex.ru&fp=edge#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20YA
+vless://0408e624-0d2a-49bc-8c1c-cbcf5fb75328@84.201.145.167:51191?type=tcp&security=reality&flow=xtls-rprx-vision&pbk=PfSDTeA5VEg8LgrpBG5zf2kDU3P2wc9c9bA_9SbCeVY&sid=6ba85179e30d4fc2&sni=yandex.ru&fp=firefox#%F0%9F%87%B7%F0%9F%87%BA%20Russia%20%7C%20%5B%2ACIDR%5D%20YA
